@@ -1,0 +1,2 @@
+python.exe read_photoimage_test.py
+PAUSE

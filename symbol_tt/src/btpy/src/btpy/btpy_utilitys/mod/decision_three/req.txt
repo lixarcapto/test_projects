@@ -1,0 +1,9 @@
+
+
+
+Objetivos
+
+clase estructura indexada que 
+almacena claves de un grafo para navegar 
+sobre el grafo a la siguiente clave vecina
+y almacenando el estado.

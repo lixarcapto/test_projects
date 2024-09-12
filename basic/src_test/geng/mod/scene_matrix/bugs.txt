@@ -1,0 +1,10 @@
+
+
+Descripcion: 
+Bug en la captura del escenario usando la
+camara.
+Pista: 
+La camara no se centra en torno al 
+objeto.
+Fecha:
+22/07/2024
