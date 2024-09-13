@@ -34,9 +34,8 @@ def repeat_each(INTERVAL_TIME:int,
         else:
             flag = result
         # permite añadir un limite
-        if(not REPETITIONS == -1
-        or not REPETITIONS == 0):
-            if(n >= REPETITIONS -1):
-                break
+            if(REPETITIONS > 0):
+                if(n >= REPETITIONS -1):
+                    break
         time.sleep(INTERVAL_TIME)
         n += 1

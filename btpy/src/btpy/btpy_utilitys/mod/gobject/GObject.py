@@ -3,8 +3,11 @@
 
 from ....btpy_maths.mod.sum_point.sum_point import*
 from ....btpy_maths.mod.colliding_square.colliding_square import*
+from ....btpy_const.mod.sense.Sense import Sense
 
 class GObject:
+
+    SENSE = Sense
 
     def __init__(self, ROUTE = "") -> None:
         self.location_x:int = 0
@@ -13,18 +16,30 @@ class GObject:
         self.stance:str = ""
         self.hit_box_x = 100
         self.hit_box_y = 100
+        self.move_arrow = [0, 0]
         self.family:str = ""
+
+    def update(self):
+        pass
 
     def get_image_paint_dict(self):
         return {
             "route":self.route_image,
-            "y":self.location_y,
-            "x":self.location_x
+            "point":[
+                self.location_y,
+                self.location_x
+            ]
         }
 
     def move(self, move_point, 
              scenario_size_x, 
-             scenario_size_y):
+             scenario_size_y, 
+             square_list):
+        # si colisiona con otro objeto 
+        # salta el codigo
+        for square_dict in square_list:
+            if(self.is_colliding(square_dict)):
+                return None
         r_point = sum_point(
             [self.location_x, self.location_y],
             [move_point[0], move_point[1]],
@@ -68,6 +83,13 @@ class GObject:
             "y":self.location_y,
             "width":self.hit_box_x,
             "height":self.hit_box_y
+        }
+    
+    def get_image_dict(self)->dict:
+        return {
+            "route":self.route_image,
+            "point":[self.location_x, 
+                     self.location_y]
         }
     
     def is_colliding(self, SQUARE_DICT):

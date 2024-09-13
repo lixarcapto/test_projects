@@ -3,7 +3,7 @@
 from ....btpy_list.mod.merge_as_dict.merge_as_dict import*
 import openpyxl
 
-def read_horizontal_excel(
+def read_nested_column_xlsx(
         ROUTE:str)->dict:
     """
     función de persistencia que lee un 

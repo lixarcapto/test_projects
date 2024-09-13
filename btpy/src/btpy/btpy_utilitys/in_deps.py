@@ -28,3 +28,4 @@ from .mod.gobject.GObject import GObject
 from .mod.since_json_string.since_json_string import*
 from .mod.to_json_string.to_json_string import*
 from .mod.date_especial.DateEspecial import DateEspecial
+from .mod.scenario.Scenario import Scenario

@@ -4,7 +4,7 @@
 import openpyxl
 
 
-def create_excel_dict(data:dict[list], 
+def create_dict_list_xlsx(data:dict[list], 
         filename:str)->None:
     """
     Stores a dictionary of arrays in an 

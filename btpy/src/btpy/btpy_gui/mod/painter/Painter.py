@@ -227,8 +227,8 @@ class Painter(WidgetElement):
         """
         self.draw_image(
             IMAGE_DICT["route"],
-            IMAGE_DICT["point"][0],
-            IMAGE_DICT["point"][1]
+            IMAGE_DICT["point"],
+            ".png"
         )
 
     def draw_image_layout_dict(self, 

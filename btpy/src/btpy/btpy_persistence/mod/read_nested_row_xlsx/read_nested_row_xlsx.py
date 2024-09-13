@@ -6,7 +6,7 @@
 import openpyxl
 
 
-def read_xlsx_nested(filename:str)\
+def read_nested_row_xlsx(filename:str)\
         ->dict[dict]:
     """
     Reads an Excel file into a dictionary 

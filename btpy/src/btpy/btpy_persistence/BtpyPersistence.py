@@ -70,7 +70,7 @@ class BtpyPersistence(BtpyMaths):
         """
         return read_excel_dict(filename)
     
-    def read_xlsx_nested(filename:str)\
+    def read_nested_row_xlsx(filename:str)\
         ->dict[dict]:
         """
         Reads an Excel file into a dictionary 
@@ -82,7 +82,7 @@ class BtpyPersistence(BtpyMaths):
         names and cell values as their 
         elements.
         """
-        return read_xlsx_nested(filename)
+        return read_nested_row_xlsx(filename)
     
     def random_name(gender = "", 
             culture = ""):
@@ -117,13 +117,13 @@ class BtpyPersistence(BtpyMaths):
         return random_full_name(gender, 
             culture)
     
-    def create_excel_dict(data:dict[list], 
+    def create_dict_list_xlsx(data:dict[list], 
         filename:str)->None:
         """
         Stores a dictionary of arrays in an 
         Excel file.
         """
-        return create_excel_dict(data, 
+        return create_dict_list_xlsx(data, 
             filename)
     
     def create_docx(route:str, text:str)\
@@ -162,14 +162,14 @@ class BtpyPersistence(BtpyMaths):
         """
         return random_country(region_key)
     
-    def read_horizontal_excel(
+    def read_nested_column_xlsx(
             ROUTE:str)->dict:
         """
         función de persistencia que lee un 
         archivo Excel como un diccionario 
         anidado en horizontal
         """
-        return read_horizontal_excel(ROUTE)
+        return read_nested_column_xlsx(ROUTE)
     
     def load_word(DOCX_ROUTE:str)->None:
         """
@@ -195,7 +195,7 @@ class BtpyPersistence(BtpyMaths):
         """
         return seek_folder_route(ROUTE)
     
-    def read_excel_as_dict(PATH, 
+    def read_excel_as_key_value(PATH, 
         sheet_name=None):
         """
         Función que lee todos los pares 
@@ -206,4 +206,4 @@ class BtpyPersistence(BtpyMaths):
         par clave valor y así sucesivamente 
         con todas las celdas.
         """
-        return read_excel_as_dict(PATH)
+        return read_excel_as_key_value(PATH)

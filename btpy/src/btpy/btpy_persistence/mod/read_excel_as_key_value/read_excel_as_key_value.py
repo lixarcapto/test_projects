@@ -3,7 +3,7 @@
 
 from openpyxl import load_workbook
 
-def read_excel_as_dict(PATH, 
+def read_excel_as_key_value(PATH, 
         sheet_name=None):
     """
      Función que lee todos los pares 

@@ -9,7 +9,7 @@ class Model:
     TRANSLATE_ROUTE = "../res/tables/translate.xlsx"
 
     def __init__(self) -> None:
-        self.translate_dict = Btpy.read_horizontal_excel(
+        self.translate_dict = Btpy.read_nested_column_xlsx(
             Model.TRANSLATE_ROUTE)
         self.traits_dict = Btpy.read_excel_dict(
             Model.TRAITS_ROUTE
