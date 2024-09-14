@@ -32,31 +32,22 @@ class Scenario:
     def move(self):
         hitbox_list = []
         for i, go in enumerate(self.gobject_list):
-            hitbox_list = self\
-                .get_hitbox_list(i)
             go.move(
                 go.move_arrow,
                 self.size_x,
                 self.size_y,
-                hitbox_list
+                self.gobject_list
             )
             self.gobject_list[i] = go
 
-    def get_hitbox_list(self, 
-            index_objetive):
-        LENG = len(self.gobject_list)
-        go = None
-        hitbox_list = []
-        for i in range(LENG):
-            if(i == index_objetive):
-                continue
-            go = self.gobject_list[i]
-            hitbox_list.append(
-                go.get_square())
-        return hitbox_list
+    def free(self):
+        for i, go in enumerate(self.gobject_list):
+            go.free()
+            self.gobject_list[i] = go
 
     def update(self):
         self.move()
         LENG = len(self.gobject_list)
         for i in range(LENG):
             self.gobject_list[i].update()
+        self.free()

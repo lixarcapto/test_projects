@@ -90,8 +90,8 @@ class Painter(WidgetElement):
             photo_image)
         # dibuja el photo_image
         self.widget.create_image(\
-            POINT_ARR[0],
             POINT_ARR[1],
+            POINT_ARR[0],
             image =photo_image,
             anchor="nw"
         )

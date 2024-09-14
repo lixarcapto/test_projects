@@ -7,9 +7,11 @@ from ....btpy_const.mod.sense.Sense import Sense
 
 class GObject:
 
+    LAST_ID = 0
     SENSE = Sense
 
     def __init__(self, ROUTE = "") -> None:
+        self.id = ""
         self.location_x:int = 0
         self.location_y:int = 0
         self.route_image:str = ROUTE
@@ -18,6 +20,19 @@ class GObject:
         self.hit_box_y = 100
         self.move_arrow = [0, 0]
         self.family:str = ""
+        self.colliding_id_buffer = []
+        self.create_id()
+
+    def set_move_arrow(self, point):
+        self.move_arrow = point
+
+    def collide_with(self, ID)->bool:
+        return ID in self\
+            .colliding_id_buffer
+
+    def create_id(self):
+        self.id = str(self.LAST_ID)
+        self.LAST_ID += 1
 
     def update(self):
         pass
@@ -30,15 +45,22 @@ class GObject:
                 self.location_x
             ]
         }
+    
+    def free(self):
+        self.colliding_id_buffer.clear()
 
     def move(self, move_point, 
              scenario_size_x, 
              scenario_size_y, 
-             square_list):
+             gobject_list):
         # si colisiona con otro objeto 
         # salta el codigo
-        for square_dict in square_list:
-            if(self.is_colliding(square_dict)):
+        for gobject in gobject_list:
+            if(gobject.id == self.id):
+                continue
+            if(self.is_colliding(gobject)):
+                self.colliding_id_buffer\
+                    .append(gobject.id)
                 return None
         r_point = sum_point(
             [self.location_x, self.location_y],
@@ -67,12 +89,13 @@ class GObject:
 
     def write(self):
         return ""\
-        + f"{self.location=}"\
+        + f"{self.location_x=}"\
+        + f"{self.location_y=}"\
         + f"{self.route_image=}"\
         + f"{self.stance=}"\
         + f"{self.hit_box_x=}"\
         + f"{self.hit_box_y=}"\
-        + f"{self.self.family=}"
+        + f"{self.family=}"
     
     def __str__(self):
         return self.write()
@@ -92,9 +115,10 @@ class GObject:
                      self.location_y]
         }
     
-    def is_colliding(self, SQUARE_DICT):
-        return colliding_square(
+    def is_colliding(self, gobject):
+        is_colliding = colliding_square(
             self.get_square(),
-            SQUARE_DICT
+            gobject.get_square()
         )
+        return is_colliding
         
