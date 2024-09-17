@@ -4,6 +4,8 @@
 from ....btpy_maths.mod.sum_point.sum_point import*
 from ....btpy_maths.mod.colliding_square.colliding_square import*
 from ....btpy_const.mod.sense.Sense import Sense
+from ....btpy_maths.mod.point_in_space.point_in_space import*
+from ....btpy_maths.mod.square_to_space.square_to_space import*
 
 class GObject:
 
@@ -36,15 +38,6 @@ class GObject:
 
     def update(self):
         pass
-
-    def get_image_paint_dict(self):
-        return {
-            "route":self.route_image,
-            "point":[
-                self.location_y,
-                self.location_x
-            ]
-        }
     
     def free(self):
         self.colliding_id_buffer.clear()
@@ -58,7 +51,7 @@ class GObject:
         for gobject in gobject_list:
             if(gobject.id == self.id):
                 continue
-            if(self.is_colliding(gobject)):
+            if(self.square_is_colliding(gobject)):
                 self.colliding_id_buffer\
                     .append(gobject.id)
                 return None
@@ -115,10 +108,25 @@ class GObject:
                      self.location_y]
         }
     
-    def is_colliding(self, gobject):
+    def square_is_colliding(self, gobject):
         is_colliding = colliding_square(
             self.get_square(),
             gobject.get_square()
         )
         return is_colliding
+
+    def point_is_colliding(self, POINT):
+        location = [self.location_x, 
+            self.location_y]
+        space = square_to_space(
+            location,
+            self.hit_box_x,
+            self.hit_box_y
+        )
+        return point_in_space(
+            POINT,
+            space["range_x"],
+            space["range_y"]
+        )
+        
         

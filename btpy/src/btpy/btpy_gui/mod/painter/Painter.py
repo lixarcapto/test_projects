@@ -9,10 +9,10 @@ from ....btpy_persistence.mod\
 
 class Painter(WidgetElement):
 
-    def __init__(self, window_tk):
+    def __init__(self, widget):
         super().__init__()
         self.widget = tkinter.Canvas(
-            window_tk.widget)
+           widget)
         self.__background_color = "black"
         self.__brush_width = 1
         self.__font = ("Arial", 14)
@@ -55,6 +55,45 @@ class Painter(WidgetElement):
 
     # MUTATORS --------------------------------
 
+    # LISTENERS
+
+    def right_click_listener(self, 
+            callback):
+        self.widget.bind(
+            "<Button-3>", callback
+        )
+
+    def center_click_listener(self, 
+            callback):
+        self.widget.bind(
+            "<Button-2>", callback
+        )
+
+    def left_click_listener(self, 
+            callback):
+        self.widget.bind(
+            "<Button-1>", callback
+        )
+
+    def mouse_move_listener(self, 
+            callback):
+        self.widget.bind(
+            "<Motion>", callback
+        )
+
+    def mouse_enter_listener(self, 
+            callback):
+        self.widget.bind(
+            "<Enter>", callback
+        )
+
+    def leave_enter_listener(self, 
+            callback):
+        self.widget.bind(
+            "<Leave>", callback
+        )
+
+    # ...
 
     def repaint(self)->None:
         """

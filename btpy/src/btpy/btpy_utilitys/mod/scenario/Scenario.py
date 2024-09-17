@@ -11,6 +11,43 @@ class Scenario:
         self.size_x = 0
         self.size_y = 0
 
+    def get(self, KEY_OBJECT):
+        for i, e in enumerate(self.gobject_list):
+            if(e.id == KEY_OBJECT):
+                return e
+        return None
+                
+    
+    def set(self, GOBJECT):
+        if(self.has(GOBJECT.id)):
+            self.update(GOBJECT)
+        else:
+            self.add(GOBJECT)
+        
+    def update(self, GOBJECT):
+        for i, e in enumerate(self.gobject_list):
+            if(e.id == GOBJECT.id):
+                self.gobject_list[i]\
+                    = GOBJECT
+                break
+
+    def has(self, KEY_OBJECT):
+        for e in self.gobject_list:
+            if(e.id == KEY_OBJECT):
+                return True
+        return False
+        
+    def object_clicked(self, POINT_CLICKED):
+        LENG = len(self.gobject_list)
+        go = None
+        image_dict_list = []
+        for i in range(LENG):
+            go = self.gobject_list[i]
+            if(go.point_is_colliding(
+                    POINT_CLICKED)):
+                return True
+        return False
+
     def add(self, gobject):
         self.gobject_list.append(gobject)
 
