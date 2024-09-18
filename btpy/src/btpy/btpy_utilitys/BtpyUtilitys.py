@@ -5,8 +5,6 @@ from ..btpy_string.BtpyString import BtpyString
 import time
 
 class BtpyUtilitys(BtpyString):
-
-    Scenario = Scenario
     
     def deep(array:list) -> int:
         """
@@ -231,9 +229,6 @@ class BtpyUtilitys(BtpyString):
     
     def print_in(TEXT:str)->None:
         print_in(TEXT)
-
-    def GObject(ROUTE)->GObject:
-        return GObject(ROUTE)
     
     def to_json_string(objeto):
         """

@@ -62,7 +62,7 @@ class Scenario:
         for i in range(LENG):
             go = self.gobject_list[i]
             image_dict_list.append(
-                go.get_image_paint_dict()
+                go.get_image_layout_dict()
             )
         return image_dict_list
 

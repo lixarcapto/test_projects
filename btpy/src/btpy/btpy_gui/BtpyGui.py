@@ -1,9 +1,9 @@
 
 
 from .in_deps import*
-from ..btpy_const.BtpyConst import BtpyConst
+from ..btpy_engine.BtpyEngine import BtpyEngine
 
-class BtpyGui(BtpyConst):
+class BtpyGui(BtpyEngine):
 
     """
      clase que contiene envolturas para 

@@ -4,14 +4,13 @@
 from Model import Model 
 from View import View
 from Card import Card
+from btpy.src.btpy.Btpy import Btpy
 
 def main():
     model = Model()
     view = View()
-    card_list = []
-    for i in range(6):
-        card_list.append(Card())
-    view.draw_card_field(card_list)
+    message = model.render()
+    view.receibe(message)
     view.start()
 
 main()

@@ -12,7 +12,7 @@ class View:
         self.window = Btpy.Window()
         self.window.set_full_screen()
         self.painter = Btpy.Painter(
-            self.window)
+            self.window.widget)
         self.size_card_x = 200
         self.size_card_y = 250
         self.painter.pack_in_axe()
@@ -57,10 +57,21 @@ class View:
         self.painter.draw_text(TEXT, 
             letter_point)
         
-    def draw_card_field(self, CARD_LIST):
+    def receibe(self, MESSAGE):
+        self.draw_card_field(
+            MESSAGE["field_1"], 0)
+        self.draw_card_field(
+            MESSAGE["field_2"], 
+            self.size_card_y * 2)
+        self.draw_card_field(
+            MESSAGE["deck_1"], 
+            self.size_card_y)
+        
+    def draw_card_field(self, CARD_LIST,
+            LOCATION_Y):
         x = 0
         for e in CARD_LIST:
-            self.draw_card(e, [x, 0])
+            self.draw_card(e, [x, LOCATION_Y])
             x += self.size_card_x
 
     def draw_card(self, CARD, location):

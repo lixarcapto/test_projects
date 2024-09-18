@@ -229,3 +229,15 @@ class BtpyMaths(BtpyLoops):
         """
         return in_rectangle(origen_point, 
             ancho, alto)
+    
+    def square_to_space(POINT, size_x, 
+            size_y):
+        """
+        Funcion que convierte un square dict 
+        en un space range.
+        """
+        return square_to_space(
+            POINT, 
+            size_x, 
+            size_y
+        )
