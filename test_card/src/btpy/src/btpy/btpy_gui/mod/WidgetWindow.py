@@ -18,6 +18,19 @@ class WidgetWindow(WidgetBase):
         self.widget.bind( "<F11>", self.__toggle_full_screen )
         self.widget.bind( "<Escape>", self.__quit_full_screen )
 
+    def add_close_action(self, CALLBACK):
+        """
+        Funcion que añade una accion a 
+        realizar cuando se cierre la ventana
+        """
+        def simple_decorator():
+            CALLBACK()
+            self.widget.destroy()
+        self.widget.protocol(
+            "WM_DELETE_WINDOW", 
+            simple_decorator
+        )
+
     def create_popup(self, text_message:str, 
         opciones:list[str])\
         ->str:

@@ -10,6 +10,16 @@ from ....btpy_maths.mod.vector_sum.vector_sum import*
 
 class Painter(WidgetElement):
 
+    """
+     Widget especializado que mejora 
+     funcionalidades del Canvas de la 
+     librería de Tkinter.  añade 
+     funciones para el pintado avanzadas, 
+     como imagenes en capas,  dibujar 
+     poligonos, puntos y nuevas  
+     opciones para cuadrados.
+    """
+
     def __init__(self, widget):
         super().__init__()
         self.widget = tkinter.Canvas(
@@ -22,8 +32,6 @@ class Painter(WidgetElement):
         self.__brush_point = [0, 0]
         # buffer de imagenes cargadas
         self.__buffer_image_arr = []
-        self.set_background(
-            self.__background_color)
 
     # ACCESSORS -----------------------------
 
@@ -132,7 +140,8 @@ class Painter(WidgetElement):
         if(not check_path(ROUTE, FORMAT)):
             print(f"ERROR: invalid route {ROUTE}")
         # carga un photo image y lo almacena
-        photo_image = PhotoImage(file= ROUTE)
+        photo_image = PhotoImage(
+            file= ROUTE)
         self.__buffer_image_arr.append(
             photo_image)
         # dibuja el photo_image
@@ -163,8 +172,8 @@ class Painter(WidgetElement):
         for route in IMAGE_LAYOUT:
             self.draw_image(\
                 route,
-                int(POINT[0]),
-                int(POINT[1])
+                [int(POINT[0]), 
+                 int(POINT[1])]
             )
 
     def draw_circle(self, 
@@ -244,20 +253,21 @@ class Painter(WidgetElement):
                 )
             final_point = point_ar
 
-    """
-    Función que traza una línea desde el 
-    puntero dónde se encuentra actualmente 
-    la brocha.
-    """
+    
     def traze_line(self, 
             POINT_DESTINY:list[int])->None:
+        """
+        Función que traza una línea desde 
+        el  puntero dónde se encuentra 
+        actualmente la brocha.
+        """
         self.widget.create_line(
             self.__brush_point[0],
             self.__brush_point[1],
             POINT_DESTINY[0],
             POINT_DESTINY[1],
             fill=self.__brush_color, 
-            width=self.__brush_color
+            width=self.__brush_width
         )
         self.__brush_point = POINT_DESTINY
 
@@ -297,9 +307,18 @@ class Painter(WidgetElement):
                 ".png"
             )
 
+    def draw_image_layout_dict_array(self,
+            image_layout_dict_array):
+        for e in image_layout_dict_array:
+            self.draw_image_layout_dict(e)
+
     def draw_rectangle_by_size(self,
             LOCATION_POINT, SIZE_X,
             SIZE_Y):
+        """
+        Funcion que dibuja un rectangulo
+        a partir de su origen y tamaño
+        """
         destiny1 = vector_sum(
             LOCATION_POINT, 
             [SIZE_X, SIZE_Y])
@@ -307,26 +326,35 @@ class Painter(WidgetElement):
             LOCATION_POINT,
             destiny1
         )
-        print(f"{LOCATION_POINT=}{destiny1=}")
 
     def draw_label_text(self,
             TEXT, LOCATION_POINT):
+        """
+        Funcion que dibuja una etiqueta
+        con un texto en su interior.
+        """
         leng = len(TEXT)
+        # calcula el tamaño x del texto
         rect_size_x = leng * self.__font[1]
+        # calcula la mitad de la fuente
         mid_font_size = round(
             self.__font[1] / 2)
+        # calcula el tamaño y del texto
         rect_size_y = mid_font_size\
             + mid_font_size\
             + self.__font[1]
+        # dibuja el rectangulo
         self.draw_rectangle_by_size(
             LOCATION_POINT,
             rect_size_x,
             rect_size_y
         )
+        # dibuja el texto
         self.draw_text(TEXT, 
             LOCATION_POINT)
 
-    def draw_polygon_dict(self, POLYGON_DICT):
+    def draw_polygon_dict(self, 
+            POLYGON_DICT):
         """
         {"point_array"}
         """

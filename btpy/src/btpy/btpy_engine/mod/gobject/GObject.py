@@ -6,6 +6,7 @@ from ....btpy_maths.mod.colliding_square.colliding_square import*
 from ....btpy_const.mod.sense.Sense import Sense
 from ....btpy_maths.mod.point_in_space.point_in_space import*
 from ....btpy_maths.mod.square_to_space.square_to_space import*
+from ..animation.Animation import Animation
 
 class GObject:
 
@@ -16,7 +17,7 @@ class GObject:
         self.__id = ""
         self.__location_x:int = 0
         self.__location_y:int = 0
-        self.__route_image_layout:str = []
+        self.animation = Animation()
         self.stance:str = ""
         self.__hit_box_x = 100
         self.__hit_box_y = 100
@@ -25,8 +26,6 @@ class GObject:
         self.__colliding_id_buffer = []
         if(ID == ""):
             self.__create_id()
-        self.set_route_image(
-            "../res/image/cell.png")
 
     # ACCESORS -----------------------------
 
@@ -55,14 +54,19 @@ class GObject:
     def get_hitbox_size_y(self):
         return self.__hit_box_y
     
-    def set_route_image(self, ROUTE):
+    def add_image_layout(self, 
+            ROUTE:list[str])\
+            ->None:
         if(not type(ROUTE) == list):
-            self.__route_image = [ROUTE]
+            self.animation\
+                .add_image_layout([ROUTE])
         else:
-            self.__route_image = ROUTE
+            self.animation\
+                .add_image_layout(ROUTE)
 
-    def get_route_image(self):
-        return self.__route_image
+    def get_image_layout(self)->list[str]:
+        return self.animation\
+            .get_image_layout()
     
     def set_vector_arrow(self, POINT):
         self.__move_arrow = POINT
@@ -96,7 +100,7 @@ class GObject:
         # si colisiona con otro objeto 
         # salta el codigo
         for gobject in gobject_list:
-            if(gobject.id == self.__id):
+            if(gobject.get_id() == self.__id):
                 continue
             if(self.square_is_colliding(gobject)):
                 self.__colliding_id_buffer\
@@ -134,7 +138,7 @@ class GObject:
     
     def get_image_layout_dict(self):
         return {
-            "route_array":self.__route_image,
+            "route_array":self.get_image_layout(),
             "point":[self.__location_x, 
                      self.__location_y]
         }

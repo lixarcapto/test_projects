@@ -6,6 +6,7 @@ import tkinter
 from tkinter import PhotoImage
 from ....btpy_persistence.mod\
     .check_path.check_path import*
+from ....btpy_maths.mod.vector_sum.vector_sum import*
 
 class Painter(WidgetElement):
 
@@ -16,6 +17,7 @@ class Painter(WidgetElement):
         self.__background_color = "black"
         self.__brush_width = 1
         self.__font = ("Arial", 14)
+        self.__font_color = "white"
         self.__brush_color = "red"
         self.__brush_point = [0, 0]
         # buffer de imagenes cargadas
@@ -28,8 +30,14 @@ class Painter(WidgetElement):
     def set_font(self, NAME_FONT, SIZE):
         self.__font = [NAME_FONT, SIZE]
 
+    def set_font_color(self, COLOR):
+        self.__font_color = COLOR
+
     def set_brush_width(self, WIDTH:int):
         self.__brush_width = WIDTH
+
+    def get_font_color(self):
+        return self.__font_color
 
     def get_brush_width(self)->int:
         return self.__brush_width
@@ -137,11 +145,16 @@ class Painter(WidgetElement):
 
     def draw_text(self, TEXT,
             POINT:list[int|float]):
+        y_mod = self.__font[1]
+        x_mod = (self.__font[1] * len(TEXT)) / 2
+        f_point = vector_sum(
+            POINT, 
+            [x_mod, y_mod])
         self.widget.create_text(
-            POINT[0], POINT[1], 
+            f_point[0], f_point[1], 
             text=TEXT,
             font=self.__font,
-            fill= self.__brush_color
+            fill= self.__font_color
         )
 
     def draw_image_layout(self, 
@@ -280,9 +293,42 @@ class Painter(WidgetElement):
         for route in route_arr:
             self.draw_image(\
                 route,
-                int(point[0]),
-                int(point[1])
+                point,
+                ".png"
             )
+
+    def draw_image_layout_dict_array(self,
+            image_layout_dict_array):
+        for e in image_layout_dict_array:
+            self.draw_image_layout_dict(e)
+
+    def draw_rectangle_by_size(self,
+            LOCATION_POINT, SIZE_X,
+            SIZE_Y):
+        destiny1 = vector_sum(
+            LOCATION_POINT, 
+            [SIZE_X, SIZE_Y])
+        self.draw_rectangle(
+            LOCATION_POINT,
+            destiny1
+        )
+
+    def draw_label_text(self,
+            TEXT, LOCATION_POINT):
+        leng = len(TEXT)
+        rect_size_x = leng * self.__font[1]
+        mid_font_size = round(
+            self.__font[1] / 2)
+        rect_size_y = mid_font_size\
+            + mid_font_size\
+            + self.__font[1]
+        self.draw_rectangle_by_size(
+            LOCATION_POINT,
+            rect_size_x,
+            rect_size_y
+        )
+        self.draw_text(TEXT, 
+            LOCATION_POINT)
 
     def draw_polygon_dict(self, POLYGON_DICT):
         """

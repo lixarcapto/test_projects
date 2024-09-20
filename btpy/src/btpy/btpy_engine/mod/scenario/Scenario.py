@@ -13,27 +13,27 @@ class Scenario:
 
     def get(self, KEY_OBJECT):
         for i, e in enumerate(self.gobject_list):
-            if(e.id == KEY_OBJECT):
+            if(e.get_id() == KEY_OBJECT):
                 return e
         return None
                 
     
     def set(self, GOBJECT):
-        if(self.has(GOBJECT.id)):
-            self.update(GOBJECT)
+        if(self.has(GOBJECT.get_id())):
+            self.replace(GOBJECT)
         else:
             self.add(GOBJECT)
         
-    def update(self, GOBJECT):
+    def replace(self, GOBJECT):
         for i, e in enumerate(self.gobject_list):
-            if(e.id == GOBJECT.id):
+            if(e.get_id() == GOBJECT.get_id()):
                 self.gobject_list[i]\
                     = GOBJECT
                 break
 
     def has(self, KEY_OBJECT):
         for e in self.gobject_list:
-            if(e.id == KEY_OBJECT):
+            if(e.get_id() == KEY_OBJECT):
                 return True
         return False
         
@@ -45,8 +45,8 @@ class Scenario:
             go = self.gobject_list[i]
             if(go.point_is_colliding(
                     POINT_CLICKED)):
-                return True
-        return False
+                return go.get_id()
+        return ""
 
     def add(self, gobject):
         self.gobject_list.append(gobject)
@@ -70,7 +70,7 @@ class Scenario:
         hitbox_list = []
         for i, go in enumerate(self.gobject_list):
             go.move(
-                go.move_arrow,
+                go.get_vector_arrow(),
                 self.size_x,
                 self.size_y,
                 self.gobject_list

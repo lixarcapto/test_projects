@@ -7,8 +7,8 @@ def new_thread(function):
     Decorador para crear de forma 
     fácil y ágil nuevos hilos.
     """
-    def wrapper(route):
-        __create_thread(function, route)
+    def wrapper():
+        __create_thread(function)
     return wrapper
 
 def __create_thread(target_function, 

@@ -90,9 +90,9 @@ class BtpyUtilitys(BtpyString):
             size_celd, size_x, size_y)
     
     def repeat_each_async(
-            INTERVAL_TIME:int, 
+            INTERVAL_TIME:int|float, 
             FUNCTION,  
-            REPETITIONS:int|float = -1)->None:
+            REPETITIONS:int = -1)->None:
         """
         Función que repite una acción 
         enviada en un intervalo de 

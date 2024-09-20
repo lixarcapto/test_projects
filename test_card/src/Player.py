@@ -11,7 +11,9 @@ class Player:
         self.flip_card = []
         self.field_card = []
         self.deck_card = []
-        for i in range(5):
-            self.deck_card.append(Card())
-        for i in range(5):
-            self.field_card.append(Card())
+
+    def add_deck(self, card):
+        self.deck_card.append(card)
+
+    def add_field(self, card):
+        self.field_card.append(card)

@@ -6,9 +6,9 @@ import time
 
 
 def repeat_each_async(
-        INTERVAL_TIME:int, 
+        INTERVAL_TIME:int|float, 
         FUNCTION,  
-        REPETITIONS:int|float = -1)->None:
+        REPETITIONS:int = -1)->None:
     """
     Repite la función especificada en 
     un thread propio cada cierto intervalo 
