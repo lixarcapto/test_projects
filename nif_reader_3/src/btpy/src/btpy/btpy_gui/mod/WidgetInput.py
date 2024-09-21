@@ -6,9 +6,8 @@ import tkinter as tk
 
 class WidgetInput(WidgetElement):
 
-    def __init__(self, window_tk):
-        self.widget = tk.Text(
-            window_tk.widget)
+    def __init__(self, widget):
+        self.widget = tk.Text(widget)
         super().default_config()
 
     def set_size(self, x, y):

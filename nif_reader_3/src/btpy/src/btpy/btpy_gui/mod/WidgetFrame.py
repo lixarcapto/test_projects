@@ -6,7 +6,7 @@ import tkinter
 
 class WidgetFrame(WidgetElement):
 
-    def __init__(self, window):
+    def __init__(self, widget):
         super().__init__()
         self.widget = tkinter.Frame(
-            window.widget)
+            widget)

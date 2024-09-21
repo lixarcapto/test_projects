@@ -19,7 +19,7 @@ class View:
     def init_calls(self):
         self.init_window()
         self.player_frame = PlayerFrame(
-            self.window)
+            self.window.widget)
         self.window.widget.update()
 
     def init_window(self):

@@ -10,7 +10,7 @@ from ..animation.Animation import Animation
 
 class GObject:
 
-    LAST_ID = 0
+    last_id = 0
     SENSE = Sense
 
     def __init__(self, ID:str = "") -> None:
@@ -26,6 +26,7 @@ class GObject:
         self.__colliding_id_buffer = []
         if(ID == ""):
             self.__create_id()
+        print(f"ID {self.__id}")
 
     # ACCESORS -----------------------------
 
@@ -84,10 +85,16 @@ class GObject:
             .__colliding_id_buffer
 
     def __create_id(self):
-        self.__id = str(self.LAST_ID)
-        self.LAST_ID += 1
+        self.__id = str(GObject.last_id)
+        GObject.last_id += 1
 
     def update(self):
+        """
+        Funcion que debe ser llamada
+        para añadir nuevas funciones
+        de actualizacion.
+        """
+        self.animation.next()
         pass
     
     def free(self):
@@ -104,7 +111,8 @@ class GObject:
                 continue
             if(self.square_is_colliding(gobject)):
                 self.__colliding_id_buffer\
-                    .append(gobject.id)
+                    .append(gobject.get_id())
+                print("is colliding")
                 return None
         r_point = sum_point(
             [self.__location_x, self.__location_y],

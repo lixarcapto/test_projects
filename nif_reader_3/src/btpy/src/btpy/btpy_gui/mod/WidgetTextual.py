@@ -7,9 +7,9 @@ from PIL import ImageTk
 
 class WidgetTextual(WidgetElement):
 
-    def __init__(self, window_tk):
+    def __init__(self, widget):
         self.widget = tk.Label(
-            window_tk.widget)
+            widget)
         super().default_config()
 
     def set_text(self, string):

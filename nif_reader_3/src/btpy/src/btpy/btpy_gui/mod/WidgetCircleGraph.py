@@ -9,9 +9,9 @@ import tkinter
 
 class WidgetCircleGraph(WidgetElement):
 
-    def __init__(self, window_tk):
+    def __init__(self, widget):
         self.widget = tkinter.Canvas(
-            window_tk.widget)
+            widget)
 
     def create_graph(
           self, dict_color, 

@@ -6,9 +6,9 @@ from tkinter import ttk
 
 class WidgetComboBox(WidgetTextual):
 
-    def __init__(self, window_tk):
+    def __init__(self, widget):
         self.widget = ttk.Combobox(
-            window_tk.widget, 
+            widget, 
             state="readonly")
         super().default_config()
         self.img = None

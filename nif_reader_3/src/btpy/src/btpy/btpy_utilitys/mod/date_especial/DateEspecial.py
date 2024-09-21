@@ -19,6 +19,10 @@ class DateEspecial:
     * añadir soporte en español
     * añadir soporte para fechas latinas
     * añadir un sistema de siglos romanos
+    * añadir las diferencias de estaciones 
+        en el calendario juliano y gregoriano
+    * añadir cambio de estacion para hemisferio
+    norte y sur
     """
 
     SEASONS_BY_MONTH = [
@@ -35,6 +39,12 @@ class DateEspecial:
         {"north":"autumn", "south":"spring"},# noviembre
         {"north":"winter", "south":"summer"}# diciembre
     ]
+    SEASON_CHANGE_DAYS_NORTH = {
+        "summer":{"day_number":21,"month":6},
+        "spring":{"day_number":21,"month":3},
+        "automn":{"day_number":23,"month":9},
+        "winter":{"day_number":21,"month":12}
+    }
     MONTH_DAYS = [
         31,
         28,
@@ -56,6 +66,9 @@ class DateEspecial:
     class HEMISPHERE:
         NORTH = "north"
         SOUTH = "south"
+    class CALENDAR:
+        JULIAN = "julian"
+        GREGORIAN = "gregorian"
 
     def __init__(self) -> None:
         self.__day = 0
@@ -65,6 +78,7 @@ class DateEspecial:
         self.year_to_leap = 0
         self.__year = 0
         self.__season = ""
+        self.calendar = "gregorian"
         self.hemisphere = "north"
         self.is_leap_year = Switch()
 
@@ -85,7 +99,9 @@ class DateEspecial:
         is_leap_year = self.set_leap_year(
             year)
         self.set_leap_year(is_leap_year)
-        self.__day = calcule_first_day(year)
+        dict_result = calcule_first_day(year)
+        self.__day = dict_result["index_day"]
+        self.calendar = dict_result["calendar"]
         self.__year = year
         for i in range(days_remaning -1):
             self.advance_one_day()
@@ -101,15 +117,25 @@ class DateEspecial:
         + f"{DAY_NAMES[self.__day]}, " \
         + f"the {self.__day_number +1}th of " \
         + f"{MONTH_NAMES[self.__month]}, " \
-        + self.get_season(self.__month).capitalize()\
-        + f" {self.__year}."
+        + self.__season.capitalize()\
+        + f" {self.__year} " \
+        + f"of the {self.calendar.capitalize()} calendar "\
+        + f"in {self.hemisphere} hemisphere."
     
-    def get_season(self, MONTH_INDEX, 
-            /,IS_LEAP_YEAR = False):
-        dict = self.SEASONS_BY_MONTH[MONTH_INDEX]
+    def get_season(self):
+        DAY_NUMBER = self.__day_number
+        MONTH_INDEX = self.__month
+        IS_LEAP_YEAR = self.is_leap_year
+        season_result = ""
+        collection = self.SEASON_CHANGE_DAYS_NORTH
+        for season_key in self.SEASON_CHANGE_DAYS_NORTH:
+            dict_season = collection[season_key]
+            if(dict_season["day_number"] == DAY_NUMBER
+            and dict_season["month"] == MONTH_INDEX):
+                season_result = season_key
         self.is_leap_year = Switch(
             IS_LEAP_YEAR)
-        return dict[self.hemisphere]
+        self.__season = season_key
 
     def get_days_by_month(self, MONTH_INDEX):
         if(MONTH_INDEX == 1):
@@ -125,11 +151,9 @@ class DateEspecial:
         self.__day_number += 1
         if(self.__day >= self.DAYS_BY_WEEK):
             self.__day = 0
+            self.get_season()
         if(self.__day_number >= self\
-            .get_days_by_month(self.__month)):
-            self.__season = self.get_season(
-                self.__month
-            )
+            .get_days_by_month(self.__month)):            
             self.__month += 1
             self.__day_number = 0
         if(self.__month >= self.MONTHS_BY_YEAR):

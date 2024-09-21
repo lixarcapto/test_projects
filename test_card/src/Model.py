@@ -57,7 +57,7 @@ class Model:
         card.set_id(self.last_id)
         self.last_id += 1
         card.load_card_dict(KEY, card_dict)
-        self.scenario.add(card)
+        self.scenario.__add(card)
         return card
 
     def load_desktop_card(self, 
@@ -95,7 +95,7 @@ class Model:
         self.field_1.append(NAME)
 
     def click_effect(self, EVENT_DICT):
-        name = self.scenario.object_clicked(
+        name = self.scenario.__object_clicked_id(
             EVENT_DICT["point"]
         )
         print(f"clicked {name}")

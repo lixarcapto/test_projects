@@ -5,10 +5,10 @@ import tkinter
 
 class WidgetGrid(WidgetTextual):
 
-    def __init__(self, window_tk, size_x, 
+    def __init__(self, widget, size_x, 
             size_y):
         self.widget = tkinter.Frame(
-            window_tk.widget)
+            widget)
         self.button_grid = None
         super().default_config()
         self.point_selected = [0, 0]

@@ -23,3 +23,4 @@ from .mod.colliding_square.colliding_square import*
 from .mod.origin_by_center.origin_by_center import*
 from .mod.left_point_rectangle.left_point_rectangle import*
 from .mod.in_rectangle.in_rectangle import*
+from .mod.square_to_space.square_to_space import*

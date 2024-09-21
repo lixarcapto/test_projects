@@ -2,6 +2,7 @@
 
 from .in_deps import*
 from ..btpy_string.BtpyString import BtpyString
+import time
 
 class BtpyUtilitys(BtpyString):
     
@@ -88,15 +89,20 @@ class BtpyUtilitys(BtpyString):
         return polygon_matrix(
             size_celd, size_x, size_y)
     
-    def repeat_in_thread(interval:int, 
-        limit, action)->None:
+    def repeat_each_async(
+            INTERVAL_TIME:int|float, 
+            FUNCTION,  
+            REPETITIONS:int = -1)->None:
         """
         Función que repite una acción 
         enviada en un intervalo de 
         segundos usando un hilo propio.
         """
-        return repeat_in_thread(interval, 
-            limit, action)
+        return repeat_each_async(
+            INTERVAL_TIME, 
+            FUNCTION, 
+            REPETITIONS
+            )
     
     def route_in_dict(seek_string:str,
             dict:dict[dict]) ->list[str]:
@@ -118,6 +124,9 @@ class BtpyUtilitys(BtpyString):
         el método stop
         """
         return Crono()
+    
+    def pause(SECONDS):
+        time.sleep(SECONDS)
     
     def clean_console():
         clean_console()
@@ -220,9 +229,6 @@ class BtpyUtilitys(BtpyString):
     
     def print_in(TEXT:str)->None:
         print_in(TEXT)
-
-    def GObject(ROUTE)->GObject:
-        return GObject(ROUTE)
     
     def to_json_string(objeto):
         """

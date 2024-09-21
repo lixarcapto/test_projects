@@ -15,6 +15,8 @@ class Model:
         NEXT_KEY = "NEXT"
         END_KEYS = "*"
         IMAGE_KEY = "ROUTE"
+        FINAL_KEY = "END"
+    FORMAT = "png"
 
     def __init__(self) -> None:
         self.__graph = Btpy.DesitionThree()
@@ -29,20 +31,48 @@ class Model:
         self.an_error_ocurred = False
         self.nif_folder_route = ""
         self.__init_calls()
+
+    # ACCESSORS-------------------------------
         
+    # MUTATORS-------------------------------
+
+    # PRIVATE-------------------------------
+
     def __init_calls(self):
         folder_route = Btpy\
             .seek_folder_route()
-        # crea el docx route
-        r = folder_route.replace(
+        self.read_nif(folder_route)
+
+    def __create_docx_route(self, 
+            FOLDER_ROUTE, NAME):
+        docx_route =  FOLDER_ROUTE\
+            + "/" + NAME + ".docx"
+        return docx_route
+    
+    def __get_docx_name(self, ROUTE):
+        r = ROUTE.replace(
             ".docx", "")
         nif_name = Btpy.cut_from(r, "/", 
             last_appearance=True)
-        docx_route =  folder_route\
-            + "/" + nif_name + ".docx"
+        return nif_name
+        
+    def read_nif(self, FOLDER_ROUTE):
+        """
+        Funcion que lee el archivo NIF 
+        y obtiene sus rutas principales,
+        tambien carga el nif docx
+        """
+        # obtiene el nombre del NIF
+        name = self.__get_docx_name(
+            FOLDER_ROUTE)
+        # obtiene la ruta del DOCX
+        docx_route = self.__create_docx_route(
+            FOLDER_ROUTE,
+            name
+        )
         # almacena los resultados
-        self.__name_nif = nif_name
-        self.nif_folder_route = folder_route
+        self.__name_nif = name
+        self.nif_folder_route = FOLDER_ROUTE
         self.__docx_route = docx_route
         # lee el docx document
         self.__load_nif_docx(
@@ -103,7 +133,8 @@ class Model:
                 real_index)):
             self.an_error_ocurred = True
             return None
-        if(actual_key == "END"):
+        if(actual_key == self.KEYS_TEXT\
+                .FINAL_KEY):
             print("is END KEY")
             self.destroy()
         else:
@@ -126,14 +157,8 @@ class Model:
         Funcion que lee el archivo NIF docx
         seleccionado por el usuario.
         """
-        # lee el archivo NIF
-        dict_nif = read_docx_with_titles(
-            ROUTE)
-        # convierte las claves a mayuscula
-        dict_nif = Btpy.map_in_keys(
-            dict_nif,
-            lambda e:e.upper()
-        )
+        dict_nif = self.__persistence\
+            .load_nif_docx(ROUTE)
         # añade los nodos cargados
         for k in dict_nif:
             self.__add_node(
@@ -184,26 +209,43 @@ class Model:
             self.KEYS_TEXT.END_KEYS)
         node_option = NodeOption()
         node_option.text = text
-        node_option = self.get_route_image(
-            node_option, RAW_TEXT)
+        node_option.route_image = self\
+            .get_route_image(RAW_TEXT)
         return node_option
-
-    def get_route_image(self, node_option, 
-            RAW_TEXT):
-        if(not self.KEYS_TEXT.IMAGE_KEY \
-           in RAW_TEXT):
-            return node_option
-        route = Btpy.get_between(
+    
+    def get_name_image(self, RAW_TEXT:str)\
+            ->str:
+        """
+        Funcion que obtiene el nombre 
+        de una imagen del texto a partir 
+        de las claves.
+        """
+        return Btpy.get_between(
             RAW_TEXT,
             self.KEYS_TEXT.IMAGE_KEY, 
             self.KEYS_TEXT.END_KEYS
         )
-        route = route.strip()
+    
+    def create_route_image(self, NAME:str)\
+            ->str:
+        """
+        Funcion que completa la ruta de 
+        imagen a partir de su nombre.
+        """
+        route = NAME.strip()
         # completa la ruta automaticamente
         route = self.nif_folder_route\
-            + f"/{route}.png"
-        node_option.route_image = route
-        return node_option
+            + f"/{route}.{self.FORMAT}"
+        return route
+
+    def get_route_image(self, RAW_TEXT):
+        if(not self.KEYS_TEXT.IMAGE_KEY \
+           in RAW_TEXT):
+            return ""
+        route = self.get_name_image(RAW_TEXT)
+        route = self.create_route_image(
+            route)
+        return route
 
     def __extract_option_keys(self, TEXT):
         """

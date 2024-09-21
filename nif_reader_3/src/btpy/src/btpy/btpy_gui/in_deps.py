@@ -12,3 +12,4 @@ from .mod.WidgetCircleGraph import WidgetCircleGraph
 from .mod.create_popup import create_popup
 from .mod.WidgetPressTime import WidgetPressTime
 from .mod.WidgetFrame import WidgetFrame
+from .mod.WidgetPanelButton import WidgetPanelButton

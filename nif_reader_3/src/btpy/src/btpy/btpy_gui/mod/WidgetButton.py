@@ -5,10 +5,9 @@ import tkinter
 
 class WidgetButton(WidgetTextual):
 
-    def __init__(self, window_tk):
+    def __init__(self, widget):
         self.widget = tkinter.Button(
-            window_tk.widget)
-        super().default_config()
+            widget)
         self.img = None
 
     def add_listener(self, function):

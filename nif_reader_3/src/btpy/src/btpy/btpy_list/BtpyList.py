@@ -109,5 +109,14 @@ class BtpyList(BtpyGui):
     
     def map_in_keys(OLD_DICT:dict, function)\
         ->dict:
-        return map_in_keys(OLD_DICT, function)
+        return map_in_keys(OLD_DICT, 
+            function)
+    
+    def fit_list(LIST, SIZE, 
+        FILL_TYPE = None)->list:
+        """
+        Funcion que ajusta la lista enviada 
+        al tamaño indicado.
+        """
+        return fit_list(LIST, SIZE, FILL_TYPE)
 

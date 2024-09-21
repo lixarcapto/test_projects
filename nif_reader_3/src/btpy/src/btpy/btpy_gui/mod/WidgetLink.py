@@ -6,9 +6,9 @@ import webbrowser
 
 class WidgetLink(WidgetButton):
 
-    def __init__(self, window_tk, url):
+    def __init__(self, widget, url):
         self.widget = tk.Button(
-            window_tk.widget)
+            widget)
         super().default_config()
         self.url = url
         self.set_text(self.url)

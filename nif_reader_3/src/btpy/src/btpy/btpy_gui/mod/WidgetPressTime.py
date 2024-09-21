@@ -6,10 +6,10 @@ import tkinter as tk
 
 class WidgetPressTime(WidgetTextual):
 
-    def __init__(self, window_tk):
+    def __init__(self, widget):
         self.widget = tk.Button(
-            window_tk.widget)
-        self.root = window_tk.widget
+            widget)
+        self.root = widget
         self.tiempo_espera=2000
         self.tiempo_espera = self.tiempo_espera  
         # Tiempo en milisegundos
