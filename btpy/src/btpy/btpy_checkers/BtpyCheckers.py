@@ -92,12 +92,3 @@ class BtpyCheckers:
         de un array son iguales.
         """
         return are_all_same(array)
-    
-    def has_all_deep(DATA, FUNCTION)->bool:
-        return has_all_deep(DATA, FUNCTION)
-    
-    def has_none_deep(DATA, FUNCTION)->bool:
-        return has_none_deep(DATA, FUNCTION)
-    
-    def has_some_deep(DATA, FUNCTION)->bool:
-        return has_some_deep(DATA, FUNCTION)

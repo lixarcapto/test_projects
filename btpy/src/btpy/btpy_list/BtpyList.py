@@ -2,9 +2,9 @@
 
 
 from .in_deps import*
-from ..btpy_gui.BtpyGui import BtpyGui
+from ..btpy_images.BtpyImages import BtpyImages
 
-class BtpyList(BtpyGui):
+class BtpyList(BtpyImages):
     
     def true_percentage(array:list[bool])\
             ->float:
@@ -118,5 +118,14 @@ class BtpyList(BtpyGui):
         Funcion que ajusta la lista enviada 
         al tamaño indicado.
         """
-        return fit_list(LIST, SIZE, FILL_TYPE)
-
+        return fit_list(LIST, SIZE, 
+            FILL_TYPE)
+    
+    def count(STRUCTURE:list|dict, CHECKER)\
+        -> int:
+        """
+        Funcion que cuenta el numero de 
+        verificaciones con una funcion 
+        checker enviada.
+        """
+        return count(STRUCTURE, CHECKER)

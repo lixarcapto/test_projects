@@ -16,10 +16,9 @@ def call_after(SECONDS:int|float, CALL_BACK):
     retorno de la funcion.
     """
     duplicate = Duplicate()
-    def _wrapper():
+    def wrapper():
         time.sleep(SECONDS)
-        nonlocal duplicate 
         duplicate.value = CALL_BACK()
-    thread = threading.Thread(target=_wrapper)
+    thread = threading.Thread(target=wrapper)
     thread.start()
     return duplicate

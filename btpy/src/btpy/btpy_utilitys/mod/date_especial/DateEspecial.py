@@ -24,21 +24,6 @@ class DateEspecial:
     * añadir cambio de estacion para hemisferio
     norte y sur
     """
-
-    SEASONS_BY_MONTH = [
-        {"north":"winter", "south":"summer"},# enero
-        {"north":"winter", "south":"summer"},# febrero
-        {"north":"spring", "south":"autumn"},# marzo
-        {"north":"spring", "south":"autumn"},# abril
-        {"north":"spring", "south":"autumn"},# mayo
-        {"north":"summer", "south":"winter"},# junio
-        {"north":"summer", "south":"winter"},# julio
-        {"north":"summer", "south":"winter"},# agosto
-        {"north":"autumn", "south":"spring"},# septiembre
-        {"north":"autumn", "south":"spring"},# octubre
-        {"north":"autumn", "south":"spring"},# noviembre
-        {"north":"winter", "south":"summer"}# diciembre
-    ]
     SEASON_CHANGE_DAYS_NORTH = {
         "summer":{"day_number":21,"month":6},
         "spring":{"day_number":21,"month":3},
@@ -85,26 +70,55 @@ class DateEspecial:
     def set_leap_year(self, BOOL):
         self.is_leap_year = Switch(BOOL)
 
-    def set_english_date(self, DATE_STRING):
+    def set_english_date(self, 
+            DATE_STRING:str):
+        date_dict = self.get_date_dict(
+            DATE_STRING)
+        days_remaining = self\
+            .get_remaining_days(
+                date_dict["day"],
+                date_dict["month"])
+        # ajusta si es año biciesto
+        is_leap_year = self.set_leap_year(
+            date_dict["year"])
+        self.set_leap_year(is_leap_year)
+        # determina el dia de inicio
+        dict_result = calcule_first_day(
+            date_dict["year"])
+        # ajusta el dia y el año
+        self.__day = dict_result["index_day"]
+        self.calendar = dict_result["calendar"]
+        self.__year = date_dict["year"]
+        # avansa hasta llegar al dia indicado
+        for i in range(days_remaining -1):
+            self.advance_one_day()
+
+    def get_date_dict(self, DATE_STRING):
+        # divide la fecha
         date_arr = DATE_STRING.split("/")
+        # traduce los datos a int
         year = int(date_arr[0])
         month = int(date_arr[1])
         days_number = int(date_arr[2])
+        return {
+            "year" : year,
+            "month" : month,
+            "day": days_number
+        }
+
+    def get_remaining_days(self, 
+            DAY_NUMBER, MONTH_NUMBER):
+        """
+        Calcula el numero de dias 
+        restantes
+        """
         i = 0
-        days_remaning = days_number
+        days_remaning = DAY_NUMBER
         for day_number in self.MONTH_DAYS:
-            if(i == month -1): break
+            if(i == MONTH_NUMBER -1): break
             days_remaning += day_number
             i += 1
-        is_leap_year = self.set_leap_year(
-            year)
-        self.set_leap_year(is_leap_year)
-        dict_result = calcule_first_day(year)
-        self.__day = dict_result["index_day"]
-        self.calendar = dict_result["calendar"]
-        self.__year = year
-        for i in range(days_remaning -1):
-            self.advance_one_day()
+        return days_remaning
 
     def write_date(self):
         return ""\
@@ -123,9 +137,17 @@ class DateEspecial:
         + f"in {self.hemisphere} hemisphere."
     
     def get_season(self):
-        DAY_NUMBER = self.__day_number
-        MONTH_INDEX = self.__month
-        IS_LEAP_YEAR = self.is_leap_year
+        season_key = self.get_season_key(
+            self.__day_number,
+            self.__month,
+            self.is_leap_year
+        )
+        self.is_leap_year = Switch(
+            self.is_leap_year)
+        self.__season = season_key
+
+    def get_season_key(self, DAY_NUMBER,
+            MONTH_INDEX, IS_LEAP_YEAR):
         season_result = ""
         collection = self.SEASON_CHANGE_DAYS_NORTH
         for season_key in self.SEASON_CHANGE_DAYS_NORTH:
@@ -133,9 +155,7 @@ class DateEspecial:
             if(dict_season["day_number"] == DAY_NUMBER
             and dict_season["month"] == MONTH_INDEX):
                 season_result = season_key
-        self.is_leap_year = Switch(
-            IS_LEAP_YEAR)
-        self.__season = season_key
+        return season_key
 
     def get_days_by_month(self, MONTH_INDEX):
         if(MONTH_INDEX == 1):

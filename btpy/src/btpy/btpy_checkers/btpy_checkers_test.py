@@ -8,6 +8,7 @@ from .mod.in_range.in_range_test import*
 from .mod.is_error.is_error_test import*
 from .mod.is_function.is_function_test import*
 from .mod.is_rgb.is_rgb_test import*
+from .mod.is_number.is_number_test import*
 
 def btpy_checkers_test():
     is_point_test()
@@ -18,3 +19,4 @@ def btpy_checkers_test():
     is_function_test()
     is_rgb_test()
     is_rgba_test()
+    is_number_test()

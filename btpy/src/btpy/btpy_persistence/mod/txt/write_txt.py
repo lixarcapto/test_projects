@@ -15,7 +15,7 @@ def write_txt(file_path:str, text:str)->None:
             with open(file_path, 'w') as file:
                 file.write("")
         # Open the file in append mode
-        with open(file_path, 'a') as file:
+        with open(file_path, 'w') as file:
             # Write the given text to the file
             file.write(text)
         print(f"Text written successfully \

@@ -1,5 +1,8 @@
 
 
+"""
+    Tupla con los caracteres hexadecimales.
+"""
 
 HEX_TUPLE = (
     "0",

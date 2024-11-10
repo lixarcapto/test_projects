@@ -1,5 +1,9 @@
 
 
+"""
+    Tupla con los caracteres numericos.
+"""
+
 NUMBER_TUPLE = [
             0,
             1,

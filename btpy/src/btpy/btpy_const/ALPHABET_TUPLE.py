@@ -1,7 +1,10 @@
 
 
 
-
+"""
+    Es una tupla con el alfabeto latino 
+    ingles.
+"""
 
 ALPHABET_TUPLE = (
             "a",

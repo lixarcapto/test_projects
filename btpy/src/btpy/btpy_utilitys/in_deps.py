@@ -27,3 +27,4 @@ from .mod.print_in.print_in import*
 from .mod.since_json_string.since_json_string import*
 from .mod.to_json_string.to_json_string import*
 from .mod.date_especial.DateEspecial import DateEspecial
+from .mod.tester.Tester import Tester

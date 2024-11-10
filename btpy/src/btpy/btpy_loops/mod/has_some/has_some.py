@@ -1,7 +1,7 @@
 
 
 
-def has_some(array:list, function)->bool:
+def has_some(array:list|dict|str, function)->bool:
     """
     Función que itera sobre los 
     elementos del array enviado 
@@ -9,7 +9,12 @@ def has_some(array:list, function)->bool:
     elementos del array retornan 
     true a la función enviada.
     """
-    for e in array:
+    data = None
+    if(type(array) == dict):
+        data = array.values()
+    else:
+        data = array
+    for e in data:
         if(function(e)):
             return True
     return False

@@ -5,6 +5,8 @@ from ..btpy_string.BtpyString import BtpyString
 import time
 
 class BtpyUtilitys(BtpyString):
+
+    Tester = Tester
     
     def deep(array:list) -> int:
         """

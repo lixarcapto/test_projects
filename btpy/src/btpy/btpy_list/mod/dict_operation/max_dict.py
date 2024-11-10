@@ -2,10 +2,13 @@
 
 
 def max_dict(dict:dict[int|float])\
-    ->int|float:
+    ->str:
     """
     Calcula el valor máximo en un 
-    diccionario.
+    diccionario y retorna la clave de ese
+    valor. Si hay dos valores iguales
+    usa el que esta primero en el orden
+    del diccionario.
     """
     maximo = None
     for valor in dict.values():

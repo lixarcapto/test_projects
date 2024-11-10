@@ -14,5 +14,5 @@ def array_to_dict(array:list,
     valid_list(array, 1)
     # fill in the dict with data_type 
     # parameter
-    dict = {e:data_type for e in array}
+    dict = {str(e):data_type for e in array}
     return dict

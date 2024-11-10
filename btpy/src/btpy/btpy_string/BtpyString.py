@@ -1,9 +1,9 @@
 
 
 from .in_deps import*
-from ..btpy_random.BtpyRandom import BtpyRandom
+from ..btpy_red.BtpyRed import BtpyRed
 
-class BtpyString(BtpyRandom):
+class BtpyString(BtpyRed):
 
     def charat(string:str, index:int) -> str:
         """

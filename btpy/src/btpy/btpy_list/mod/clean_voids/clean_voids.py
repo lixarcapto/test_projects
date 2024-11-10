@@ -3,7 +3,7 @@
 
 def clean_voids(ARRAY)->list:
     """
-     Función que crea un nuevo 
+     Función que crea un nuevo array
      eliminando todos los valores 
      None y void
     """

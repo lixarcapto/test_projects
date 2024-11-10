@@ -16,7 +16,7 @@ class BtpyLoops(BtpyList):
         """
         return mapp(array, function)
     
-    def repeat(repetition: int, 
+    def repeat_each(repetition: int, 
            seconds: int | float, 
            function):
         """
@@ -24,7 +24,7 @@ class BtpyLoops(BtpyList):
         de una funcion en el hilo 
         actual. No crea un nuevo hilo.
         """
-        repeat(repetition, seconds, 
+        repeat_each(repetition, seconds, 
             function)
     
     def has_all(array:list, function):
@@ -71,3 +71,12 @@ class BtpyLoops(BtpyList):
         """
         repeat_each(INTERVAL_TIME, FUNCTION, 
             REPETITIONS)
+        
+    def mapp(DATA:list|dict|str, FUNCTION)\
+        -> list|dict|str:
+        """
+        Function that improves the map 
+        function to support dict, list and 
+        str.
+        """
+        return mapp(DATA, FUNCTION)
