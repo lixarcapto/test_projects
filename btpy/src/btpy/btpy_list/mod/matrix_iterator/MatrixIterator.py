@@ -3,6 +3,15 @@
 
 class MatrixIterator:
 
+    """
+    Iterador para navegar atraves de 
+    matrizes de datos de dos dimensiones.
+    Las principales funcione son:
+    * get: obtiene el actual elemento.
+    * set: modifica el actual elemento.
+    * next: avansa al siguiente elemento.
+    """
+
     def __init__(self, matrix2d) -> None:
         self.__y:int = 0
         self.__x:int = 0

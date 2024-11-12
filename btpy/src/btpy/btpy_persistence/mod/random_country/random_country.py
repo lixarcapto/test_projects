@@ -5,6 +5,7 @@ from ....btpy_random.mod.random_choice.random_choice import*
 from ..read_excel_dict.read_excel_dict import*
 
 COUNTRY_DICT = {}
+EXCEL_ROUTE = "btpy/res/country_data.xlsx"
 
 def random_country(region_key:str = "")->str:
     """
@@ -13,7 +14,6 @@ def random_country(region_key:str = "")->str:
      el continente indicado
     """
     global COUNTRY_DICT
-    EXCEL_ROUTE = "../res/country_data.xlsx"
     if(COUNTRY_DICT == {}):
         COUNTRY_DICT \
             = read_excel_dict(EXCEL_ROUTE)

@@ -20,9 +20,9 @@ def seek_all(array:list, condition)->list:
 def seek_number(array:list, number:int, 
         condition)->list:
     """
-     función que busca la cantidad 
-     determinada de elementos por la 
-     condición enviada en la lista
+    función que busca la cantidad 
+    determinada de elementos por la 
+    condición enviada en la lista
     """
     result_arr = []
     n = 0

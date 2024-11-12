@@ -1,11 +1,11 @@
 
 
 
-def fit_list(LIST, SIZE, 
-        FILL_TYPE = None)->list:
+def fit_list(LIST:list, SIZE:int, 
+        FILL_TYPE:any = None)->list:
     """
-    Funcion que ajusta la lista enviada 
-    al tamaño indicado.
+    Function that adjusts the sent list
+    to the indicated size.
     """
     new_list = []
     for i in range(SIZE):

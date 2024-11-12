@@ -5,6 +5,8 @@ from .in_deps import*
 from ..btpy_images.BtpyImages import BtpyImages
 
 class BtpyList(BtpyImages):
+
+    MatrixIterator = MatrixIterator
     
     def true_percentage(array:list[bool])\
             ->float:
@@ -57,9 +59,6 @@ class BtpyList(BtpyImages):
     def write(send_list:list)->str:
         return write(send_list)
     
-    def MatrixIterator(list)->MatrixIterator:
-        return MatrixIterator(list)
-    
     def seek_one(array:list, condition)\
         ->int|float|str|dict|list:
         """
@@ -96,6 +95,10 @@ class BtpyList(BtpyImages):
     
     def join_dict(DICT_A:dict, 
             DICT_B:dict)->dict:
+        """
+        function that combines two 
+        dictionaries into one.
+        """
         return join_dict(DICT_A, DICT_B)
     
     def merge_as_dict(KEYS_LIST:list, 
@@ -108,7 +111,12 @@ class BtpyList(BtpyImages):
             VALUES_LIST)
     
     def map_in_keys(OLD_DICT:dict, function)\
-        ->dict:
+            ->dict:
+        """
+        function that goes through all the 
+        keys in a dictionary by applying 
+        the sent function.
+        """
         return map_in_keys(OLD_DICT, 
             function)
     
