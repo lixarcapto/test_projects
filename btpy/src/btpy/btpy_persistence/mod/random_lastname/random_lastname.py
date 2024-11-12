@@ -4,10 +4,11 @@ from ....btpy_random.mod.random_choice.random_choice import*
 from ..read_excel_dict.read_excel_dict import*
 
 CACHE_NAMES_DICT = {}
-ROUTE_LASTNAME_XLSX = "../res/lastname_data.xlsx"
+LASTNAME_XLSX = "lastname_data.xlsx"
 
 
-def random_lastname(culture = ""):
+def random_lastname(resource_path, 
+            culture = ""):
         """
         Función que genera un nombre 
         aleatorio según la cultura y el 
@@ -25,7 +26,8 @@ def random_lastname(culture = ""):
         names_dict = None
         if(CACHE_NAMES_DICT == {}):
             names_dict = read_excel_dict(
-                ROUTE_LASTNAME_XLSX)
+                resource_path \
+                + "/" + LASTNAME_XLSX)
         # adapta la clave cultura faltante
         if(culture == ""):
             names_list = random_choice(

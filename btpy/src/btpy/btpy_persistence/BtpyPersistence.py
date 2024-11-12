@@ -97,7 +97,9 @@ class BtpyPersistence(BtpyMaths):
         "turkish", "chinese", "japanese", 
         "polinesian", "italic"]
         """
-        return random_name(gender, culture)
+        return random_name(
+            BtpyPersistence.CONFIG["resource_folder"], 
+            gender, culture)
     
     def random_lastname(culture = ""):
         """
@@ -111,7 +113,9 @@ class BtpyPersistence(BtpyMaths):
         "turkish", "chinese", "japanese", 
         "polinesian", "italic"]
         """
-        return random_lastname(culture)
+        return random_lastname(
+            BtpyPersistence.CONFIG["resource_folder"],
+            culture)
     
     def random_full_name(gender, culture):
         return random_full_name(gender, 

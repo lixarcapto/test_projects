@@ -1,8 +1,11 @@
 
 
 from .in_deps import*
+from config import*
 
 class BtpyCheckers:
+
+    CONFIG = config
 
     def is_number(data) -> bool:
         """

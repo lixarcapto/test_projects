@@ -5,11 +5,11 @@ from ....btpy_random.mod.random_choice.random_choice import*
 from ..read_excel_dict.read_excel_dict import*
 
 CACHE_NAMES_DICT = {}
-ROUTE_NAME_MALE_XLSX = "../res/name_male_data.xlsx"
-ROUTE_NAME_FEMALE_XLSX = "../res/name_female_data.xlsx"
+NAME_MALE_XLSX = "name_male_data.xlsx"
+NAME_FEMALE_XLSX = "name_female_data.xlsx"
 
 
-def random_name(gender = "", 
+def random_name(resource_path, gender = "", 
             culture = ""):
         """
         Función que genera un nombre 
@@ -30,9 +30,11 @@ def random_name(gender = "",
         names_list = []
         if(CACHE_NAMES_DICT == {}):
             male_dict = read_excel_dict(
-                ROUTE_NAME_MALE_XLSX)
+                resource_path \
+                + "/" + NAME_MALE_XLSX)
             female_dict = read_excel_dict(
-                ROUTE_NAME_FEMALE_XLSX)
+                resource_path \
+                + "/" + NAME_FEMALE_XLSX)
         names_dict = None
         if(gender == "male"):
             names_dict = male_dict

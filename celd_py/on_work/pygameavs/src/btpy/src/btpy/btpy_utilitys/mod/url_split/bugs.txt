@@ -1,3 +1,0 @@
-
-
-BUG: no reconoce las rutas de las urls
