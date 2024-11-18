@@ -15,7 +15,7 @@ from .mod.read_nested_row_xlsx.read_nested_row_xlsx import*
 from .mod.random_name.random_name import*
 from .mod.random_lastname.random_lastname import*
 from .mod.random_full_name.random_full_name import*
-from .mod.create_dict_list_xlsx.create_dict_list_xlsx import*
+from .mod.create_dict_list_excel.create_dict_list_excel import*
 from .mod.docx.create_docx import*
 from .mod.docx.read_docx_full import*
 from .mod.read_photoimage.read_photoimage import*
@@ -25,5 +25,6 @@ from .mod.load_word.load_word import*
 from .mod.seek_docx_file.seek_docx_file import*
 from .mod.seek_folder_route.seek_folder_route import*
 from .mod.read_excel_as_key_value.read_excel_as_key_value import*
+from .mod.read_excel_dict_list.read_excel_dict_list import*
 
 

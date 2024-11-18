@@ -121,13 +121,13 @@ class BtpyPersistence(BtpyMaths):
         return random_full_name(gender, 
             culture)
     
-    def create_dict_list_xlsx(data:dict[list], 
+    def create_dict_list_excel(data:dict[list], 
         filename:str)->None:
         """
         Stores a dictionary of arrays in an 
         Excel file.
         """
-        return create_dict_list_xlsx(data, 
+        return create_dict_list_excel(data, 
             filename)
     
     def create_docx(route:str, text:str)\
@@ -206,8 +206,20 @@ class BtpyPersistence(BtpyMaths):
         clave valor que se encuentren en un 
         archivo Excel como un diccionario.   
         leerá cada primera celda de la fila 
-        video de la segunda celda como un 
+        seguido de la segunda celda como un 
         par clave valor y así sucesivamente 
         con todas las celdas.
         """
         return read_excel_as_key_value(PATH)
+    
+    def read_excel_dict_list(path:str,
+            name_list:list[str])\
+                ->dict[dict]:
+        """
+        Funcion que lee todos los archivos
+        XLSX con los nombres enviados y 
+        retorna un dict anidado con los 
+        datos.
+        """
+        return read_excel_dict_list(
+            path, name_list)

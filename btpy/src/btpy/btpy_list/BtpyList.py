@@ -73,17 +73,17 @@ class BtpyList(BtpyImages):
         elementos por la condición enviada 
         en la lista.
         """
-        return seek_all(array, condition)
+        return filter2(array, condition)
     
-    def seek_number(array:list, number:int, 
-        condition)->list:
+    def filter2(DATA:list|dict, CONDITION, 
+        QUANTITY:int = -1)->list:
         """
         función que busca la cantidad 
         determinada de elementos por la 
         condición enviada en la lista
         """
-        return seek_number(array, number, 
-            condition)
+        return filter2(DATA, CONDITION,
+            QUANTITY)
     
     def clean_voids(ARRAY)->list:
         """
@@ -137,3 +137,21 @@ class BtpyList(BtpyImages):
         checker enviada.
         """
         return count(STRUCTURE, CHECKER)
+    
+    def find_value(DICT:dict, DATA)->str:
+        """
+        Busca la clave del valor enviado
+        en el diccionario.
+        """
+        return find_value(DICT, DATA)
+
+    def find_closest_lower(DICT:dict, 
+            NUMBER:int|float):
+        """
+        funcion que identifique en un 
+        diccionario de numeros que numero 
+        es el mas cercano inferior al numero 
+        enviado retornando su clave.
+        """
+        return find_closest_lower(DICT, 
+                NUMBER)
