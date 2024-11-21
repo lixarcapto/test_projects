@@ -15,6 +15,8 @@ from .mod.matrix_iterator.matrix_iterator_test import*
 from .mod.merge_as_dict.merge_as_dict_test import*
 from .mod.max_dict.max_dict_test import*
 from .mod.min_dict.min_dict_test import*
+from .mod.true_percentage.true_percentage_test import*
+from .mod.write.write_test import*
 
 def mod_list_test():
     array_to_dict_test()
@@ -31,3 +33,4 @@ def mod_list_test():
     max_dict_test()
     merge_as_dict_test()
     min_dict_test()
+    true_percentage_test()

@@ -1,6 +1,6 @@
 
 
-from write import*
+from .write import*
 
 def write_test():
     animales = {

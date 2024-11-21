@@ -1,6 +1,5 @@
 
 
-from btpy.src.btpy.Btpy import Btpy
 
 def read_excel_dict_list(path:str,
             name_list:list[str])\

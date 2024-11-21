@@ -1,6 +1,7 @@
 
 
 
+from .mod.are_all_same.are_all_same_test import*
 from .mod.is_point.is_point_test import*
 from .mod.is_byte.is_byte127_test import*
 from .mod.is_byte.is_byte256_test import*
@@ -11,6 +12,7 @@ from .mod.is_rgb.is_rgb_test import*
 from .mod.is_number.is_number_test import*
 
 def btpy_checkers_test():
+    are_all_same_test()
     is_point_test()
     is_byte256_test()
     is_byte127_test()

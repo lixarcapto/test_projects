@@ -7,18 +7,34 @@ class BtpyCheckers:
 
     CONFIG = config
 
+    def are_all_same(array:list)->bool:
+        """
+        Checks if all elements
+        of an array are equal.
+        """
+        return are_all_same(array)
+    
+    def in_range(number: int, range_arr: list)\
+        -> bool:
+        """
+        Function to identify if the input 
+        number is contained within the 
+        sending range.
+        """
+        return in_range(number, range_arr)
+
     def is_number(data) -> bool:
         """
-        Comprueba si el dato enviado 
-        el de un tipo numérico.
+        Checks if the data sent
+        is of a numeric type.
         """
         return is_number(data)
     
     def is_error(value)->bool:
         """
-        Funcion que analiza si un valor 
-        es un error de retorno como  -1, 
-        none, void string, void dict o void 
+        Function that tests whether a value
+        is a return error such as -1,
+        none, void string, void dict, or void
         array
         """
         return is_error(value)
@@ -77,21 +93,5 @@ class BtpyCheckers:
         """
         return is_point_3d(data, 3)
     
-    def in_range(number: int, range_arr: list)\
-        -> bool:
-        """
-        Function to identify if the input 
-        number is contained within the 
-        sending range.
-        Eg:
-        code: print(in_range(5, [4, 6]))
-        output: True
-        """
-        return in_range(number, range_arr)
     
-    def are_all_same(array:list)->bool:
-        """
-        Verifica si todos los elementos 
-        de un array son iguales.
-        """
-        return are_all_same(array)
+    

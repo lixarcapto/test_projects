@@ -4,9 +4,10 @@
 
 def is_error(value)->bool:
     """
-    Funcion que analiza si un valor 
-    es un error de retorno como  -1, 
-    none, void string, void dict o void array
+    Function that tests whether a value
+    is a return error such as -1,
+    none, void string, void dict, or void
+    array
     """
     #
     if value == -1: return True
@@ -14,4 +15,5 @@ def is_error(value)->bool:
     if value == "": return True
     if value == []: return True
     if value == {}: return True
+    if value == (): return True
     return False

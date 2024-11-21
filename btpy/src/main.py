@@ -1,16 +1,20 @@
 
 
 from btpy.Btpy import Btpy
-import json
+import sys
 
 def main():
     r = "None"
     #--------------------------------
 
-
-    r = Btpy.random_name("male", "english")
-
-   
+    maximum = 100
+    int_str = "c"
+    r = 0
+    for i in range(1, maximum):
+        r = sys.getsizeof(int_str)
+        print(f"{r} bits = {i} characters")
+        int_str += "c"
+    
     #------------------------------
     print(r)
 

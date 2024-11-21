@@ -16,13 +16,15 @@ def write_dict(data, margin = 1):
     v = None
     n = 0
     MARGIN_SIZE = 2
+    type_key = None
     for k in data:
         v = data[k]
+        type_key = type(v)
         # obtiene el valor
-        if(type(v) == dict):
+        if(type_key == dict):
             txt += write_dict(v, 
                 margin + MARGIN_SIZE)
-        elif(type(v) == list):
+        elif(type_key == list):
             txt += write_list(v, 
                 margin + MARGIN_SIZE)
         else:
@@ -30,7 +32,7 @@ def write_dict(data, margin = 1):
             txt += f"{margin_str} \'{k}\' : {v}"
         if(n < len(data) -1):
             txt += ","
-        txt += "\n"
+        txt += f" # {k}\n"
         n += 1
     txt += margin_str + "}"
     return txt

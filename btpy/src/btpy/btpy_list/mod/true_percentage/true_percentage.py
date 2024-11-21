@@ -1,7 +1,7 @@
 
 
 
-def true_percentage(array:list[bool])\
+def true_percentage(ARRAY:list[bool])\
         ->float:
     """
     Función que calcula el 
@@ -9,9 +9,9 @@ def true_percentage(array:list[bool])\
     de una lista booleana
     """ 
     true_number = 0
-    for e in array:
+    for e in ARRAY:
         if(e): true_number += 1
     percent = true_number * \
-        (100 / len(array))
+        (100 / len(ARRAY))
     percent = float(percent)
     return percent

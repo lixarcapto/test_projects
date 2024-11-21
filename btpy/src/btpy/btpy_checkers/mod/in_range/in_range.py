@@ -8,9 +8,6 @@ def in_range(number: int, range_arr: list)\
     Function to identify if the input 
     number is contained within the 
     sending range.
-    Eg:
-    code: print(in_range(5, [4, 6]))
-    output: True
     """
     if(not type(number) == int
     and not type(number) == float):

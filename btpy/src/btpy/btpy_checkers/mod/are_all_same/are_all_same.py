@@ -3,7 +3,7 @@
 
 def are_all_same(array:list)->bool:
     """
-    Verifica si todos los elementos 
-    de un array son iguales.
+    Checks if all elements
+    of an array are equal.
     """
     return len(set(array)) == 1
