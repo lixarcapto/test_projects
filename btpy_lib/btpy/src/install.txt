@@ -1,0 +1,6 @@
+
+Estas son las librerias nesesarias
+para usar BTPY:
+
+* PIL
+* numpy
