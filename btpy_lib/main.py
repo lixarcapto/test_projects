@@ -9,8 +9,7 @@ if __name__ == "__main__":
     #---------------------------------------
 
 
-    print(Btpy.random_country("europe"),
-          Btpy.random_full_name("male", "english"))
+    r = Btpy.create_list([2, 5, 6])
 
 
 

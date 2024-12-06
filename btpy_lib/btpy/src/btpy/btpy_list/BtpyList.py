@@ -64,22 +64,6 @@ class BtpyList(BtpyImages):
     def write(send_list:list)->str:
         return write(send_list)
     
-    def seek_one(array:list, condition)\
-        ->int|float|str|dict|list:
-        """
-        Función que busca un elemento por 
-        la condición enviada en la lista.
-        """
-        return seek_one(array, condition)
-    
-    def seek_all(array:list, condition)->list:
-        """
-        función que busca todos los 
-        elementos por la condición enviada 
-        en la lista.
-        """
-        return filter2(array, condition)
-    
     def filter2(DATA:list|dict, CONDITION, 
         QUANTITY:int = -1)->list:
         """
@@ -92,19 +76,11 @@ class BtpyList(BtpyImages):
     
     def clean_voids(ARRAY)->list:
         """
-        Función que crea un nuevo 
+        Función que crea un nuevo array
         eliminando todos los valores 
         None y void
         """
         return clean_voids(ARRAY)
-    
-    def join_dict(DICT_A:dict, 
-            DICT_B:dict)->dict:
-        """
-        function that combines two 
-        dictionaries into one.
-        """
-        return join_dict(DICT_A, DICT_B)
     
     def merge_as_dict(KEYS_LIST:list, 
             VALUES_LIST:list)->dict:
