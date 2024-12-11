@@ -3,6 +3,10 @@
 from ....btpy_const.mod.ALPHABET_TUPLE import*
 
 def get_symbols(TEXT):
+    """
+    Obtiene las palabras y los simbolos
+    de un texto como un array.
+    """
     char = ""
     buffer_text = ""
     symbols_arr = []
