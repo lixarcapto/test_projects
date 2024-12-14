@@ -1,7 +1,7 @@
 
 
 
-export class OptionElement {
+export class Selector {
 
     /*
     Modulo que permite crear una lista

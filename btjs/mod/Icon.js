@@ -1,5 +1,6 @@
 
 
+
 export class Icon {
 
     /*
@@ -20,6 +21,26 @@ export class Icon {
     set_size(width, height) {
         this.img.setAttribute("width", width)
         this.img.setAttribute("height", height)
+    }
+
+    add_click_listener(FUNCTION) {
+        this.node.addEventListener("click",
+            FUNCTION)
+    }
+
+    add_mouseover_listener(FUNCTION) {
+        this.node.addEventListener("mouseover",
+            FUNCTION)
+    }
+
+    add_mouseout_listener(FUNCTION) {
+        this.node.addEventListener("mouseout",
+            FUNCTION)
+    }
+
+    add_click_listener(FUNCTION) {
+        this.node.addEventListener("click",
+            FUNCTION)
     }
 
 

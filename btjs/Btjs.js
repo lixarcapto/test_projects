@@ -2,7 +2,7 @@
 
 
 import { OLElement } from "./mod/OlElement.js";
-import { OptionElement } from "./mod/OptionElement.js";
+import { Selector } from "./mod/Selector.js";
 import { InputText } from "./mod/InputText.js";
 import { Icon } from "./mod/Icon.js";
 import { Button } from "./mod/Button.js";
@@ -18,6 +18,9 @@ import { PageStructure } from "./mod/PageStructure.js";
 import { References } from "./mod/References.js";
 import { VideoFigure } from "./mod/VideoFigure.js";
 import { replace_substring } from "./mod/replace_substring.js";
+import {Image} from "./mod/Image.js";
+import { CheckList } from "./mod/CheckList.js";
+import { InputList } from "./mod/InputList.js";
 
 export class Btjs {
 
@@ -59,11 +62,11 @@ export class Btjs {
     }
 
   
-    static button(text = "") {
+    static Button(text = "") {
       return new Button(text)
     }
 
-    static ol(text, ARRAY) {
+    static Ol(text, ARRAY) {
         return new OLElement(text, ARRAY)
     }
 
@@ -71,8 +74,8 @@ export class Btjs {
       return new Div(text)
     }
 
-    static option(text, ARRAY) {
-      return new OptionElement(text, 
+    static Selector(text, ARRAY) {
+      return new Selector(text, 
         ARRAY)
     }
 
@@ -80,7 +83,7 @@ export class Btjs {
       return new InputText(TEXT)
     }
 
-    static icon(URL, width, height) {
+    static Icon(URL, width, height) {
       return new Icon(URL, width, height)
     }
 
@@ -126,6 +129,18 @@ export class Btjs {
 
     static VideoFigure() {
       return new VideoFigure()
+    }
+
+    static Image() {
+      return new Image()
+    }
+
+    static CheckList(title, text_arr) {
+      return new CheckList(title, text_arr)
+    }
+
+    static InputList(text_arr) {
+      return new InputList(text_arr)
     }
 
     /* 

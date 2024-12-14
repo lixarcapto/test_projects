@@ -7,7 +7,7 @@ import { StandardElement }
 
 export class Button extends StandardElement {
 
-    constructor(text) {
+    constructor(text = "") {
         super();
         this.node = document
             .createElement("button")
