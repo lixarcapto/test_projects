@@ -7,7 +7,7 @@ export class Icon {
     Arreglar este porque no funciona.
     */
 
-    constructor(url, width, height) {
+    constructor(url, height) {
         this.node = document.createElement(
             "button")
         this.img = document.createElement(
@@ -15,11 +15,10 @@ export class Icon {
         this.img.setAttribute("src", 
             url)
         this.node.append(this.img)
-        this.set_size(width, height)
+        this.set_height(height)
     }
 
-    set_size(width, height) {
-        this.img.setAttribute("width", width)
+    set_height(height) {
         this.img.setAttribute("height", height)
     }
 

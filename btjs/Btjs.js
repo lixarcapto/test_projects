@@ -21,6 +21,12 @@ import { replace_substring } from "./mod/replace_substring.js";
 import {Image} from "./mod/Image.js";
 import { CheckList } from "./mod/CheckList.js";
 import { InputList } from "./mod/InputList.js";
+import { PanelButton } from "./mod/PanelButton.js";
+import { InputSlider } from "./mod/InputSlider.js";
+import { ProgressBar } from "./mod/ProgressBar.js";
+import { RadioButtonList } from "./mod/RadioButtonList.js";
+import { CommentBox } from "./mod/CommentBox.js";
+import { ButtonList } from "./mod/ButtonList.js";
 
 export class Btjs {
 
@@ -141,6 +147,33 @@ export class Btjs {
 
     static InputList(text_arr) {
       return new InputList(text_arr)
+    }
+
+    static PanelButton(text_arr) {
+      return new PanelButton(text_arr)
+    }
+
+    static InputSlider(title, range_arr, 
+          value) {
+      return new InputSlider(title, 
+          range_arr, value)
+    }
+
+    static ProgressBar(title) {
+      return new ProgressBar(title)
+    }
+
+    static RadioButtonList(title, text_arr) {
+      return new RadioButtonList(title, 
+          text_arr)
+    }
+
+    static CommentBox(json_arr = []) {
+      return new CommentBox(json_arr)
+    }
+
+    static ButtonList(text_arr) {
+      return new ButtonList(text_arr)
     }
 
     /* 

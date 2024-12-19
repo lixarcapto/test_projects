@@ -1,31 +1,73 @@
 
 
 import { Btjs } from "../Btjs.js"
+import { active_full_screen } from "./active_full_screen.js"
+import { quit_full_screen } from "./quit_full_screen.js"
 
 export class PageTitle {
 
     constructor(title, subtitle) {
         this.node = document.createElement(
             "div")
+        this.node.setAttribute("style",
+            `
+            display: flex;
+            gap: 2px;
+            padding: 0px;
+            background-color: #f0f0f0;
+            height: 30px;
+            `
+        )
+        this.init_buttons()
         this.title = document.createElement(
-            "h1")
+            "label")
         this.title.setAttribute("style",
-            "text-align: center;")
-        this.subtitle = document.createElement(
-            "h3")
-        this.subtitle.setAttribute("style",
-            "text-align: center;")
-        this.set_titles(title, subtitle)
+            "height: 30px;"
+        )
+        this.set_titles(title)
         this.node.append(this.title)
-        this.node.append(this.subtitle)
+        
     }
 
-    set_titles(title, subtitle) {
+    init_buttons() {
+        let style_btn = `
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            width: 30px;
+            height: 30px;
+            `
+        this.btn_fullscreen = document
+            .createElement("button")
+        this.btn_fullscreen.setAttribute(
+            "style", style_btn)
+        this.btn_fullscreen.innerHTML = " + "
+        this.btn_fullscreen.addEventListener(
+            "click",
+            ()=>{
+                active_full_screen()
+            }
+        )
+        this.node.append(this.btn_fullscreen)
+        this.btn_quit_fscreen = document
+            .createElement("button")
+        this.btn_quit_fscreen.setAttribute(
+            "style", style_btn)
+        this.btn_quit_fscreen.innerHTML = " - "
+        this.btn_quit_fscreen.addEventListener(
+            "click",
+            ()=>{
+                quit_full_screen()
+            }
+        )
+        this.node.append(this.btn_quit_fscreen)
+    }
+
+    set_titles(title) {
         title = Btjs.capitalize(title)
         this.title.innerHTML = title
         document.title = title
-        subtitle = Btjs.capitalize(subtitle)
-        this.subtitle.innerHTML = subtitle
     }
 
 }
