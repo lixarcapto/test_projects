@@ -16,6 +16,7 @@ export class ButtonList {
     create_list(text_arr) {
         let li = null
         let button = null
+        this.node.innerHTML = ""
         for(let i in text_arr) {
             button = document
                 .createElement("button")

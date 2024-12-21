@@ -27,6 +27,7 @@ import { ProgressBar } from "./mod/ProgressBar.js";
 import { RadioButtonList } from "./mod/RadioButtonList.js";
 import { CommentBox } from "./mod/CommentBox.js";
 import { ButtonList } from "./mod/ButtonList.js";
+import { ButtonIndex } from "./mod/ButtonIndex.js";
 
 export class Btjs {
 
@@ -174,6 +175,11 @@ export class Btjs {
 
     static ButtonList(text_arr) {
       return new ButtonList(text_arr)
+    }
+
+    static ButtonIndex(name, range_arr) {
+      return new ButtonIndex(name, 
+        range_arr)
     }
 
     /* 
