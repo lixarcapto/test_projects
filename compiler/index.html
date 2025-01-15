@@ -1,0 +1,2056 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <title>compiled javascript</title>
+    </head>
+    <body>
+    <script>
+    
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+class Btjs {
+
+  /*
+  Todo: Automatizar mas las referencias; 
+  que al crear articulos y figuras se
+  agreguen automaticamente. Tambien a�adir
+  numeracion automaticas a las figuras.
+  */
+
+    static random_element(array) {
+        // Verificamos si el array tiene elementos
+        if (array.length === 0) {
+          return null; // Si el array est� 
+          // vac�o, retornamos null
+        }
+    
+        // Generamos un �ndice aleatorio dentro del rango del array
+        const indiceAleatorio = Math.floor(Math.random() * array.length);
+    
+        // Retornamos el elemento en el �ndice aleatorio
+        return array[indiceAleatorio];
+    }
+  
+    static random_probability(probability) {
+      let result = Math.floor(Math.random() 
+        * (100 - 0 + 1)) + 0;
+      console.log("result: " + String(result))
+      if(result <= probability) {
+        return true
+      } else {
+        return false
+      }
+    }
+
+    static random_int(min, max) {
+      return Math.floor(Math.random() 
+        * (max - min + 1)) + min;
+    }
+
+  
+    static Button(text = "") {
+      return new Button(text)
+    }
+
+    static Ol(text, ARRAY) {
+        return new OLElement(text, ARRAY)
+    }
+
+    static Div(text = "") {
+      return new Div(text)
+    }
+
+    static Selector(text, ARRAY) {
+      return new Selector(text, 
+        ARRAY)
+    }
+
+    static input_text(TEXT) {
+      return new InputText(TEXT)
+    }
+
+    static Icon(URL, width, height) {
+      return new Icon(URL, width, height)
+    }
+
+    static color_selector() {
+      return new ColorSelector()
+    }
+
+    static style_head() {
+      return new StyleHead()
+    }
+
+    static Link(text, url) {
+      return new Link(text, url)
+    }
+
+    static Quote() {
+      return new Quote()
+    }
+
+    static Article(title, text = "", 
+        level = 0) {
+      return new Article(title, 
+        text, level)
+    }
+
+    static Figure(title, range_size, src, 
+      description = "") {
+        return new Figure(title, range_size,
+          src, description)
+    }
+
+    static PageTitle(title, subtitle) {
+      return new PageTitle(title, subtitle)
+    }
+
+    static PageStructure() {
+      return new PageStructure()
+    }
+
+    static References() {
+      return new References()
+    }
+
+    static VideoFigure() {
+      return new VideoFigure()
+    }
+
+    static Image() {
+      return new Image()
+    }
+
+    static CheckList(title, text_arr) {
+      return new CheckList(title, text_arr)
+    }
+
+    static InputList(text_arr) {
+      return new InputList(text_arr)
+    }
+
+    static PanelButton(title, key_arr, 
+        text_arr = []) {
+      return new PanelButton(title,
+         key_arr, text_arr)
+    }
+
+    static InputSlider(title, range_arr, 
+          value) {
+      return new InputSlider(title, 
+          range_arr, value)
+    }
+
+    static ProgressBar(title) {
+      return new ProgressBar(title)
+    }
+
+    static RadioButtonList(title, text_arr) {
+      return new RadioButtonList(title, 
+          text_arr)
+    }
+
+    static CommentBox(json_arr = []) {
+      return new CommentBox(json_arr)
+    }
+
+    static ButtonList(title, text_arr) {
+      return new ButtonList(title, text_arr)
+    }
+
+    static ButtonIndex(name, range_arr) {
+      return new ButtonIndex(name, 
+        range_arr)
+    }
+
+    static Checkbox(title) {
+      return new Checkbox(title)
+    }
+
+    /* 
+      Modifica un character indicado por 
+      el indice con la funcion enviada.
+    */
+    static modify_char(texto, 
+        indice, FUNCTION) {
+      
+      const textoEnArreglo = texto.split('');
+    
+      // Validamos que el �ndice est� dentro de los l�mites del texto
+      if (indice >= 0 && indice < textoEnArreglo.length) {
+        // Reemplazamos el car�cter en el �ndice especificado
+        let char = textoEnArreglo[indice];
+        textoEnArreglo[indice] = FUNCTION(char)
+      } else {
+        console.error('�ndice fuera de rango');
+        return texto; // Retornamos el texto original sin modificaciones
+      }
+    
+      // Unimos el arreglo nuevamente en un string
+      return textoEnArreglo.join('');
+    }
+
+    /* 
+    Funcion que remplaza los saltos de 
+    linea por etiquetas BR.
+    */
+    static replace_jumps(texto) {
+      // Expresi�n regular para encontrar todos los saltos de l�nea (incluyendo diferentes tipos)
+      const regex = /\r\n|\r|\n/g;
+      // Reemplazar cada coincidencia con la etiqueta <br>
+      const nuevoTexto = texto.replace(regex, '<br>');
+      return nuevoTexto;
+    }
+
+    static capitalize(texto) {
+      // Dividimos el texto en un array de palabras
+      const palabras = texto.split(' ');
+    
+      // Iteramos sobre cada palabra y capitalizamos la primera letra
+      const palabrasCapitalizadas = palabras.map(palabra => {
+        return palabra.charAt(0).toUpperCase() + palabra.slice(1);
+      });
+    
+      // Unimos las palabras capitalizadas en una nueva cadena
+      return palabrasCapitalizadas.join(' ');
+    }
+
+    static divide_by_jumps(text) {
+      // Expresi�n regular para encontrar uno o m�s saltos de l�nea consecutivos
+      const regex = /\n{2,}/g;
+      // Dividir el texto por los saltos de l�nea dobles encontrados
+      const array = texto.split(regex);
+      return array;
+    }
+
+    static divide_by_points(texto) {
+      // Dividimos el texto por puntos, incluyendo los puntos al final de las frases
+      const partes = texto.split(/\./g);
+      // Eliminamos los espacios en 
+      //blanco al inicio y final de cada parte
+      const array = partes.map(parte => parte.trim());
+      return array;
+    }
+
+    static delete_substring(cadena, inicio, fin) {
+      // Verificamos que los �ndices sean v�lidos
+      if (inicio < 0 || fin > cadena.length || inicio > fin) {
+        return "�ndices inv�lidos";
+      }
+    
+      // Utilizamos slice() para obtener las partes antes y despu�s de la subcadena a eliminar
+      const parte1 = cadena.slice(0, inicio);
+      const parte2 = cadena.slice(fin);
+    
+      // Concatenamos las partes para formar la nueva cadena
+      return parte1 + parte2;
+    }
+
+    static replace_string(primal, string) {
+      return primal.replace(
+        new RegExp(string, 'g'), 
+        '');
+    }
+
+    static replace_substring(cadena, 
+          substring, interval) {
+        return replace_substring(cadena, 
+          substring, interval)
+    }
+
+    static find_substring(cadena, 
+          substring) {
+        // Encuentra el �ndice de la primera aparici�n del substring
+        const indiceInicio = cadena.indexOf(
+          substring);
+    
+        // Si se encontr� el substring, 
+        // calcula el �ndice final
+        if (indiceInicio !== -1) {
+          const indiceFinal = indiceInicio 
+            + substring.length - 1;
+          return { inicio: indiceInicio, 
+            final: indiceFinal };
+        } else {
+          return null;
+        }
+    }
+
+}
+
+
+function active_full_screen() {
+    const elemento = document.documentElement;
+    if (elemento.requestFullscreen) {
+      elemento.requestFullscreen();
+    } else if (elemento.mozRequestFullScreen) { /* Firefox */
+      elemento.mozRequestFullScreen();
+    } else if (elemento.webkitRequestFullscreen) { /* Chrome, Safari */
+      elemento.webkitRequestFullscreen();
+    } else if (elemento.msRequestFullscreen) { /* IE/Edge */
+      elemento.msRequestFullscreen();
+    }
+  }
+
+ 
+ 
+ 
+ 
+ 
+
+class Article extends StandardElement {
+
+    /* 
+    TODO: 
+    a�adir las citas a este articulo.
+    a�adir un tipo de parrafo con las citas.
+    
+    {
+        text : "",
+        autor : "",
+        title : "",
+        date : "",
+        url : "",
+        recovery_date: ""
+    }
+    
+    */
+
+    constructor(title, text = "", level = 0) {
+        super()
+        this.node = document
+            .createElement("div")
+        this.node.setAttribute("tag", 
+            "article")
+        this.quote = new Quote()
+        this.title = document
+            .createElement("h3")
+        this.section = document
+            .createElement("section")
+        this.section.setAttribute("style", 
+            "text-indent: 2em;")
+        this.set_title(title)
+        this.node.append(this.title)
+        this.node.append(this.section)
+        this.config_title(level)
+        this.set_text(text)
+    }
+
+    config_title(level) {
+        if(level == 0) {
+            this.title.setAttribute(
+                "style",
+                "text-align: center;"
+            )
+        } else if (level == 1) {
+
+        } else if (level == 2) {
+            this.title.setAttribute(
+                "style",
+                "font-style: italic;"
+            )
+        } else if (level == 3) {
+            this.title.setAttribute(
+                "style", 
+                "text-indent: 1em;"
+            )
+        } else if (level == 4) {
+            this.title.setAttribute(
+                "style", 
+                `text-indent: 1em;
+                font-style: italic;`
+            )
+        }
+    }
+
+    /*
+    Funcion que obtiene un string y 
+    lo convierte en un texto con citaciones
+    */
+    set_text(str) {
+        let new_string = convert_to_quote(
+            str)
+        this.section.innerHTML = new_string
+        References.sum(str)
+    }
+
+    set_title(text) {
+        let new_text = Btjs.capitalize(text)
+        this.title.innerHTML = new_text
+    }
+
+
+}
+
+
+function base64_to_image(base64) {
+    // Crear la URL de datos
+    var dataURL = base64;
+  
+    // Crear un elemento de imagen 
+    // y asignarle la URL
+    var img = new Image();
+    img.src = dataURL;
+    return img
+  }
+
+
+
+ 
+    
+
+class Button extends StandardElement {
+
+    constructor(text = "") {
+        super();
+        this.node = document
+            .createElement("button")
+        this.node.innerHTML = text
+    }
+
+    add_click_listener(FUNCTION) {
+        this.node.addEventListener("click",
+            FUNCTION)
+    }
+
+    add_mouseover_listener(FUNCTION) {
+        this.node.addEventListener("mouseover",
+            FUNCTION)
+    }
+
+    add_mouseout_listener(FUNCTION) {
+        this.node.addEventListener("mouseout",
+            FUNCTION)
+    }
+
+    add_click_listener(FUNCTION) {
+        this.node.addEventListener("click",
+            FUNCTION)
+    }
+
+    destroy() {
+        this.node.remove()
+    }
+
+}
+
+
+
+
+class ButtonIndex {
+
+    /*
+    Para a�adir el comportamiento
+    se debe iniciar el metodo
+    add_listeners
+    */
+
+    constructor(name, range_arr) {
+        this.node = document
+            .createElement("div")
+        this.node.setAttribute("tag", 
+            "button_index")
+        //inicializa el valor con la mitad
+        //del rango maximo
+        this.value = Math.round(
+            range_arr[1] / 2)
+        this.range_arr = range_arr
+        this.label = document.createElement(
+            "label")
+        this.label.innerHTML = name
+        this.node.append(this.label)
+        this.__init_components()
+    }
+
+    __init_components() {
+        this.decrement = document
+            .createElement("button")
+        this.decrement.innerHTML = " < "
+        this.increment = document
+            .createElement("button")
+        this.increment.innerHTML = " > "
+        this.label = document
+            .createElement("label")
+        this.__update_value()
+        this.node.append(this.decrement)
+        this.node.append(this.label)
+        this.node.append(this.increment)
+    }
+
+    __update_value() {
+        this.label.innerHTML 
+            = `  ${this.value}  `
+    }
+
+    get_value() {
+        return this.value
+    }
+
+
+    add_listeners(callback = ()=>{}) {
+        this.decrement.addEventListener(
+            "click", ()=>{
+            if(this.range_arr[0] 
+                < this.value) {
+                this.value -= 1
+            }
+            this.__update_value()
+            callback()
+        })
+        this.increment.addEventListener(
+            "click", ()=>{
+            if(this.range_arr[1] 
+                > this.value) {
+                this.value += 1
+            }
+            this.__update_value()
+            callback()
+        })
+    }
+
+}
+
+
+
+class ButtonList {
+
+    constructor(title, key_arr, 
+            text_arr = "") {
+        this.node = document.createElement(
+            "div")
+        this.node.setAttribute("tag", 
+            "button_list")
+        this.title = document
+            .createElement("label")
+        this.title.innerHTML = title
+        this.node.append(this.title)
+        this.list = document
+            .createElement("ol")
+        this.node.append(this.list)
+        this.button_arr = []
+        this.create_list(key_arr, text_arr)
+    }
+
+    create_list(key_arr, text_arr = "") {
+        let li = null
+        let button = null
+        this.list.innerHTML = ""
+        if(text_arr == "") {
+            text_arr = key_arr
+        }
+        for(let i in text_arr) {
+            button = document
+                .createElement("button")
+            button.innerHTML = text_arr[i]
+            button.setAttribute("id", 
+                key_arr[i])
+            li = document.createElement("li")
+            li.append(button)
+            this.button_arr.push(button)
+            this.list.append(li)
+        }
+    }
+
+    /*
+    La callback debe recibir como argumento
+    el texto del boton.
+    */
+    add_listener(FUNCTION) {
+        for(let i in this.button_arr) {
+            let fn = ()=>{
+                const key = this.button_arr[i]
+                    .getAttribute("id")
+                FUNCTION(key)
+            }
+            this.button_arr[i]
+                .addEventListener(
+                    "click", fn)
+        }
+    }
+
+}
+
+
+
+class Checkbox {
+
+    /*
+    Clase que crea un checkbox clasico
+    con un texto de titulo y una sola
+    opcion binaria.
+    */
+
+    constructor(title) {
+        this.node = document
+            .createElement("div")
+        this.node.setAttribute("tag", 
+            "checkbox")
+        this.checkbox = document
+            .createElement("input")
+        this.checkbox.setAttribute("type", 
+            "checkbox")
+        this.title = document
+            .createElement("label")
+        this.title.innerHTML = title
+        this.node.append(this.title)
+        this.node.append(this.checkbox)
+    }
+
+    set_title(text) {
+        this.title.innerHTML = text
+    }
+
+    set_value(value) {
+        this.checkbox.checked = value
+    }
+
+    get_value() {
+        return this.checkbox.checked
+    }
+
+
+
+}
+
+
+
+class CheckList {
+
+    constructor(title, text_arr) {
+        this.node = document
+            .createElement("section")
+        this.title = document
+            .createElement("p")
+        this.title.innerHTML = title
+        this.node.append(this.title)
+        this.check_arr = []
+        this.label_arr = []
+        this.create_list(text_arr)
+    }
+
+    /*
+    Retorna los textos de los 
+    checkbox marcados.
+    */
+    get_checked_list() {
+        let text_arr = []
+        let e = null
+        let value = ""
+        for(let i in this.check_arr) {
+            e = this.check_arr[i]
+            if(e.checked == true) { 
+                text_arr.push(
+                    this.label_arr[i]
+                    .innerHTML
+                )
+            }
+        }
+        return text_arr
+    }
+
+    create_list(text_arr) {
+        let checkbox = null
+        let label = null
+        this.check_arr = []
+        for(let i in text_arr) {
+            checkbox = document
+                .createElement("input")
+            checkbox.setAttribute("type",
+                "checkbox")
+            this.check_arr.push(checkbox)
+            this.node.append(checkbox)
+            label = document
+                .createElement("label")
+            label.innerHTML = text_arr[i]
+            this.label_arr.push(label)
+            this.node.append(label)
+        }
+    }
+
+}
+
+ 
+    
+
+class ColorSelector extends StandardElement {
+
+    constructor() {
+        super();
+        this.node = document.createElement(
+            "input")
+        this.node.setAttribute("type", "color")
+        this.node.value = "#ff0000"
+    }
+
+}
+
+
+
+class Comment {
+
+    /*
+    Comment json structure:
+    {
+        "autor":"",
+        "text":"",
+        "image_url":""
+    }
+    */
+
+    constructor(json) {
+        this.node = document
+            .createElement("div")
+        this.node.setAttribute(
+            "tag", "comment")
+        this.node.setAttribute(
+            "style", `
+            background-color: #f2f2f2; /* Color de fondo gris claro */
+            border: 1px solid #ddd; /* Borde gris */
+            padding: 6px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        `)
+        this.image = document
+            .createElement("img")
+        this.title = document
+            .createElement("h4")
+        this.title.setAttribute("style",
+            "line-height: 0.6;")
+        this.text = document
+            .createElement("p")
+        this.text.setAttribute("style",
+            "line-height: 0.6;")
+        this.image.setAttribute("style",
+            "float: left;")
+        this.set_json_comment(json)
+        this.node.append(this.image)
+        this.node.append(this.title)
+        this.node.append(this.text)
+    }
+
+    set_json_comment(json) {
+        this.set_autor(json["autor"])
+        this.set_text(json["text"])
+        this.set_image(json["image_url"])
+    }
+
+    set_image(url) {
+        this.image.setAttribute("src", url)
+    }
+
+    set_autor(autor) {
+        this.title.innerHTML = autor
+    }
+
+    set_text(text) {
+        this.text.innerHTML = text
+    }
+
+}
+
+ 
+
+class CommentBox {
+
+    /*
+    Comment json structure:
+    {
+        "autor":"",
+        "text":"",
+        "image_url":""
+    }
+    */
+
+    constructor(json_arr = []) {
+        this.node = document
+            .createElement("div")
+        this.node.setAttribute("tag",
+            "comment_box")
+        this.comment_arr = []
+        this.create_list(json_arr)
+    }
+
+    create_list(json_arr) {
+        let json = null
+        let comment = null
+        this.comment_arr = []
+        for(let k in json_arr) {
+            json = json_arr[k]
+            comment = new Comment(json)
+            this.comment_arr.push(comment)
+            this.node.append(comment.node)
+        }
+    }
+
+}
+
+
+ 
+ 
+
+/*
+Funcion que obtiene un string y 
+lo convierte en un texto con citaciones
+*/
+function convert_to_quote(str) {
+    let init_idx = 0
+    let end_idx = 0
+    let quote = new Quote()
+    let idx = 0
+    let substring = ""
+    let new_string = ""
+    let char = ""
+    let is_json = false
+    for (let i=0;i<str.length;i++) {
+        char = str[i]
+        if(char == "{") {
+            is_json = true
+            init_idx = idx
+        } else if(char == "}") {
+            end_idx = idx
+            substring = str.slice(
+                init_idx, end_idx)
+            substring += "}"
+            substring = Btjs.replace_string(
+                substring, "\n")
+            let json = JSON.parse(
+                substring);
+            quote.set_data(json)
+            new_string += quote
+                .create_quote()
+            is_json = false
+        } else {
+            if(! is_json) {
+                new_string += char
+            }
+        }
+        idx ++
+    }
+    return new_string
+}
+
+
+
+ 
+    
+
+class Div extends StandardElement {
+
+    constructor(text = "") {
+        super();
+        this.node = document
+            .createElement("div")
+        this.node.innerHTML = text
+    }
+
+}
+
+
+ 
+
+class Figure {
+
+    constructor(title, range_size, src, 
+            description = "") {
+        this.node = document
+            .createElement("div")
+        this.node.setAttribute("tag", 
+            "figure")
+        this.quote = new Quote()
+        this.title = document
+            .createElement("h3")
+        this.set_title(title)
+        this.img = document
+            .createElement("img")
+        this.set_size(range_size)
+        this.set_url(src)
+        this.p = document.createElement("p")
+        this.node.append(this.title)
+        this.node.append(this.img)
+        this.node.append(this.p)
+    }
+
+    set_size(range_size) {
+        this.img.setAttribute("height", 
+            range_size[0])
+        this.img.setAttribute("width", 
+            range_size[1])
+    }
+
+    set_title(title) {
+        this.title.innerHTML = title
+    }
+
+    set_url(url) {
+        this.img.setAttribute("src", url)
+    }
+
+    set_description(text, dict_quote) {
+        this.p.innerHTML = `
+        ${text}. Available in `
+        let src = this.img.getAttribute("src")
+        let link = document
+            .createElement("a")
+        link.setAttribute("href", src)
+        this.quote.set_data(dict_quote)
+        let ref = this.quote.create_reference()
+        this.p.innerHTML += ref.outerHTML
+    }
+
+}
+
+
+class Icon {
+
+    /*
+    Arreglar este porque no funciona.
+    */
+
+    constructor(url, height) {
+        this.node = document.createElement(
+            "button")
+        this.img = document.createElement(
+            "img")
+        this.img.setAttribute("src", 
+            url)
+        this.node.append(this.img)
+        this.set_height(height)
+    }
+
+    set_height(height) {
+        this.img.setAttribute("height", height)
+    }
+
+    add_click_listener(FUNCTION) {
+        this.node.addEventListener("click",
+            FUNCTION)
+    }
+
+    add_mouseover_listener(FUNCTION) {
+        this.node.addEventListener("mouseover",
+            FUNCTION)
+    }
+
+    add_mouseout_listener(FUNCTION) {
+        this.node.addEventListener("mouseout",
+            FUNCTION)
+    }
+
+    add_click_listener(FUNCTION) {
+        this.node.addEventListener("click",
+            FUNCTION)
+    }
+
+
+}
+
+
+
+class Image {
+
+    constructor() {
+        this.node = document
+            .createElement("img")
+    }
+
+    set_size(width, height) {
+        this.node.setAttribute("width", url)
+        this.node.setAttribute("height", url)
+    }
+
+    set_url(url) {
+        this.node.setAttribute("href", url)
+    }
+
+    get_url() {
+        return this.node.getAttribute("href")
+    }
+
+}
+
+
+
+class InputList {
+
+    /*
+    Esta clave se usa para almacenar
+    datos en el ID evitando conflictos
+    de nombres con otros ID
+    */
+    static UNIQUE_KEY = "ax6d6%"
+
+    constructor(text_arr) {
+        this.node = document
+            .createElement("section")
+        this.node.setAttribute("tag", 
+            "input_list")
+        this.label_arr = []
+        this.input_arr = []
+        this.create_list(text_arr)
+    }
+
+    get_data_json() {
+        let json = {}
+        let k = ""
+        let v = ""
+        for(let i in this.label_arr) {
+            k = this.input_arr[i]
+                .getAttribute("id")
+            k = k.replace(
+                InputList.UNIQUE_KEY, "")
+            v = this.input_arr[i].value
+            json[k] = v
+        }
+        return json
+    }
+
+    extract_data_json() {
+        let json = {}
+        let k = ""
+        let v = ""
+        for(let i in this.label_arr) {
+            k = this.input_arr[i]
+                .getAttribute("id")
+            k = k.replace(
+                InputList.UNIQUE_KEY, "")
+            v = this.input_arr[i].value
+            this.input_arr[i].value = ""
+            json[k] = v
+        }
+        return json
+    }
+
+    create_list(text_arr) {
+        let label = null
+        let input = null
+        this.label_arr = []
+        this.input_arr = []
+        for(let i in text_arr) {
+            label = document
+                .createElement("label")
+            label.innerHTML 
+                = "   " + text_arr[i] + "   "
+            this.node.append(label)
+            this.label_arr.push(label)
+            input = document
+                .createElement("input")
+            input.setAttribute(
+                "type", "text")
+            input.setAttribute(
+                "id", 
+                InputList.UNIQUE_KEY + text_arr[i]
+            )
+            this.input_arr.push(input)
+            this.node.append(input)
+        }
+        
+    }
+
+}
+
+
+
+class InputSlider {
+
+    constructor(title, range_arr, value) {
+        this.node = document.createElement(
+            "section")
+        this.node.setAttribute("tag",
+            "input_slider")
+        this.title = document.createElement(
+            "label")
+        this.title.innerHTML = title
+        this.input = document.createElement(
+            "input")
+        this.input.setAttribute("type", 
+            "range")
+        this.result = document
+            .createElement("label")
+        this.node.append(this.title)
+        this.node.append(this.input)
+        this.node.append(this.result)
+        this.set_range(range_arr)
+        this.set_value(value)
+        this.add_listener()
+    }
+
+    add_listener() {
+        this.input.addEventListener(
+            "change", 
+            ()=>{
+                this.update_text()
+            }
+        )
+    }
+
+    set_range(range_arr) {
+        this.input.setAttribute("min", 
+            range_arr[0])
+        this.input.setAttribute("max", 
+            range_arr[1])
+    }
+
+    set_value(value) {
+        this.input.value = value
+        this.update_text()
+    }
+
+    update_text() {
+        this.result.innerHTML 
+            = ` ${this.input.value} / 
+            ${this.input.getAttribute("max")}`
+        
+    }
+
+    get_value() {
+        return this.input.value
+    }
+
+}
+
+
+
+class InputText {
+
+    constructor() {
+        this.node = document
+            .createElement("textarea")
+    }
+
+    set_size(rows, cols) {
+        this.node.setAttribute("rows", rows)
+        this.node.setAttribute("cols", cols)
+    }
+
+    get_text() {
+        return this.node.getAttribute("value")
+    }
+
+    set_text(text) {
+        this.node.setAttribute("value", text)
+    }
+
+
+}
+
+
+class Link {
+
+    constructor(text, url) {
+        this.node = document
+            .createElement("a")
+        this.node.innerHTML = text
+        this.node.setAttribute("href", url)
+    }
+
+    set_url(URL) {
+        this.node.setAttribute("href", URL)
+    }
+
+    get_ulr() {
+        return this.node.getAttribute("href")
+    }
+
+}
+
+
+
+class NestedSelector {
+
+    /*XXX: no esta terminado */
+
+    constructor() {
+        this.node = document
+            .createElement("section")
+        this.first_select = document
+            .createElement("select")
+        this.node.append(first_select.node)
+        this.dict_selector = {}
+        let nested_select = document
+            .createElement("select")
+        this.node.append(nested_select.node)
+    }
+
+    add_nested_selector(key, dict) {
+        this.dict_selector[key] = dict
+    }
+
+    create_selector(key, text_arr) {
+        let option = null
+        
+        for(let i in text_arr) {
+            
+        }
+    }
+
+}
+
+
+class OLElement {
+
+    /*
+    Modulo que permite crear una lista
+    ordenada de forma facil.
+    */
+
+    constructor(text, array) {
+        this.node = document
+            .createElement("section")
+        this.p = document.createElement("p")
+        this.p.innerHTML = text
+        this.node.appendChild(this.p)
+        this.ol = document
+            .createElement("ol")
+        this.node.appendChild(this.ol)
+        this.li_array = [] 
+        this.create_list(array)
+    }
+
+    set_title(text) {
+        this.p.innerHTML = text
+    }
+
+    create_list(ARRAY) {
+        this.ol.innerHTML = ""
+        let li = null
+        for(let i=0;i < ARRAY.length;i++) {
+            li = document.createElement("li")
+            li.innerHTML = ARRAY[i]
+            this.ol.append(li)
+        }
+    }
+
+}
+
+
+ 
+ 
+
+class PageStructure {
+
+    constructor() {
+        this.title = new PageTitle(
+            "Web Page", "None Title"
+        )
+        this.intro = document
+            .createElement("section")
+        this.intro.setAttribute("tag",
+            "intro")
+        this.main = document
+            .createElement("section")
+        this.main.setAttribute("tag",
+            "main")
+        this.references = References
+        document.body.append(this.title.node)
+        document.body.append(this.intro)
+        document.body.append(this.main)
+        document.body.append(
+            this.references.node)
+    }
+
+    add(element) {
+        if (element instanceof Node) {
+            this.main.append(element)
+        } else {
+            this.main.append(element.node)
+        }
+    }
+
+}
+
+ 
+ 
+ 
+
+class PageTitle {
+
+    constructor(title, subtitle) {
+        this.node = document.createElement(
+            "div")
+        this.node.setAttribute("style",
+            `
+            display: flex;
+            gap: 2px;
+            padding: 0px;
+            background-color: #f0f0f0;
+            height: 30px;
+            `
+        )
+        this.init_buttons()
+        this.title = document.createElement(
+            "label")
+        this.title.setAttribute("style",
+            "height: 30px;"
+        )
+        this.set_titles(title)
+        this.node.append(this.title)
+        
+    }
+
+    init_buttons() {
+        let style_btn = `
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            width: 30px;
+            height: 30px;
+            `
+        this.btn_fullscreen = document
+            .createElement("button")
+        this.btn_fullscreen.setAttribute(
+            "style", style_btn)
+        this.btn_fullscreen.innerHTML = " + "
+        this.btn_fullscreen.addEventListener(
+            "click",
+            ()=>{
+                active_full_screen()
+            }
+        )
+        this.node.append(this.btn_fullscreen)
+        this.btn_quit_fscreen = document
+            .createElement("button")
+        this.btn_quit_fscreen.setAttribute(
+            "style", style_btn)
+        this.btn_quit_fscreen.innerHTML = " - "
+        this.btn_quit_fscreen.addEventListener(
+            "click",
+            ()=>{
+                quit_full_screen()
+            }
+        )
+        this.node.append(this.btn_quit_fscreen)
+    }
+
+    set_titles(title) {
+        title = Btjs.capitalize(title)
+        this.title.innerHTML = title
+        document.title = title
+    }
+
+}
+
+
+
+
+class PanelButton {
+
+    /*
+    Widget que contiene un panel de botones
+    ordenados en cuadricula y que comparten
+    una callback con diferentes indices
+    segun el texto del boton.
+    */
+
+    static MAXIMUM_SIZE = 12
+
+    constructor(title, key_arr, 
+            text_arr = "") {
+        this.node = document
+            .createElement("div")
+        this.node.setAttribute(
+            "tag", "panel_button")
+        this.button_arr = []
+        this.node.setAttribute("style",
+            `
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2px; 
+            /* Espacio entre los botones */
+            `
+        )
+        this.title = document.createElement(
+            "label")
+        this.title.innerHTML = title
+        this.node.append(this.title)
+        this.create_list(key_arr, text_arr)
+    }
+
+    set_text_arr(text_arr) {
+        for(let i in this.button_arr) {
+            this.button_arr[i].innerHTML 
+                = text_arr[i]
+        }
+    }
+
+    /*
+    La callback debe recibir como argumento
+    el texto del boton.
+    */
+    add_listener(FUNCTION) {
+        for(let i in this.button_arr) {
+            let fn = ()=>{
+                const key = this
+                    .button_arr[i]
+                    .getAttribute("id")
+                FUNCTION(key)
+            }
+            this.button_arr[i]
+                .addEventListener(
+                    "click", fn)
+        }
+    }
+
+
+    create_list(key_arr, text_arr = "") {
+        let button = null
+        if(text_arr == "") {
+            text_arr = key_arr
+        }
+        for(let i in text_arr) {
+            button = document.createElement(
+                "button")
+            button.setAttribute("id", 
+                key_arr[i])
+            button.setAttribute("style",
+                `
+                width: 100px;
+                height: 25px;
+                `
+            )
+            this.button_arr.push(button)
+            this.node.append(button)
+        }
+        this.set_text_arr(text_arr)
+    }
+
+}
+
+
+
+class ProgressBar {
+
+    constructor(title, range_arr) {
+        this.node = document.createElement(
+            "section")
+        this.node.setAttribute("tag",
+            "progress_bar")
+        this.title = document.createElement(
+            "label")
+        this.range_arr = [0, 0]
+        this.title.innerHTML = title
+        this.bar = document.createElement(
+            "progress")
+        this.bar.setAttribute("style",
+            `
+                width: 300px;
+                height: 20px;
+                background-color: #000000;
+                background-color: #4CAF50;
+            `
+        )
+        this.set_range_arr([0, 100])
+        this.bar.value = 0
+        this.node.append(this.title)
+        this.node.append(this.bar)
+    }
+
+    set_range_arr(range_arr) {
+        this.range_arr = range_arr
+        this.bar.setAttribute("min", 
+            range_arr[0])
+        this.bar.setAttribute("max", 
+            range_arr[1])
+    }
+
+    reach_max() {
+        let v = this.bar.value
+        let max = this.range_arr[1]
+        if(v >= max) { return true }
+        return false
+    }
+
+    set_value(value) {
+        this.bar.value = value
+    }
+
+    get_value() {
+        return this.bar.value
+    }
+
+}
+
+function quit_full_screen() {
+  if (document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if (document.mozCancelFullScreen) {
+    document.mozCancelFullScreen();
+  } else if (document.webkitExitFullscreen) {
+    document.webkitExitFullscreen();
+  } else if (document.msExitFullscreen) {
+    document.msExitFullscreen();
+  }
+}
+
+
+class Quote {
+
+    constructor() {
+        this.text = "not found quote"
+        this.autor = "unknown"
+        this.title = "no title"
+        this.date = "s.f"
+        this.recovery_date = ""
+        this.url = ""
+    }
+
+    set_data(data) {
+        if("text" in data) {
+            this.text = data["text"]
+        }
+        if("autor" in data) {
+            this.autor = data["autor"]
+        }
+        if("title" in data) {
+            this.title = data["title"]
+        }
+        if("date" in data) {
+            this.date = data["date"]
+        }
+        if("url" in data) {
+            this.url = data["url"]
+        }
+        if("recovery_date" in data) {
+            this.recovery_date = data[
+                "recovery_date"]
+        }
+    }
+
+    create_reference() {
+        let element = document
+            .createElement("li")
+        element.innerHTML 
+            = `${this.autor}(${this.date}). 
+        <em>${this.title}</em>. Available in 
+        <a href="${this.url}">${this.url}</a>
+        `
+        if(this.recovery_date != "") {
+            element.innerHTML += `
+            recovered the 
+            ${this.recovery_date}
+            `
+        }
+        return element
+    }
+
+    create_quote() {
+        let element = document
+            .createElement("a")
+        element.setAttribute("href", this.url)
+        element.setAttribute("style", 
+            "text-decoration: none;")
+        element.innerHTML = `
+        <em>"${this.text}"</em>
+        (${this.autor}, ${this.date})
+        `
+        return element.outerHTML
+    }
+
+
+}
+
+
+
+class RadioButtonList {
+
+    static last_id = 0
+
+    constructor(title, key_arr, 
+            text_arr = "") {
+        this.node = document
+            .createElement("div")
+        this.radio_arr = []
+        this.label_arr = []
+        this.title = document
+            .createElement("label")
+        this.title.innerHTML = title
+        this.node.append(this.title)
+        this.unique_id = String(
+            RadioButtonList.last_id)
+        RadioButtonList.last_id += 1
+        this.node.setAttribute("tag", 
+            "radio_button_list")
+        this.create_list(key_arr, text_arr)
+    }
+
+    set_title(text) {
+        this.title.innerHTML = text
+    }
+
+    get_value() {
+        for(let i in this.radio_arr) {
+            if(this.radio_arr[i].checked) {
+                return this.key_arr[i]
+            }
+        }
+        return "none"
+    }
+
+    create_list(key_arr, text_arr = "") {
+        if(text_arr == "") {
+            text_arr = key_arr
+        }
+        let radio = null
+        let label = null
+        for(let i in text_arr) {
+            radio = document
+                .createElement("input")
+            radio.setAttribute(
+                "type", "radio")
+            radio.setAttribute("id", 
+                key_arr[i])
+            radio.setAttribute(
+                "name", this.unique_id)
+            label = document
+                .createElement("label")
+            label.innerHTML = text_arr[i]
+            this.node.append(radio)
+            this.radio_arr.push(radio)
+            this.node.append(label)
+            this.label_arr.push(label)
+        }
+    }
+
+}
+
+
+ 
+ 
+
+class References {
+
+    /*
+    Clase que representa una seccion de 
+    referencias biblograficas.
+    */
+
+    node = null
+    title = null
+    ol = null
+    quote = null
+
+    static {
+        References.node = document
+            .createElement("section")
+        References.title = document
+            .createElement("h4")
+        References.ol = document
+            .createElement("ol")
+        References.quote = new Quote()
+        References.title.innerHTML 
+            = "References"
+        References.node.setAttribute("tag", 
+            "references")
+        References.node.append(
+            References.title)
+        References.node.append(
+            References.ol)
+    }
+
+    /*
+    Esta funcion recibe un texto con 
+    citas en formato diccionario y escribe
+    sus referencias como una lista OL HTML
+    */
+    static sum(text) {
+        //obtiene los quotes dict
+        let json_arr = this
+            .get_quotes_dict(text)
+        let quote_str = null
+        let final_str = ""
+        for(let i=0; i< json_arr.length;i++) {
+            References.quote.set_data(json_arr[i])
+            quote_str = References.quote
+                .create_reference()
+            References.ol.append(quote_str)
+        }
+    }
+
+    /*
+    Funcion que obtiene diccionarios a 
+    partir de JSON string de quotes en 
+    el texto enviado. Como el siguiente:
+    {
+        text : "",
+        autor : "",
+        title : "",
+        date : "",
+        url : "",
+        recovery_date: ""
+    }
+    */
+    static get_quotes_dict(str) {
+        let init_idx = 0;
+        let end_idx = 0;
+        let idx = 0;
+        let substring = "";
+        let new_string = "";
+        let char = "";
+        let is_json = false;
+        let json_arr = [];
+        for (let i=0;i<str.length;i++) {
+            char = str[i];
+            if(char == "{") {
+                is_json = true;
+                init_idx = idx;
+            } else if(char == "}") {
+                end_idx = idx;
+                substring = str.slice(
+                    init_idx, end_idx);
+                substring += "}";
+                substring = Btjs
+                    .replace_string(
+                        substring, "\n");
+                let json = JSON.parse(
+                    substring);
+                console.log(json)
+                json_arr.push(json);
+                is_json = false;
+            } else {
+                if(! is_json) {
+                    new_string += char
+                }
+            }
+            idx ++
+        }
+        return json_arr
+    }
+
+}
+
+
+
+
+function replace_substring(cadena, 
+    substring, interval) {
+        // Verificamos que los �ndices 
+        //sean v�lidos
+      if (inicio < 0 || fin > cadena.length || inicio > fin) {
+        return "�ndices inv�lidos";
+      }
+    
+      // Utilizamos slice() para obtener 
+      //las partes antes y despu�s de la 
+      //subcadena a eliminar
+      const parte1 = cadena.slice(0, 
+            interval[0]);
+      const parte2 = cadena.slice(interval[1]);
+    
+      // Concatenamos las partes para formar la nueva cadena
+      return parte1 + substring + parte2;
+}
+
+
+
+class ScrollList {
+
+    constructor(text_arr) {
+        this.node = document
+            .createElement("div")
+        this.node.setAttribute("style",
+            `
+            overflow-y: scroll;
+            padding: 10px;
+            width: 100px;
+            height: 100px;
+            display: flex;
+            flex-direction: column;
+            `
+        )
+        this.button_arr = []
+        this.node.addEventListener('wheel', (event) => {
+            // Obt�n la posici�n actual de desplazamiento
+            const currentScrollTop = this.node.scrollTop;
+
+            // Calcula la nueva posici�n de desplazamiento (ajusta el valor seg�n tus necesidades)
+            const newScrollTop = currentScrollTop - event.deltaY;
+
+            // Asigna la nueva posici�n de desplazamiento al div
+            this.node.scrollTop = newScrollTop;
+        });
+        this.create_list(text_arr)
+    }
+
+    create_list(text_arr) {
+        this.button_arr = []
+        let button = null
+        for(let i in text_arr) {
+            button = document
+                .createElement("button")
+            button.innerHTML = text_arr[i]
+            this.button_arr.push(button)
+            this.node.append(button)
+        }
+    }
+
+}
+
+
+class Selector {
+
+    /*
+    Modulo que permite crear una lista
+    de opciones de forma facil.
+    */
+
+    constructor(text, array) {
+        this.node = document
+            .createElement("section")
+        this.label = document
+        .createElement("label")
+        this.label.innerHTML = text
+        this.node.appendChild(this.label)
+        this.select = document
+            .createElement("select")
+        this.node.appendChild(this.select)
+        this.li_array = [] 
+        this.create_list(array)
+    }
+
+    set_title(text) {
+        this.label.innerHTML = text
+    }
+
+    create_list(ARRAY) {
+        this.select.innerHTML = ""
+        let option = null
+        for(let i=0;i < ARRAY.length;i++) {
+            option = document.createElement("option")
+            option.innerHTML = ARRAY[i]
+            this.select.append(option)
+        }
+    }
+
+}
+
+
+class StandardElement {
+
+    constructor() {
+        this.node = null
+        this.foreground = ""
+        this.font_size = 1.2
+        this.font_family = "arial"
+        this.font_weight = "normal"
+        this.font_style = "normal"
+    }
+
+    update_styles() {
+        this.node.setAttribute("style",
+            `color : ${this.foreground};
+            font-size: ${this.font_size}rem;
+            font-family: ${this.font_family};
+            font-weight: ${this.font_weight};
+            this.font_style: ${this.font_style};
+            `
+        )
+    }
+
+    set_foreground(color) {
+        this.foreground = color
+        this.update_styles()
+    }
+
+    destroy() {}
+
+    get_value() {
+        return this.node.value
+    }
+
+    set_value(value) {
+        this.node.value = value
+    }
+
+    get_text() {
+        return this.node.innerHTML
+    }
+
+    set_text(text) {
+        this.node.innerHTML = text
+    }
+
+}
+
+
+
+class StyleHead {
+
+    /*
+    Es un elemento que representa a los 
+    estilos CSS embebidos; pero que pueden
+    controlarse facilmente desde Javascript.
+    */
+
+    constructor() {
+        this.node = document.createElement(
+            "style")
+        this.body_color = "lightblue"
+        this.margin = 0
+        this.padding = 0
+        this.font_family = "Arial, sans-serif"
+        this.font_size = 16
+        this.font_color = ""
+        this.line_height = 1.5
+        this.update_css()
+    }
+
+    set_body_color(color) {
+        this.body_color = color
+        this.update_css()
+    }
+
+    update_css() {
+        /*
+        Escribe el texto CSS actualizando
+        los datos
+        */
+        let txt = `body {
+            background-color:
+                ${this.body_color};
+            margin: ${this.margin};
+            padding: ${this.padding};
+            box-sizing: border-box; /* Incluye el padding y border en el ancho y alto */
+            font-family: ${this.font_family};
+            font-size: ${this.font_size}px;
+            line-height: ${this.line_height};
+            color: ${this.font_color};
+        }`;
+        this.node.innerHTML = txt
+    }
+
+}
+
+ 
+ 
+
+class VideoFigure {
+
+    constructor() {
+        this.node = document
+            .createElement("div")
+        this.title = document
+            .createElement("h3")
+        this.section = document
+            .createElement("section")
+        this.node.append(this.title)
+        this.section_iframe = document
+            .createElement("section")
+        this.description = document
+            .createElement("section")
+        this.node.append(this.title)
+        this.node.append(this.section_iframe)
+        this.node.append(this.description)
+        this.quote = new Quote()
+        /*
+
+        <iframe width="560" 
+        height="315" 
+        src="https://www.youtube.com/embed/sVdP70QlHMs?si=woeu3UXu_HmT2I_5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+        </iframe>
+        
+        */
+    }
+
+    set_title(text) {
+        this.title.innerHTML = text
+    }
+
+    set_iframe_youtube(HTML_text) {
+        this.section_iframe.innerHTML 
+            = HTML_text
+    }
+
+    /*
+    Funcion que obtiene un string y 
+    lo convierte en un texto con citaciones
+    */
+    set_description(str) {
+        let init_idx = 0
+        let end_idx = 0
+        let idx = 0
+        let substring = ""
+        let new_string = ""
+        let char = ""
+        let is_json = false
+        for (let i=0;i<str.length;i++) {
+            char = str[i]
+            if(char == "{") {
+                is_json = true
+                init_idx = idx
+            } else if(char == "}") {
+                end_idx = idx
+                substring = str.slice(
+                    init_idx, end_idx)
+                substring += "}"
+                substring = Btjs.replace_string(
+                    substring, "\n")
+                let json = JSON.parse(
+                    substring);
+                this.quote.set_data(json)
+                new_string += this.quote
+                    .create_quote()
+                is_json = false
+            } else {
+                if(! is_json) {
+                    new_string += char
+                }
+            }
+            idx ++
+        }
+        this.description.innerHTML 
+            = new_string
+    }
+
+}
+
+function main() {
+    console.log("init")
+    let struct = Btjs.PageStructure()
+    let number = 0
+    let label = Btjs.Div()
+    struct.add(label)
+    let button = Btjs.Button("click aqui")
+    struct.add(button)
+    button.add_click_listener(()=>{
+        number += 1
+        label.set_text(
+            "the number is: " + number)
+    })
+}
+
+main()
+        </script>
+        </body>
+        </html>
+    
