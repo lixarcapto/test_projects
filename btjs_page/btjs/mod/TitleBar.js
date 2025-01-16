@@ -5,9 +5,9 @@ import { active_full_screen } from "./active_full_screen.js";
 import { quit_full_screen } from "./quit_full_screen.js";
 import { StandardElement } from "./StandardElement.js"
 
-export class PageTitle extends StandardElement {
+export class TitleBar extends StandardElement {
 
-    constructor(title, subtitle) {
+    constructor(title) {
         super();
         this.node = document.createElement(
             "div")

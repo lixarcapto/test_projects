@@ -2,25 +2,19 @@
 
 
 import { Btjs } from "./btjs/Btjs.js"
-import { DataConst } from "./DataConst.js"
+import { Gauge } from "./btjs/mod/Gauge.js"
 
 function main() {
-    let btn = Btjs.Icon("res/cross.png")
+    let gauge = new Gauge()
+    let angle = 0
+    Btjs.to_body(gauge)
+    const intervalo = setInterval(
+        ()=>{
+            angle += 5
+            gauge.set_range([angle, 100])
+        }, 500);
+    let btn = Btjs.Button("text")
     Btjs.to_body(btn)
-    Btjs.jump(7)
-    Btjs.body.set_background_image("res/chica_catolica.png")
-    let label = Btjs.Label(DataConst.text)
-    label.set_size(500, 100)
-    Btjs.to_body(label)
-    let e = Btjs.TextArea()
-    e.set_lines_size(10, 40)
-    Btjs.to_body(e)
-    let change = Btjs.ChangeColorButton(
-        "press")
-    Btjs.to_body(change)
-    btn.add_click_listener(()=>{
-        console.log(change.get_value())
-    })
 }
 
 main()

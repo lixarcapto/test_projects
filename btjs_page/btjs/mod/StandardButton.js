@@ -7,6 +7,34 @@ export class StandardButton extends StandardElement {
 
     constructor() {
         super();
+        this.info_bubble = null
+    }
+
+    set_text_bubble(text) {
+        this.add_info_bubble()
+        this.info_bubble.innerHTML = text
+    }
+
+    add_info_bubble() {
+        if(null != this.info_bubble) {
+            return null
+        }
+        this.info_bubble = document
+            .createElement("div")
+        this.info_bubble.setAttribute("style",
+            `display: none;`
+        )
+        this.node.append(this.info_bubble)
+        this.node.addEventListener(
+            'mouseover', () => {
+            this.info_bubble.style
+                .display = 'block';
+        });
+        this.node.addEventListener(
+            'mouseout', () => {
+            this.info_bubble.style
+                .display = 'none';
+        });
     }
 
     add_click_listener(FUNCTION) {

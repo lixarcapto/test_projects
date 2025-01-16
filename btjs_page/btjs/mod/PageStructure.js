@@ -1,13 +1,13 @@
 
 
 
-import { PageTitle } from "./PageTitle.js";
+import { TitleBar } from "./TitleBar.js";
 import { References } from "./References.js";
 
 export class PageStructure {
 
     constructor() {
-        this.title = new PageTitle(
+        this.title = new TitleBar(
             "Web Page", "None Title"
         )
         this.intro = document

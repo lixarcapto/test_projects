@@ -12,8 +12,8 @@ import { Label } from "./mod/Label.js";
 import { Link } from "./mod/Link.js";
 import { Quote } from "./mod/Quote.js";
 import { Article } from "./mod/Article.js";
-import { PageTitle } from "./mod/PageTitle.js";
-import { Figure } from "./mod/Figure.js";
+import { TitleBar } from "./mod/TitleBar.js";
+import { Card } from "./mod/Card.js";
 import { PageStructure } from "./mod/PageStructure.js";
 import { References } from "./mod/References.js";
 import { VideoFigure } from "./mod/VideoFigure.js";
@@ -30,10 +30,10 @@ import { ButtonList } from "./mod/ButtonList.js";
 import { ButtonIndex } from "./mod/ButtonIndex.js";
 import { CheckButton } from "./mod/CheckButton.js";
 import { Canvas } from "./mod/Canvas.js";
-import { InfoBubbleButton } from "./mod/InfoBubbleButton.js";
 import { ScrollList } from "./mod/ScrollList.js";
 import { IconButton } from "./mod/IconButton.js";
 import { ChangeColorButton } from "./mod/ChangeColorButton.js";
+import {Book } from "./mod/Book.js";
 
 export class Btjs {
 
@@ -110,6 +110,10 @@ export class Btjs {
         ARRAY)
     }
 
+    static Book() {
+      return new Book()
+    }
+
     static TextArea(text) {
       return new TextArea(text)
     }
@@ -144,14 +148,14 @@ export class Btjs {
         text, level)
     }
 
-    static Figure(title, src, 
+    static Card(title, src, 
       description = "") {
-        return new Figure(title,
+        return new Card(title,
           src, description)
     }
 
-    static PageTitle(title, subtitle) {
-      return new PageTitle(title, subtitle)
+    static TitleBar(title) {
+      return new TitleBar(title)
     }
 
     static PageStructure() {
@@ -228,10 +232,6 @@ export class Btjs {
 
     static Canvas(size_x, size_y) {
       return new Canvas(size_x, size_y)
-    }
-
-    static InfoBubbleButton(title, text) {
-      return new InfoBubbleButton(title, text)
     }
 
     static ScrollList(text_arr, height) {
