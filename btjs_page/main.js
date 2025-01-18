@@ -2,18 +2,23 @@
 
 
 import { Btjs } from "./btjs/Btjs.js"
-import { Gauge } from "./btjs/mod/Gauge.js"
+import { Body } from "./btjs/mod/Body.js"
 
 function main() {
-    let gauge = new Gauge()
-    let angle = 0
-    Btjs.to_body(gauge)
-    const intervalo = setInterval(
-        ()=>{
-            angle += 5
-            gauge.set_range([angle, 100])
-        }, 500);
-    let btn = Btjs.Button("text")
+    let e = document.createElement("label")
+    console.log(e.tagName)
+    let chest = Btjs.ButtonChest(
+        "Selecciona tus deseados")
+    let array = ["Consola de videojuegos", "Libro de cocina", "Ropa deportiva", "Viaje", "Smartphone", "Bicicleta", "Juego de mesa", "Joyería"]
+    chest.set_options_arr(array)
+    chest.set_font_size(18)
+    Btjs.to_body(chest)
+    let btn = Btjs.Button("end")
+    btn.add_click_listener(()=>{
+        console.log(chest.get_value())
+    })
+    btn.set_background("red")
+    btn.set_foreground("white")
     Btjs.to_body(btn)
 }
 

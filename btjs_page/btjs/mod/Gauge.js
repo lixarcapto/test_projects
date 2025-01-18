@@ -1,24 +1,32 @@
 
 
 
-export class Gauge {
+import { StandardElement } from "./StandardElement.js"
+
+export class Gauge extends StandardElement {
 
     __ERROR_MARGIN_PERCENT = 20
 
-    constructor() {
+    constructor(title = "") {
+        super()
         this.node = document.createElement(
             "span")
+        this.node.setAttribute("tag",
+            "gauge"
+        )
         this.node.setAttribute("style",
-            "display: inline-block;"
+            `
+            display: inline-block;
+            `
         )
         this.circle = document.createElement(
             "div")
         this.circle.setAttribute("style",
             `
+            position: relative;
             background-color:rgb(145, 139, 164);
             background-color: #2E2E2E;
             border-radius: 50% 50% 0 0; /* Redondea la parte superior */
-            
             `
         )
         //
@@ -35,27 +43,55 @@ export class Gauge {
             "div")
         this.number.setAttribute("style",
             `
-            position: relative;
             background-color: rgba(255, 255, 255, 0); /* Fondo blanco con 50% de opacidad */
+            background-color: #2E2E2E;
+            display:flex;
             color: white;
-            padding: 20px;
+            padding: 3px;
+            justify-content:center;
+            border: 1px solid gray;
             `
         )
-        this.circle.append(this.number)
+        this.title = document.createElement(
+            "label")
+        this.title.setAttribute("style",
+            `
+            background-color: #2E2E2E;
+            display:flex;
+            justify-content: center;
+            color: #ffffff;
+            padding: 4px;
+            `
+        )
+        this.title.innerHTML = "titulo"
         this.circle.append(this.pointer)
         this.node.append(this.circle)
+        this.node.append(this.title)
+        this.node.append(this.number)
         this.range_arr = [0, 0]
-        this.set_size(200)
+        this.set_size(100)
         this.set_pointer_width(4)
+        this.set_title(title)
     }
 
-    set_text(text) {
-        this.number.innerHTML = text
+    set_title(text) {
+        this.title.innerHTML = text
+    }
+
+    set_range_text(range_arr) {
+        this.number.innerHTML = `
+            ${range_arr[0]} / ${range_arr[1]}
+        `
     }
 
     set_pointer_width(size) {
         this.pointer.style
             .height = size +"px"
+    }
+
+    set_size_circle(width, height) {
+        this.circle.style.height = height +"px"
+        this.circle.style.width = width+"px"
     }
 
     //TODO: organizar estos calculos
@@ -75,19 +111,20 @@ export class Gauge {
             = (percent_error/ 100) * size_x
         
         let pointer_x =  margin_error
-        console.log(pointer_x)
-        this.circle.style
-            .height = size_y +"px"
-        this.circle.style.width = size_x +"px"
-        this.number.style.left 
-        = (size_x / 3.5)  + "px"
+        // eleva la aguja un 4% del tamaño
+        // del contenedor en y
+        let pointer_y = size_y 
+            - ((4/100) * size_y)
+        let circle_h = size_y
+        let circle_w = size_x
         let pointer_heigth = size_y
         this.pointer.style
             .width = pointer_height +"px"
         //
         this.node.style.maxWidth = size_x + "px"
+        this.set_size_circle(circle_w, circle_h)
         this.__set_pointer_location(
-            pointer_x, size_y)
+            pointer_x, pointer_y)
     }
 
     __set_pointer_location(x, y) {
@@ -108,9 +145,7 @@ export class Gauge {
                 return null
         }
         this.set_angle_degree(degree_parts)
-        this.set_text(`
-            ${range_arr[0]} / ${range_arr[1]}  
-        `)
+        this.set_range_text(range_arr)
     }
 
 

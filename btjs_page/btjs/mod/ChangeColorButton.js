@@ -23,7 +23,7 @@ export class ChangeColorButton
         this.__add_defualt_listeners()
     }
 
-    set_text(text) {
+    set_range_text(text) {
         this.node.innerHTML = text
     }
 

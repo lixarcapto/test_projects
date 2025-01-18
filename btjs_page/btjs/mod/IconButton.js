@@ -26,14 +26,14 @@ export class IconButton extends StandardButton {
         this.node.append(this.image)
         this.node.append(this.div)
         this.set_image(image_url)
-        this.set_text(text)
+        this.set_range_text(text)
     }
 
     set_image(url) {
         this.image.setAttribute("src", url)
     }
 
-    set_text(text) {
+    set_range_text(text) {
         this.div.innerHTML = text
         this.image.setAttribute("alt", text)
     }

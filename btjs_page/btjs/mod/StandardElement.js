@@ -3,19 +3,22 @@
 
 export class StandardElement {
 
+    static unique_number = 0
+
     constructor() {
         this.node = null
+        this.unique_key = ""
     }
 
-    update_styles() {
-        this.node.setAttribute("style",
-            `
-
-            text-decoration: ${this.text_decoration};
-            text_align: ${this.text_align};
-            margin: ${this.margin}px;
-            `
-        )
+    create_key() {
+        let tag = this.node.tagName
+        let number = StandardElement
+            .unique_number 
+        StandardElement
+            .unique_number += 1
+        let key = tag 
+            + String(number)
+        this.unique_key = key
     }
 
     set_foreground(color) {
@@ -96,7 +99,7 @@ export class StandardElement {
         return this.node.innerHTML
     }
 
-    set_text(text) {
+    set_range_text(text) {
         this.node.innerHTML = text
     }
 

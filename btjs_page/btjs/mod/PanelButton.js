@@ -19,24 +19,39 @@ export class PanelButton extends StandardElement {
         super();
         this.node = document
             .createElement("div")
-        this.node.style.display = "inline"
         this.node.setAttribute(
             "tag", "panel_button")
+        this.node.style
+            .border = "2px solid gray"
+        this.node.style.padding = "3px"
         this.button_arr = []
-        this.node.setAttribute("style",
-            `
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 2px; 
-            /* Espacio entre los botones */
-            `
-        )
         this.title = document.createElement(
             "label")
         this.title.innerHTML = title
         this.node.append(this.title)
+        this.node.append(
+            document.createElement("br"))
+        this.grid = document.createElement(
+            "div")
+        this.grid.setAttribute("style",
+            `
+            display: grid;
+            grid-template-columns: repeat(2, 2fr); /* Crea una cuadrícula de 2 columnas de igual tamaño */
+            grid-gap: 1px; /* Espacio entre elementos */
+            `
+        )
+        this.node.append(this.grid)
         this.create_list(key_arr, text_arr)
+    }
+
+    set_columns(number) {
+        this.grid.style.gridTemplateColumns
+            = `repeat(${number}, 1fr)`
+    }
+
+    set_rows(number) {
+        this.grid.style.gridTemplateRows
+            = `repeat(${number}, 1fr)`
     }
 
     set_text_arr(text_arr) {
@@ -77,8 +92,10 @@ export class PanelButton extends StandardElement {
                 key_arr[i])
             button.setAttribute("style", 
                 "font-size:1em;")
+            button.style.border 
+                = "2px solid gray"
             this.button_arr.push(button)
-            this.node.append(button)
+            this.grid.append(button)
         }
         this.set_text_arr(text_arr)
     }

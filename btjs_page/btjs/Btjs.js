@@ -8,7 +8,7 @@ import { Icon } from "./mod/Icon.js";
 import { Button } from "./mod/Button.js";
 import { ColorSelector } from "./mod/ColorSelector.js";
 import { Body } from "./mod/Body.js";
-import { Label } from "./mod/Label.js";
+import { LabelArea } from "./mod/LabelArea.js";
 import { Link } from "./mod/Link.js";
 import { Quote } from "./mod/Quote.js";
 import { Article } from "./mod/Article.js";
@@ -34,6 +34,9 @@ import { ScrollList } from "./mod/ScrollList.js";
 import { IconButton } from "./mod/IconButton.js";
 import { ChangeColorButton } from "./mod/ChangeColorButton.js";
 import {Book } from "./mod/Book.js";
+import { Gauge } from "./mod/Gauge.js";
+import { BookMenu } from "./mod/BookMenu.js";
+import { ButtonChest } from "./mod/ButtonChest.js";
 
 export class Btjs {
 
@@ -85,6 +88,10 @@ export class Btjs {
       return new Button(text)
     }
 
+    static BookMenu(text = "") {
+      return new BookMenu(text)
+    }
+
     static jump(number = 1) {
       let e = null
       for(let i=0;i< number; i++) {
@@ -101,13 +108,21 @@ export class Btjs {
         return new OLElement(text, ARRAY)
     }
 
-    static Label(text = "") {
-      return new Label(text)
+    static LabelArea(text = "") {
+      return new LabelArea(text)
     }
 
-    static Selector(text, ARRAY) {
+    static Gauge(text = "") {
+      return new Gauge(text)
+    }
+
+    static Selector(text, ARRAY = []) {
       return new Selector(text, 
         ARRAY)
+    }
+    
+    static ButtonChest(title) {
+      return new ButtonChest(title)
     }
 
     static Book() {
