@@ -1,5 +1,7 @@
 
 
+import { StandardElement } 
+    from "./StandardElement.js";
 
 export class Canvas {
 
@@ -8,16 +10,16 @@ export class Canvas {
             .createElement("canvas")
         this.size_x = size_x
         this.size_y = size_y
-        this.set_size(size_x, size_y)
-        this.color = "#000000"
-        this.node.fillStyle = this.color
         this.context = this.node
             .getContext('2d');
-        this.pen_color = "white"
+        this.pen_color = "red"
+        this.background_color = "black"
         this.pen_width = 1
-        this.font_size = 50
+        this.font_size = 16 + "px"
         this.font_type = "Arial"
         this.point_index = [0, 0]
+        this.set_size(size_x, size_y)
+        this.set_pen_color("red")
         this.update()
     }
 
@@ -26,13 +28,13 @@ export class Canvas {
         this.node = null
         this.context = null
         this.font_type = null
-        this.pen_color = null
+        this.pen_color = ""
         this.point_index = null
-        this.color = null
     }
 
     set_pen_color(color_code) {
         this.pen_color = color_code
+        this.context.fillStyle = color_code;
     }
 
     get_pen_color() {
@@ -68,8 +70,12 @@ export class Canvas {
     }
 
     update() {
+        this.context.fillStyle = this
+            .background_color;
         this.context.fillRect(
-            10, 10, this.size_x, this.size_y);
+            0, 0, this.size_x, this.size_y);
+        this.context.fillStyle 
+            = this.pen_color;
         this.buffer_img = []
     }
 
@@ -89,6 +95,8 @@ export class Canvas {
         this.point_index = point_2.slice()
     }
 
+
+
     draw_image(url, location_x, location_y) {
         let img = new Image();
         img.onload = () => {
@@ -96,6 +104,20 @@ export class Canvas {
                 location_x, location_y);
         };
         img.src = url
+    }
+
+    /*
+    Dibuja un rectangulo recto usando 
+    un punto array y un intervalo 
+    de tamaños(x, y)
+    */
+    draw_fill_rect(point_arr, size_range) {
+        this.context.fillRect(
+            point_arr[0], 
+            point_arr[1], 
+            size_range[0], 
+            size_range[1]
+        );
     }
 
     move_pen(point) {
@@ -126,10 +148,8 @@ export class Canvas {
     }
 
     set_size(size_x, size_y) {
-        this.node.setAttribute(
-            "height", size_y)
-        this.node.setAttribute(
-            "weight", size_x)
+        this.node.width = size_x
+        this.node.height = size_y
     }
 
 }

@@ -3,22 +3,54 @@
 
 export class StandardElement {
 
+    /*
+    Esta clase se utiliza como una clase
+    raiz para los componentes graficos.
+    */
+
     static unique_number = 0
 
     constructor() {
         this.node = null
-        this.unique_key = ""
+        this.__node_key = ""
+        this.unique_number = 0
+        this.__create_key()
     }
 
-    create_key() {
-        let tag = this.node.tagName
+    /*
+    Crea una clave unica que puede servir
+    para asingar clases a los elementos de
+    este nodo.
+    */
+    get_element_key() {
+        let key = this.__node_key
+            + "_" + this.unique_number
+        this.unique_number += 1
+        return key
+    }
+
+    get_node_key() {
+        return this.__node_key
+    }
+
+    /*
+    Crea una clave unica para asingar a este
+    nodo.
+    */
+    __create_key() {
         let number = StandardElement
             .unique_number 
         StandardElement
             .unique_number += 1
-        let key = tag 
-            + String(number)
-        this.unique_key = key
+        this.__node_key = "_" + String(number)
+    }
+
+    set_padding(pixel) {
+        this.node.style.padding = pixel
+    }
+
+    set_filter(filter) {
+        this.node.style.filter = filter
     }
 
     set_foreground(color) {
@@ -33,12 +65,13 @@ export class StandardElement {
     }
 
     set_background(color) {
-        this.node.style.backgroundColor = color
+        this.node.style.backgroundColor 
+            = color
     }
 
     set_font_size(size) {
         this.node.style.fontSize = 
-            size + "px"
+            size
     }
 
     set_font_family(font) {
@@ -57,7 +90,7 @@ export class StandardElement {
     }
 
     set_line_height(number) {
-        this.node.lineHeight = number + "px"
+        this.node.lineHeight = number
     }
 
     set_text_decoration(text_decoration) {
@@ -74,8 +107,8 @@ export class StandardElement {
     }
 
     set_size(size_x, size_y) {
-        this.node.style.width = size_x + "px"
-        this.node.style.height = size_y + "px"
+        this.node.style.width = size_x
+        this.node.style.height = size_y
     }
 
     get_id() {
@@ -99,8 +132,12 @@ export class StandardElement {
         return this.node.innerHTML
     }
 
-    set_range_text(text) {
+    __draw_text(text) {
         this.node.innerHTML = text
+    }
+
+    to_body() {
+        document.body.append(this.node)
     }
 
 }

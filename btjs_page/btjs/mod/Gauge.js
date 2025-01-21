@@ -5,10 +5,39 @@ import { StandardElement } from "./StandardElement.js"
 
 export class Gauge extends StandardElement {
 
+    /*
+    Es un componente que representar
+    un medidor de aguja similar a los
+    del panel de un automobil.
+    */
+
     __ERROR_MARGIN_PERCENT = 20
 
     constructor(title = "") {
         super()
+        this.node = null
+        this.circle = null
+        this.number = null
+        this.title = null
+        this.number = null
+        this.range_arr = [0, 0]
+        this.pointer_value = 0
+        //
+        this.init_components()
+        this.set_size(100)
+        this.set_pointer_width(4)
+        this.set_title(title)
+    }
+
+    init_components() {
+        this.init_node()
+        this.init_circle()
+        this.init_pointer()
+        this.init_number()
+        this.init_title()
+    }
+
+    init_node() {
         this.node = document.createElement(
             "span")
         this.node.setAttribute("tag",
@@ -19,6 +48,9 @@ export class Gauge extends StandardElement {
             display: inline-block;
             `
         )
+    }
+
+    init_circle() {
         this.circle = document.createElement(
             "div")
         this.circle.setAttribute("style",
@@ -29,7 +61,26 @@ export class Gauge extends StandardElement {
             border-radius: 50% 50% 0 0; /* Redondea la parte superior */
             `
         )
-        //
+        this.node.append(this.circle)
+    }
+
+    init_title() {
+        this.title = document.createElement(
+            "label")
+        this.title.setAttribute("style",
+            `
+            background-color: #2E2E2E;
+            display:flex;
+            justify-content: center;
+            color: #ffffff;
+            padding: 4px;
+            `
+        )
+        this.title.innerHTML = "titulo"
+        this.node.append(this.title)
+    }
+
+    init_pointer() {
         this.pointer = document
             .createElement("div")
         this.pointer.setAttribute("style",
@@ -39,6 +90,10 @@ export class Gauge extends StandardElement {
             transform-origin: 100% 100%;
             `
         )
+        this.circle.append(this.pointer)
+    }
+
+    init_number() {
         this.number = document.createElement(
             "div")
         this.number.setAttribute("style",
@@ -52,35 +107,29 @@ export class Gauge extends StandardElement {
             border: 1px solid gray;
             `
         )
-        this.title = document.createElement(
-            "label")
-        this.title.setAttribute("style",
-            `
-            background-color: #2E2E2E;
-            display:flex;
-            justify-content: center;
-            color: #ffffff;
-            padding: 4px;
-            `
-        )
-        this.title.innerHTML = "titulo"
-        this.circle.append(this.pointer)
-        this.node.append(this.circle)
-        this.node.append(this.title)
         this.node.append(this.number)
-        this.range_arr = [0, 0]
-        this.set_size(100)
-        this.set_pointer_width(4)
-        this.set_title(title)
     }
 
     set_title(text) {
         this.title.innerHTML = text
     }
 
-    set_range_text(range_arr) {
+    draw_pointer_value(value) {
+        this.pointer_value = value
+    }
+
+    set_range_arr(range_arr) {
+        this.range_arr = range_arr
+        this.__draw_pointer()
+        this.__draw_text(
+            this.range_arr)
+    }
+
+    __draw_text() {
         this.number.innerHTML = `
-            ${range_arr[0]} / ${range_arr[1]}
+            ${this.pointer_value}
+            (${this.range_arr[0]} 
+            / ${this.range_arr[1]})
         `
     }
 
@@ -132,20 +181,49 @@ export class Gauge extends StandardElement {
         this.pointer.style.top = y + "px"
     }
 
-    set_range(range_arr) {
-        this.range_arr = range_arr
+    set_pointer_value(value) {
+        this.pointer_value = value
+        this.__draw_pointer()
+    }
+
+
+    /*
+    
+    De un rango de [60, 120], con un valor
+    de 80
+
+    */
+    __draw_pointer() {
         let degrees_total = 180
         let percent = 0
-        percent = (range_arr[0] 
-            / range_arr[1]) * 100
+        //convierte el rango a un escala de 0
+        let value_in0scale = this.pointer_value
+            - this.range_arr[0]
+        let range_in0scale = [
+            0, 
+            this.range_arr[1] 
+            - this.range_arr[0]
+        ]
+        // convierte el valor a porcentaje
+        percent = (value_in0scale 
+            / range_in0scale[1]) * 100
+        // convierte el porcentaje a grados
         let degree_parts
          = (percent / 100) * degrees_total
-        if(degree_parts > 180
-        || degree_parts < 0) { 
-                return null
+        // si supera al rango maximo
+        if(degree_parts > 180) {
+            this.pointer_value 
+                = this.range_arr[1]
+            degree_parts = 180
+        // si es menor al rango minimo
+        } else if(degree_parts < 0) {
+            this.pointer_value 
+                = this.range_arr[0]
+            degree_parts = 0
         }
+        // dibuja el puntero y el texto
         this.set_angle_degree(degree_parts)
-        this.set_range_text(range_arr)
+        this.__draw_text()
     }
 
 

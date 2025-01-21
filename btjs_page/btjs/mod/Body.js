@@ -16,8 +16,4 @@ export class Body extends StandardElement {
         this.node = document.body
     }
 
-    add(element) {
-        this.node.append(element.node)
-    }
-
 }

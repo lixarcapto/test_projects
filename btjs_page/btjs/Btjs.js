@@ -4,7 +4,7 @@
 import { OLElement } from "./mod/OlElement.js";
 import { Selector } from "./mod/Selector.js";
 import { TextArea } from "./mod/TextArea.js";
-import { Icon } from "./mod/Icon.js";
+import { ClickIcon } from "./mod/ClickIcon.js";
 import { Button } from "./mod/Button.js";
 import { ColorSelector } from "./mod/ColorSelector.js";
 import { Body } from "./mod/Body.js";
@@ -21,7 +21,8 @@ import { replace_substring } from "./mod/replace_substring.js";
 import {Image} from "./mod/Image.js";
 import { CheckList } from "./mod/CheckList.js";
 import { InputList } from "./mod/InputList.js";
-import { PanelButton } from "./mod/PanelButton.js";
+import { ClickIconBox } from "./mod/ClickIconBox.js";
+import { ClickTextBox } from "./mod/ClickTextBox.js";
 import { InputSlider } from "./mod/InputSlider.js";
 import { DataBar } from "./mod/DataBar.js";
 import { RadioButtonList } from "./mod/RadioButtonList.js";
@@ -31,12 +32,13 @@ import { ButtonIndex } from "./mod/ButtonIndex.js";
 import { CheckButton } from "./mod/CheckButton.js";
 import { Canvas } from "./mod/Canvas.js";
 import { ScrollList } from "./mod/ScrollList.js";
-import { IconButton } from "./mod/IconButton.js";
 import { ChangeColorButton } from "./mod/ChangeColorButton.js";
 import {Book } from "./mod/Book.js";
 import { Gauge } from "./mod/Gauge.js";
 import { BookMenu } from "./mod/BookMenu.js";
 import { ButtonChest } from "./mod/ButtonChest.js";
+import { ClickIconText } from "./mod/ClickIconText.js";
+import { ClickIconTextOverlay as ClickIconTextOverlay } from "./mod/ClickIconTextOverlay.js";
 
 export class Btjs {
 
@@ -51,6 +53,15 @@ export class Btjs {
 
     static {
         Btjs.body = Btjs.StyleHead()
+    }
+
+    static ClickIconText(title, url) {
+        return new ClickIconText(title, url);
+    }
+
+    static ClickIconTextOverlay(title, url) {
+        return new ClickIconTextOverlay(title, 
+          url);
     }
 
     static random_element(array) {
@@ -86,6 +97,10 @@ export class Btjs {
   
     static Button(text = "") {
       return new Button(text)
+    }
+
+    static ClickIcon(title, url) {
+      return new ClickIcon(title, url)
     }
 
     static BookMenu(text = "") {
@@ -133,8 +148,8 @@ export class Btjs {
       return new TextArea(text)
     }
 
-    static Icon(URL) {
-      return new Icon(URL)
+    static Icon(title, URL) {
+      return new ClickIcon(title, URL)
     }
 
     static color_selector() {
@@ -197,10 +212,14 @@ export class Btjs {
       return new InputList(text_arr)
     }
 
-    static PanelButton(title, key_arr, 
-        text_arr = []) {
-      return new PanelButton(title,
-         key_arr, text_arr)
+    static ClickTextBox(title, key_arr) {
+      return new ClickTextBox(title,
+         key_arr)
+    }
+
+    static ClickIconBox(title, key_arr) {
+      return new ClickIconBox(title,
+         key_arr)
     }
 
     static InputSlider(title, range_arr, 

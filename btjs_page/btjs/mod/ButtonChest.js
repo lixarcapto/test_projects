@@ -10,16 +10,16 @@ export class ButtonChest extends StandardElement {
         super();
         this.node = document.createElement(
             "div")
-        this.unique_key = this.create_
+        this.__node_key = this.create_
         this.node.setAttribute("tag", 
             "button_chest")
-        this.create_key()
+        this.__create_key()
         this.style = document.createElement(
             "style")
         this.button_class 
-            = "button" + this.unique_key
+            = "button" + this.__node_key
         this.x_class 
-            = "x" + this.unique_key
+            = "x" + this.__node_key
         this.style.innerHTML = `
             .${this.button_class } {
                 background-color: #fff;

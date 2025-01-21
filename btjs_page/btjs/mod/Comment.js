@@ -56,7 +56,7 @@ export class Comment extends StandardElement {
 
     set_json_comment(json) {
         this.set_autor(json["autor"])
-        this.set_range_text(json["text"])
+        this.__draw_text(json["text"])
         this.set_image(json["image_url"])
     }
 
@@ -68,7 +68,7 @@ export class Comment extends StandardElement {
         this.title.innerHTML = autor
     }
 
-    set_range_text(text) {
+    __draw_text(text) {
         this.text.innerHTML = text
     }
 

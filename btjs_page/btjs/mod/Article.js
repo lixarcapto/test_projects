@@ -42,7 +42,7 @@ export class Article extends StandardElement {
         this.node.append(this.title)
         this.node.append(this.section)
         this.config_title(level)
-        this.set_range_text(text)
+        this.__draw_text(text)
     }
 
     destroy() {
@@ -84,7 +84,7 @@ export class Article extends StandardElement {
     Funcion que obtiene un string y 
     lo convierte en un texto con citaciones
     */
-    set_range_text(str) {
+    __draw_text(str) {
         let new_string = convert_to_quote(
             str)
         this.section.innerHTML = new_string

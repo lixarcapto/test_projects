@@ -22,7 +22,15 @@ export class StandardButton extends StandardElement {
         this.info_bubble = document
             .createElement("div")
         this.info_bubble.setAttribute("style",
-            `display: none;`
+            `
+            display: none;
+            position: absolute;
+            z-index: 2;
+            background-color:
+                 rgb(255, 255, 255);
+            bakground-color: white;
+            opacity: 1;
+            `
         )
         this.node.append(this.info_bubble)
         this.node.addEventListener(

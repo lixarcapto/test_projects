@@ -24,7 +24,7 @@ export class InputSlider extends StandardElement {
         this.node.append(this.title)
         this.node.append(this.input)
         this.node.append(this.result)
-        this.set_range_text(range_arr)
+        this.__draw_text(range_arr)
         this.set_value(value)
         this.add_listener()
     }
@@ -38,7 +38,7 @@ export class InputSlider extends StandardElement {
         )
     }
 
-    set_range_text(range_arr) {
+    __draw_text(range_arr) {
         this.input.setAttribute("min", 
             range_arr[0])
         this.input.setAttribute("max", 

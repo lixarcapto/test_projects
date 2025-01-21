@@ -8,6 +8,12 @@ export class Image extends StandardElement {
         super();
         this.node = document
             .createElement("img")
+        this.node.setAttribute("style",
+            `
+            height: auto;
+            object-fit: contain;
+            `
+        )
     }
 
     set_size(width, height) {
@@ -16,11 +22,11 @@ export class Image extends StandardElement {
     }
 
     set_url(url) {
-        this.node.setAttribute("href", url)
+        this.node.setAttribute("src", url)
     }
 
     get_url() {
-        return this.node.getAttribute("href")
+        return this.node.getAttribute("src")
     }
 
 }
