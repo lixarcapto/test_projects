@@ -4,21 +4,38 @@
 import { StandardElement } from "./StandardElement.js"
 import { CheckButton } from "./CheckButton.js";
 
-export class CheckList extends StandardElement {
+export class CheckBoxTicket extends StandardElement {
 
     constructor(title, text_arr) {
         super();
         this.node = document
-            .createElement("div")
-        this.node.style.display = "inline"
+            .createElement("span")
         this.node.setAttribute("tag", 
             "checkbox")
+        this.node.setAttribute("style",
+            `
+            margin: 3px;
+            padding: 5px;
+            display: grid-inline;
+            gap: 0px; /* Espacio entre elementos */
+            background-color: #EFEFEF;
+            border: 1px solid gray;
+            overflow: hidden;
+            `
+        )
         this.title = document
             .createElement("label")
         this.set_title(title)
         this.node.append(this.title)
         this.check_button_arr = []
         this.create_list(text_arr)
+    }
+
+    set_columns(number) {
+        this.node.style
+            .gridTemplateColumns = `
+            repeat(${number}, minmax(100px, 1fr))
+            `
     }
 
     set_title(text) {

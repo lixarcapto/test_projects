@@ -8,28 +8,49 @@ export class DataBar extends StandardElement {
     constructor(title, range_arr) {
         super();
         this.node = document.createElement(
-            "div")
+            "span")
         this.node.style.display = "inline"
         this.node.setAttribute("tag",
             "progress_bar")
+        this.node.setAttribute("style",
+            `
+            display: inline-block;
+            border: 1px solid gray;
+            overflow: hidden;
+            justify-content: center;
+            align-items: center;
+            background-color: #EFEFEF;
+            padding: 0px;
+            `
+        )
         this.title = document.createElement(
             "label")
+        
         this.range_arr = [0, 0]
-        this.title.innerHTML = title
         this.bar = document.createElement(
             "progress")
+        this.message = {}
         this.bar.setAttribute("style",
             `
                 width: 300px;
-                height: 20px;
+                height: 27px;
+                border: 4px solid rgb(0, 255, 51);
                 background-color: #000000;
                 background-color: #4CAF50;
             `
         )
-        this.set_range_arr([0, 100])
-        this.bar.value = 0
+        
         this.node.append(this.title)
         this.node.append(this.bar)
+        //
+        this.bar.value = 0
+        this.set_range_arr([0, 100])
+        this.set_text(title)
+    }
+
+    set_text(text) {
+        this.title.innerHTML 
+            =  text + "&nbsp:&nbsp" 
     }
 
     set_range_arr(range_arr) {

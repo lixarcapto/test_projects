@@ -24,22 +24,23 @@ export class ClickBoxGeneric extends StandardElement {
                 padding: 5px;
                 `
             )
-            this.class_button_key
-                = this.get_element_key()
             //style
-            this.style = new InnerStyle(
-                this.class_button_key
-            )
+            this.style = new InnerStyle()
             this.style.set_margin("5px")
-            document.body.append(
+            this.style.set_font_size("16px")
+            document.head.append(
                 this.style.node)
             //
             this.node.setAttribute(
                 "tag", "panel_button")
             this.button_arr = []
+            this.dict_button = new Map()
             this.title = document.createElement(
                 "label")
             this.title.innerHTML = title
+            this.title.style.fontSize = "16px"
+            this.title.style.textAlign 
+                = "center"
             this.node.append(this.title)
             this.grid = document.createElement(
                 "div")
@@ -50,6 +51,14 @@ export class ClickBoxGeneric extends StandardElement {
             )
             this.node.append(this.grid)
             this.create_list(key_arr)
+        }
+
+        add_listener_to(key, callback) {
+            let button = this.dict_button
+                .get(key)
+            button.addEventListener("click",
+                callback)
+            this.dict_button.set(key, button)
         }
     
         set_columns(number) {
@@ -66,9 +75,9 @@ export class ClickBoxGeneric extends StandardElement {
             this.style.set_object_fit("contain")
             let img = document.createElement(
                 "img")
-            for(let i in this.button_arr) {
+            for(const[k, v] of this.dict_button) {
                 img.src = data_arr[i]
-                this.button_arr[i]
+                this.dict_button.get(k)
                     .innerHTML =  img.outerHTML
             }
         }
@@ -88,34 +97,37 @@ export class ClickBoxGeneric extends StandardElement {
         La callback debe recibir como argumento
         el texto del boton.
         */
-        add_listener(FUNCTION) {
-            for(let i in this.button_arr) {
+        add_listener_for_all(FUNCTION) {
+            for(const[k, v] of this.dict_button) {
                 let fn = ()=>{
                     const key = this
-                        .button_arr[i]
+                        .dict_button.get(k)
                         .getAttribute("id")
                     FUNCTION(key)
                 }
-                this.button_arr[i]
+                this.dict_button.get(k)
                     .addEventListener(
                         "click", fn)
             }
         }
-    
+
+        create_button(text) {
+            let button = document
+                .createElement("button")
+            button.setAttribute("class",
+                this.style.get_class()
+            )
+            button.setAttribute("id", 
+                text)
+            this.dict_button.set(text, button)
+            this.grid.append(button)
+        }
     
         create_list(key_arr) {
-            let button = null
+            this.dict_button = new Map()
             for(let i in key_arr) {
-                button = document.createElement(
-                    "button")
-                button.setAttribute("class",
-                    this.class_button_key
-                )
-                button.setAttribute("id", 
-                    key_arr[i])
-                this.button_arr.push(button)
-                this.grid.append(button)
+                this.create_button(key_arr[i])
             }
-    }
+        }
 
 }

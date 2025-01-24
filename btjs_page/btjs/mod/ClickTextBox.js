@@ -18,12 +18,16 @@ export class ClickTextBox extends ClickBoxGeneric {
             `
         )
         this.style.set_padding("5px")
+        this.set_data_arr(key_arr)
     }
 
     set_data_arr(data_arr) {
-        for(let i in this.button_arr) {
-            this.button_arr[i].innerHTML 
-                = data_arr[i]
+        let n = 0
+        let button = null
+        for(const[k, v] of this.dict_button) {
+            button = this.dict_button.get(k)
+            button.innerHTML = data_arr[n]
+            n += 1
         }
     }
 

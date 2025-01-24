@@ -2,31 +2,36 @@
 
 
 import { Btjs } from "./btjs/Btjs.js"
-import { Body } from "./btjs/mod/Body.js"
-import { Gauge } from "./btjs/mod/Gauge.js"
-import { ClickIconTextOverlay } from "./btjs/mod/ClickIconTextOverlay.js"
-import {ClickIconText } from "./btjs/mod/ClickIconText.js"
-import { ClickIconOnly } from "./btjs/mod/ClickIconOnly.js"
-
-var icon = null
-var saves = 0
+import { lab_main } from "./lab/lab_main.js"
+import { ComicStrip } from "./btjs/mod/ComicStrip.js"
+import { json_comic } from "./res/json_comic.js"
+import { TextField } from "./btjs/mod/TextField.js"
+import { Canvas } from "./btjs/mod/Canvas.js"
 
 function main() {
-    let icon1 = new ClickIconOnly("cristianismo",
-        "res/cross.png"
-    )
-    icon1.to_body()
-    saves = 1500
-    icon = Btjs.ClickIconText("cruz",
-        "res/dollar_2.png")
-    icon.put_upright()
-    icon.set_foreground("green")
-    icon.set_text("dolares")
-    icon.to_body()
-    setInterval(()=>{
-        icon.set_text(saves + " $")
-        saves += 5
-    }, 1000);
+    let sign = Btjs.Sign(
+        "cartel desplazable",
+    250, 30)
+    sign.to_document()
+    let chart = Btjs.IconChart("cosas")
+    chart.to_document()
+    chart.set_dict_arr([
+        {
+            "quantity": 10,
+            "name": "",
+            "url": "res/char_icon/fish_50x50.png"
+        },
+        {
+            "quantity": 30,
+            "name": "",
+            "url": "res/char_icon/three_50x50.png"
+        },
+        {
+            "quantity": 60,
+            "name": "",
+            "url": "res/char_icon/water_50x50.png"
+        }
+    ], 50,50)
 }
 
 main()

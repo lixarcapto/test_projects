@@ -18,6 +18,7 @@ export class ClickIconText extends ClickIcon {
             `
             display: flex;
             align-items: center; 
+            justify-content: center;
             background-color: #EFEFEF;
             border: 1px solid gray;
             cursor: pointer;
@@ -35,6 +36,9 @@ export class ClickIconText extends ClickIcon {
             text-align: center;
             `
         )
+        this.img.style.maxWidth = "100%"
+        this.img.style.flex =  "0 0 auto"
+        this.set_text(title)
         this.node.append(this.label)
     }
 
@@ -45,8 +49,6 @@ export class ClickIconText extends ClickIcon {
         this.node.style.backgroundColor 
             = "transparent"
         this.node.style.border = "none"
-        this.img.style.width = "100%"
-        this.img.style.height = "auto"
         
     }
 

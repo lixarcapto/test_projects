@@ -19,7 +19,7 @@ import { References } from "./mod/References.js";
 import { VideoFigure } from "./mod/VideoFigure.js";
 import { replace_substring } from "./mod/replace_substring.js";
 import {Image} from "./mod/Image.js";
-import { CheckList } from "./mod/CheckList.js";
+import { CheckBoxTicket } from "./mod/CheckBoxTicket.js";
 import { InputList } from "./mod/InputList.js";
 import { ClickIconBox } from "./mod/ClickIconBox.js";
 import { ClickTextBox } from "./mod/ClickTextBox.js";
@@ -38,7 +38,13 @@ import { Gauge } from "./mod/Gauge.js";
 import { BookMenu } from "./mod/BookMenu.js";
 import { ButtonChest } from "./mod/ButtonChest.js";
 import { ClickIconText } from "./mod/ClickIconText.js";
-import { ClickIconTextOverlay as ClickIconTextOverlay } from "./mod/ClickIconTextOverlay.js";
+import { ClickIconTextOverlay } from "./mod/ClickIconTextOverlay.js";
+import { ClickIconOnly} from "./mod/ClickIconOnly.js";
+import { IconChart } from "./mod/IconChart.js";
+import {BarChart} from "./mod/BarChart.js";
+import { TextField } from "./mod/TextField.js"; 
+import { Table } from "./mod/Table.js";
+import { Sign } from "./mod/Sign.js";
 
 export class Btjs {
 
@@ -99,8 +105,28 @@ export class Btjs {
       return new Button(text)
     }
 
-    static ClickIcon(title, url) {
-      return new ClickIcon(title, url)
+    static Sign(text, width, height) {
+      return new Sign(text, width, height)
+    }
+
+    static Table(title) {
+      return new Table(title)
+    }
+
+    static IconChart(title) {
+      return new IconChart(title)
+    }
+
+    static TextField(title) {
+      return new TextField(title)
+    }
+
+    static BarChart(title) {
+      return new BarChart(title)
+    }
+
+    static ClickIconOnly(title, url) {
+      return new ClickIconOnly(title, url)
     }
 
     static BookMenu(text = "") {
@@ -204,8 +230,8 @@ export class Btjs {
       return new Image()
     }
 
-    static CheckList(title, text_arr) {
-      return new CheckList(title, text_arr)
+    static CheckBoxTicket(title, text_arr) {
+      return new CheckBoxTicket(title, text_arr)
     }
 
     static InputList(text_arr) {

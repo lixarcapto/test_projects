@@ -22,18 +22,24 @@ export class CheckButton extends StandardElement {
         )
         this.node.setAttribute("style",
             `
-            display: inline;
+            display:inline;
+            border: 1px solid gray;
+            padding: 5px;
+            background-color: #EFEFEF;
             `
         )
         this.checkbox = document
             .createElement("input")
         this.checkbox.setAttribute("type", 
             type)
+        this.checkbox.setAttribute("id", title)
         this.title = document
             .createElement("label")
+        this.title.setAttribute("for", title)
         this.set_title(title)
         this.node.append(this.title)
         this.node.append(this.checkbox)
+        this.set_font_size("16")
     }
 
     set_font_size(size) {

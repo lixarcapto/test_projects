@@ -9,7 +9,7 @@ export class Link extends StandardElement {
         this.node = document
             .createElement("a")
         this.node.innerHTML = text
-        this.node.setAttribute("href", url)
+        this.set_url(url)
     }
 
     set_url(URL) {

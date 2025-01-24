@@ -136,7 +136,7 @@ export class StandardElement {
         this.node.innerHTML = text
     }
 
-    to_body() {
+    to_document() {
         document.body.append(this.node)
     }
 

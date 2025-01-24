@@ -15,17 +15,13 @@ export class ClickIcon extends StandardButton {
         super();
         this.node = document.createElement(
             "button")
-        this.node.setAttribute("class",
-            this.get_node_key()
-        )
         this.animation = new InnerStyle(
-            this.get_node_key() + ":active")
-        document.head.append(
-            this.animation.node)
+            ":active")
         this.animation.set_background_color(
             "green")
         this.animation.set_transform(
             "translateY(4px)")
+        this.animation.to_document()
         this.node.setAttribute("style",
             `
                 background-color: transparent;
@@ -45,6 +41,9 @@ export class ClickIcon extends StandardButton {
         this.img.setAttribute("src", 
             url)
         this.node.append(this.img)
+        this.node.setAttribute("class",
+            this.animation.get_class()
+        )
     }
 
     set_image(url_image) {

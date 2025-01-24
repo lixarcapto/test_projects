@@ -11,14 +11,17 @@ export class InnerStyle extends StandardElement {
     como .a{}
     */
 
-    constructor(call_css) {
+    static __last_code = 0
+
+    constructor(css_pseudoclass = "") {
         super();
-        this.call_css = call_css
+        this.css_pseudoclass = css_pseudoclass
         this.node = document.createElement(
             "style")
         this.node.setAttribute("tag",
             "inner_style"
         )
+        this.text_buffer = ""
         this.margin = ""
         this.padding = ""
         this.background_color = ""
@@ -33,11 +36,61 @@ export class InnerStyle extends StandardElement {
         this.transition = ""
         this.transform = ""
         this.box_shadow = ""
+        this.position = ""
+        this.border_radius = ""
+        this.text_align = ""
+        this.opacity = ""
+        this.z_index = ""
+        this.class_code = this
+            .__create_unique_class()
+        this.node.setAttribute("class",
+            this.class_code
+        )
+    }
+
+    get_class() {
+        return this.class_code
+    }
+
+    __create_unique_class() {
+        let number = InnerStyle.__last_code
+        let code = "class_" + number
+        InnerStyle.__last_code += 1
+        return code
+    }
+
+    to_document() {
+        document.head.append(this.node)
     }
 
     /*
         flex-direction: column;
     */
+
+    set_position(position) {
+        this.position = position
+        this.insert_css()
+    }
+
+    set_border_radius(border_radius) {
+        this.border_radius = border_radius
+        this.insert_css()
+    }
+
+    set_text_align(text_align) {
+        this.text_align = text_align
+        this.insert_css()
+    }
+
+    set_opacity(opacity) {
+        this.opacity = opacity
+        this.insert_css()
+    }
+
+    set_z_index(z_index) {
+        this.z_index = z_index
+        this.insert_css()
+    }
 
     set_background(background) {
         this.background = background
@@ -109,52 +162,58 @@ export class InnerStyle extends StandardElement {
         this.insert_css()
     }
 
+    insert_var(value, id) {
+        if(value != "") {
+            this.text_buffer 
+                += `\t${id}:${value};\n`
+        }
+    }
+
     insert_css() {
-        let txt = `.${this.call_css} {\n`
-        if(this.padding != "") {
-            txt += `\tpadding:${this.padding};\n`
-        }
-        if(this.margin != "") {
-            txt += `\tmargin:${this.margin};\n`
-        }
-        if(this.display != "") {
-            txt += `\tdisplay:${this.display};\n`
-        }
-        if(this.background_color != "") {
-            txt += `\tbackground-color:${this.background_color};\n`
-        }
-        if(this.border != "") {
-            txt += `\tborder:${this.border};\n`
-        }
-        if(this.width != "") {
-            txt += `\twidth:${this.width};\n`
-        }
-        if(this.height != "") {
-            txt += `\theight:${this.height};\n`
-        }
-        if(this.font_size != "") {
-            txt += `\tfont-size:${this.font_size};\n`
-        }
-        if(this.object_fit != "") {
-            txt += `\tobject-fit:${this.object_fit};\n`
-        }
-        if(this.cursor != "") {
-            txt += `\tcursor:${this.cursor};\n`
-        }
-        if(this.background != "") {
-            txt += `\tbackground:${this.background};\n`
-        }
-        if(this.transform) {
-            txt += `\ttransform:${this.transform};\n`
-        }
-        if(this.transition) {
-            txt += `\ttransition:${this.transition};\n`
-        }
-        if(this.box_shadow) {
-            txt += `\tbox-shadow:${this.box_shadow};\n`
-        }
-        txt += "}"
-        this.node.innerHTML = txt
+        this.text_buffer = ""
+        this.text_buffer 
+            += `.${this.get_class()+ this.css_pseudoclass} {\n`
+        this.insert_var(this.padding,
+            "padding"
+        )
+        this.insert_var(this.margin,
+            "margin")
+        this.insert_var(this.display,
+            "display")
+        this.insert_var(this.background_color,
+            "background-color")
+        this.insert_var(this.border,
+            "border")
+        this.insert_var(this.width,
+            "width")
+        this.insert_var(this.height,
+            "height")
+        this.insert_var(this.font_size,
+            "font-size")
+        this.insert_var(this.object_fit,
+            "object-fit")
+        this.insert_var(this.cursor,
+            "cursor")
+        this.insert_var(this.background,
+            "background")
+        this.insert_var(this.transform,
+            "transform")
+        this.insert_var(this.transition,
+            "transition")
+        this.insert_var(this.box_shadow,
+            "box-shadow")
+        this.insert_var(this.position,
+            "position")
+        this.insert_var(this.border_radius,
+            "border-radius")
+        this.insert_var(this.text_align,
+            "text-align")
+        this.insert_var(this.opacity,
+            "opacity")
+        this.insert_var(this.z_index,
+            "z-index")
+        this.text_buffer += "}"
+        this.node.innerHTML = this.text_buffer
     }
 
 }
