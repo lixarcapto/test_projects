@@ -2,12 +2,12 @@
 
 
 import { Char } from "./Char.js"
-import { Battle } from "./Battle.js"
+import { Scenario } from "./Scenario.js"
 
 export class Model {
 
     constructor() {
-        this.battle = new Battle()
+        this.scenario = new Scenario()
     }
 
     __combat() {
@@ -15,17 +15,22 @@ export class Model {
     }
 
     request(request) {
+        console.log("request", request)
         let response = {
             "message": "",
             "data": {}
         }
         if(request["message"] == "render") {
             response.data = this
-                .battle.capture_render()
+                .scenario.capture_render()
         }
         if(request["message"] == "advance_time") {
             response.data = this
-                .battle.advance_time()
+                .scenario.advance_time()
+        }
+        if(request["message"] == "select_card") {
+            this.scenario.select_card(
+                request.data, 1)
         }
         return response
     }

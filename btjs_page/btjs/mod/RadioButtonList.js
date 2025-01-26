@@ -12,24 +12,24 @@ export class RadioButtonList extends StandardElement {
     constructor(title, key_arr, 
             text_arr = "") {
         super();
-        this.node = document
+        this.input_text = document
             .createElement("div")
-        this.node.style.display = "inline"
+        this.input_text.style.display = "inline"
         this.radio_arr = []
         this.title = document
             .createElement("label")
         this.set_title(title)
-        this.node.append(this.title)
+        this.input_text.append(this.title)
         this.unique_id = String(
             RadioButtonList.last_id)
         RadioButtonList.last_id += 1
-        this.node.setAttribute("tag", 
+        this.input_text.setAttribute("tag", 
             "radio_button_list")
         this.create_list(key_arr, text_arr)
     }
 
     set_title(text) {
-        this.node.setAttribute("id", text)
+        this.input_text.setAttribute("id", text)
         this.title.innerHTML = text + ":&nbsp&nbsp"
     }
 
@@ -63,7 +63,7 @@ export class RadioButtonList extends StandardElement {
             radio.checkbox.setAttribute(
                 "name", this.unique_id)
             radio.set_title(text_arr[i])
-            this.node.append(radio.node)
+            this.input_text.append(radio.input_text)
             this.radio_arr.push(radio)
         }
     }

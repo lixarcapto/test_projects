@@ -2,10 +2,10 @@
 
 
 
-import { StandardElement } 
-    from "./StandardElement.js";
+import { StandartText } from 
+    "./StandardText.js";
 
-export class LabelArea extends StandardElement {
+export class LabelArea extends StandartText {
 
     constructor(text = "") {
         super();
@@ -14,6 +14,7 @@ export class LabelArea extends StandardElement {
         this.node.setAttribute("style",
             `
             background-color: rgb(255, 255, 255); /* Blanco con 80% de opacidad */
+            color: black;
             padding: 3px;
             display: flex;
             overflow-y: auto;

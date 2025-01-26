@@ -1,19 +1,16 @@
 
 
 
-import { StandardElement } from "./StandardElement.js"
+import { StandartText } from 
+    "./StandardText.js";
 
-export class Label extends StandardElement {
+export class Label extends StandartText {
 
     constructor(text) {
         super();
         this.node = document
             .createElement("label")
         this.set_text(text)
-    }
-
-    set_text(text) {
-        this.node.innerHTML = text + "&nbsp:&nbsp"
     }
 
 }

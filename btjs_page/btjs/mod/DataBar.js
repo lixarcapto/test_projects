@@ -7,12 +7,12 @@ export class DataBar extends StandardElement {
 
     constructor(title, range_arr) {
         super();
-        this.node = document.createElement(
+        this.input_text = document.createElement(
             "span")
-        this.node.style.display = "inline"
-        this.node.setAttribute("tag",
+        this.input_text.style.display = "inline"
+        this.input_text.setAttribute("tag",
             "progress_bar")
-        this.node.setAttribute("style",
+        this.input_text.setAttribute("style",
             `
             display: inline-block;
             border: 1px solid gray;
@@ -40,8 +40,8 @@ export class DataBar extends StandardElement {
             `
         )
         
-        this.node.append(this.title)
-        this.node.append(this.bar)
+        this.input_text.append(this.title)
+        this.input_text.append(this.bar)
         //
         this.bar.value = 0
         this.set_range_arr([0, 100])

@@ -45,6 +45,9 @@ import {BarChart} from "./mod/BarChart.js";
 import { TextField } from "./mod/TextField.js"; 
 import { Table } from "./mod/Table.js";
 import { Sign } from "./mod/Sign.js";
+import { InnerStyle } from "./mod/InnerStyle.js";
+import {Label} from "./mod/Label.js";
+import { Frame } from "./mod/Frame.js";
 
 export class Btjs {
 
@@ -117,6 +120,10 @@ export class Btjs {
       return new IconChart(title)
     }
 
+    static InnerStyle(css_pseudoclass) {
+      return new InnerStyle(css_pseudoclass)
+    }
+
     static TextField(title) {
       return new TextField(title)
     }
@@ -162,6 +169,10 @@ export class Btjs {
         ARRAY)
     }
     
+    static Frame() {
+      return new Frame()
+    }
+    
     static ButtonChest(title) {
       return new ButtonChest(title)
     }
@@ -170,8 +181,8 @@ export class Btjs {
       return new Book()
     }
 
-    static TextArea(text) {
-      return new TextArea(text)
+    static TextArea(key, text) {
+      return new TextArea(key, text)
     }
 
     static Icon(title, URL) {
@@ -224,6 +235,10 @@ export class Btjs {
 
     static VideoFigure() {
       return new VideoFigure()
+    }
+
+    static Label(text = "") {
+      return new Label(text)
     }
 
     static Image() {

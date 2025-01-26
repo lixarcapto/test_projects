@@ -16,9 +16,9 @@ export class InnerStyle extends StandardElement {
     constructor(css_pseudoclass = "") {
         super();
         this.css_pseudoclass = css_pseudoclass
-        this.node = document.createElement(
+        this.input_text = document.createElement(
             "style")
-        this.node.setAttribute("tag",
+        this.input_text.setAttribute("tag",
             "inner_style"
         )
         this.text_buffer = ""
@@ -43,9 +43,13 @@ export class InnerStyle extends StandardElement {
         this.z_index = ""
         this.class_code = this
             .__create_unique_class()
-        this.node.setAttribute("class",
+        this.input_text.setAttribute("class",
             this.class_code
         )
+    }
+
+    set_class(class_code) {
+        this.class_code = class_code
     }
 
     get_class() {
@@ -60,7 +64,7 @@ export class InnerStyle extends StandardElement {
     }
 
     to_document() {
-        document.head.append(this.node)
+        document.head.append(this.input_text)
     }
 
     /*
@@ -172,7 +176,12 @@ export class InnerStyle extends StandardElement {
     insert_css() {
         this.text_buffer = ""
         this.text_buffer 
-            += `.${this.get_class()+ this.css_pseudoclass} {\n`
+            += `.${this.get_class()}`
+        if(this.css_pseudoclass != "") {
+            this.text_buffer 
+                += `:${this.css_pseudoclass}`
+        }
+        this.text_buffer += "{\n"
         this.insert_var(this.padding,
             "padding"
         )
@@ -213,7 +222,7 @@ export class InnerStyle extends StandardElement {
         this.insert_var(this.z_index,
             "z-index")
         this.text_buffer += "}"
-        this.node.innerHTML = this.text_buffer
+        this.input_text.innerHTML = this.text_buffer
     }
 
 }

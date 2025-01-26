@@ -26,13 +26,13 @@ export class ComicStrip extends StandardElement {
 
     constructor(comic_json) {
         super();
-        this.node =document
+        this.input_text =document
             .createElement("span")
-        this.node.style.position = "absolute"
+        this.input_text.style.position = "absolute"
         //
         this.img = document.createElement(
             "img")
-        this.node.append(this.img)
+        this.input_text.append(this.img)
         this.text_arr = []
         this.index_vignette = 0
         this.comic_json = comic_json
@@ -71,7 +71,7 @@ export class ComicStrip extends StandardElement {
         )
         this.button_back.style.bottom = "0px"
         this.button_back.style.right = "25px"
-        this.node.append(this.button_back)
+        this.input_text.append(this.button_back)
         //
         this.button_forward = document
             .createElement("button")
@@ -85,14 +85,14 @@ export class ComicStrip extends StandardElement {
                 this.draw_next()
         })
         this.button_forward.innerHTML = ">"
-        this.node.append(this.button_forward)
+        this.input_text.append(this.button_forward)
         //
     
         this.create_text_pool(10)
         this.draw_actual()
     }
 
-    set_size(width, height) {}
+    set_size_card(width, height) {}
 
     get_size() {
         return this.comic_json
@@ -177,7 +177,7 @@ export class ComicStrip extends StandardElement {
             `
         )
         this.text_arr.push(widget_text)
-        this.node.append(widget_text)
+        this.input_text.append(widget_text)
     }
 
     set_image(url) {

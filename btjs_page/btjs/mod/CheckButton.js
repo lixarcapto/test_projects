@@ -15,12 +15,12 @@ export class CheckButton extends StandardElement {
 
     constructor(title, type) {
         super();
-        this.node = document
+        this.input_text = document
             .createElement("div")
-        this.node.setAttribute("tag",
+        this.input_text.setAttribute("tag",
             "checkbutton"
         )
-        this.node.setAttribute("style",
+        this.input_text.setAttribute("style",
             `
             display:inline;
             border: 1px solid gray;
@@ -37,8 +37,8 @@ export class CheckButton extends StandardElement {
             .createElement("label")
         this.title.setAttribute("for", title)
         this.set_title(title)
-        this.node.append(this.title)
-        this.node.append(this.checkbox)
+        this.input_text.append(this.title)
+        this.input_text.append(this.checkbox)
         this.set_font_size("16")
     }
 
@@ -51,14 +51,14 @@ export class CheckButton extends StandardElement {
     }
 
     destroy() {
-        this.node.remove()
-        this.node = null
+        this.input_text.remove()
+        this.input_text = null
         this.checkbox = null
         this.title = null
     }
 
     set_title(text) {
-        this.node.setAttribute("id", text)
+        this.input_text.setAttribute("id", text)
         this.title.innerHTML = text
     }
 

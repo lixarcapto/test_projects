@@ -7,10 +7,10 @@ export class InputSlider extends StandardElement {
 
     constructor(title, range_arr, value) {
         super();
-        this.node = document.createElement(
+        this.input_text = document.createElement(
             "div")
-        this.node.style.display = "inline"
-        this.node.setAttribute("tag",
+        this.input_text.style.display = "inline"
+        this.input_text.setAttribute("tag",
             "input_slider")
         this.title = document.createElement(
             "label")
@@ -21,9 +21,9 @@ export class InputSlider extends StandardElement {
             "range")
         this.result = document
             .createElement("label")
-        this.node.append(this.title)
-        this.node.append(this.input)
-        this.node.append(this.result)
+        this.input_text.append(this.title)
+        this.input_text.append(this.input)
+        this.input_text.append(this.result)
         this.__draw_text(range_arr)
         this.set_value(value)
         this.add_listener()

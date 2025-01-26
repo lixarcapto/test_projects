@@ -9,9 +9,9 @@ export class ChangeColorButton
 
     constructor(text) {
         super();
-        this.node = document
+        this.input_text = document
             .createElement("button")
-        this.node.setAttribute("tag",
+        this.input_text.setAttribute("tag",
             "change_color_button"
         )
         this.second_background = "#eeeeee"
@@ -19,12 +19,12 @@ export class ChangeColorButton
         this.set_background(
             this.first_background)
         this.is_activated = false
-        this.node.innerHTML = text
+        this.input_text.innerHTML = text
         this.__add_defualt_listeners()
     }
 
     __draw_text(text) {
-        this.node.innerHTML = text
+        this.input_text.innerHTML = text
     }
 
     set_first_background(color) {
@@ -69,7 +69,7 @@ export class ChangeColorButton
     }
 
     __add_defualt_listeners() {
-        this.node.addEventListener(
+        this.input_text.addEventListener(
                 'click', () => {
             this.__execute_press_event()
           });

@@ -7,6 +7,7 @@ export class StandardButton extends StandardElement {
 
     constructor() {
         super();
+        this.node = null
         this.info_bubble = null
     }
 

@@ -7,9 +7,9 @@ export class Table extends StandardElement {
 
     constructor(title) {
         super();
-        this.node = document
+        this.input_text = document
             .createElement("table")
-        this.node.setAttribute("style",
+        this.input_text.setAttribute("style",
             `
             border-collapse: collapse;
 
@@ -19,12 +19,12 @@ export class Table extends StandardElement {
     }
 
     destroy() {
-        this.node.remove()
+        this.input_text.remove()
     }
 
     format() {
         this.has_first_line = false
-        this.node.innerHTML = ""
+        this.input_text.innerHTML = ""
     }
 
     load_matrix_of_rows(matrix) {
@@ -62,7 +62,7 @@ export class Table extends StandardElement {
                 = celd_arr[i]
             row.append(element_key)
         }
-        this.node.append(row)
+        this.input_text.append(row)
     }
 
     create_second_row(celd_arr) {
@@ -82,7 +82,7 @@ export class Table extends StandardElement {
             element.innerHTML = celd_arr[i]
             row.append(element)
         }
-        this.node.append(row)
+        this.input_text.append(row)
     }
 
 }

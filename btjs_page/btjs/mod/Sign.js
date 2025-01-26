@@ -22,12 +22,12 @@ export class Sign extends StandardElement {
     }
 
     init_canvas() {
-        this.node = new Canvas(
+        this.input_text = new Canvas(
             this.__width, 
             this.__height
         )
-        this.node.set_pen_color("white")
-        this.node.font_size 
+        this.input_text.set_pen_color("white")
+        this.input_text.font_size 
             = this.__font_size
     }
 
@@ -46,7 +46,7 @@ export class Sign extends StandardElement {
             = [0, this.__default_location]
     }
 
-    set_size(width, height) {
+    set_size_card(width, height) {
         this.__width = width
         this.__height = height
         this.calcule_data()
@@ -65,8 +65,8 @@ export class Sign extends StandardElement {
     init_interval() {
         this.__interval = setInterval(
             ()=>{
-                this.node.update()
-                this.node.draw_text(
+                this.input_text.update()
+                this.input_text.draw_text(
                     this.__text, 
                     this.__point[0], 
                     this.__point[1]
@@ -88,7 +88,7 @@ export class Sign extends StandardElement {
 
     to_document() {
         document.body.append(
-            this.node.node)
+            this.input_text.node)
     }
 
 }

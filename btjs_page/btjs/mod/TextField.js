@@ -6,16 +6,16 @@ export class TextField extends StandardElement {
 
     constructor(title) {
         super();
-        this.node = document.createElement(
+        this.input_text = document.createElement(
             "span")
-        this.node.setAttribute("style",
+        this.input_text.setAttribute("style",
                 `
                 padding: 5px;
                 margin: 3px;
                 border: 1px solid gray;
                 `
         )
-        this.node.style.backgroundColor 
+        this.input_text.style.backgroundColor 
             = "#EFEFEF"
         this.label = document.createElement(
             "label")
@@ -26,7 +26,7 @@ export class TextField extends StandardElement {
             margin: 5px;
             `
         )
-        this.node.append(this.label)
+        this.input_text.append(this.label)
         this.input = document.createElement(
             "input")
         this.input.setAttribute("style",
@@ -38,7 +38,7 @@ export class TextField extends StandardElement {
         this.input.name = title
         this.input.setAttribute("id", title)
         this.input.type = "text"
-        this.node.append(this.input)
+        this.input_text.append(this.input)
         this.set_text(title)
     }
 
@@ -55,7 +55,7 @@ export class TextField extends StandardElement {
         this.input.value = value
     }
 
-    set_size(size) {
+    set_size_card(size) {
         this.input.size = size
     }
 

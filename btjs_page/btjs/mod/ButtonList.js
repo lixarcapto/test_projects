@@ -9,25 +9,25 @@ export class ButtonList extends StandardElement {
     constructor(title, key_arr, 
             text_arr = "") {
         super();
-        this.node = document.createElement(
+        this.input_text = document.createElement(
             "div")
-        this.node.style.display = "inline"
-        this.node.setAttribute("tag", 
+        this.input_text.style.display = "inline"
+        this.input_text.setAttribute("tag", 
             "button_list")
         this.title = document
             .createElement("label")
         this.title.innerHTML = title
-        this.node.append(this.title)
+        this.input_text.append(this.title)
         this.list = document
             .createElement("ol")
-        this.node.append(this.list)
+        this.input_text.append(this.list)
         this.button_arr = []
         this.create_list(key_arr, text_arr)
     }
 
     destroy() {
-        this.node.remove()
-        this.node = null
+        this.input_text.remove()
+        this.input_text = null
         this.title = null
         this.list = null
         this.button_arr = []

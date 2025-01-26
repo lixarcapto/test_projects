@@ -26,8 +26,16 @@ export class IconChart extends StandardElement {
         this.canvas_width = 300
         this.canvas_height = 300
         this.total_value = 0
-        this.node = document.createElement(
+        this.input_text = document.createElement(
             "span")
+        this.input_text.setAttribute("style",
+            `
+            border: 1px solid gray;
+            display: inline-block;
+            padding: 5px;
+            background-color: #EFEFEF; /* Puedes cambiar este color */
+            `
+        )
         this.title = document
             .createElement("span")
         this.title.setAttribute("style",
@@ -37,14 +45,14 @@ export class IconChart extends StandardElement {
             padding: 3px;
             `
         )
-        this.node.append(this.title)
+        this.input_text.append(this.title)
         this.canvas = new Canvas(
             this.canvas_width, 
             this.canvas_height
         )
         this.canvas.set_background("white")
         this.set_text(title)
-        this.node.append(this.canvas.node)
+        this.input_text.append(this.canvas.node)
     }
 
     set_text(text) {
@@ -129,6 +137,7 @@ export class IconChart extends StandardElement {
     set_dict_arr(dict_arr, icon_width,
         icon_height
             ) {
+        this.canvas.update()
         /*
         {
             "quantity": 0,

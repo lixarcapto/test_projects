@@ -8,11 +8,11 @@ export class Card extends StandardElement {
     constructor(title, src, 
             description = "") {
         super();
-        this.node = document
+        this.input_text = document
             .createElement("span")
-        this.node.setAttribute("tag", 
+        this.input_text.setAttribute("tag", 
             "card")
-        this.node.setAttribute("style",
+        this.input_text.setAttribute("style",
             `
             display: flex;
             background-color: rgba(255, 255, 255, 1);
@@ -28,18 +28,18 @@ export class Card extends StandardElement {
         this.set_image(src)
         this.description = document.createElement("span")
         this.set_description(description)
-        this.node.append(this.title)
-        this.node.append(this.img)
-        this.node.append(this.description)
+        this.input_text.append(this.title)
+        this.input_text.append(this.img)
+        this.input_text.append(this.description)
     }
 
-    set_size(width, height) {
+    set_size_card(width, height) {
         let y_size_title = (5 / 100) * height
         let y_size_desc = (20 / 100) * height
         let y_size_image 
             = ((- 25 + 100) / 100) * height
-        this.node.style.height = height +"px"
-        this.node.style.width = width +"px"
+        this.input_text.style.height = height +"px"
+        this.input_text.style.width = width +"px"
         this.set_title_size(width,
             y_size_title
         )

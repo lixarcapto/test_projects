@@ -9,9 +9,9 @@ export class Book extends StandardElement {
 
     constructor() {
         super();
-        this.node = document.createElement(
+        this.input_text = document.createElement(
             "div")
-        this.node.setAttribute("style",
+        this.input_text.setAttribute("style",
             `
             border: 2px solid gray;
             background-color:#EBEBEB;
@@ -23,16 +23,16 @@ export class Book extends StandardElement {
         this.backbutton = document
             .createElement("button")
         this.backbutton.innerHTML = " < "
-        this.node.append(this.backbutton)
+        this.input_text.append(this.backbutton)
         //
         this.card = Btjs.Card("title", 
             "", "text")
-        this.node.append(this.card.node)
+        this.input_text.append(this.card.input_text)
         //
         this.forwardbutton = document
             .createElement("button")
         this.forwardbutton.innerHTML = " > "
-        this.node.append(this.forwardbutton)
+        this.input_text.append(this.forwardbutton)
         this.dict_arr = []
         this.index = 0
         //es el valor de la imagen cargada
@@ -99,10 +99,10 @@ export class Book extends StandardElement {
         }
     }
 
-    set_size(x, y) {
+    set_size_card(x, y) {
         let size_x_button = (10 / 100) * x
         let size_x_card = (80 / 100) * x
-        this.node.style.maxWidth = x +"px"
+        this.input_text.style.maxWidth = x +"px"
         this.backbutton.style.height
             = y + "px"
         this.backbutton.style.width 
@@ -111,7 +111,7 @@ export class Book extends StandardElement {
             = y + "px"
         this.forwardbutton.style.width
             = size_x_button + "px"
-        this.card.set_size(size_x_card, y)
+        this.card.set_size_card(size_x_card, y)
     }
 
 }

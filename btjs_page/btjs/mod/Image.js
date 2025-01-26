@@ -6,9 +6,9 @@ export class Image extends StandardElement {
 
     constructor() {
         super();
-        this.node = document
+        this.input_text = document
             .createElement("img")
-        this.node.setAttribute("style",
+        this.input_text.setAttribute("style",
             `
             height: auto;
             object-fit: contain;
@@ -16,17 +16,16 @@ export class Image extends StandardElement {
         )
     }
 
-    set_size(width, height) {
-        this.node.setAttribute("width", url)
-        this.node.setAttribute("height", url)
+    set_size_card(width, height) {
+        this.input_text.style.width = width
     }
 
     set_url(url) {
-        this.node.setAttribute("src", url)
+        this.input_text.setAttribute("src", url)
     }
 
     get_url() {
-        return this.node.getAttribute("src")
+        return this.input_text.getAttribute("src")
     }
 
 }

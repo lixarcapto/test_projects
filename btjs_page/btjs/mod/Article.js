@@ -26,11 +26,11 @@ export class Article extends StandardElement {
 
     constructor(title, text = "", level = 0) {
         super()
-        this.node = document
+        this.input_text = document
             .createElement("section")
-        this.node.setAttribute("tag", 
+        this.input_text.setAttribute("tag", 
             "article")
-        this.node.style.display = "inline"
+        this.input_text.style.display = "inline"
         this.quote = new Quote()
         this.title = document
             .createElement("h3")
@@ -39,15 +39,15 @@ export class Article extends StandardElement {
         this.section.setAttribute("style", 
             "text-indent: 2em;")
         this.set_title(title)
-        this.node.append(this.title)
-        this.node.append(this.section)
+        this.input_text.append(this.title)
+        this.input_text.append(this.section)
         this.config_title(level)
         this.__draw_text(text)
     }
 
     destroy() {
-        this.node.remove()
-        this.node = null
+        this.input_text.remove()
+        this.input_text = null
         this.quote = null
         this.title = null
         this.section = null

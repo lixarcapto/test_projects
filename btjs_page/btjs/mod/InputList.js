@@ -13,10 +13,10 @@ export class InputList extends StandardElement {
 
     constructor(text_arr) {
         super();
-        this.node = document
+        this.input_text = document
             .createElement("div")
-        this.node.style.display = "inline"
-        this.node.setAttribute("tag", 
+        this.input_text.style.display = "inline"
+        this.input_text.setAttribute("tag", 
             "input_list")
         this.label_arr = []
         this.input_arr = []
@@ -64,7 +64,7 @@ export class InputList extends StandardElement {
                 .createElement("label")
             label.innerHTML 
                 = "   " + text_arr[i] + "   "
-            this.node.append(label)
+            this.input_text.append(label)
             this.label_arr.push(label)
             input = document
                 .createElement("input")
@@ -75,7 +75,7 @@ export class InputList extends StandardElement {
                 InputList.UNIQUE_KEY + text_arr[i]
             )
             this.input_arr.push(input)
-            this.node.append(input)
+            this.input_text.append(input)
         }
         
     }

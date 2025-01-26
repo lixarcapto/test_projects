@@ -14,35 +14,10 @@ export class StandardElement {
         this.node = null
         this.__node_key = ""
         this.unique_number = 0
-        this.__create_key()
-    }
-
-    /*
-    Crea una clave unica que puede servir
-    para asingar clases a los elementos de
-    este nodo.
-    */
-    get_element_key() {
-        let key = this.__node_key
-            + "_" + this.unique_number
-        this.unique_number += 1
-        return key
     }
 
     get_node_key() {
         return this.__node_key
-    }
-
-    /*
-    Crea una clave unica para asingar a este
-    nodo.
-    */
-    __create_key() {
-        let number = StandardElement
-            .unique_number 
-        StandardElement
-            .unique_number += 1
-        this.__node_key = "_" + String(number)
     }
 
     set_padding(pixel) {
@@ -69,50 +44,60 @@ export class StandardElement {
             = color
     }
 
+    set_position(position) {
+        this.node.style.position = position
+    }
+
+    set_location(top, height) {
+        this.node.style.position = "absolute"
+        this.node.style.top = top + "px"
+        this.node.style.height = height+ "px"
+    }
+
     set_font_size(size) {
-        this.node.style.fontSize = 
+        this.input_text.style.fontSize = 
             size
     }
 
     set_font_family(font) {
-        this.node.style.fontFamily = font
+        this.input_text.style.fontFamily = font
         this.update_styles()
     }
 
     set_font_weight(weight) {
-        this.node.fontWeight = weight
+        this.input_text.fontWeight = weight
         this.update_styles()
     }
 
     set_font_style(style) {
-        this.node.fontStyle = style
+        this.input_text.fontStyle = style
         this.update_styles()
     }
 
     set_line_height(number) {
-        this.node.lineHeight = number
+        this.input_text.lineHeight = number
     }
 
     set_text_decoration(text_decoration) {
-        this.node.style.textDecoration 
+        this.input_text.style.textDecoration 
             = text_decoration
     }
 
     set_text_align(text_align) {
-        this.node.style.textAlign = text_align
+        this.input_text.style.textAlign = text_align
     }
 
     set_margin(number) {
-        this.node.style.margin = number
+        this.input_text.style.margin = number
     }
 
-    set_size(size_x, size_y) {
-        this.node.style.width = size_x
-        this.node.style.height = size_y
+    set_size_card(size_x, size_y) {
+        this.input_text.style.width = size_x
+        this.input_text.style.height = size_y
     }
 
     get_id() {
-        return this.node.getAttribute("id")
+        return this.input_text.getAttribute("id")
     }
 
     destroy() {
@@ -138,6 +123,33 @@ export class StandardElement {
 
     to_document() {
         document.body.append(this.node)
+    }
+
+    set_id(id_text) {
+        this.node.setAttribute("id", id_text)
+    }
+
+    get_id() {
+        return this.node.getAttribute("id")
+    }
+
+    set_class(class_text) {
+        this.node.setAttribute("class",
+            class_text
+        )
+    }
+
+    get_class() {
+        return this.node.getAttribute("class")
+    }
+
+    append(element) {
+        this.node.append(element.node)
+    }
+
+    jump() {
+        document.body.append(
+            document.createElement("br"))
     }
 
 }

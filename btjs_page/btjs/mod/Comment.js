@@ -15,12 +15,12 @@ export class Comment extends StandardElement {
 
     constructor(json) {
         super();
-        this.node = document
+        this.input_text = document
             .createElement("div")
-        this.node.style.display = "inline"
-        this.node.setAttribute(
+        this.input_text.style.display = "inline"
+        this.input_text.setAttribute(
             "tag", "comment")
-        this.node.setAttribute(
+        this.input_text.setAttribute(
             "style", `
             background-color: #f2f2f2; /* Color de fondo gris claro */
             border: 1px solid #ddd; /* Borde gris */
@@ -41,14 +41,14 @@ export class Comment extends StandardElement {
         this.image.setAttribute("style",
             "float: left;")
         this.set_json_comment(json)
-        this.node.append(this.image)
-        this.node.append(this.title)
-        this.node.append(this.text)
+        this.input_text.append(this.image)
+        this.input_text.append(this.title)
+        this.input_text.append(this.text)
     }
 
     destroy() {
-        this.node.remove()
-        this.node = null
+        this.input_text.remove()
+        this.input_text = null
         this.title = null
         this.image = null
         this.text = null

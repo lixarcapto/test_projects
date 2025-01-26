@@ -8,11 +8,11 @@ export class CheckBoxTicket extends StandardElement {
 
     constructor(title, text_arr) {
         super();
-        this.node = document
+        this.input_text = document
             .createElement("span")
-        this.node.setAttribute("tag", 
+        this.input_text.setAttribute("tag", 
             "checkbox")
-        this.node.setAttribute("style",
+        this.input_text.setAttribute("style",
             `
             margin: 3px;
             padding: 5px;
@@ -26,20 +26,20 @@ export class CheckBoxTicket extends StandardElement {
         this.title = document
             .createElement("label")
         this.set_title(title)
-        this.node.append(this.title)
+        this.input_text.append(this.title)
         this.check_button_arr = []
         this.create_list(text_arr)
     }
 
     set_columns(number) {
-        this.node.style
+        this.input_text.style
             .gridTemplateColumns = `
             repeat(${number}, minmax(100px, 1fr))
             `
     }
 
     set_title(text) {
-        this.node.setAttribute("id", text)
+        this.input_text.setAttribute("id", text)
         this.title.innerHTML = text + ":&nbsp&nbsp"
     }
 
@@ -52,8 +52,8 @@ export class CheckBoxTicket extends StandardElement {
     }
 
     destroy() {
-        this.node.remove()
-        this.node = null
+        this.input_text.remove()
+        this.input_text = null
         this.title = null
         this.check_button_arr = []
     }
@@ -84,7 +84,7 @@ export class CheckBoxTicket extends StandardElement {
             checkbox = new CheckButton(
                 text_arr[i], "checkbox")
             this.check_button_arr.push(checkbox)
-            this.node.append(checkbox.node)
+            this.input_text.append(checkbox.input_text)
         }
     }
 

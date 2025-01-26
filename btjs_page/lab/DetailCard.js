@@ -11,14 +11,14 @@ export class DetailCard {
         this.node.style.border = "1px solid gray"
         //
         this.image = Btjs.Image()
-        this.node.append(this.image.node)
+        this.node.append(this.image.input_text)
         //
         this.table = Btjs.Table("tabla")
-        this.node.append(this.table.node)
+        this.node.append(this.table.input_text)
         //
         Btjs.jump()
         this.bar = Btjs.DataBar("life")
-        this.node.append(this.bar.node)
+        this.node.append(this.bar.input_text)
     }
 
     load_json_data(data) {

@@ -15,7 +15,7 @@ export class Gauge extends StandardElement {
 
     constructor(title = "") {
         super()
-        this.node = null
+        this.input_text = null
         this.circle = null
         this.number = null
         this.title = null
@@ -24,7 +24,7 @@ export class Gauge extends StandardElement {
         this.pointer_value = 0
         //
         this.init_components()
-        this.set_size(100)
+        this.set_size_card(100)
         this.set_pointer_width(4)
         this.set_title(title)
     }
@@ -38,12 +38,12 @@ export class Gauge extends StandardElement {
     }
 
     init_node() {
-        this.node = document.createElement(
+        this.input_text = document.createElement(
             "span")
-        this.node.setAttribute("tag",
+        this.input_text.setAttribute("tag",
             "gauge"
         )
-        this.node.setAttribute("style",
+        this.input_text.setAttribute("style",
             `
             display: inline-block;
             `
@@ -61,7 +61,7 @@ export class Gauge extends StandardElement {
             border-radius: 50% 50% 0 0; /* Redondea la parte superior */
             `
         )
-        this.node.append(this.circle)
+        this.input_text.append(this.circle)
     }
 
     init_title() {
@@ -77,7 +77,7 @@ export class Gauge extends StandardElement {
             `
         )
         this.title.innerHTML = "titulo"
-        this.node.append(this.title)
+        this.input_text.append(this.title)
     }
 
     init_pointer() {
@@ -107,7 +107,7 @@ export class Gauge extends StandardElement {
             border: 1px solid gray;
             `
         )
-        this.node.append(this.number)
+        this.input_text.append(this.number)
     }
 
     set_title(text) {
@@ -144,7 +144,7 @@ export class Gauge extends StandardElement {
     }
 
     //TODO: organizar estos calculos
-    set_size(size) {
+    set_size_card(size) {
         let size_y = (size / 2)
         let size_x = size
         let pointer_height = size_x / 2
@@ -170,7 +170,7 @@ export class Gauge extends StandardElement {
         this.pointer.style
             .width = pointer_height +"px"
         //
-        this.node.style.maxWidth = size_x + "px"
+        this.input_text.style.maxWidth = size_x + "px"
         this.set_size_circle(circle_w, circle_h)
         this.__set_pointer_location(
             pointer_x, pointer_y)

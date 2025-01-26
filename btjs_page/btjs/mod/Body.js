@@ -13,7 +13,7 @@ export class Body extends StandardElement {
 
     constructor() {
         super();
-        this.node = document.body
+        this.input_text = document.body
     }
 
 }

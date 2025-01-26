@@ -16,7 +16,7 @@ export class ClickIcon extends StandardButton {
         this.node = document.createElement(
             "button")
         this.animation = new InnerStyle(
-            ":active")
+            "active")
         this.animation.set_background_color(
             "green")
         this.animation.set_transform(
@@ -24,6 +24,10 @@ export class ClickIcon extends StandardButton {
         this.animation.to_document()
         this.node.setAttribute("style",
             `
+                display:flex;
+                justify-content: center;
+                width: fit-content;
+                height: fit-content;
                 background-color: transparent;
                 border: none;
                 padding: 0;

@@ -36,13 +36,16 @@ export class ClickIconBox extends ClickBoxGeneric {
             = color
     }
 
-    set_data_arr(image_arr) {
-        let img = document.createElement(
-            "img")
-        for(let i in this.button_arr) {
-            img.src = image_arr[i]
-            this.button_arr[i]
+    set_content_array(image_arr) {
+        let img = null
+        let n = 0
+        for(const[k, v] of this.dict_button) {
+            img = document.createElement(
+                "img")
+            img.src = image_arr[n]
+            this.dict_button.get(k)
                 .innerHTML =  img.outerHTML
+            n += 1
         }
     }
 

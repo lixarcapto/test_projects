@@ -8,21 +8,21 @@ export class VideoFigure extends StandardElement {
 
     constructor() {
         super();
-        this.node = document
+        this.input_text = document
             .createElement("div")
-        this.node.style.display = "inline"
+        this.input_text.style.display = "inline"
         this.title = document
             .createElement("h3")
         this.section = document
             .createElement("section")
-        this.node.append(this.title)
+        this.input_text.append(this.title)
         this.section_iframe = document
             .createElement("section")
         this.description = document
             .createElement("section")
-        this.node.append(this.title)
-        this.node.append(this.section_iframe)
-        this.node.append(this.description)
+        this.input_text.append(this.title)
+        this.input_text.append(this.section_iframe)
+        this.input_text.append(this.description)
         this.quote = new Quote()
         /*
 

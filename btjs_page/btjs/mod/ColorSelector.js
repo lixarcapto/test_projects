@@ -7,15 +7,15 @@ export class ColorSelector extends StandardElement {
 
     constructor() {
         super();
-        this.node = document.createElement(
+        this.input_text = document.createElement(
             "input")
-        this.node.setAttribute("type", "color")
-        this.node.value = "#ff0000"
+        this.input_text.setAttribute("type", "color")
+        this.input_text.value = "#ff0000"
     }
 
     destroy() {
-        this.node.remove()
-        this.node = null
+        this.input_text.remove()
+        this.input_text = null
     }
 
 }

@@ -16,22 +16,22 @@ export class ButtonIndex extends StandardElement {
         super();
         this.decrement = null
         this.increment = null
-        this.node = document
+        this.input_text = document
             .createElement("div")
-        this.node.style.display = "inline"
-        this.node.setAttribute("tag", 
+        this.input_text.style.display = "inline"
+        this.input_text.setAttribute("tag", 
             "button_index")
         this.value = 0
         this.range_arr = range_arr
         this.label = document.createElement(
             "label")
         this.label.innerHTML = name
-        this.node.append(this.label)
+        this.input_text.append(this.label)
         this.__init_components()
     }
 
     destroy() {
-        this.node.remove()
+        this.input_text.remove()
         this.range_arr = []
         this.label.remove()
         this.increment.remove()
@@ -48,9 +48,9 @@ export class ButtonIndex extends StandardElement {
         this.label = document
             .createElement("label")
         this.__update_value()
-        this.node.append(this.decrement)
-        this.node.append(this.label)
-        this.node.append(this.increment)
+        this.input_text.append(this.decrement)
+        this.input_text.append(this.label)
+        this.input_text.append(this.increment)
     }
 
     __update_value() {

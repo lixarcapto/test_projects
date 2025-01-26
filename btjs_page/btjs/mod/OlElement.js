@@ -11,15 +11,15 @@ export class OLElement extends StandardElement {
 
     constructor(text, array) {
         super();
-        this.node = document
+        this.input_text = document
             .createElement("div")
-        this.node.style.display = "inline"
+        this.input_text.style.display = "inline"
         this.p = document.createElement("p")
         this.p.innerHTML = text
-        this.node.appendChild(this.p)
+        this.input_text.appendChild(this.p)
         this.ol = document
             .createElement("ol")
-        this.node.appendChild(this.ol)
+        this.input_text.appendChild(this.ol)
         this.li_array = [] 
         this.create_list(array)
     }

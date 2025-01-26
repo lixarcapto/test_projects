@@ -16,10 +16,10 @@ export class CommentBox extends StandardElement {
 
     constructor(json_arr = []) {
         super();
-        this.node = document
+        this.input_text = document
             .createElement("div")
-        this.node.style.display = "inline"
-        this.node.setAttribute("tag",
+        this.input_text.style.display = "inline"
+        this.input_text.setAttribute("tag",
             "comment_box")
         this.comment_arr = []
         this.create_list(json_arr)
@@ -39,7 +39,7 @@ export class CommentBox extends StandardElement {
             json = json_arr[k]
             comment = new Comment(json)
             this.comment_arr.push(comment)
-            this.node.append(comment.node)
+            this.input_text.append(comment.input_text)
         }
     }
 

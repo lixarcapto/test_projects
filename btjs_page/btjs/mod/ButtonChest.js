@@ -8,10 +8,10 @@ export class ButtonChest extends StandardElement {
 
     constructor(title) {
         super();
-        this.node = document.createElement(
+        this.input_text = document.createElement(
             "div")
         this.__node_key = this.create_
-        this.node.setAttribute("tag", 
+        this.input_text.setAttribute("tag", 
             "button_chest")
         this.__create_key()
         this.style = document.createElement(
@@ -45,8 +45,8 @@ export class ButtonChest extends StandardElement {
                 font-weight: bold;
             }
         `
-        this.node.append(this.style)
-        this.node.setAttribute("style",
+        this.input_text.append(this.style)
+        this.input_text.setAttribute("style",
             `
             border: 3px solid gray;
             padding: 7px;
@@ -54,7 +54,7 @@ export class ButtonChest extends StandardElement {
         )
         this.selector = new Selector(
             title, [])
-        this.node.append(this.selector.node)
+        this.input_text.append(this.selector.input_text)
         this.chest = document.createElement(
             "div")
         this.chest.setAttribute("style",
@@ -62,8 +62,8 @@ export class ButtonChest extends StandardElement {
             `
         )
         this.button_dict = new Map()
-        this.node.append(this.chest)
-        this.selector.node.addEventListener(
+        this.input_text.append(this.chest)
+        this.selector.input_text.addEventListener(
             'change', () => {
                 let v = this.selector
                     .get_value()
@@ -81,7 +81,7 @@ export class ButtonChest extends StandardElement {
     }
 
     set_font_size(size) {
-        this.node.style.fontSize = size +"px"
+        this.input_text.style.fontSize = size +"px"
         this.selector.set_font_size(size)
         for (const [clave, valor] of this.button_dict) {
             this.button_dict[clave]

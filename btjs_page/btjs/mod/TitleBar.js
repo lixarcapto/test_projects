@@ -15,6 +15,7 @@ export class TitleBar extends StandardElement {
             `
             display: flex;
             gap: 2px;
+            align-items: center;
             padding: 0px;
             background-color: #f0f0f0;
             height: 30px;
