@@ -59,7 +59,7 @@ export class TextArea extends StandardElement {
             + "&nbsp:&nbsp"
     }
 
-    set_size_card(rows, cols) {
+    set_size(rows, cols) {
         this.input_text.setAttribute("rows", rows)
         this.input_text.setAttribute("cols", cols)
     }

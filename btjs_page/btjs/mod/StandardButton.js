@@ -6,8 +6,7 @@ import { StandardElement }
 export class StandardButton extends StandardElement {
 
     constructor() {
-        super();
-        this.node = null
+        super("button");
         this.info_bubble = null
     }
 

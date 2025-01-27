@@ -24,7 +24,7 @@ export class CardBoxTGC extends StandardElement {
         return this.value_index_card
     }
 
-    set_size_card(width, height) {
+    set_size(width, height) {
         for(let i in this.card_arr) {
             this.card_arr[i].set_size_card(
                 width, height

@@ -92,7 +92,7 @@ export class ComicStrip extends StandardElement {
         this.draw_actual()
     }
 
-    set_size_card(width, height) {}
+    set_size(width, height) {}
 
     get_size() {
         return this.comic_json

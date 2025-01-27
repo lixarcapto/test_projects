@@ -78,7 +78,7 @@ export class CardTcg extends StandardElement {
             `
         )
         this.node.append(this.description)
-        this.set_size_card(200, 300)
+        this.set_size(200, 300)
     }
 
     set_title(text) {
@@ -125,7 +125,7 @@ export class CardTcg extends StandardElement {
         this.icon_list.append(icon)
     }
 
-    set_size_card(width, height) {
+    set_size(width, height) {
         this.node.style.width = width + "px"
         this.node.style.height = height + "px"
         this.calcule_data(width, height)

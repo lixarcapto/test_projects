@@ -8,9 +8,7 @@ import { StandardButton }
 export class Button extends StandardButton {
 
     constructor(text = "") {
-        super();
-        this.node = document
-            .createElement("button")
+        super("button");
         this.node.innerHTML = text
     }
 

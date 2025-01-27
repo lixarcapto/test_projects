@@ -1,9 +1,9 @@
 
 
 
-import { StandardElement } from "./StandardElement.js"
+import { BaseElement } from "./BaseElement.js";
 
-export class Body extends StandardElement {
+export class Body extends BaseElement {
 
     /*
     Es un elemento que representa a los 
@@ -13,7 +13,9 @@ export class Body extends StandardElement {
 
     constructor() {
         super();
-        this.input_text = document.body
+        this.node = document.body
     }
+
+    set_class(code_class) {}
 
 }

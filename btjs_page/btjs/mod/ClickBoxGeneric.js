@@ -24,25 +24,32 @@ export class ClickBoxGeneric extends StandardElement {
         */
     
         constructor(key, key_arr) {
-            super();
+            super("span");
             //atributes
-            this.node = null
             this.style = null
             this.title = null
             this.grid = null
+            //asigna una clase a los iconos
+            this.class_icon = "icon_" + this
+                .get_class()
             this.style_animation = null
             //calls
             this.dict_button = new Map()
             this.init_components(key)
-            this.set_id_array(key_arr)
+            this.create_buttons(key_arr)
         }
 
+        /*
+        Crea la animacion principal
+        de los iconos con el widget
+        innerStyle usando pseudoclases.
+        */
         init_animation() {
             this.style_animation = Btjs
-                .InnerStyle("active")
-            this.style_animation.set_class(
-                this.style.get_class()
-            )
+                .InnerStyle(
+                    this.class_icon, 
+                    "active"
+                )
             this.style_animation
                 .set_background("yellow")
             this.style_animation
@@ -53,9 +60,11 @@ export class ClickBoxGeneric extends StandardElement {
             this.style_animation.to_document()
         }
 
+        /*
+        Inicializa el componente principal
+        contenedor.
+        */
         init_node() {
-            this.node = document
-                .createElement("div")
             this.node.setAttribute("style",
                 `
                 display: flex;
@@ -70,11 +79,13 @@ export class ClickBoxGeneric extends StandardElement {
         }
 
         init_style() {
-            this.style = new InnerStyle()
+            this.style = new InnerStyle(
+                this.get_class())
             this.style.set_margin("5px")
             this.style.set_font_size("16px")
-            document.head.append(
-                this.style.input_text)
+            this.style.set_transition(
+                "background-color 0.2s ease")
+            this.style.to_document()
         }
 
         init_grid() {
@@ -137,6 +148,10 @@ export class ClickBoxGeneric extends StandardElement {
             }
         }
 
+        /*
+        Agrega el background a todos los
+        elementos internos.
+        */
         set_background(color) {
             this.node.style.backgroundColor 
                 = color
@@ -146,6 +161,9 @@ export class ClickBoxGeneric extends StandardElement {
                 = color
         }
     
+        /*
+        Define el texto del titulo.
+        */
         set_text(text) {
             this.title.innerHTML = text 
                 + "&nbsp:&nbsp"
@@ -170,11 +188,16 @@ export class ClickBoxGeneric extends StandardElement {
             }
         }
 
+        /*
+        Crea un boton independiente
+        pre-configurado y lo incluye en
+        el array de botones.
+        */
         create_button(text) {
             let button = document
                 .createElement("button")
             button.setAttribute("class",
-                this.style.get_class()
+                this.class_icon
             )
             button.setAttribute("id", 
                 text)
@@ -182,7 +205,12 @@ export class ClickBoxGeneric extends StandardElement {
             this.grid.append(button)
         }
     
-        set_id_array(key_arr) {
+        /*
+        Crea una lista de botones por
+        cada clave enviada en un string
+        array.
+        */
+        create_buttons(key_arr) {
             this.dict_button = new Map()
             for(let i in key_arr) {
                 this.create_button(

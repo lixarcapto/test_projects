@@ -1,9 +1,9 @@
 
 
 
-import { StandardElement } from "./StandardElement.js";
+import { BaseElement } from "./BaseElement.js";
 
-export class InnerStyle extends StandardElement {
+export class InnerStyle extends BaseElement {
 
     /*
     Esta clase sirve para añadir estilos
@@ -13,14 +13,22 @@ export class InnerStyle extends StandardElement {
 
     static __last_code = 0
 
-    constructor(css_pseudoclass = "") {
+    constructor(class_code, 
+            pseudoclass = "") {
         super();
-        this.css_pseudoclass = css_pseudoclass
-        this.input_text = document.createElement(
+        this.is_it_pseudoclass = false
+        this.node = document.createElement(
             "style")
-        this.input_text.setAttribute("tag",
+        this.node.setAttribute("tag",
             "inner_style"
         )
+        //pseudoclass asignacion
+        if(pseudoclass != "") {
+            this.is_it_pseudoclass = true
+        }
+        this.pseudoclass = pseudoclass
+        //
+        this.class_code = ""
         this.text_buffer = ""
         this.margin = ""
         this.padding = ""
@@ -41,30 +49,20 @@ export class InnerStyle extends StandardElement {
         this.text_align = ""
         this.opacity = ""
         this.z_index = ""
-        this.class_code = this
-            .__create_unique_class()
-        this.input_text.setAttribute("class",
-            this.class_code
-        )
+        this.set_class(class_code)
     }
 
     set_class(class_code) {
         this.class_code = class_code
+        this.insert_css()
     }
 
     get_class() {
         return this.class_code
     }
 
-    __create_unique_class() {
-        let number = InnerStyle.__last_code
-        let code = "class_" + number
-        InnerStyle.__last_code += 1
-        return code
-    }
-
     to_document() {
-        document.head.append(this.input_text)
+        document.head.append(this.node)
     }
 
     /*
@@ -73,6 +71,12 @@ export class InnerStyle extends StandardElement {
 
     set_position(position) {
         this.position = position
+        this.insert_css()
+    }
+
+    set_size(width, height) {
+        this.height = height
+        this.width = width
         this.insert_css()
     }
 
@@ -176,10 +180,10 @@ export class InnerStyle extends StandardElement {
     insert_css() {
         this.text_buffer = ""
         this.text_buffer 
-            += `.${this.get_class()}`
-        if(this.css_pseudoclass != "") {
+            += `\n.${this.get_class()}`
+        if(this.is_it_pseudoclass) {
             this.text_buffer 
-                += `:${this.css_pseudoclass}`
+                += `:${this.pseudoclass}`
         }
         this.text_buffer += "{\n"
         this.insert_var(this.padding,
@@ -221,8 +225,8 @@ export class InnerStyle extends StandardElement {
             "opacity")
         this.insert_var(this.z_index,
             "z-index")
-        this.text_buffer += "}"
-        this.input_text.innerHTML = this.text_buffer
+        this.text_buffer += "}\n"
+        this.node.innerHTML = this.text_buffer
     }
 
 }

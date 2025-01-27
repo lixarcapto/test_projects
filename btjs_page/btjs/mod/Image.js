@@ -16,7 +16,7 @@ export class Image extends StandardElement {
         )
     }
 
-    set_size_card(width, height) {
+    set_size(width, height) {
         this.input_text.style.width = width
     }
 

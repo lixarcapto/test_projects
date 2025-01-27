@@ -55,7 +55,7 @@ export class TextField extends StandardElement {
         this.input.value = value
     }
 
-    set_size_card(size) {
+    set_size(size) {
         this.input.size = size
     }
 

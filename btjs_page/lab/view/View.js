@@ -1,11 +1,10 @@
 
 
-import { Btjs } from "../btjs/Btjs.js";
+import { Btjs } from "../../btjs/Btjs.js";
 import { TextField } 
-    from "../btjs/mod/TextField.js";
-import { Model } from "./Model.js";
-import { DetailCard } from "./DetailCard.js";
-import { CardBoxTGC } from "../btjs/mod/CardBoxTGC.js";
+    from "../../btjs/mod/TextField.js";
+import { Model } from "../model/Model.js";
+import { CardBoxTGC } from "../../btjs/mod/CardBoxTGC.js";
 
 export class View {
 
@@ -37,13 +36,13 @@ export class View {
         this.card_box_1 = new CardBoxTGC(5)
         this.card_frame.append(
             this.card_box_1)
-        this.card_box_1.set_size_card(
+        this.card_box_1.set_size(
             100, 200)
         //
         this.card_box_2 = new CardBoxTGC(5)
         this.card_frame.append(
             this.card_box_2)
-        this.card_box_2.set_size_card(
+        this.card_box_2.set_size(
             100, 200)
         this.update()
     }

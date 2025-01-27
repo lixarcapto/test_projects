@@ -46,7 +46,7 @@ export class Sign extends StandardElement {
             = [0, this.__default_location]
     }
 
-    set_size_card(width, height) {
+    set_size(width, height) {
         this.__width = width
         this.__height = height
         this.calcule_data()

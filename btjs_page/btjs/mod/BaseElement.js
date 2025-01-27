@@ -1,0 +1,175 @@
+
+
+
+export class BaseElement {
+
+    /*
+    Esta clase se utiliza como una clase
+    raiz para los componentes graficos.
+    Esta clase incluye al Body, Styles y
+    otros; a diferencia de standardElement
+    que no incluye body y styles.
+    */
+
+    static generic_class = ""
+    static __last_number = 0
+    static {
+        BaseElement.generic_class = this
+            .__create_unique_class()
+    }
+
+    constructor() {
+        this.node = null
+        this.__node_key = ""
+    }
+
+    static __create_unique_class() {
+        let n = BaseElement.__last_number
+        BaseElement.__last_number += 1
+        return "class_" + n
+    }
+
+    get_node_key() {
+        return this.__node_key
+    }
+
+    set_padding(pixel) {
+        this.node.style.padding = pixel
+    }
+
+    set_filter(filter) {
+        this.node.style.filter = filter
+    }
+
+    set_foreground(color) {
+        this.node.style.color = color
+    }
+
+    set_background_image(url_image) {
+        this.node.setAttribute("style",
+            `background-image:  url(${url_image});
+            `
+        )
+    }
+
+    set_background(color) {
+        this.node.style.backgroundColor 
+            = color
+    }
+
+    set_position(position) {
+        this.node.style.position = position
+    }
+
+    set_location(top, height) {
+        this.node.style.position = "absolute"
+        this.node.style.top = top + "px"
+        this.node.style.height = height+ "px"
+    }
+
+    set_font_size(size) {
+        this.input_text.style.fontSize = 
+            size
+    }
+
+    set_font_family(font) {
+        this.input_text.style.fontFamily = font
+        this.update_styles()
+    }
+
+    set_font_weight(weight) {
+        this.input_text.fontWeight = weight
+        this.update_styles()
+    }
+
+    set_font_style(style) {
+        this.input_text.fontStyle = style
+        this.update_styles()
+    }
+
+    set_line_height(number) {
+        this.input_text.lineHeight = number
+    }
+
+    set_text_decoration(text_decoration) {
+        this.input_text.style.textDecoration 
+            = text_decoration
+    }
+
+    set_text_align(text_align) {
+        this.input_text.style.textAlign = text_align
+    }
+
+    set_margin(number) {
+        this.input_text.style.margin = number
+    }
+
+    set_size(size_x, size_y) {
+        this.input_text.style.width = size_x
+        this.input_text.style.height = size_y
+    }
+
+    get_id() {
+        return this.input_text.getAttribute("id")
+    }
+
+    destroy() {
+        this.node.remove()
+        this.node = null
+    }
+
+    get_value() {
+        return this.node.value
+    }
+
+    set_value(value) {
+        this.node.value = value
+    }
+
+    get_value() {
+        return this.node.innerHTML
+    }
+
+    __draw_text(text) {
+        this.node.innerHTML = text
+    }
+
+    to_document() {
+        document.body.append(this.node)
+    }
+
+    set_id(id_text) {
+        this.node.setAttribute("id", id_text)
+    }
+
+    get_id() {
+        return this.node.getAttribute("id")
+    }
+
+    set_class(class_text) {
+        this.node.setAttribute("class",
+            class_text
+        )
+    }
+
+    get_class() {
+        return this.node
+            .getAttribute("class")
+    }
+
+    append(element) {
+        if(element.node.tagName == "STYLE") {
+            element.set_class(
+                this.get_class())
+            element.to_document()
+            return null;
+        }
+        this.node.append(element.node)
+    }
+
+    jump() {
+        document.body.append(
+            document.createElement("br"))
+    }
+
+}

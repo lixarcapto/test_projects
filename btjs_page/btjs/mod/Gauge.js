@@ -24,7 +24,7 @@ export class Gauge extends StandardElement {
         this.pointer_value = 0
         //
         this.init_components()
-        this.set_size_card(100)
+        this.set_size(100)
         this.set_pointer_width(4)
         this.set_title(title)
     }
@@ -144,7 +144,7 @@ export class Gauge extends StandardElement {
     }
 
     //TODO: organizar estos calculos
-    set_size_card(size) {
+    set_size(size) {
         let size_y = (size / 2)
         let size_x = size
         let pointer_height = size_x / 2

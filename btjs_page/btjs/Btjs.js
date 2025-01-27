@@ -120,8 +120,10 @@ export class Btjs {
       return new IconChart(title)
     }
 
-    static InnerStyle(css_pseudoclass) {
-      return new InnerStyle(css_pseudoclass)
+    static InnerStyle(class_code, 
+        pseudoclass = "") {
+      return new InnerStyle(class_code, 
+          pseudoclass)
     }
 
     static TextField(title) {
