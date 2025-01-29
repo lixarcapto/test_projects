@@ -1,0 +1,90 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>titulo</title>
+    <style>
+
+span {
+  display: flex;
+  font-size: 25px;
+  font-weight: bold;
+  font-family: Arial;
+  color: rgb(66, 0, 0);
+  background-color: yellow;
+}
+
+body {
+  background-color: rgb(193, 0, 0);
+}
+
+div, span {
+  padding: 10px;
+  width: 250px;
+  margin: 9px;
+}
+
+/*border*/
+span, button {
+  border: 3px solid rgb(255, 153, 1);
+}
+
+div {
+  display: grid; /* Define el contenedor como un grid */
+  grid-template-columns: 1fr; /* Crea una sola columna */
+  gap: 3px; /* Espacio entre los botones */
+  justify-items: center;
+  background-color: orange;
+}
+
+.main {
+  position: absolute;
+  left: 300px;
+  top: 60px;
+  width: 300px;
+  height: 300px;
+}
+
+.second {
+  position: absolute;
+  left: 300px;
+  top: 0px;
+}
+
+button {
+  /* Estilos para los botones */
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: yellow;
+  color: rgb(66, 0, 0);
+  border: 3px solid orange;
+  font-size: 18px;
+  width: 200px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Transición suave al pasar el cursor */
+}
+
+.grid-item:hover {
+  background-color: #0056b3; /* Color de fondo al pasar el cursor */
+}
+    </style>
+</head>
+<body>
+  <span>Animales:</span>
+  <div class="grid-container">
+    <button class="grid-item">Perro</button>
+    <button class="grid-item">Gato</button>
+    <button class="grid-item">Elefante</button>
+    <button class="grid-item">Leon</button>
+    <button class="grid-item">Tigre</button>
+    <button class="grid-item">Oso</button>
+  </div>
+  <img class= "main" src="http://localhost/web_projects/btjs_page/res/fire_flame.png" alt="">
+      <script type="module" 
+        src="./main.js"></script>
+  <img class="second" src="http://localhost/web_projects/btjs_page/res/fire_sparks.png" alt="">
+
+</body>
+</html>

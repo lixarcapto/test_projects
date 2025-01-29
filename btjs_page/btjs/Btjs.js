@@ -28,7 +28,7 @@ import { DataBar } from "./mod/DataBar.js";
 import { RadioButtonList } from "./mod/RadioButtonList.js";
 import { CommentBox } from "./mod/CommentBox.js";
 import { ButtonList } from "./mod/ButtonList.js";
-import { ButtonIndex } from "./mod/ButtonIndex.js";
+import { SwipperNumber } from "./mod/SwipperNumber.js";
 import { CheckButton } from "./mod/CheckButton.js";
 import { Canvas } from "./mod/Canvas.js";
 import { ScrollList } from "./mod/ScrollList.js";
@@ -48,6 +48,8 @@ import { Sign } from "./mod/Sign.js";
 import { InnerStyle } from "./mod/InnerStyle.js";
 import {Label} from "./mod/Label.js";
 import { Frame } from "./mod/Frame.js";
+import { Dice } from "./mod/Dice.js";
+import { SwipperText } from "./mod/SwipperText.js";
 
 export class Btjs {
 
@@ -124,6 +126,10 @@ export class Btjs {
         pseudoclass = "") {
       return new InnerStyle(class_code, 
           pseudoclass)
+    }
+
+    static Dice(size_x, size_y) {
+      return new Dice(size_x, size_y)
     }
 
     static TextField(title) {
@@ -292,9 +298,14 @@ export class Btjs {
       return new IconButton(image_url, text)
     }
 
-    static ButtonIndex(name, range_arr) {
-      return new ButtonIndex(name, 
+    static SwipperNumber(name, range_arr) {
+      return new SwipperNumber(name, 
         range_arr)
+    }
+
+    static SwipperText(name, content_array) {
+      return new SwipperText(
+        name, content_array)
     }
 
     static CircleButton(title) {

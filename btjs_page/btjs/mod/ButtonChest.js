@@ -54,7 +54,7 @@ export class ButtonChest extends StandardElement {
         )
         this.selector = new Selector(
             title, [])
-        this.input_text.append(this.selector.input_text)
+        this.input_text.append(this.selector.node)
         this.chest = document.createElement(
             "div")
         this.chest.setAttribute("style",
@@ -63,7 +63,7 @@ export class ButtonChest extends StandardElement {
         )
         this.button_dict = new Map()
         this.input_text.append(this.chest)
-        this.selector.input_text.addEventListener(
+        this.selector.node.addEventListener(
             'change', () => {
                 let v = this.selector
                     .get_value()

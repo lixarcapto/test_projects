@@ -9,20 +9,18 @@ export class Selector extends StandardElement {
     */
 
     constructor(text, array = []) {
-        super();
-        this.input_text = document
-            .createElement("div")
-        this.input_text.setAttribute("tag",
+        super("div");
+        this.node.setAttribute("tag",
             "selector"
         )
         //this.node.style.display = "inline"
         this.label = document.createElement(
             "label")
-        this.input_text.appendChild(
+        this.node.appendChild(
             this.label)
         this.select = document
             .createElement("select")
-        this.input_text.appendChild(this.select)
+        this.node.appendChild(this.select)
         this.li_array = [] 
         this.create_list(array)
         this.set_title(text)
