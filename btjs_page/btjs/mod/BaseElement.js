@@ -11,26 +11,23 @@ export class BaseElement {
     que no incluye body y styles.
     */
 
-    static generic_class = ""
+
     static __last_number = 0
-    static {
-        BaseElement.generic_class = this
-            .__create_unique_class()
-    }
 
     constructor() {
         this.node = null
-        this.__node_key = ""
+        this.__unique_class = BaseElement
+            .__create_unique_class()
     }
 
     static __create_unique_class() {
         let n = BaseElement.__last_number
         BaseElement.__last_number += 1
-        return "class_" + n
+        return "CLASS_" + n
     }
 
-    get_node_key() {
-        return this.__node_key
+    get_unique_class() {
+        return this.__unique_class
     }
 
     set_padding(pixel) {

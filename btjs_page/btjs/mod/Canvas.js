@@ -3,19 +3,21 @@
 import { StandardElement } 
     from "./StandardElement.js";
 
-export class Canvas {
+export class Canvas extends StandardElement {
 
     constructor(size_x, size_y) {
-        this.node = document
-            .createElement("canvas")
-        this.size_x = 0
-        this.size_y = 0
+        super("canvas")
+        this.node.style.display = "inline"
+        this.size_x = size_x
+        this.size_y = size_y
         this.context = this.node
             .getContext('2d');
         this.pen_color = "red"
         this.background_color = "black"
         this.node.style.border = "2px solid gray"
         this.pen_width = 1
+        this.reference_line_width = 1
+        this.reference_line_color = "red"
         this.font_size = 16
         this.font_type = "Arial"
         this.point_index = [0, 0]
@@ -32,8 +34,10 @@ export class Canvas {
         this.point_index = null
     }
 
-    set_background(color) {
+    set_background_color(color) {
         this.background_color = color
+        this.node.style.backgroundColor
+            = color 
         this.update()
     }
 
@@ -78,6 +82,51 @@ export class Canvas {
         }
     }
 
+    draw_reference_in_x(point) {
+        this.__draw_line_reference(
+            [0, point[1]],
+            [this.size_x, point[1]]
+        )
+    }
+
+    draw_reference_in_y(point) {
+        this.__draw_line_reference(
+            [point[0], 0],
+            [point[0], this.size_y]
+        )
+    }
+
+    draw_reference_line(point) {
+        console.log(point)
+        this.draw_reference_in_x(point)
+        this.draw_reference_in_y(point)
+    }
+
+    draw_horizontal_grid(grid_by_side, size) {
+        let y = 0
+        for(let i=0; i < grid_by_side; i++) {
+            y += size
+            this.draw_reference_in_x([0, y])
+        }
+    }
+
+    draw_vertical_grid(grid_by_side, size) {
+        let x = 0
+        for(let i=0; i < grid_by_side; i++) {
+            x += size
+            this.draw_reference_in_y([x, 0])
+        }
+    }
+
+    draw_grid(grid_by_side, size_grid) {
+        this.draw_horizontal_grid(grid_by_side,
+            size_grid
+        )
+        this.draw_vertical_grid(grid_by_side,
+            size_grid
+        )
+    }
+
     draw_text(text, location_x, location_y) {      this.context.beginPath();
         this.context.fillStyle = this
             .pen_color; 
@@ -99,13 +148,53 @@ export class Canvas {
     }
 
     update() {
-        this.context.fillStyle = this
-            .background_color;
-        this.context.fillRect(
-            0, 0, this.size_x, this.size_y);
-        this.context.fillStyle 
-            = this.pen_color;
-        this.buffer_img = []
+        this.context.clearRect(0, 0, 
+            this.size_x, this.size_y);
+    }
+
+    draw_poligon_point(polygon) {
+        let point = [0, 0]
+        let last_point = [0, 0]
+        for(let i in polygon) {
+            point = polygon[i]
+            if(i != 0) {
+                this.draw_line(
+                    last_point,
+                    point
+                )
+            }
+            last_point = polygon[i]
+        }
+    }
+
+    draw_poligon_line(polygon) {
+        let line = [[0, 0], [0, 0]]
+        for(let i in polygon) {
+            line = polygon[i]
+            this.draw_line_matrix(line)
+        }
+    }
+
+    draw_line_matrix(line_matrix) {
+        this.draw_line(
+            line_matrix[0],
+            line_matrix[1]
+        )
+    }
+
+    __draw_line_reference(point_1, point_2) {
+        this.context.beginPath(); 
+        // Inicia un nuevo camino
+        this.context.moveTo(
+            point_1[0], point_1[1]);
+        this.context.lineTo(
+            point_2[0], point_2[1]);
+        this.context.strokeStyle 
+            = this.reference_line_color; 
+        this.context.lineWidth 
+            = this.reference_line_width;
+        // Color de la línea
+        this.context.stroke();
     }
 
     draw_line(point_1, point_2) {
@@ -147,6 +236,40 @@ export class Canvas {
             size_range[0], 
             size_range[1]
         );
+    }
+
+    draw_circle(point, diameter) {
+        this.context.beginPath(); 
+        // Iniciar un nuevo trazado
+        // Dibujar el círculo
+        let radio = diameter /2
+        let new_point = point
+        new_point[0] += radio
+        new_point[1] += radio
+        this.context.arc(
+            new_point[0], new_point[1],
+            radio, 0, Math.PI * 2
+        ); 
+        // (x, y, radio, ángulo inicial, ángulo final)
+        this.context.fillStyle 
+            = this.pen_color; 
+        // Establecer el color de relleno
+        this.context.fill(); 
+        // Rellenar el círculo
+    }
+
+    draw_point(point) {
+        this.context.beginPath(); 
+        this.context.arc(
+            point[0], point[1],
+            this.pen_width, 0, Math.PI * 2
+        ); 
+        // (x, y, radio, ángulo inicial, ángulo final)
+        this.context.fillStyle 
+            = this.pen_color; 
+        // Establecer el color de relleno
+        this.context.fill(); 
+        // Rellenar el círculo
     }
 
     move_pen(point) {

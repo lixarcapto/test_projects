@@ -1,10 +1,10 @@
 
 
 
-import { OLElement } from "./mod/OlElement.js";
+import { ListOl } from "./mod/ListOl.js";
+import { ListUl } from "./mod/ListUl.js";
 import { Selector } from "./mod/Selector.js";
 import { TextArea } from "./mod/TextArea.js";
-import { ClickIcon } from "./mod/ClickIcon.js";
 import { Button } from "./mod/Button.js";
 import { ColorSelector } from "./mod/ColorSelector.js";
 import { Body } from "./mod/Body.js";
@@ -73,6 +73,28 @@ export class Btjs {
     static ClickIconTextOverlay(title, url) {
         return new ClickIconTextOverlay(title, 
           url);
+    }
+
+    static repeat(NUMBER, SECONDS, CALLBACK) {
+      // Convierte el intervalo a milisegundos
+      // Ejecuta la tarea inicialmente
+      CALLBACK();
+      let n = 1
+      // Luego, ejecuta la tarea repetidamente cada x segundos
+      let inverval = setInterval(()=>{
+          n += 1;
+          if(n >= NUMBER) {
+              clearInterval(inverval)
+          }
+          CALLBACK()
+      }, SECONDS * 1000);
+    }
+
+    static random_point(min, max) {
+        return [
+          Btjs.random_int(min, max),
+          Btjs.random_int(min, max)
+        ]
     }
 
     static random_element(array) {
@@ -160,9 +182,13 @@ export class Btjs {
       document.body.append(widget_btjs.node)
     }
 
-    static Ol(text, ARRAY) {
-        return new OLElement(text, ARRAY)
-    }
+    static ListOl(text, ARRAY) {
+      return new ListOl(text, ARRAY)
+  }
+
+  static ListUl(text, ARRAY) {
+    return new ListUl(text, ARRAY)
+}
 
     static LabelArea(text = "") {
       return new LabelArea(text)
@@ -191,10 +217,6 @@ export class Btjs {
 
     static TextArea(key, text) {
       return new TextArea(key, text)
-    }
-
-    static Icon(title, URL) {
-      return new ClickIcon(title, URL)
     }
 
     static color_selector() {
@@ -249,8 +271,8 @@ export class Btjs {
       return new Label(text)
     }
 
-    static Image() {
-      return new Image()
+    static Image(url) {
+      return new Image(url)
     }
 
     static CheckBoxTicket(title, text_arr) {

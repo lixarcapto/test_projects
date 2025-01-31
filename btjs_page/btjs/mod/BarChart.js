@@ -1,7 +1,7 @@
 
 
 import { Canvas } from "./Canvas.js";
-import { ChartLegends } from "./ChartLegends.js";
+import { ChartLegends } from "./chart_legends/ChartLegends.js";
 
 export class BarChart {
 

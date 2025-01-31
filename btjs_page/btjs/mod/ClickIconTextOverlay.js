@@ -1,8 +1,8 @@
 
 
-import { ClickIcon } from "./ClickIcon.js";
+import { ClickIconStandard } from "./ClickIconStandard.js";
 
-export class ClickIconTextOverlay extends ClickIcon {
+export class ClickIconTextOverlay extends ClickIconStandard {
 
     /*
     Es un boton de click con un icono
@@ -23,7 +23,7 @@ export class ClickIconTextOverlay extends ClickIcon {
         this.node.style.justifyContent 
             = "center"
         this.node.style.display = "flex"
-        this.img.setAttribute("style",
+        this.__img.setAttribute("style",
             `
             position: relative;
             top: 0;

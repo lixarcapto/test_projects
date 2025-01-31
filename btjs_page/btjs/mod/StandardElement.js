@@ -9,7 +9,7 @@ export class StandardElement extends BaseElement {
         this.node = document
             .createElement(tag_HTML)
         this.set_class(
-            StandardElement.generic_class)
+            this.get_unique_class())
     }
 
 }

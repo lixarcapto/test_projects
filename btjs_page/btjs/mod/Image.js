@@ -4,28 +4,40 @@ import { StandardElement } from "./StandardElement.js"
 
 export class Image extends StandardElement {
 
-    constructor() {
-        super();
-        this.input_text = document
-            .createElement("img")
-        this.input_text.setAttribute("style",
+    constructor(image_url = "") {
+        super("img");
+        this.node.setAttribute("style",
             `
             height: auto;
             object-fit: contain;
             `
         )
+        this.set_image(image_url)
     }
 
     set_size(width, height) {
-        this.input_text.style.width = width
+        this.node.style.width = width
+        this.node.style.height = height
     }
 
-    set_url(url) {
-        this.input_text.setAttribute("src", url)
+    set_height_with_relation(height) {
+        this.node.style.height = height 
+            + "px"
+        this.node.style.width = "auto" 
     }
 
-    get_url() {
-        return this.input_text.getAttribute("src")
+    set_width_with_relation(width) {
+        this.node.style.width = width
+            + "px"
+        this.node.style.height = "auto" 
+    }
+
+    set_image(url) {
+        this.node.src = url
+    }
+
+    get_image() {
+        return this.node.src
     }
 
 }

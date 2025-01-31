@@ -1,9 +1,10 @@
 
 
 
-import { ClickIcon } from "./ClickIcon.js";
+import { ClickIconStandard } from "./ClickIconStandard.js";
 
-export class ClickIconText extends ClickIcon {
+export class ClickIconText 
+        extends ClickIconStandard {
 
     /*
     Es un boton de icono con un texto
@@ -14,6 +15,14 @@ export class ClickIconText extends ClickIcon {
 
     constructor(title, url) {
         super(title, url);
+        this.__customize_node()
+        this.__init_label()
+        this.__img.style.maxWidth = "100%"
+        this.__img.style.flex =  "0 0 auto"
+        this.set_text(title)
+    }
+
+    __customize_node() {
         this.node.setAttribute("style",
             `
             display: flex;
@@ -24,6 +33,9 @@ export class ClickIconText extends ClickIcon {
             cursor: pointer;
             `
         )
+    }
+
+    __init_label() {
         this.label = document
             .createElement("label")
         this.label.setAttribute("style",
@@ -36,9 +48,6 @@ export class ClickIconText extends ClickIcon {
             text-align: center;
             `
         )
-        this.img.style.maxWidth = "100%"
-        this.img.style.flex =  "0 0 auto"
-        this.set_text(title)
         this.node.append(this.label)
     }
 
