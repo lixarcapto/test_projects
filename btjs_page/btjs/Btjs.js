@@ -50,6 +50,17 @@ import {Label} from "./mod/Label.js";
 import { Frame } from "./mod/Frame.js";
 import { Dice } from "./mod/Dice.js";
 import { SwipperText } from "./mod/SwipperText.js";
+import {in_range} from "./mod/in_range.js";
+import { are_all_same } from "./mod/are_all_same.js";
+import { is_null_return } 
+  from "./mod/is_null_return.js";
+import { is_byte127 } from "./mod/is_byte_256.js";
+import { is_byte256 } from "./mod/is_byte_256.js";
+import { is_RGB } from "./mod/is_rgb.js";
+import { is_RGBA } from "./mod/is_rgb.js";
+import { is_point_2d } from "./mod/is_point.js";
+import { is_point_3d } from "./mod/is_point.js";
+import { LimitNumber } from "./mod/LimitNumber.js";
 
 export class Btjs {
 
@@ -66,6 +77,103 @@ export class Btjs {
         Btjs.body = Btjs.StyleHead()
     }
 
+    //CHECKERS -----------------------------
+
+    /*
+    This function checks if the elements 
+    of the passed array are all equal.
+    */
+    static are_all_same(array) {
+      return are_all_same(array);
+    }
+
+    /*
+    Function to identify if the input 
+    number is contained within the 
+    sending range.
+    */
+    static in_range(number, range_arr) {
+      return in_range(number, range_arr);
+    }
+
+    /*
+    Function that tests whether a value
+    is a return error such as -1, undefined,
+    none, void string, void dict, or void
+    array
+    */
+    static is_null_return(data) {
+      return is_null_return(data);
+    }
+
+    static is_byte127(data) {
+      return is_byte127(data);
+    }
+
+    static is_byte256(data) {
+      return is_byte256(data);
+    }
+    
+    static is_RGB(data) {
+      return is_RGB(data);
+    }
+
+    static is_RGBA(data) {
+      return is_RGBA(data);
+    }
+
+    static is_float(data) {
+      return data % 1 !== 0;
+    }
+
+    static is_array(data) {
+      return Array.isArray(data)
+    }
+
+    static is_integer(data) {
+      return Number.isInteger(data)
+    }
+
+    static is_string(data) {
+      return typeof valor === 'string';
+    }
+
+    static is_object_js(data) {
+      let r = Object.prototype.toString
+        .call(data) === '[object Object]';
+      return r == true;
+    }
+
+    static is_function(data) {
+      return typeof data == "function";
+    }
+
+    static is_map(data) {
+      return data instanceof Map;
+    }
+
+    /*
+    Función que verifica  el dato 
+    enviado es un punto 2D
+    */
+    static is_point_2d(data) {
+      return is_point_2d(data);
+    }
+
+    /*
+    Función que verifica  el dato 
+    enviado es un punto 3D
+    */
+    static is_point_3d(data) {
+      return is_point_3d(data);
+    }
+
+
+
+    //------------------------------------
+
+    //traspasando de BTPY.
+
     static ClickIconText(title, url) {
         return new ClickIconText(title, url);
     }
@@ -74,6 +182,16 @@ export class Btjs {
         return new ClickIconTextOverlay(title, 
           url);
     }
+
+    static random_figure_point(size) {
+      let point = [0, 0]
+      let figure_point = []
+      for(let i=0; i< size; i++) {
+          point = Btjs.random_point(0, 500)
+          figure_point.push(point)
+      }
+      return figure_point
+  }
 
     static repeat(NUMBER, SECONDS, CALLBACK) {
       // Convierte el intervalo a milisegundos
@@ -301,6 +419,12 @@ export class Btjs {
 
     static DataBar(title) {
       return new DataBar(title)
+    }
+
+    static LimitNumber(range_arr, 
+        number = -1) {
+      return new LimitNumber(range_arr, 
+        number)
     }
 
     static RadioButtonList(title, text_arr) {

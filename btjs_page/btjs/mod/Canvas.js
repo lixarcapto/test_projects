@@ -258,6 +258,12 @@ export class Canvas extends StandardElement {
         // Rellenar el círculo
     }
 
+    draw_point_cloud(point_array) {
+        for(let i in point_array) {
+            this.draw_point(point_array[i])
+        }
+    }
+
     draw_point(point) {
         this.context.beginPath(); 
         this.context.arc(
