@@ -1,66 +1,142 @@
 
 
 
-import { ListOl } from "./mod/ListOl.js";
-import { ListUl } from "./mod/ListUl.js";
-import { Selector } from "./mod/Selector.js";
-import { TextArea } from "./mod/TextArea.js";
-import { Button } from "./mod/Button.js";
-import { ColorSelector } from "./mod/ColorSelector.js";
-import { Body } from "./mod/Body.js";
-import { LabelArea } from "./mod/LabelArea.js";
-import { Link } from "./mod/Link.js";
-import { Quote } from "./mod/Quote.js";
-import { Article } from "./mod/Article.js";
-import { TitleBar } from "./mod/TitleBar.js";
-import { Card } from "./mod/Card.js";
-import { PageStructure } from "./mod/PageStructure.js";
-import { References } from "./mod/References.js";
-import { VideoFigure } from "./mod/VideoFigure.js";
-import { replace_substring } from "./mod/replace_substring.js";
-import {Image} from "./mod/Image.js";
-import { CheckBoxTicket } from "./mod/CheckBoxTicket.js";
-import { InputList } from "./mod/InputList.js";
-import { ClickIconBox } from "./mod/ClickIconBox.js";
-import { ClickTextBox } from "./mod/ClickTextBox.js";
-import { InputSlider } from "./mod/InputSlider.js";
-import { DataBar } from "./mod/DataBar.js";
-import { RadioButtonList } from "./mod/RadioButtonList.js";
-import { CommentBox } from "./mod/CommentBox.js";
-import { ButtonList } from "./mod/ButtonList.js";
-import { SwipperNumber } from "./mod/SwipperNumber.js";
-import { CheckButton } from "./mod/CheckButton.js";
-import { Canvas } from "./mod/Canvas.js";
-import { ScrollList } from "./mod/ScrollList.js";
-import { ChangeColorButton } from "./mod/ChangeColorButton.js";
-import {Book } from "./mod/Book.js";
-import { Gauge } from "./mod/Gauge.js";
-import { BookMenu } from "./mod/BookMenu.js";
-import { ButtonChest } from "./mod/ButtonChest.js";
-import { ClickIconText } from "./mod/ClickIconText.js";
-import { ClickIconTextOverlay } from "./mod/ClickIconTextOverlay.js";
-import { ClickIconOnly} from "./mod/ClickIconOnly.js";
-import { IconChart } from "./mod/IconChart.js";
-import {BarChart} from "./mod/BarChart.js";
-import { TextField } from "./mod/TextField.js"; 
-import { Table } from "./mod/Table.js";
-import { Sign } from "./mod/Sign.js";
-import { InnerStyle } from "./mod/InnerStyle.js";
-import {Label} from "./mod/Label.js";
-import { Frame } from "./mod/Frame.js";
-import { Dice } from "./mod/Dice.js";
-import { SwipperText } from "./mod/SwipperText.js";
-import {in_range} from "./mod/in_range.js";
-import { are_all_same } from "./mod/are_all_same.js";
+
+
+
+//CHECKERS -----------------------------------
+
+import { in_range } 
+  from "./mod/checkers/in_range.js";
+import { are_all_same } 
+  from "./mod/structures/are_all_same.js";
 import { is_null_return } 
-  from "./mod/is_null_return.js";
-import { is_byte127 } from "./mod/is_byte_256.js";
-import { is_byte256 } from "./mod/is_byte_256.js";
-import { is_RGB } from "./mod/is_rgb.js";
-import { is_RGBA } from "./mod/is_rgb.js";
-import { is_point_2d } from "./mod/is_point.js";
-import { is_point_3d } from "./mod/is_point.js";
-import { LimitNumber } from "./mod/LimitNumber.js";
+  from "./mod/checkers/is_null_return.js";
+import { is_byte127 } 
+  from "./mod/checkers/is_byte_256.js";
+import { is_byte256 } 
+  from "./mod/checkers/is_byte_256.js";
+import { is_RGB } 
+  from "./mod/checkers/is_rgb.js";
+import { is_RGBA } 
+  from "./mod/checkers/is_rgb.js";
+import { is_point_2d } 
+  from "./mod/checkers/is_point.js";
+import { is_point_3d } 
+  from "./mod/checkers/is_point.js";
+import { is_object_js } 
+  from "./mod/checkers/is_object_js.js";
+
+//-----------------------------------------
+
+// GUI -----------------------------------
+
+import { ListOl } from "./mod/gui/ListOl.js";
+import { ListUl } from "./mod/gui/ListUl.js";
+import { Selector } from "./mod/gui/Selector.js";
+import { TextArea } from "./mod/gui/TextArea.js";
+import { Button } from "./mod/gui/Button.js";
+import { ColorSelector } from "./mod/gui/ColorSelector.js";
+import { Body } from "./mod/gui/Body.js";
+import { LabelArea } from "./mod/gui/LabelArea.js";
+import { Link } from "./mod/gui/Link.js";
+import { Quote } from "./mod/gui/Quote.js";
+import { Article } from "./mod/gui/Article.js";
+import { TitleBar } from "./mod/gui/TitleBar.js";
+import { Card } from "./mod/gui/Card.js";
+import { PageStructure } from "./mod/gui/PageStructure.js";
+import { References } from "./mod/gui/References.js";
+import { VideoFigure } from "./mod/gui/VideoFigure.js";
+import {Image} from "./mod/gui/Image.js";
+import { CheckBoxTicket } from "./mod/gui/CheckBoxTicket.js";
+import { InputList } from "./mod/gui/InputList.js";
+import { ClickIconBox } from "./mod/gui/ClickIconBox.js";
+import { ClickTextBox } from "./mod/gui/ClickTextBox.js";
+import { InputSlider } from "./mod/gui/InputSlider.js";
+import { DataBar } from "./mod/gui/DataBar.js";
+import { RadioButtonList } from "./mod/gui/RadioButtonList.js";
+import { CommentBox } from "./mod/gui/CommentBox.js";
+import { ButtonList } from "./mod/gui/ButtonList.js";
+import { SwipperNumber } from "./mod/gui/SwipperNumber.js";
+import { CheckButton } from "./mod/gui/CheckButton.js";
+import { Canvas } from "./mod/gui/Canvas.js";
+import { ScrollList } from "./mod/gui/ScrollList.js";
+import { ChangeColorButton } from "./mod/gui/ChangeColorButton.js";
+import {Book } from "./mod/gui/Book.js";
+import { Gauge } from "./mod/gui/Gauge.js";
+import { BookMenu } from "./mod/gui/BookMenu.js";
+import { ButtonChest } from "./mod/gui/ButtonChest.js";
+import { ClickIconText } from "./mod/gui/ClickIconText.js";
+import { ClickIconTextOverlay } from "./mod/gui/ClickIconTextOverlay.js";
+import { ClickIconOnly} from "./mod/gui/ClickIconOnly.js";
+import { IconChart } from "./mod/gui/IconChart.js";
+import {BarChart} from "./mod/gui/BarChart.js";
+import { TextField } from "./mod/gui/TextField.js"; 
+import { Table } from "./mod/gui/Table.js";
+import { Sign } from "./mod/gui/Sign.js";
+import { InnerStyle } from "./mod/gui/InnerStyle.js";
+import {Label} from "./mod/gui/Label.js";
+import { Frame } from "./mod/gui/Frame.js";
+import { Dice } from "./mod/gui/Dice.js";
+import { SwipperText } from "./mod/gui/SwipperText.js";
+
+//-------------------------------------------
+
+// DATA TYPES -------------------------------
+
+import { LimitNumber } 
+  from "./mod/data_types/LimitNumber.js";
+import { IteratorMatrix2D } 
+  from "./mod/data_types/IteratorMatrix2D.js";
+
+//------------------------------------------
+
+// STRUCTURES -------------------------------
+
+import { clean_voids } 
+  from "./mod/structures/clean_voids.js";
+import { count } from "./mod/structures/count.js";
+
+import { create_array } 
+  from "./mod/structures/create_array.js";
+import { find_value } 
+  from "./mod/structures/find_value.js";
+import { fit_list } 
+  from "./mod/structures/fit_list.js";
+import { join_jsobject } 
+  from "./mod/structures/join_jsobject.js";
+import { map2 } from "./mod/structures/map2.js";
+import { repeat } from "./mod/structures/repeat.js";
+import { min_in_dict } 
+  from "./mod/structures/min_in_dict.js";
+import { max_in_dict } 
+  from "./mod/structures/max_in_dict.js";
+
+//-----------------------------------------
+
+// STRING -------------------------------
+
+import { replace_substring } from "./mod/string/replace_substring.js";
+import { delete_substring } 
+  from "./mod/string/delete_substring.js";
+import { has_substring } 
+  from "./mod/string/has_substring.js";
+
+//---------------------------------------
+
+// RANDOM ----------------------------------
+
+import { random_string } 
+  from "./mod/random/random_string.js";
+
+//-------------------------------------------
+
+// CONVERTERS --------------------------
+
+import { array_to_jsobject } 
+  from "./mod/converters/array_to_jsobject.js";
+
+//-----------------------------------------
 
 export class Btjs {
 
@@ -139,9 +215,7 @@ export class Btjs {
     }
 
     static is_object_js(data) {
-      let r = Object.prototype.toString
-        .call(data) === '[object Object]';
-      return r == true;
+      return is_object_js(data);
     }
 
     static is_function(data) {
@@ -171,8 +245,125 @@ export class Btjs {
 
 
     //------------------------------------
+    // Array bucles ------------------------
+
+    /*
+    Funcion que convierte dos arrays en 
+    un objeto javascript usando como claves
+    el primer array y como valores el 
+    segundo.
+    */
+    static array_to_jsobject(key_arr, values_arr) {
+      return array_to_jsobject(key_arr, 
+        values_arr);
+    }
+
+
+    /*
+    Función que crea un nuevo array
+    eliminando todos los valores 
+    None y void
+    */
+    static clean_voids(ARRAY) {
+      return clean_voids(ARRAY);
+    }
+
+    /*
+    Funcion que cuenta el numero de 
+    verificaciones con una funcion 
+    checker enviada en un array o jsobject.
+    Envia un lambda con esta estructura:
+        (e)=>{return e == condicion};
+    */
+    static count(STRUCTURE, CHECKER) { 
+      return count(STRUCTURE, CHECKER);
+    }
+
+    static create_array(SIZE, 
+      DATA = null) {
+        return create_array(SIZE, DATA);
+    }
+
+    static repeat(NUMBER, SECONDS, CALLBACK) {
+      return repeat(NUMBER, SECONDS,
+          CALLBACK)
+    }
+
+    static jsobject_to_map(jsobject) {
+      return new Map(
+        Object.entries(jsobject));
+    }
+
+    static map_to_jsobject(map) {
+      return map.fromEntries()
+    }
+
+    static find_value(jsobject) {
+      return find_value(jsobject)
+    }
+
+    static fit_list(ARRAY, SIZE, 
+      DEFAULT_VALUE = null) {
+        return fit_list(ARRAY, SIZE, 
+          DEFAULT_VALUE);
+    }
+
+    static join_jsobject(jsobject_1, 
+          jsobject_2) {
+        return join_jsobject(jsobject_1, 
+          jsobject_2);
+    }
+
+    /*
+    Funcion que aplica un map a una 
+    estructura que puede ser un array, 
+    un map o un objeto javascript.
+    */
+    static map2(DATA, FUNCTION) {
+      return map2(DATA, FUNCTION);
+    }
+
+    static min_in_dict(JSOBJECT) {
+      return min_in_dict(JSOBJECT)
+    }
+
+    static max_in_dict(JSOBJECT) {
+      return max_in_dict(JSOBJECT)
+    }
+
+    //------------------------------------
+    // STRING ------------------------------
+
+    /*
+    Verifica si existe un sustin dentro 
+    de otro String ignorando las mayúsculas
+    */
+    static has_substring(STRING, 
+          SUBSTRING) {
+        return has_substring(STRING, 
+          SUBSTRING)
+    }
+
+    static random_string(SIZE, 
+      CHAR_STRING = null) {
+        return random_string(SIZE, 
+          CHAR_STRING)
+    }
+
+    /*
+    Elimina un String de un String enviado
+    */
+    static delete_substring(STRING, 
+          SUBSTRING) {
+        return delete_substring(STRING, 
+          SUBSTRING)
+    }
+
+    //------------------------------------
 
     //traspasando de BTPY.
+    // SEGUIR EN BTPY_LIST DESDE 
+    // MAX_DICT
 
     static ClickIconText(title, url) {
         return new ClickIconText(title, url);
@@ -191,21 +382,6 @@ export class Btjs {
           figure_point.push(point)
       }
       return figure_point
-  }
-
-    static repeat(NUMBER, SECONDS, CALLBACK) {
-      // Convierte el intervalo a milisegundos
-      // Ejecuta la tarea inicialmente
-      CALLBACK();
-      let n = 1
-      // Luego, ejecuta la tarea repetidamente cada x segundos
-      let inverval = setInterval(()=>{
-          n += 1;
-          if(n >= NUMBER) {
-              clearInterval(inverval)
-          }
-          CALLBACK()
-      }, SECONDS * 1000);
     }
 
     static random_point(min, max) {
@@ -243,6 +419,18 @@ export class Btjs {
     static random_int(min, max) {
       return Math.floor(Math.random() 
         * (max - min + 1)) + min;
+    }
+
+    /*
+    Iterador para navegar atraves de 
+    matrizes de datos de dos dimensiones.
+    Las principales funcione son:
+    * get: obtiene el actual elemento.
+    * set: modifica el actual elemento.
+    * next: avansa al siguiente elemento.
+    */
+    static IteratorMatrix2D(matrix2d) {
+      new IteratorMatrix2D(matrix2d)
     }
 
   
