@@ -12,4 +12,9 @@ export class StandardElement extends BaseElement {
             this.get_unique_class())
     }
 
+    is_custom() {
+        this.node.setAttribute(
+            this.get_class())
+    }
+
 }

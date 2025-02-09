@@ -79,6 +79,8 @@ import {Label} from "./mod/gui/Label.js";
 import { Frame } from "./mod/gui/Frame.js";
 import { Dice } from "./mod/gui/Dice.js";
 import { SwipperText } from "./mod/gui/SwipperText.js";
+import { InputImage } 
+  from "./mod/gui/InputImage.js";
 
 //-------------------------------------------
 
@@ -106,7 +108,7 @@ import { fit_list }
 import { join_jsobject } 
   from "./mod/structures/join_jsobject.js";
 import { map2 } from "./mod/structures/map2.js";
-import { repeat } from "./mod/structures/repeat.js";
+import { repeat_each as repeat_each } from "./mod/structures/repeat_reach.js";
 import { min_in_dict } 
   from "./mod/structures/min_in_dict.js";
 import { max_in_dict } 
@@ -146,6 +148,25 @@ export class Btjs {
   agreguen automaticamente. Tambien añadir
   numeracion automaticas a las figuras.
   */
+
+  //FILE TYPES -------------------------
+
+  static IMAGE = "image/*"
+    static JPEG = "image/jpeg"
+    static PNG = "image/png"
+    static GIG = "image/gif"
+    static PDF = "application/pdf"
+    static TXT = "text/plain"
+    static ZIP = "application/zip"
+    static GZIP = "application/gzip"
+    static AUDIO = "audio/*"
+    static MPEG = "audio/mpeg"
+    static WAV = "audio/wav"
+    static VIDEO = "video/*"
+    static MP4 = "video/mp4"
+    static WEBM = "video/webm"
+
+  //----------------------------------------
 
     body = null
 
@@ -284,9 +305,9 @@ export class Btjs {
         return create_array(SIZE, DATA);
     }
 
-    static repeat(NUMBER, SECONDS, CALLBACK) {
-      return repeat(NUMBER, SECONDS,
-          CALLBACK)
+
+    static repeat_each(SECONDS, CALLBACK) {
+      return repeat_each(SECONDS, CALLBACK)
     }
 
     static jsobject_to_map(jsobject) {
@@ -444,6 +465,10 @@ export class Btjs {
 
     static Table(title) {
       return new Table(title)
+    }
+
+    static InputImage(title) {
+      return new InputImage(title);
     }
 
     static IconChart(title) {

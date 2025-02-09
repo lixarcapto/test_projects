@@ -2,27 +2,14 @@
 
 import { Canvas } from "./Canvas.js";
 import { ChartLegends } from "./chart_legends/ChartLegends.js";
+import { StandardElement } 
+    from "./StandardElement.js";
+import { Btjs } from "../../Btjs.js";
 
-export class BarChart {
-
-    static color_arr = [
-        "red",
-        "orange",
-        "yellow",
-        "green",
-        "blue",
-        "violet",
-        "pink",
-        "brown",
-        "gray",
-        "black",
-        "white",
-        "silver"
-    ];
+export class BarChart extends StandardElement {
 
     constructor(title) {
-        this.node = document
-            .createElement("span")
+        super("span")
         this.node.setAttribute("style",
             `
             display: inline-block;
@@ -54,52 +41,65 @@ export class BarChart {
         this.title.innerHTML = text
     }
 
-    find_max_in_map(map) {
+    find_max_in_map(jsobject_arr) {
         // Obtener todos los valores del Map
-        const valores = Array.from(
-            map.values());
+        let valores = []
+        for(let i in jsobject_arr) {
+            valores.push(
+                jsobject_arr[i]["value"])
+        }
         // Encontrar el valor máximo 
         // utilizando Math.max()
         const valorMaximo 
             = Math.max(...valores);
+        console.log("valorMaximo", valorMaximo)
         return valorMaximo;
     }
 
-    convert_to_percent(size) {
-        let height_canvas = Number(
-            this.canvas.node.height)
+    percent_reescaling(value,
+            maximum_value,
+            total_value) {
         // calcula el porcentaje del 
         // valor de la barra usando como
         // total el valor mas alto
-        let percent = (size / 100) 
-            * this.max_value
+        let percent = (value / maximum_value) 
+            * 100
         // calcula la parte del canvas 
         // usando el porcentaje y el 
         // tamaño del canvas
-        console.log("percent", percent)
         let result = (percent / 100) 
-            * height_canvas
-        console.log(result)
+            * total_value
         return Math.round(result)
+    }
+
+    convert_to_percent(value) {
+        return this.percent_reescaling(
+            value,
+            this.max_value,
+            this.canvas.size_y
+        )
     }
 
     create_text(text) {
 
     }
 
-    draw_bar(key, size) {
+    draw_bar(jsobject) {
+        let key = jsobject["key"]
+        let size = jsobject["value"]
+        let color = jsobject["color"]
         let percent = this
             .convert_to_percent(size)
-        //asigna un color
-        let color = BarChart.color_arr[
-            this.bar_number]
         this.canvas.set_pen_color(color)
-        let location_y = this.canvas
-            .node.height - percent
+        let location_y = percent
         //dibuja la barra
-        this.canvas.draw_fill_rect(
-            [this.last_location_x, location_y],
-            [this.size_x, Number(percent)]
+        console.log("y", location_y)
+        console.log("x", this.last_location_x)
+        console.log("height", percent)
+        console.log("with", this.size_x)
+        this.canvas.draw_fill_rect_origen_2(
+            [this.last_location_x, 0],
+            [this.size_x, percent -5]
         )
         this.last_location_x 
             += this.size_x 
@@ -110,13 +110,20 @@ export class BarChart {
 
     /*
     Recibe un array con los valores de cada
-    barra en formato de dict.
+    barra en formato de js object.
+    {
+        "value": "",
+        "color": "",
+        "key": ""
+    }
     */
-    set_data_bars(map) {
-        this.max_value = this.find_max_in_map(
-            map) - 10
-        for (const [key, value] of map) {
-            this.draw_bar(key, value)
+    set_data_bars(jsobject_arr) {
+        this.max_value = this
+            .find_max_in_map(jsobject_arr)
+        for (let i in jsobject_arr) {
+            this.draw_bar(
+                jsobject_arr[i]
+            )
         }
     }
 

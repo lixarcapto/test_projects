@@ -5,9 +5,8 @@ import { StandardElement }
 
 export class StandartText extends StandardElement {
 
-    constructor() {
-        super();
-        this.node = null
+    constructor(tag) {
+        super(tag);
     }
 
     set_text(text) {

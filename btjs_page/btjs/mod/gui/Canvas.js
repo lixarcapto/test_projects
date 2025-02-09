@@ -5,6 +5,15 @@ import { StandardElement }
 
 export class Canvas extends StandardElement {
 
+    /*
+    
+    Origenes: 
+    0-sup izquierdo
+    1-sup derecho
+    2-inf izquierdo
+    3-inf derecho
+    */
+
     constructor(size_x, size_y) {
         super("canvas")
         this.node.style.display = "inline"
@@ -32,6 +41,13 @@ export class Canvas extends StandardElement {
         this.font_type = null
         this.pen_color = ""
         this.point_index = null
+    }
+
+    get_center_point() {
+        return [
+            this.size_x / 2,
+            this.size_y / 2
+        ]
     }
 
     set_background_color(color) {
@@ -227,12 +243,79 @@ export class Canvas extends StandardElement {
     /*
     Dibuja un rectangulo recto usando 
     un punto array y un intervalo 
-    de tamaños(x, y)
+    de tamaños(x, y); lo dibuja 
+    desde el origen 0
     */
-    draw_fill_rect(point_arr, size_range) {
+    draw_fill_rect_origen_0(point_arr, 
+            size_range) {
         this.context.fillRect(
             point_arr[0], 
             point_arr[1], 
+            size_range[0], 
+            size_range[1]
+        );
+    }
+    
+    /*
+    Dibuja un rectangulo desde el origen 1
+    que es punto superior izquierdo
+    */
+    draw_fill_rect_origen_1(point_arr, 
+            size_range) {
+        this.context.fillRect(
+            this.size_x - point_arr[0] - size_range[0], 
+            point_arr[1], 
+            size_range[0], 
+            size_range[1]
+        );
+    }
+
+    /*
+    Dibuja un rectangulo desde el origen 2
+    que es punto inferior izquierdo
+    */
+    draw_fill_rect_origen_2(point_arr, 
+            size_range) {
+        this.context.fillRect(
+            point_arr[0], 
+            this.size_y - point_arr[1] 
+                - size_range[1], 
+            size_range[0], 
+            size_range[1]
+        );
+    }
+
+    /*
+    Dibuja un rectangulo desde el origen 3
+    que es punto inferior derecho.
+    */
+    draw_fill_rect_origen_3(point_arr, 
+            size_range) {
+        this.context.fillRect(
+            this.size_x - point_arr[0] 
+            - size_range[0], 
+            this.size_y - point_arr[1] 
+            - size_range[1], 
+            size_range[0], 
+            size_range[1]
+        );
+    }
+
+    /*
+    Dibuja un rectangulo desde el centro
+    del canvas.
+    */
+    draw_fill_rect_centered(point_arr, 
+            size_range) {
+        let center_canvas = this
+            .get_center_point()
+        this.context.fillRect(
+            (center_canvas[0] 
+                - size_range[0] / 2) 
+                + point_arr[0], 
+            (center_canvas[1] 
+                - size_range[1] / 2) 
+                + point_arr[1], 
             size_range[0], 
             size_range[1]
         );
