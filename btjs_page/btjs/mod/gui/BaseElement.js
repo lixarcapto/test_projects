@@ -49,7 +49,20 @@ export class BaseElement {
         )
     }
 
-    set_background(color) {
+    /*
+    Recibe un color de fondo en formato
+    RGB array, RGB CSS, hex color, color 
+    clave CSS.
+    */
+    set_background_color(COLOR) {
+        let color = COLOR
+        if(Array.isArray(COLOR)) {
+            color = `rgb(
+                ${COLOR[0]},
+                ${COLOR[1]},
+                ${COLOR[2]}
+            )`
+        }
         this.node.style.backgroundColor 
             = color
     }

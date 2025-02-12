@@ -50,7 +50,7 @@ export class IconChart extends StandardElement {
             this.canvas_width, 
             this.canvas_height
         )
-        this.canvas.set_background("white")
+        this.canvas.set_background_color("white")
         this.set_text(title)
         this.input_text.append(this.canvas.node)
     }

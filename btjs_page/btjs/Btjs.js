@@ -81,6 +81,8 @@ import { Dice } from "./mod/gui/Dice.js";
 import { SwipperText } from "./mod/gui/SwipperText.js";
 import { InputImage } 
   from "./mod/gui/InputImage.js";
+import { true_percentage } 
+  from "./mod/structures/true_percentage.js";
 
 //-------------------------------------------
 
@@ -113,6 +115,14 @@ import { min_in_dict }
   from "./mod/structures/min_in_dict.js";
 import { max_in_dict } 
   from "./mod/structures/max_in_dict.js";
+import { find_closest_lower_array } 
+  from "./mod/structures/find_closest_lower.js";
+import { find_closest_highest_array } 
+  from "./mod/structures/find_closest_lower.js";
+import { has_all } 
+  from "./mod/structures/has_all.js";
+import { has_some } 
+  from "./mod/structures/has_some.js";
 
 //-----------------------------------------
 
@@ -130,6 +140,12 @@ import { has_substring }
 
 import { random_string } 
   from "./mod/random/random_string.js";
+import { random_bool } 
+  from "./mod/random/random_bool.js";
+import { random_probability } 
+  from "./mod/random/random_probability.js";
+import { random_rgb } 
+  from "./mod/random/random_rgb.js";
 
 //-------------------------------------------
 
@@ -279,6 +295,32 @@ export class Btjs {
         values_arr);
     }
 
+    /*
+    Función que itera sobre los elementos 
+    del array enviado buscando si todos los 
+    elementos del array retornan true a la 
+    función enviada.
+    */
+    static has_all(ARRAY, CHECK_FUNCTION) {
+      return has_all(ARRAY, CHECK_FUNCTION);
+    }
+
+    /*
+    Función que itera sobre los 
+    elementos del array enviado 
+    buscando si alguno de los 
+    elementos del array retornan 
+    true a la función enviada.
+    Se diferencia de has_all en que este
+    se detiene al encontrar el valor
+    indicado.
+    */
+    static has_some(ARRAY, 
+      CHECK_FUNCTION) {
+        return has_some(ARRAY, 
+          CHECK_FUNCTION)
+    }
+
 
     /*
     Función que crea un nuevo array
@@ -323,6 +365,10 @@ export class Btjs {
       return find_value(jsobject)
     }
 
+    static true_percentage(BOOL_ARRAY) {
+      return true_percentage(BOOL_ARRAY)
+    }
+
     static fit_list(ARRAY, SIZE, 
       DEFAULT_VALUE = null) {
         return fit_list(ARRAY, SIZE, 
@@ -333,6 +379,22 @@ export class Btjs {
           jsobject_2) {
         return join_jsobject(jsobject_1, 
           jsobject_2);
+    }
+
+    static join_map(map1, map2) {
+      return new Map([...map1, ...map2]);
+    }
+
+    static sort_from_smallest(ARRAY) {
+      let array = ARRAY
+      array.sort((a, b) => a - b);
+      return array
+    }
+
+    static sort_from_largest(ARRAY) {
+      let array = ARRAY
+      array.sort((a, b) => b - a);
+      return array
     }
 
     /*
@@ -352,6 +414,18 @@ export class Btjs {
       return max_in_dict(JSOBJECT)
     }
 
+    static find_closest_highest_array(
+      ARRAY, NUMBER) {
+        return find_closest_highest_array(
+          ARRAY, NUMBER)
+    }
+
+    static find_closest_lower_array(
+      ARRAY, NUMBER) {
+        return find_closest_lower_array(
+          ARRAY, NUMBER)
+    }
+
     //------------------------------------
     // STRING ------------------------------
 
@@ -365,12 +439,6 @@ export class Btjs {
           SUBSTRING)
     }
 
-    static random_string(SIZE, 
-      CHAR_STRING = null) {
-        return random_string(SIZE, 
-          CHAR_STRING)
-    }
-
     /*
     Elimina un String de un String enviado
     */
@@ -382,17 +450,10 @@ export class Btjs {
 
     //------------------------------------
 
-    //traspasando de BTPY.
-    // SEGUIR EN BTPY_LIST DESDE 
-    // MAX_DICT
+    // RANDOM ----------------------------
 
-    static ClickIconText(title, url) {
-        return new ClickIconText(title, url);
-    }
-
-    static ClickIconTextOverlay(title, url) {
-        return new ClickIconTextOverlay(title, 
-          url);
+    static random_bool() {
+      return random_bool()
     }
 
     static random_figure_point(size) {
@@ -427,20 +488,39 @@ export class Btjs {
     }
   
     static random_probability(probability) {
-      let result = Math.floor(Math.random() 
-        * (100 - 0 + 1)) + 0;
-      console.log("result: " + String(result))
-      if(result <= probability) {
-        return true
-      } else {
-        return false
-      }
+      return random_probability(probability)
     }
 
     static random_int(min, max) {
       return Math.floor(Math.random() 
         * (max - min + 1)) + min;
     }
+
+    static random_string(SIZE, 
+      CHAR_STRING = null) {
+        return random_string(SIZE, 
+          CHAR_STRING)
+    }
+
+    static random_rgb(rgb_limit 
+        = [256, 256, 256]) {
+      return random_rgb(rgb_limit)
+    }
+
+    //--------------------------------------
+
+    //traspasando de BTPY.
+    // SEGUIR EN MATH Y RANDOM DESDE
+
+    static ClickIconText(title, url) {
+        return new ClickIconText(title, url);
+    }
+
+    static ClickIconTextOverlay(title, url) {
+        return new ClickIconTextOverlay(title, 
+          url);
+    }
+
 
     /*
     Iterador para navegar atraves de 

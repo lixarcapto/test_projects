@@ -51,7 +51,7 @@ export class ClickBoxGeneric extends StandardElement {
                     "active"
                 )
             this.style_animation
-                .set_background("yellow")
+                .set_background_color("yellow")
             this.style_animation
                 .set_transform("translateY(2px)")
             this.style_animation
@@ -152,7 +152,7 @@ export class ClickBoxGeneric extends StandardElement {
         Agrega el background a todos los
         elementos internos.
         */
-        set_background(color) {
+        set_background_color(color) {
             this.node.style.backgroundColor 
                 = color
             this.grid.style.backgroundColor 

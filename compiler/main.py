@@ -1,33 +1,11 @@
 
 
 from btpy_lib.btpy.src.btpy.Btpy import Btpy
+from get_js_text_list import*
+from create_html_file import*
+from remove_import_from import*
 import os
 
-def leer_archivos_js(directorio):
-    """
-    Lee todos los archivos .js en un directorio y sus subdirectorios, y devuelve una lista con el contenido de cada archivo.
-
-    Args:
-        directorio (str): Ruta al directorio inicial.
-
-    Returns:
-        list: Lista de cadenas, donde cada cadena es el contenido de un archivo .js.
-    """
-
-    archivos_js = []
-
-    def explorar_directorio(directorio):
-        for archivo in os.listdir(directorio):
-            ruta_completa = os.path.join(directorio, archivo)
-            if os.path.isfile(ruta_completa) and archivo.endswith('.js'):
-                with open(ruta_completa, 'r', encoding='utf-8') as f:
-                    contenido = f.read()
-                    archivos_js.append(contenido)
-            elif os.path.isdir(ruta_completa):
-                explorar_directorio(ruta_completa)
-
-    explorar_directorio(directorio)
-    return archivos_js
 
 """
 Funcion que elimina las lineas de 
@@ -39,46 +17,18 @@ def process_array(array):
     for i in range(len(array)):
         while("import" in array[i]
         or "export" in array[i]):
-            array[i] = remove_text(array[i])
+            array[i] = remove_import_from(array[i])
     return array
 
-def remove_text(text):
-    r = Btpy.remove_between(text,
-            "import", "}")
-    r = Btpy.remove_between(r,
-            "from \"", "\";")
-    r = r\
-        .replace("export ", "")
-    return r
+def remove_comments_array(array):
+    for i in range(len(array)):
+        array[i] = remove_comments(array[i])
+    return array
 
-def crear_archivo_html( 
-        text):
-    """
-    Crea un archivo HTML con el contenido especificado.
-
-    Args:
-    nombre_archivo: Nombre del archivo HTML a crear (incluyendo la extensión .html).
-    contenido_html: Cadena de texto con el código HTML a escribir en el archivo.
-    """
-    nombre_archivo = "index.html"
-    html_1 = """
-    <!DOCTYPE html>
-    <html>
-    <head>
-    <title>compiled javascript</title>
-    </head>
-    <body>
-    <script>
-    """
-    html_2 = """
-        </script>
-        </body>
-        </html>
-    """
-    final_html = html_1 + text + html_2
-    with open(nombre_archivo, 'w') as archivo:
-        archivo.write(final_html)
-
+"""
+Inicia una consola que pide la URL
+de la carpeta javascript.
+"""
 def start_console():
     user_input = ""
     while(True):
@@ -86,12 +36,37 @@ def start_console():
         if(user_input == ""):
             break
         compile_file(user_input)
-        Btpy.clean_console()
+        #Btpy.clean_console()
 
+"""
+Compila una carpeta de codigo full .js
+en un solo archivo HTML.
+TODO: Ordanizar y modularizar esta funcion.
+"""
 def compile_file(path):
-    array = leer_archivos_js(path)
-    array = process_array(array)
+    array = get_js_text_list(path)
+    array = remove_comments_array(array)
+    dict = create_js_file_data(array)
+    print("dict", dict)
+    three = create_three(
+        dict["class_list"])
+    order_list = get_order_list(
+        three)
+    has_class = False
+    print("order_list", order_list)
+    if(len(order_list) > 0):
+        has_class = True
     text = ""
+    if(has_class):
+        str_js_class_list = write_js_str_as_list(
+        dict["class_list"], order_list)
+        print("three", three)
+        str_js_class_list = process_array(
+            str_js_class_list)
+        for e in str_js_class_list:
+            text += e
+    array = process_array(
+        dict["no_class_list"])
     for e in array:
         text += e
     crear_archivo_html(text)

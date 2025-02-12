@@ -100,7 +100,7 @@ export class InnerStyle extends BaseElement {
         this.insert_css()
     }
 
-    set_background(background) {
+    set_background_color(background) {
         this.background = background
         this.insert_css()
     }

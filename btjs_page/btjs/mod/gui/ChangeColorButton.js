@@ -16,7 +16,7 @@ export class ChangeColorButton
         )
         this.second_background = "#eeeeee"
         this.first_background = "#656565"
-        this.set_background(
+        this.set_background_color(
             this.first_background)
         this.is_activated = false
         this.input_text.innerHTML = text
@@ -49,13 +49,13 @@ export class ChangeColorButton
     }
 
     __event_true() {
-        this.set_background(
+        this.set_background_color(
             this.second_background);
         this.is_activated = true
     }
 
     __event_false() {
-        this.set_background(
+        this.set_background_color(
             this.first_background);
         this.is_activated = false
     }

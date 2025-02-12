@@ -19,7 +19,7 @@ export class ClickIconBox extends ClickBoxGeneric {
             `
         )
         this.style.set_padding("0")
-        this.style.set_background("none")
+        this.style.set_background_color("none")
         this.style.set_border("none")
         this.style.set_width("fit-content")
         this.style.set_height("fit-content")
@@ -27,7 +27,7 @@ export class ClickIconBox extends ClickBoxGeneric {
         this.style.set_cursor("pointer")
     }
 
-    set_background(color) {
+    set_background_color(color) {
         this.node.style.backgroundColor 
             = color
         this.grid.style.backgroundColor 
