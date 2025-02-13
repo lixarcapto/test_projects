@@ -248,3 +248,8 @@ class BtpyUtilitys(BtpyString):
     
     def DateEspecial():
         return DateEspecial()
+    
+    def Three():
+        return Three()
+    
+

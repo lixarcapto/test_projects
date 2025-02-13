@@ -16,4 +16,4 @@ from .mod.fit_list.fit_list import*
 from .mod.count.count import*
 from .mod.find_value.find_value import*
 from .mod.find_closest_lower.find_closest_lower import*
-    
+from .mod.flatten.flatten import*   

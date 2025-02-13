@@ -24,7 +24,8 @@ def remove_between(cadena, inicio, fin):
     # retornar la cadena original
     if indice_fin == -1:
         return cadena
-    # Construir la nueva cadena eliminando la sección
+    # Construir la nueva cadena eliminando 
+    # la sección
     nueva_cadena = cadena[:indice_inicio]\
         + cadena[indice_fin + len(fin):]
     return nueva_cadena

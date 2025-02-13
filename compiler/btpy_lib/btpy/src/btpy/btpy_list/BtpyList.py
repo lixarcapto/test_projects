@@ -136,3 +136,7 @@ class BtpyList(BtpyImages):
         """
         return find_closest_lower(DICT, 
                 NUMBER)
+    
+    def flatten(matrix:list[list])\
+            ->list[any]:
+        return flatten(matrix)

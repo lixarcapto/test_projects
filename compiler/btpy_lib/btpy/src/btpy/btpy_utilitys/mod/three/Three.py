@@ -1,16 +1,21 @@
 
 
+from ....btpy_list.mod.flatten.flatten import*
 
 class Three:
 
     def __init__(self):
         self.__dict = {}
 
-    def print(self):
-        print(self.__dict)
+    def write(self):
+        return self.__dict
+    
+    def get_dict(self)->dict[dict[str]]:
+        return self.__dict
 
-    def get_route(self, node_key):
-        route = self.deep_seek(
+    def __get_route(self, node_key:str)\
+            ->list[str]:
+        route = self.__deep_seek(
             self.__dict, node_key, "", [])
         new_route = []
         for i in range(len(route)):
@@ -19,64 +24,109 @@ class Three:
         #new_route = new_route[::-1]
         return new_route
 
-    def get_nodes(self, node_key):
-        route_arr = self.get_route(node_key)
+    def get_nodes(self, node_key:str)\
+            ->dict[dict]:
+        route_arr = self.__get_route(node_key)
         print("route", route_arr)
-        return self.get_recursive(self.__dict, 
+        return self.__get_recursive(self.__dict, 
             route_arr, node_key)
+    
+    def nodes_list_since_low(self)\
+            ->list[str]:
+        array = self.__get_order_list_recursive(
+            self.__dict
+        )
+        #aplana la lista
+        lista_plana = flatten(array)
+        lista_plana = list(set(lista_plana))
+        return lista_plana
+    
+    def __get_order_list_recursive(self, 
+            diccionario, 
+            camino=[]):
+        """
+        Realiza una búsqueda en profundidad 
+        en un diccionario anidado y devuelve 
+        una lista con las claves de los nodos, 
+        desde los más profundos hasta los 
+        más elevados.
+        """
+        resultados = []
+        for clave, valor in diccionario.items():
+            nuevo_camino = camino + [clave]
+            if isinstance(valor, dict) and valor:  # Verificamos si es un diccionario no vacío
+                resultados.extend(
+                    self.__get_order_list_recursive(
+                        valor, 
+                        nuevo_camino
+                    )
+            )
+            else:
+                resultados.append(nuevo_camino)
+        return resultados
 
-    def set_in_route_arr(self, route_arr, 
-            node):
-        self.set_recursive(self.__dict, 
+    def __set_in_route_arr(self, 
+            route_arr:list[str], node:str):
+        self.__set_recursive(self.__dict, 
             route_arr, node)
 
-    def set_recursive(self, dict, route_arr,
-            node, index = 0):
+    def __set_recursive(self, dict_send:dict, 
+                route_arr:list[str], 
+                node_key:str, 
+                index:int = 0)\
+                -> None:
             k = route_arr[index]
-            if(k in dict
+            if(k in dict_send
             and index == len(route_arr) -1):
-                dict[k][node] = {}
+                dict_send[k][node_key] = {}
             else:
                 index += 1
-                self.set_recursive(
-                    dict[k], 
+                self.__set_recursive(
+                    dict_send[k], 
                     route_arr,
-                    node,
+                    node_key,
                     index
                 )
 
-    def get_recursive(self, dict, route_arr,
-                node, index = 0):
+    def __get_recursive(self, 
+                dict_send:dict, 
+                route_arr:list[str],
+                node_key:str, 
+                index:int = 0)\
+                ->list[str]:
             k = route_arr[index]
-            if(k in dict
+            if(k in dict_send
             and index == len(route_arr) -1):
-                return dict[k]
+                return dict_send[k]
             else:
                 index += 1
-                return self.get_recursive(
-                    dict[k], 
+                return self.__get_recursive(
+                    dict_send[k], 
                     route_arr,
-                    node,
+                    node_key,
                     index
                 )
 
     def set_in_node(self, 
-            node, node_store = ""):
+            node_key:str, 
+            node_store:str = "")->None:
         if(node_store == ""):
-            self.__dict[node] = {}
+            self.__dict[node_key] = {}
         elif(node_store in self.__dict):
             self.__dict[node_store]\
-                [node] = {}
+                [node_key] = {}
         else:
-            route = self.get_route(
+            route = self.__get_route(
                 node_store)
             print("route ", route)
-            self.set_in_route_arr(route, 
-                node)
+            self.__set_in_route_arr(route, 
+                node_key)
             
-    def deep_seek(self, dict_self, 
-                  node_seek, actual_node, 
-                  route_arr):
+    def __deep_seek(self, 
+            dict_self:dict, 
+            node_seek:str, 
+            actual_node:str, 
+            route_arr:list[str])->None:
         """
         Encuentra la ruta hacia un nodo específico en un diccionario anidado.
 
@@ -99,12 +149,13 @@ class Three:
             # Corrección: Verificar 
             # si 'dict' es un diccionario
             for k, v in dict_self.items():
-                route = self.deep_seek(v, node_seek, k, new_route_arr)
+                route = self.__deep_seek(v, node_seek, k, new_route_arr)
                 if route:  # Si se encontró la ruta al nodo buscado
                     return route  
         return [] 
 
-    def deep_seek_old(self, dict, 
+    #not used
+    def __deep_seek_old(self, dict, 
             node_seek, actual_node, 
             route_arr):
         new_route_arr = route_arr
@@ -112,7 +163,7 @@ class Three:
             new_route_arr.append(actual_node)
         if(dict != {}):
             for k in dict:
-                route_r = self.deep_seek(
+                route_r = self.__deep_seek(
                     dict[k], 
                     node_seek, 
                     k, 

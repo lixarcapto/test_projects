@@ -161,3 +161,7 @@ class BtpyString(BtpyRed):
     def remove_between(cadena, inicio, fin):
         return remove_between(
             cadena, inicio, fin)
+    
+    def has_between(base:str, start:str,
+            end:str) -> bool:
+        return has_between(base, start, end)

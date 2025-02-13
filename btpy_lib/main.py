@@ -8,11 +8,8 @@ if __name__ == "__main__":
     r = None
     #---------------------------------------
 
-
-    r = Btpy.remove_between(
-        "hola mundo", "o", "n")
-
-
+    r = Btpy.has_between("el negro jose", "el",
+            "jox")
 
     #---------------------------------------
     print(r)
