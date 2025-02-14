@@ -1,8 +1,8 @@
 
 
-from ScriptDataJs import ScriptDataJs
+from .ScriptDataJs import ScriptDataJs
 from btpy_lib.btpy.src.btpy.Btpy import Btpy
-from has_between import*
+from .has_between import*
 
 """
 

@@ -31,15 +31,19 @@ class Three:
         return self.__get_recursive(self.__dict, 
             route_arr, node_key)
     
-    def nodes_list_since_low(self)\
+    def create_keys_list(self)\
             ->list[str]:
-        array = self.__get_order_list_recursive(
-            self.__dict
-        )
-        #aplana la lista
-        lista_plana = flatten(array)
-        lista_plana = list(set(lista_plana))
-        return lista_plana
+        array = self.__recursive_seersh(
+            self.__dict)
+        return array
+
+    def __recursive_seersh(self, diccionario, 
+            lista_claves=[]):
+        for clave, valor in diccionario.items():
+            lista_claves.append(clave)
+            if isinstance(valor, dict):
+                self.__recursive_seersh(valor, lista_claves)
+        return lista_claves
     
     def __get_order_list_recursive(self, 
             diccionario, 

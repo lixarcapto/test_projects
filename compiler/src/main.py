@@ -1,8 +1,9 @@
 
 
 from btpy_lib.btpy.src.btpy.Btpy import Btpy
-from compile_file import*
+from model.compile_file import*
 import os
+from view.View import View
 
 """
 Inicia una consola que pide la URL
@@ -18,6 +19,7 @@ def start_console():
         #Btpy.clean_console()
  
 if __name__ == "__main__":
-    start_console()
+    #start_console()
+    view = View()
 
 

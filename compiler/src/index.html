@@ -1,0 +1,140 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <title>compiled javascript</title>
+    </head>
+    <body>
+    <script>
+    class Grandpa {
+
+
+}
+ class Dad extends Grandpa {
+
+    constructor() {
+        super()
+    }
+
+}
+ class Daughter extends Dad {
+
+    constructor() {
+        super()
+    }
+
+}
+ class Grandson extends Daughter {
+
+    constructor() {
+        super();
+    }
+
+}
+ function in_range(number, range_arr) {
+    if((number >= range_arr[0])
+    && (number <= range_arr[1])) {
+        return true;
+    }   
+    return false;
+}
+ function is_byte256(data) {
+    if( ! Number.isInteger(data)) {
+        return false;
+    }
+    if(data >= 256) { return false; }
+    if(data < 0) { return false; }
+    return true;
+}
+
+function is_byte127(data) {
+    if( ! Number.isInteger(data)) {
+        return false;
+    }
+    if(data >= 127) { return false; }
+    if(data <= -127) { return false; }
+    return true;
+}
+ function is_null_return(data) {
+    if(data == -1) { return true }
+    if(data == null) { return true }
+    if(data == {}) { return true }
+    if(data == []) { return true }
+    if(data == "") { return true }
+    if(data == undefined) { return true }
+    return false;
+}
+ function is_object_js(data) {
+    let r = Object.prototype.toString
+      .call(data) === '[object Object]';
+    return r == true;
+}
+ function is_point_2d(data) {
+    return __is_point(data, 2)
+}
+
+
+
+function is_point_3d(data) {
+    return __is_point(data, 3)
+}
+
+
+function __is_point(data, size) {
+   
+   if(! (Array.isArray(data))) {
+        return false;
+   }
+   
+   if(! (data.length == size)) {
+        return false;
+   }
+   
+   for(let i in data) {
+        if( ! (Number.isInteger(data[i]))
+        && ! (data % 1 !== 0)) {
+            return false;
+        }
+   }  
+   return true;
+}
+ function is_RGB(data) {
+    if( ! Array.isArray(data)) {return false;}
+    if( ! (data.length == 3)) {return false;}
+    for(let i in data) {
+        if( ! is_byte256(data[i])) {
+            return false;
+        }
+    }
+    return true
+}
+
+function is_RGBA(data) {
+    if( ! Array.isArray(data)) {return false;}
+    if( ! (data.length == 4)) {return false;}
+    for(let i in data) {
+        if( ! is_byte256(data[i])) {
+            return false;
+        }
+    }
+    return true
+}
+ function main() {
+    console.log("init")
+    write_print(30)
+}
+
+main()
+ function write_print(quantity) {
+    for(let i=0;i<quantity;i++) {
+        document.body.innerHTML 
+            += "contar " + i
+        
+    }
+
+}
+ 
+        </script>
+        </body>
+        </html>
+    
