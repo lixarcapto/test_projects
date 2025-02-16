@@ -1,0 +1,29 @@
+
+
+import {BtjsCheckers} 
+    from "../checkers/BtjsCheckers.js";
+import { array_to_jsobject } 
+    from "./array_to_jsobject.js";
+import { base64_to_image } 
+    from "./base64_to_image.js";
+
+export class BtjsConverters extends BtjsCheckers {
+
+    static base64_to_image(base64) {
+        return base64_to_image(base64)
+    }
+
+    /*
+    Funcion que convierte dos arrays en 
+    un objeto javascript usando como claves
+    el primer array y como valores el 
+    segundo.
+    */
+    //return jsobject
+    static array_to_jsobject(key_arr, 
+            values_arr) {
+        return array_to_jsobject(key_arr, 
+            values_arr)
+    }
+
+}

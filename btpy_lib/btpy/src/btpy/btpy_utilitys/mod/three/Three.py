@@ -34,16 +34,17 @@ class Three:
     def create_keys_list(self)\
             ->list[str]:
         array = self.__recursive_seersh(
-            self.__dict)
+            self.__dict, [])
         return array
 
     def __recursive_seersh(self, diccionario, 
-            lista_claves=[]):
-        for clave, valor in diccionario.items():
-            lista_claves.append(clave)
-            if isinstance(valor, dict):
-                self.__recursive_seersh(valor, lista_claves)
-        return lista_claves
+            key_list):
+        for k, v in diccionario.items():
+            key_list.append(k)
+            if isinstance(v, dict):
+                self.__recursive_seersh(
+                    v, key_list)
+        return key_list
     
     def __get_order_list_recursive(self, 
             diccionario, 

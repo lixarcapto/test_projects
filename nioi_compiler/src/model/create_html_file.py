@@ -26,5 +26,6 @@ def crear_archivo_html(
         </html>
     """
     final_html = html_1 + text + html_2
+    print("esto recibe el open", path)
     with open(path, 'w') as archivo:
         archivo.write(final_html)

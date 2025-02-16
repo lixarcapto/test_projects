@@ -1,8 +1,8 @@
 
 
 import { Btjs } from "../../Btjs.js";
-import { active_full_screen } from "../environment/active_full_screen.js";
-import { quit_full_screen } from "../environment/quit_full_screen.js";
+import { active_full_screen } from "./active_full_screen.js";
+import { quit_full_screen } from "./quit_full_screen.js";
 import { StandardElement } from "./StandardElement.js"
 
 export class TitleBar extends StandardElement {

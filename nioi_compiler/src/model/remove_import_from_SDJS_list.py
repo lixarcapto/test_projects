@@ -15,6 +15,7 @@ def remove_import_from_SDJS_list(
         SDJS_list):
     string_js = ""
     for i in range(len(SDJS_list)):
+        print("CLASS_LIST", SDJS_list[i].write())
         string_js = SDJS_list[i].string_js
         string_js = __remove_import_from(
             string_js)
@@ -27,7 +28,6 @@ def __remove_import_from(text):
     while("import" in r):
         r = Btpy.remove_between(r,
             "import", "}")
-        print("REMOVE IMPORT", r)
     while("from" in r):
         if(Btpy.has_between(r,
             "from \"", "\";")):
@@ -41,10 +41,8 @@ def __remove_import_from(text):
             "from \"", "\" ")):
             r = Btpy.remove_between(r,
                 "from \"", "\" ")
-        print("REMOVE FROM", r)
     while("export" in r):
         r = r.replace("export ", "")
-        print("REMOVE EXPORT", r)
     return r
 
 def __strip(text):

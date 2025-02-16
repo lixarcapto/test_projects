@@ -12,17 +12,13 @@ class View:
         # Crear la ventana principal
         self.model = Model()
         self.window = tk.Tk()
-        self.window.title(
-            "Nioi Compiler prototype")
         self.maximize()
         # Crear un label con un título
         self.title_label = tk.Label(
-            self.window, 
-            text="write a path to a folder with .js files to compile them into an html.")
+            self.window)
         self.title_label.pack()
         self.name_label = tk.Label(
-            self.window, 
-            text="Name:")
+            self.window)
         self.name_label.pack()
         self.input_name = tk.Entry(
            self.window)
@@ -37,8 +33,7 @@ class View:
            self.window)
         self.input_text.pack()
         self.button_pack_html = tk.Button(
-            self.window, 
-            text="pack html"
+            self.window
         )
         self.button_pack_html.pack()
         # Crear un label para mostrar mensajes
@@ -55,12 +50,7 @@ class View:
         self.button_search.config(
             command=fn)
         def fn():
-            path = self.input_text.get()
-            name = self.input_name.get()
-            self.model.request(
-                {"command":"compile_html",
-                 "path": path,
-                 "name": name})
+            self.__compile_html()
         self.button_pack_html.config(
             command=fn)
         # Crear un label para la imagen
@@ -68,9 +58,71 @@ class View:
             self.window)
         self.buffer_image = None
         self.label_image.pack()
-        self.load_image(
-            "../res/image/nordic_woman_cartoon_1.png")
+        self.__first_update()
         self.window.mainloop()
+
+
+    def __first_update(self):
+        response = self.model.request(
+            {"function": "update"}
+        )
+        self.paint_render(response["return"])
+
+    def paint_render(self, main_screen_render):
+        render = main_screen_render
+        self.window.title(render[
+            "title_window"])
+        self.title_label.config(
+            text = render["label_title"])
+        self.name_label.config(
+            text = render["name_label"])
+        self.set_input_name(
+            render["default_name"])
+        self.set_input_path(
+            render["default_path"])
+        self.button_search.config(
+            text = render["button_search"])
+        self.button_pack_html.config(
+            text = render["button_pack"])
+        self.message_label.config(
+            text = render["message_label"])
+        self.load_image(render["label_image"])
+        
+
+    def __compile_html(self):
+        self.model.request({
+            "function": "set_name",
+            "args": {
+                "name": self.input_name.get()
+            }
+        })
+        self.model.request({
+            "function": "set_folder_path",
+            "args": {
+                "folder_path": self
+                    .input_text.get()
+            }
+        })
+        self.model.request({
+            "function":"compile_html"
+        })
+        self.__update()
+
+    def __update(self):
+        response = self.model.request(
+            {"function": "update"}
+        )
+        self.paint_render(response["return"])
+
+    def set_input_name(self, text):
+        self.input_name.delete(0, tk.END)
+        self.input_name.insert(
+                 0, text)
+        
+    def set_input_path(self, text):
+        self.input_text.delete(0, tk.END)
+        self.input_text.insert(
+                 0, text)
 
     def load_image(self, path):
         self.buffer_image = PhotoImage(
