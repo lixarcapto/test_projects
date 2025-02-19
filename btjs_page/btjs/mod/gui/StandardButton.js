@@ -8,6 +8,12 @@ export class StandardButton
 
     constructor() {
         super("button");
+        this.node.setAttribute("style",
+            `
+            padding: 3px;
+            font-size: 16px;
+            `
+        )
     }
 
     add_click_listener(FUNCTION) {

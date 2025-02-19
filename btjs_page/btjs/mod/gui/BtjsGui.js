@@ -57,6 +57,8 @@ import { InputImage }
   from "./InputImage.js";
 import { dowload_with_blop } 
   from "./dowload_with_blop.js";
+import { LabelLabel } 
+  from "./LabelLabel.js";
 
 export class BtjsGui {
 
@@ -288,6 +290,10 @@ export class BtjsGui {
     static CircleButton(title) {
       return new CheckButton(title, 
         "radio")
+    }
+
+    static LabelLabel(title, text = "") {
+      return new LabelLabel(title, text)
     }
 
     static CheckButton(title) {

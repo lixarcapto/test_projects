@@ -78,12 +78,12 @@ export class BaseElement {
     }
 
     set_font_size(size) {
-        this.input_text.style.fontSize = 
+        this.node.style.fontSize = 
             size
     }
 
     set_font_family(font) {
-        this.input_text.style.fontFamily = font
+        this.node.style.fontFamily = font
         this.update_styles()
     }
 
@@ -93,21 +93,21 @@ export class BaseElement {
     }
 
     set_font_style(style) {
-        this.input_text.fontStyle = style
+        this.node.fontStyle = style
         this.update_styles()
     }
 
     set_line_height(number) {
-        this.input_text.lineHeight = number
+        this.node.lineHeight = number
     }
 
     set_text_decoration(text_decoration) {
-        this.input_text.style.textDecoration 
+        this.node.style.textDecoration 
             = text_decoration
     }
 
     set_text_align(text_align) {
-        this.input_text.style.textAlign = text_align
+        this.node.style.textAlign = text_align
     }
 
     set_margin(number) {
@@ -115,12 +115,12 @@ export class BaseElement {
     }
 
     set_size(size_x, size_y) {
-        this.input_text.style.width = size_x
-        this.input_text.style.height = size_y
+        this.node.style.width = size_x
+        this.node.style.height = size_y
     }
 
     get_id() {
-        return this.input_text.getAttribute("id")
+        return this.node.getAttribute("id")
     }
 
     destroy() {

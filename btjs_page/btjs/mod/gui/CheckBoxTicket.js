@@ -8,11 +8,11 @@ export class CheckBoxTicket extends StandardElement {
 
     constructor(title, text_arr) {
         super();
-        this.input_text = document
+        this.node = document
             .createElement("span")
-        this.input_text.setAttribute("tag", 
+        this.node.setAttribute("tag", 
             "checkbox")
-        this.input_text.setAttribute("style",
+        this.node.setAttribute("style",
             `
             margin: 3px;
             padding: 5px;
@@ -26,20 +26,20 @@ export class CheckBoxTicket extends StandardElement {
         this.title = document
             .createElement("label")
         this.set_title(title)
-        this.input_text.append(this.title)
+        this.node.append(this.title)
         this.check_button_arr = []
-        this.create_list(text_arr)
+        this.add_checkbox_list(text_arr)
     }
 
     set_columns(number) {
-        this.input_text.style
+        this.node.style
             .gridTemplateColumns = `
             repeat(${number}, minmax(100px, 1fr))
             `
     }
 
     set_title(text) {
-        this.input_text.setAttribute("id", text)
+        this.node.setAttribute("id", text)
         this.title.innerHTML = text + ":&nbsp&nbsp"
     }
 
@@ -52,8 +52,8 @@ export class CheckBoxTicket extends StandardElement {
     }
 
     destroy() {
-        this.input_text.remove()
-        this.input_text = null
+        this.node.remove()
+        this.node = null
         this.title = null
         this.check_button_arr = []
     }
@@ -77,14 +77,16 @@ export class CheckBoxTicket extends StandardElement {
         return text_arr
     }
 
-    create_list(text_arr) {
+    add_checkbox_list(text_arr) {
         this.check_button_arr = []
         let checkbox = null
         for(let i in text_arr) {
             checkbox = new CheckButton(
                 text_arr[i], "checkbox")
-            this.check_button_arr.push(checkbox)
-            this.input_text.append(checkbox.input_text)
+            this.check_button_arr.push(
+                checkbox)
+            this.node.append(
+                checkbox.node)
         }
     }
 

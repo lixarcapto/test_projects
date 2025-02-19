@@ -106,6 +106,7 @@ class View:
         self.model.request({
             "function":"compile_html"
         })
+        self.model = Model()
         self.__update()
 
     def __update(self):
