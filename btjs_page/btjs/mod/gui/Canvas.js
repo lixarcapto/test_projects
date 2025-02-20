@@ -183,6 +183,19 @@ export class Canvas extends StandardElement {
         }
     }
 
+    draw_image_order_list(image_order_list) {
+        let order = {}
+        console.log(image_order_list)
+        for(let i in image_order_list) {
+            order = image_order_list[i]
+            this.draw_image(
+                order["image"],
+                order["x"],
+                order["y"]
+            )
+        }
+    }
+
     draw_poligon_line(polygon) {
         let line = [[0, 0], [0, 0]]
         for(let i in polygon) {

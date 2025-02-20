@@ -1,7 +1,7 @@
 
 
-import { BtjsGui } 
-  from "../gui/BtjsGui.js";
+import { BtjsMath } 
+  from "../math/BtjsMath.js";
 // RANDOM ----------------------------------
 
 import { random_string } 
@@ -23,7 +23,7 @@ import {random_figure_point}
 import { random_range } 
   from "./random_range.js";
 
-export class BtjsRandom extends BtjsGui {
+export class BtjsRandom extends BtjsMath {
 
     // RANDOM ----------------------------
     
