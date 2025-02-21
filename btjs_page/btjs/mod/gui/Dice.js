@@ -90,7 +90,7 @@ export class Dice extends StandardElement {
     }
 
     update() {
-        this.canvas.update()
+        this.canvas.clear()
         this.canvas.draw_image(
             this.image_array[this.index], 
             0, 0

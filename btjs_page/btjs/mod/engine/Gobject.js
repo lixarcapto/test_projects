@@ -7,12 +7,16 @@ import { sum_point_in_range } from "../math/mod/sum_point_in_range.js";
 
 export class Gobject {
 
+    static last_code = 0
     static scenario_height = 0
     static scenario_width = 0
     static hit_box_nestdict = {}
 
-    constructor(id) {
+    constructor(id = "") {
         // IDENTITY ------------------------
+        if(id == "") {
+            id = this.create_unique_id()
+        }
         this.id = id
         this.hitbox_location = [0, 0]
         this.hitbox_width = 50
@@ -38,6 +42,12 @@ export class Gobject {
         this.life_seconds_counter = 0
         this.life_seconds_limit = 5
         // ---------------------------------
+    }
+
+    create_unique_id() {
+        let code = Gobject.last_code
+        Gobject.last_code += 1
+        return String(code)
     }
 
     /*

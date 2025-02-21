@@ -65,7 +65,7 @@ export class Sign extends StandardElement {
     init_interval() {
         this.__interval = setInterval(
             ()=>{
-                this.input_text.update()
+                this.input_text.clear()
                 this.input_text.draw_text(
                     this.__text, 
                     this.__point[0], 

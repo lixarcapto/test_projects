@@ -16,8 +16,9 @@
 export function repeat_each(SECONDS, 
         CALLBACK) {
     let was_finished = false
-    let n = 1
+    let n = 0
     CALLBACK(n);
+    n += 1
     let inverval = setInterval(()=>{
         was_finished = CALLBACK(n)
         if(was_finished) {

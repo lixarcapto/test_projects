@@ -137,7 +137,7 @@ export class IconChart extends StandardElement {
     set_dict_arr(dict_arr, icon_width,
         icon_height
             ) {
-        this.canvas.update()
+        this.canvas.clear()
         /*
         {
             "quantity": 0,
