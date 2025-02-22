@@ -24,14 +24,16 @@ export class Canvas extends StandardElement {
 
     constructor(size_x, size_y) {
         super("span")
-        this.__canvas_main = document
-            .createElement('canvas');
-        this.__canvas_main.setAttribute(
+        this.node.setAttribute(
             "style", 
             `
-            border; 2px solid gray;
+            display: flex;
+            border: 2px solid gray;
+            margin: 2px;
             `
         )
+        this.__canvas_main = document
+            .createElement('canvas');
         //canvas main
         this.__canvas_main.style
             .display = "inline"
@@ -41,7 +43,6 @@ export class Canvas extends StandardElement {
             "style", 
             `
             position: absolute;
-            background-color: black;
             `
         )
         this.node.append(
@@ -55,7 +56,6 @@ export class Canvas extends StandardElement {
             "style", 
             `
             position: absolute;
-            background-color: black;
             `
         )
         this.__buffer_canvas.width = size_x;
@@ -65,12 +65,12 @@ export class Canvas extends StandardElement {
         this.node.append(
             this.__buffer_canvas)
         //--------------------------------
-        this.size_x = size_x
-        this.size_y = size_y
+        this.size_x = 0
+        this.size_y = 0
         this.cursor_point = [0, 0]
         this.image_cache_dict = {}
-        this.pen_color = "red"
-        this.background_color = "black"
+        this.pen_color = "black"
+        this.background_color = "white"
         this.pen_width = 1
         this.reference_line_width = 1
         this.reference_line_color = "red"
@@ -245,7 +245,8 @@ export class Canvas extends StandardElement {
         )
     }
 
-    draw_text(text, location_x, location_y) {      this.__canvas_context.beginPath();
+    draw_text(point, text) { 
+        this.__buffer_context.beginPath();
         this.__buffer_context.fillStyle 
             = this.pen_color; 
         // Color del relleno
@@ -253,8 +254,8 @@ export class Canvas extends StandardElement {
         `
         ${this.font_size}px ${this.font_type}
         `
-        this.__canvas_context.fillText(
-            text, location_x, location_y);
+        this.__buffer_context.fillText(
+            text, point[0], point[1]);
     }
 
     set_pen_width(width) {
@@ -263,7 +264,6 @@ export class Canvas extends StandardElement {
 
     get_pen_width() {
         return this.pen_width
-        this.end_paint
     }
 
     clear() {
@@ -293,7 +293,6 @@ export class Canvas extends StandardElement {
 
     draw_image_order_list(image_order_list) {
         let order = {}
-        console.log(image_order_list)
         for(let i in image_order_list) {
             order = image_order_list[i]
             this.draw_image(
@@ -536,10 +535,14 @@ export class Canvas extends StandardElement {
             = this.size_x + "px"
         this.node.style.height 
             = this.size_y + "px"
-        this.__buffer_canvas.width = size_x
-        this.__buffer_canvas.height = size_y
-        this.__canvas_main.width = size_x
-        this.__canvas_main.height = size_y
+        this.__buffer_canvas.width 
+            = size_x
+        this.__buffer_canvas.height 
+            = size_y
+        this.__canvas_main.width 
+            = size_x
+        this.__canvas_main.height 
+            = size_y
     }
 
 }

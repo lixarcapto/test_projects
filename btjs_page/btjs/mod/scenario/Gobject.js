@@ -21,7 +21,7 @@ export class Gobject {
         this.hitbox_location = [0, 0]
         this.hitbox_width = 50
         this.hitbox_height = 50
-        this.image_name = ""
+        this.__image_name = ""
         // --------------------------------
         // BUFFERS ------------------------
         this.event_buffer_array = []
@@ -29,20 +29,45 @@ export class Gobject {
         this.colliders_key_array = []
         //---------------------------------
         // FLAGS ---------------------------
-        this.has_gravity = false
-        this.is_alive = false
+        this.__has_gravity = false
+        this.__is_alive = false
         this.is_it_limited = true
         this.is_dead = false
         this.is_collidable = true
         this.is_colliding = false
         // ---------------------------------
         // FORCES STATS --------------------
-        this.pixel_weight = 5
+        this.__pixel_weight = 5
         this.seconds_existing = 0
         this.life_seconds_counter = 0
-        this.life_seconds_limit = 5
+        this.__life_seconds_limit = 5
         // ---------------------------------
     }
+
+    // ACCESSORS ---------------------------
+
+    // physical propertys
+
+    set_has_gravity(bool, weight) {
+        this.__has_gravity = bool
+        this.__pixel_weight = weight
+    }
+
+    has_gravity() {
+        return self.__has_gravity
+    }
+
+    set_is_alive(bool, life_seconds_limit) {
+        this.__is_alive = bool
+        this.__life_seconds_limit 
+            = life_seconds_limit
+    }
+
+    set_image_name(name) {
+        this.__image_name = name
+    }
+
+    //-------------------------------------
 
     create_unique_id() {
         let code = Gobject.last_code
@@ -80,10 +105,10 @@ export class Gobject {
         if(this.is_it_limited) {
             this.is_in_limit()
         }
-        if(this.has_gravity) {
+        if(this.__has_gravity) {
             this.apply_gravity()
         }
-        if(this.is_alive 
+        if(this.__is_alive 
             && ! this.is_dead) {
             this.continue_living()
         }
@@ -92,18 +117,18 @@ export class Gobject {
     }
 
     apply_gravity() {
-        this.move([0, this.pixel_weight])
+        this.move([0, this.__pixel_weight])
     }
 
     revive() {
         this.life_seconds_counter = this
-            .life_seconds_limit
+            .__life_seconds_limit
         this.is_dead = false
     }
 
     continue_living() {
         let limit = this
-            .life_seconds_limit
+            .__life_seconds_limit
         if(this.life_seconds_counter < limit) {
             this.life_seconds_counter += 1
         } else {
@@ -189,7 +214,7 @@ export class Gobject {
 
     get_image_order() {
         return {
-            "image": this.image_name,
+            "image": this.__image_name,
             "x": this.hitbox_location[0],
             "y": this.hitbox_location[1]
         }
