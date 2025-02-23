@@ -31,6 +31,8 @@ import { has_all }
   from "./has_all.js";
 import { has_some } 
   from "./has_some.js";
+import { Iterator1d } 
+  from "./Iterator1d.js";
 
 export class BtjsStructures extends BtjsString {
 
@@ -177,6 +179,10 @@ export class BtjsStructures extends BtjsString {
         ARRAY, NUMBER) {
           return find_closest_lower_array(
             ARRAY, NUMBER)
+      }
+
+      static Iterator1d(ARRAY = []) {
+          return new Iterator1d(ARRAY)
       }
   
 

@@ -28,10 +28,10 @@ function main() {
         "/char_icon/three_50x50.png"
     )
     let go = engine.Gobject("cosa")
-    go.set_has_gravity(true, 3)
+    go.set_has_gravity(true, 0.1)
     go.set_image_name("fish")
     go.set_size(40, 40)
-    go.set_location(150, 0)
+    go.set_position(150, 100)
     engine.set(go)
     engine.create_scenario()
     
