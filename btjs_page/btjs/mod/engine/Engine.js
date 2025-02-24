@@ -18,6 +18,15 @@ export class Engine {
         this.scenario.set_size(width, height)
     }
 
+    add_key_listener(KEY, CALLBACK) {
+        this.canvas.add_key_listener(
+            KEY, CALLBACK)
+    }
+
+    set_cam_location(point) {
+        this.scenario.set_cam_location(point)
+    }
+
     /*
     Asigna una url para la carpeta donde
     se almacenaran las imagenes a utilizar

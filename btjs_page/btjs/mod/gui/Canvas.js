@@ -24,6 +24,7 @@ export class Canvas extends StandardElement {
 
     constructor(size_x, size_y) {
         super("span")
+        this.node.tabIndex = "0"
         this.node.setAttribute(
             "style", 
             `
@@ -79,6 +80,16 @@ export class Canvas extends StandardElement {
         this.point_index = [0, 0]
         this.set_size(size_x, size_y)
         this.__add_sensor_listeners()
+    }
+
+    add_key_listener(KEY, CALLBACK) {
+        this.node.addEventListener(
+            "keydown", 
+            (e)=> {
+                if (e.key === KEY) {
+                    CALLBACK()
+                }
+        });
     }
 
     /*

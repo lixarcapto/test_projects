@@ -1,7 +1,7 @@
 
 
 import { in_range } 
-    from "../checkers/in_range.js"
+    from "../checkers/mod/in_range.js"
 
 export class LimitNumber {
 

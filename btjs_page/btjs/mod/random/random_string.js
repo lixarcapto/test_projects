@@ -1,12 +1,12 @@
 
 
-
-import { ansii_array } from "../const/ansii_array.js";
+import { ConstBtjs } 
+    from "../const/ConstBtjs.js";
 
 export function random_string(SIZE, 
         CHAR_STRING = null) {
     if(CHAR_STRING == null) {
-        CHAR_STRING = ansii_array;
+        CHAR_STRING = ConstBtjs.ANSII_ARRAY;
     }
     let r = "";
     let index = 0;

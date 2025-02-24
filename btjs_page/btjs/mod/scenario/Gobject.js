@@ -23,6 +23,8 @@ export class Gobject {
         this.__hitbox_width = 50
         this.__hitbox_height = 50
         this.__image_name = ""
+        // STATES --------------------------
+        this.__stance = ""
         // --------------------------------
         // BUFFERS ------------------------
         this.__event_buffer_array = []
@@ -34,15 +36,19 @@ export class Gobject {
         this.__is_alive = false
         this.__is_it_limited = true
         this.__is_dead = false
+        this.__has_camara_tracking = false
+        this.__has_acceleration = false
         this.__is_collidable = true
         this.__is_colliding = false
+        this.__has_air_resistence = true
         // ---------------------------------
         // FORCES STATS --------------------
         this.__pixel_weight = 5
         this.__seconds_existing = 0
         this.__life_seconds_counter = 0
         this.__life_seconds_limit = 5
-        this.__speed_factor = 0
+        this.__air_resistance_factor = 0.01
+        this.__acceleration_factor = 0
         this.__acceleration_point = [0, 0]
         // ---------------------------------
         // OBJECTS --------------------------
@@ -61,17 +67,134 @@ export class Gobject {
         return this.__id
     }
 
+    // STATES
+
+    get_stance() {
+        return this.__stance
+    }
+
+    set_stance(STANCE_STR) {
+        this.__stance = STANCE_STR
+    }
+
     // physical propertys
+
+    set_weight(float) {
+        this.weight = float
+    }
+
+    get_weight() {
+        return this.weight
+    }
+
+    is_in_rest() {
+        if(this.__destiny_point 
+                == this.__position_point
+        && this.__destiny_point == [0, 0]) {
+            return true
+        }
+        return false
+    }
+
+    air_resistance_in_point(point, 
+            friction_number) {
+        let new_point = Btjs
+            .sum_point_in_range(
+                point,
+                [
+                    point[0] 
+                    * this.__air_resistance_factor * -1,
+                    point[1] 
+                    * this.__air_resistance_factor * -1
+                ],
+                [
+                    this.__position_point[0], 
+                    point[0]
+                ],
+                [
+                    this.__position_point[1], 
+                    point[1]
+                ]
+            )
+        return new_point
+    }
+
+    apply_friction() {
+        //
+        this.__acceleration_point = this
+            .air_resistance_in_point(
+                this.__acceleration_point)
+        //
+        this.__destiny_point = this
+            .air_resistance_in_point(
+                this.__destiny_point)
+    }
 
     get_has_gravity() {
         return self.__has_gravity
     }
 
-    set_has_gravity(bool, weight) {
+    set_has_gravity(bool) {
         this.__has_gravity = bool
-        this.__pixel_weight = weight
     }
 
+    set_has_air_resistance(bool) {
+        this.__has_air_resistence = bool
+    }
+
+    get_has_air_resistance() {
+        return this.__has_air_resistence
+    }
+
+    set_has_acceleration(bool) {
+        this.__has_acceleration = bool
+    }
+
+    get_has_acceleration() {
+        return this.__has_acceleration
+    }
+
+    set_is_collidable(bool) {
+        this.__is_collidable = bool
+    }
+
+    get_is_collidable() {
+        return this.__is_collidable
+    }
+
+    brake() {
+        this.__acceleration_point = [0, 0]
+        this.__destiny_point = this
+            .__position_point
+    }
+
+    brake_in_y() {
+        this.__acceleration_point[0] = 0
+        this.__destiny_point[0]
+            = this.__position_point[0]
+    }
+
+    brake_in_x() {
+        this.__acceleration_point[1] = 0
+        this.__destiny_point[1] 
+            = this.__position_point[1]
+    }
+
+    up_force(force) {
+        this.apply_force([0, force *-1])
+    }
+
+    right_force(force) {
+        this.apply_force([force, 0])
+    }
+
+    left_force(force) {
+        this.apply_force([force * -1, 0])
+    }
+
+    down_force(force) {
+        this.apply_force([0, force])
+    }
 
     get_is_alive() {
         return this.__is_alive
@@ -83,7 +206,7 @@ export class Gobject {
             = life_seconds_limit
     }
 
-    set_image_name(name) {
+    add_image_name(name) {
         this.__image_iterator.add(name)
     }
 
@@ -113,6 +236,14 @@ export class Gobject {
 
     get_destiny_point() {
         return this.__destiny_point
+    }
+
+    set_has_camara_tracking(bool) {
+        this.__has_camara_tracking = bool
+    }
+
+    get_has_camara_tracking() {
+        return this.__has_camara_tracking
     }
 
     // PRIVATE --------------------------------
@@ -163,9 +294,15 @@ export class Gobject {
             && ! this.__is_dead) {
             this.continue_living()
         }
+        if(this.__has_air_resistence) {
+            this.apply_friction(
+                this.__air_resistance_factor)
+        }
         //llama a todas las triggercallback
         
     }
+
+    
 
     apply_gravity() {
         this.apply_force(
@@ -243,7 +380,9 @@ export class Gobject {
         }
         this.__position_point = this
             .__destiny_point
-        this.apply_acceleration()
+        if(this.__has_acceleration) {
+            this.apply_acceleration()
+        }
     }
 
     /*
@@ -269,17 +408,18 @@ export class Gobject {
             )
         //aplica el multiplicador de la
         //aceleracion.
-        if(this.__speed_factor != 0) {
+        if(this.__acceleration_factor != 0) {
             this.__acceleration_point.forEach(
                 (e) => {
-                        e = e * this.__speed_factor
+                        e = e * this
+                        .__acceleration_factor
                 });
         }
         console.log(
             "acceleration", this.__acceleration_point)
         //incrementa el multiplicador
         //de la aceleracion.
-        this.__speed_factor += 1
+        this.__acceleration_factor += 0.1
     }
 
     set_acceleration(point_force) {
@@ -318,12 +458,15 @@ export class Gobject {
 
 
     set_position_point(point_arr) {
+        /*
         this.__position_point = Btjs
             .center_rect_in_origin(
                 point_arr, 
                 this.__hitbox_width, 
                 this.__hitbox_height
         )
+        */
+        this.__position_point = point_arr
     }
 
     set_size(width, height) {
@@ -349,15 +492,11 @@ export class Gobject {
         for(let k in hitbox_nestdict) {
             //ignora el hitbox de si mismo
             if(k == this.__id) {continue;}
-            console.log("id objetive", k , 
-                "id object", this.__id)
             is_colliding = Btjs
                 .is_colliding_rect(
                     this_hitbox,
                     hitbox_nestdict[k]
                 )
-            console.log("is_colliding", 
-                is_colliding)
             if(is_colliding) {
                 return k
             }

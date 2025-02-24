@@ -2,11 +2,10 @@
 
 
 
-import { BtjsStructures } 
-  from "./mod/structures/BtjsStructures.js"
+import { UtilBtjs } 
+  from "./mod/util/UtilBtjs.js"
 
-
-export class Btjs extends BtjsStructures {
+export class Btjs extends UtilBtjs {
 
   /*
   Esta es una libreria compuesta de clases

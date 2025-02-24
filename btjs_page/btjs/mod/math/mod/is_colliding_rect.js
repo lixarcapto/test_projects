@@ -4,9 +4,6 @@
 
 export function is_colliding_rect(rect_a, 
         rect_b) {
-    console.log("rect_a", rect_a,
-      "rect_b", rect_b
-    )
     // 1. Verificar si los argumentos son objetos
     if (typeof rect_a !== 'object' 
     || typeof rect_b !== 'object') {

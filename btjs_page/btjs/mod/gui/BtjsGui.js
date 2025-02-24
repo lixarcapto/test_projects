@@ -60,7 +60,7 @@ import { dowload_with_blop }
 import { LabelLabel } 
   from "./LabelLabel.js";
 
-export class BtjsGui {
+export class BtjsGui extends DataTypes {
 
     static ClickIconText(title, url) {
         return new ClickIconText(title, url);

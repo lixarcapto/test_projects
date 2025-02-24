@@ -1,6 +1,6 @@
 
 import { is_object_js } 
-    from "../checkers/is_object_js.js"
+    from "../checkers/mod/is_object_js.js"
 
 /*
 Funcion que cuenta el numero de 

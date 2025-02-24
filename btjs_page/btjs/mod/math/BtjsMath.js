@@ -122,7 +122,7 @@ export class BtjsMath extends BtjsGui {
     */
     static sum_in_range(value_a, 
         value_b, range_arr) {
-            sum_in_range(value_a, 
+            return sum_in_range(value_a, 
             value_b, range_arr)
     }
 
