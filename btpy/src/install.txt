@@ -1,0 +1,14 @@
+
+Estas son las librerias nesesarias
+para usar BTPY:
+
+* PIL
+* numpy
+
+Puedes usar btpy copiando la carpeta
+btpy en la raiz del proyecto.
+Es nesesario hacerlo de esta forma
+para que las rutas de los recursos
+asociados a la libreria se puedan
+cargar correctamente; de lo contrario
+las rutas se romperan.
