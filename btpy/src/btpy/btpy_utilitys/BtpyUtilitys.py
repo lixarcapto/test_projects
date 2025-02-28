@@ -7,6 +7,7 @@ import time
 class BtpyUtilitys(BtpyString):
 
     Tester = Tester
+    EmotionSim = EmotionSim
     
     def deep(array:list) -> int:
         """
@@ -251,5 +252,17 @@ class BtpyUtilitys(BtpyString):
     
     def Three():
         return Three()
+    
+    def Char():
+        """
+        Esta clase es un tipo de dato 
+        character para Python. Sirve 
+        para reducir el consumo de datos 
+        de los string de un solo char.
+        Consiste en un string global que 
+        sirve para almacenar chars en 
+        cada indice del string.
+        """
+        return Char()
     
 

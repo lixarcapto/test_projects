@@ -1,17 +1,18 @@
 
 
 from btpy.Btpy import Btpy
+import sys
+
 
 def main():
     print("init...")
-    r = []
-    name_full = ""
-    for i in range(20):
-        name_full = Btpy.random_full_name(
-            "spanish"
-        )
-        r.append(name_full)
+    r = None
+    # -------------------------------------
+    
 
+
+
+    #---------------------------------
     print(r)
 
 main() 
