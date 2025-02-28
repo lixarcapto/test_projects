@@ -3,6 +3,7 @@
 from .in_deps import*
 from ..btpy_string.BtpyString import BtpyString
 import time
+from typing import Callable
 
 class BtpyUtilitys(BtpyString):
 
@@ -264,5 +265,25 @@ class BtpyUtilitys(BtpyString):
         cada indice del string.
         """
         return Char()
+    
+    def create_console_loop(EXIT_KEY: str,
+            PIPE_FUNCTION: Callable):
+        """
+        Esta es una funcion que facilita
+        crear un bucle de consola con
+        una sola funcion principal que recibe
+        las entradas del usuario en texto
+        y retorna las salidas de la aplicacion
+        en texto. Ejecuta una primera ves
+        la funcion como un valor void string para 
+        obtener la primera salida de texto.
+        El parametro EXIT_KEY indica una clave
+        en caso de errores logicos para terminar
+        el bucle de la consola.
+        """
+        return create_console_loop(
+            EXIT_KEY,
+            PIPE_FUNCTION
+        )
     
 

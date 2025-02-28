@@ -2,6 +2,7 @@
 from .in_deps import*
 from .btpy_validator.BtpyValidator import BtpyValidator
 
+
 class Btpy(BtpyValidator):
 
     """

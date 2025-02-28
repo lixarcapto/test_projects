@@ -5,6 +5,28 @@ from .Symbol import Symbol
 
 class EmotionTranslator:
 
+    """
+    Esta es una clase que sirve para 
+    almacenar y cargar en memoria un
+    diccionario de objetos symbol; los
+    objetos symbol son objetos que 
+    almacenan modificadores para las 
+    emociones de un emotion_sim object
+    para cada palabra emotiva disponible
+    que permite la percepcion del objeto
+    de las emociones a partir de 
+    interacciones. 
+    Las palabras emotivas son 
+    representaciones simplificadas de 
+    algun concepto que tiene fuerte carga 
+    simbolica. No sirven para recibir 
+    textos; sino que se requiere
+    un traductor de textos que busque las
+    palabras emotivas en el texto y las 
+    almacene en una lista para enviarlas
+    a este traductor.
+    """
+
     def __init__(self):
         self.__symbol_object_dict = {}
 

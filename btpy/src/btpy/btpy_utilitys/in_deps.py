@@ -31,3 +31,5 @@ from .mod.tester.Tester import Tester
 from .mod.three.Three import Three
 from .mod.char.Char import Char
 from .mod.emotion_sim.EmotionSim import EmotionSim
+from .mod.create_console_loop\
+    .create_console_loop import*

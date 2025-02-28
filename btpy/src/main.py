@@ -9,6 +9,10 @@ def main():
     r = None
     # -------------------------------------
     
+    def pipe(e):
+        return {"mensaje":"funciona"}
+    Btpy.create_server_flask(True, 5001,
+        pipe)
 
 
 

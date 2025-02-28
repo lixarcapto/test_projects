@@ -12,7 +12,7 @@ from .mod.clean_voids.clean_voids import*
 from .mod.merge_as_dict.merge_as_dict import*
 from .mod.map_in_keys.map_in_keys import*
 from .mod.fit_list.fit_list import*
-from .mod.count.count import*
+from .mod.count_true_checks.count_true_checks import*
 from .mod.find_value.find_value import*
 from .mod.find_closest_lower.find_closest_lower import*
 from .mod.flatten.flatten import*   

@@ -3,7 +3,7 @@
 
 from ....btpy_maths.mod.percent\
     .percent_from_part import*
-from ....btpy_list.mod.count.count import*
+from ....btpy_list.mod.count_true_checks.count_true_checks import*
 
 class Tester:
 
@@ -22,7 +22,7 @@ class Tester:
         self.__bool_dict[NAME] = RESULT
 
     def write(self):
-        number = count(
+        number = count_true_checks(
             self.__bool_dict,
             lambda e:e == False
         )

@@ -2,8 +2,12 @@
 
 import openai
 
-def request_open_ai_4omini(PROMPT, API_KEY, 
-        MAX_TOKENS = 100):
+def request_open_ai(PROMPT, API_KEY, 
+        MAX_TOKENS = 100, 
+        MODEL = "gpt-4o-mini"):
+    """
+    modelo recomendado: gpt-4o-mini
+    """
     openai.api_key = API_KEY
     response = openai.ChatCompletion.create(
         model="gpt-4o-mini",

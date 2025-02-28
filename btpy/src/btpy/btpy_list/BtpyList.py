@@ -2,9 +2,9 @@
 
 
 from .in_deps import*
-from ..btpy_images.BtpyImages import BtpyImages
+from ..btpy_internet.BtpyInternet import BtpyInternet
 
-class BtpyList(BtpyImages):
+class BtpyList(BtpyInternet):
 
     """
     Modulo estatico de herramientas
@@ -102,14 +102,20 @@ class BtpyList(BtpyImages):
         return fit_list(LIST, SIZE, 
             FILL_TYPE)
     
-    def count(STRUCTURE:list|dict, CHECKER)\
-        -> int:
+    def count_true_checks(
+            STRUCTURE:list|dict,
+            CHECKER_FUNCTION)-> int:
         """
+        TESTED
         Funcion que cuenta el numero de 
-        verificaciones con una funcion 
-        checker enviada.
+        verificaciones al recorrer una
+        estructura. Funciona aplicando a 
+        cada elemento de la estructura 
+        la funcion checker enviada y 
+        contando los resultados verdaderos.
         """
-        return count(STRUCTURE, CHECKER)
+        return count_true_checks(
+            STRUCTURE, CHECKER_FUNCTION)
     
     def find_value(DICT:dict, DATA)->str:
         """
