@@ -11,7 +11,7 @@ parent_dir = os.path.dirname(current_dir)
 sys.path.append(parent_dir)
 
 from btpy.btpy_utilitys.mod.emotion_translator.EmotionTranslator import EmotionTranslator
-from get_root import*
+from btpy.src.btpy.btpy_persistence.mod.get_root.get_root import*
 from btpy.btpy_utilitys.mod.emotion_sim.EmotionSim import EmotionSim
 
 from btpy.Btpy import Btpy

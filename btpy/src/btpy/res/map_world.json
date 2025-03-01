@@ -1,0 +1,115 @@
+{
+
+
+
+
+    "France":{
+            "Brittany": [],
+            "Normandy": [],
+            "Haust-de-france": [],
+            "Pays de la Loire": [],
+            "Centre-Val de Loire": [],
+            "Ile-de-France": [],
+            "Grand Est": [],
+            "Nouvelle-Aquitaine": [],
+            "Bourgogne-Franche-Comte": [],
+            "Auvergne-Rhone-Alpes": [],
+            "Occitania": [],
+            "Provence-Alpes-Cote d'Azur": [],
+            "Corsica": [],
+            "Mayotte": [],
+            "Reunion": [],
+            "Martinique": [],
+            "Guadeloupe": [],
+            "French Guiana": []
+    },
+    "Spain":{
+            "Galicia": [],
+            "Asturias": [],
+            "Cantabria": [],
+            "Basque Country": [],
+            "Castile and Leon": [],
+            "La Rioja": [],
+            "Navarre": [],
+            "Community of Madrid": [],
+            "Aragon": [],
+            "Catalonia": [],
+            "Extremadura": [],
+            "Castilla-La Mancha": [],
+            "Valencian Community": [],
+            "Andalusia": [],
+            "Region of Murcia": [],
+            "Balearic Islands": [],
+            "Ceuta": [],
+            "Melilla": [],
+            "Canary Islands": []
+            
+    },
+    "United Kingdom":{
+            "North West": [],
+            "North East": [],
+            "Yorkshire and the Humber": [],
+            "West Midlands": [],
+            "East Midlands": [],
+            "South West": [],
+            "South East": [],
+            "London": [],
+            "East of England": [],
+            "Strathclyde": [],
+            "Dumfries y Galloway": [],
+            "Scottish Borders": [],
+            "Lothian": [],
+            "Central Scotland": [],
+            "Fife": [],
+            "Tayside": [],
+            "Grampian": [],
+            "Highland": [],
+            "Shetland": [],
+            "Outer Hebrides": [],
+            "Orkney": [],
+            "Northern Ireland": [],
+            "Saint Helena": [],
+            "Montserrat": [],
+            "Gibraltar": [],
+            "British Virgin Islands": [],
+            "Bermuda": [],
+            "Cayman Islands": []
+            
+    },
+    "Germany":{
+                "Schleswig-Holstein": [],
+                "Hamburgo": [],
+                "Bremen": [],
+                "Mecklenburg-Vorpommern": [],
+                "Lower Saxony": [],
+                "North Rhine-Westphalia": [],
+                "Saxony-Anhalt": [],
+                "Berlin": [],
+                "Brandenburg": [],
+                "Rhineland-Palatinate": [],
+                "Hesse": [],
+                "Thuringia": [],
+                "Saxony": [],
+                "Saarland": [],
+                "Baden-Württemberg": [],
+                "Bavaria": []
+
+    }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

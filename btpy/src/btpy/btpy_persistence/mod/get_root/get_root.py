@@ -5,7 +5,12 @@
 import os
 import sys
 
-def get_root():
+def get_root()->str:
+    """
+    Funcion que obtiene la ruta root(raiz) 
+    desde la que se ejecuta la funcion 
+    de inicio(main) de la aplicacion.
+    """
     if getattr(sys, 'frozen', False):
         # Si el script está empaquetado como un ejecutable (usando PyInstaller, etc.)
         return os.path.dirname(sys.executable)

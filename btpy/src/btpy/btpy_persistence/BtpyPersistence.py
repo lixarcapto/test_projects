@@ -8,6 +8,40 @@ class BtpyPersistence(BtpyMaths):
     NAME_FEMALE_PATH = "./btpy/res/name_female_data.xlsx"
     NAME_MALE_PATH = "./btpy/res/name_male_data.xlsx"
     LASTNAMES_PATH = "./btpy/res/lastname_data.xlsx"
+    WORLD_MAP_PATH = "./btpy/res/map_world.json"
+    GeoAdress = GeoAdress
+
+    def set_name_male_path(PATH):
+        """
+        Modifica la ruta a la tabla
+        XLSX de nombres masculinos.
+        """
+        BtpyPersistence.NAME_MALE_PATH \
+            = PATH
+        
+    def set_name_female_path(PATH):
+        """
+        Modifica la ruta a la tabla
+        XLSX de nombres femeninos.
+        """
+        BtpyPersistence.NAME_FEMALE_PATH \
+            = PATH
+        
+    def set_lastname_path(PATH):
+        """
+        Modifica la ruta a la tabla
+        XLSX de apellidos.
+        """
+        BtpyPersistence.LASTNAMES_PATH \
+            = PATH
+        
+    def set_world_map_path(PATH):
+        """
+        Modifica la ruta a la tabla
+        XLSX de apellidos.
+        """
+        BtpyPersistence.WORLD_MAP_PATH \
+            = PATH
 
     # Check if the file exists using 
     # os.path.exists()
@@ -150,7 +184,10 @@ class BtpyPersistence(BtpyMaths):
           CULTURE
         )
     
-    def random_full_name(culture = "", 
+    def random_full_name(
+                names_number,
+                lastnames_number,
+                culture = "", 
                 gender = ""):
         """
         Crea un nombre aleatorio en el
@@ -181,6 +218,8 @@ class BtpyPersistence(BtpyMaths):
             BtpyPersistence.NAME_MALE_PATH,
             BtpyPersistence.NAME_FEMALE_PATH,
             BtpyPersistence.LASTNAMES_PATH,
+            names_number,
+            lastnames_number,
             culture,
             gender
         )
@@ -306,3 +345,24 @@ class BtpyPersistence(BtpyMaths):
         las columnas.
         """
         return read_excel_list(PATH)
+    
+    def get_root()->str:
+        """
+        Funcion que obtiene la ruta 
+        root(raiz) desde la que se 
+        ejecuta la funcion 
+        de inicio(main) de la aplicacion.
+        """
+        return get_root()
+    
+    def read_json_object(PATH:str)->dict:
+        return read_json_object(PATH)
+    
+    def random_geo_adress(
+            country_key:str = ""):
+        return random_geo_adress(
+            read_json_object,
+            GeoAdress,
+            BtpyPersistence.WORLD_MAP_PATH,
+            country_key
+        )

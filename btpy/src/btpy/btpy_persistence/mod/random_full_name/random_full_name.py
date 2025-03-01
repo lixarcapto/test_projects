@@ -11,12 +11,16 @@ def random_full_name(
                 PATH_NAME_MALE_XLSX,
                 PATH_NAME_FEMALE_XLSX, 
                 LASTNAMES_PATH,
+                names_number,
+                lastnames_number,
                 culture = "", 
-                gender = ""):
+                gender = ""
+                ):
         """
-        Crea un nombre aleatorio en el
-        formato latino; es decir con dos
-        nombres y dos apellidos.
+        Crea un nombre aleatorio completo; 
+        es decir con nombres y apellidos.
+        La cantidad de nombres y apellidos
+        se indica al inicio del metodo.
         Los generos son:
         * "female"
         * "male"
@@ -51,27 +55,19 @@ def random_full_name(
                 CACHE_CULTURES_LIST
             )
         name = ""
-        name += random_name(
-             read_excel_dict,
-             PATH_NAME_MALE_XLSX,
-             PATH_NAME_FEMALE_XLSX,
-             culture, 
-             gender
-        )
-        name += " " + random_name(
-             read_excel_dict,
-             PATH_NAME_MALE_XLSX,
-             PATH_NAME_FEMALE_XLSX,
-             culture, 
-             gender
-        )
-        name += " " + random_lastname(
-             read_excel_dict,
-             LASTNAMES_PATH,
-             culture)
-        name += " " + random_lastname(
-             read_excel_dict,
-             LASTNAMES_PATH,
-             culture)
+        for i in range(names_number):
+            name += random_name(
+                read_excel_dict,
+                PATH_NAME_MALE_XLSX,
+                PATH_NAME_FEMALE_XLSX,
+                culture, 
+                gender
+            )
+        for i in range(lastnames_number):
+            name += " " + random_lastname(
+                read_excel_dict,
+                LASTNAMES_PATH,
+                culture
+            )
         return name
 
