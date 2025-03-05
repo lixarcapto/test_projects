@@ -9,10 +9,9 @@ def main():
     r = None
     # -------------------------------------
     
-    def pipe(e):
-        return {"mensaje":"funciona"}
-    Btpy.create_server_flask(True, 5001,
-        pipe)
+    Btpy.set_profession_path(
+        "./btpy/res/profession_data.xlsx")
+    r = Btpy.random_profession("medieval")
 
 
 

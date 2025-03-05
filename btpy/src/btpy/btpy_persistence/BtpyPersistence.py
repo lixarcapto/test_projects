@@ -9,7 +9,15 @@ class BtpyPersistence(BtpyMaths):
     NAME_MALE_PATH = "./btpy/res/name_male_data.xlsx"
     LASTNAMES_PATH = "./btpy/res/lastname_data.xlsx"
     WORLD_MAP_PATH = "./btpy/res/map_world.json"
+    PROFESSION_PATH = "./btpy/res/profession_data.xlsx"
     GeoAdress = GeoAdress
+    CharacterProfile = CharacterProfile
+    REGIONS_DICT_PATH:str \
+        = "./btpy/res/regions_by_country.xlsx"
+    REGIONS_DICT:dict = {}
+    COUNTRY_DICT_PATH:str \
+        = "./btpy/res/country_dict.xlsx"
+    COUNTRY_DICT:dict = {}
 
     def set_name_male_path(PATH):
         """
@@ -41,6 +49,18 @@ class BtpyPersistence(BtpyMaths):
         XLSX de apellidos.
         """
         BtpyPersistence.WORLD_MAP_PATH \
+            = PATH
+        
+    def set_region_dict_path(PATH:str):
+        BtpyPersistence.REGIONS_DICT_PATH \
+            = PATH
+        
+    def set_country_dict_path(PATH:str):
+        BtpyPersistence.COUNTRY_DICT_PATH \
+            = PATH
+        
+    def set_profession_path(PATH):
+        BtpyPersistence.PROFESSION_PATH \
             = PATH
 
     # Check if the file exists using 
@@ -183,6 +203,10 @@ class BtpyPersistence(BtpyMaths):
           BtpyPersistence.LASTNAMES_PATH,
           CULTURE
         )
+
+    def get_region_dict()->dict:
+        return BtpyPersistence\
+            .REGIONS_DICT
     
     def random_full_name(
                 names_number,
@@ -260,7 +284,7 @@ class BtpyPersistence(BtpyMaths):
         return read_photoimage(route, size_x, 
             size_y)
     
-    def random_country(region_key:str = "")\
+    def random_country(continent:str = "")\
             ->str:
         """
         Función que generan nombres de 
@@ -277,7 +301,18 @@ class BtpyPersistence(BtpyMaths):
     far_asia,
     oceania.
         """
-        return random_country(region_key)
+        BtpyPersistence\
+            .__load_country_dict()
+        country_dict = BtpyPersistence\
+            .COUNTRY_DICT
+        import random
+        country_list = []
+        if(continent == ""):
+            continent = random.choice(
+                list(country_dict.keys()))
+        country_list = country_dict\
+            [continent]
+        return random.choice(country_list)
     
     def read_nested_column_xlsx(
             ROUTE:str)->dict:
@@ -360,9 +395,69 @@ class BtpyPersistence(BtpyMaths):
     
     def random_geo_adress(
             country_key:str = ""):
-        return random_geo_adress(
-            read_json_object,
-            GeoAdress,
-            BtpyPersistence.WORLD_MAP_PATH,
-            country_key
+        geo_adress = GeoAdress()
+        if(country_key == ""):
+            geo_adress.country \
+            = BtpyPersistence\
+                .random_country()
+        geo_adress.region = BtpyPersistence\
+            .random_region(
+                geo_adress.country)
+        return geo_adress
+    
+    def what_continent_from(continent = "")\
+                ->str:
+        pass
+    
+    def what_region_from(region)->str:
+        for k in BtpyPersistence\
+                    .REGIONS_DICT:
+            if(region in BtpyPersistence\
+                    .REGIONS_DICT[k]):
+                return k
+        return ""
+    
+    def random_profession(
+            development_level:str)->str:
+        """
+        development level must be:
+        * "primitive"
+        * "medieval" 
+        * "victorian" 
+        * "digital"
+        """
+        return random_profession(
+            BtpyPersistence.read_excel_dict,
+            BtpyPersistence.PROFESSION_PATH,
+            development_level
         )
+    
+    def random_region(country_key:str = ""):
+        BtpyPersistence.__load_regions_dict()
+        region_dict = BtpyPersistence\
+            .get_region_dict()
+        return random_region(
+            region_dict, country_key)
+    
+    """
+    Funcion que carga un cache de una 
+    tabla de regiones para las funciones
+    de persistencia.
+    """
+    def __load_regions_dict()-> None:
+        if(BtpyPersistence.REGIONS_DICT 
+                == {}):
+            BtpyPersistence.REGIONS_DICT \
+                = read_excel_dict(
+                    BtpyPersistence\
+                    .REGIONS_DICT_PATH
+            )
+
+    def __load_country_dict()->None:
+        if(BtpyPersistence.COUNTRY_DICT 
+                == {}):
+            BtpyPersistence.COUNTRY_DICT \
+                = read_excel_dict(
+                    BtpyPersistence\
+                    .COUNTRY_DICT_PATH
+            )

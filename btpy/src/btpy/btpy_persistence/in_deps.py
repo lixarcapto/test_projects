@@ -31,3 +31,6 @@ from .mod.get_root.get_root import*
 from .mod.read_json_object.read_json_object import*
 from .mod.geo_adress.GeoAdress import GeoAdress
 from .mod.random_geo_adress.random_geo_adress import*
+from .mod.character_profile.CharacterProfile import CharacterProfile
+from .mod.random_profession.random_profession import*
+from .mod.random_region.random_region import*
