@@ -4,12 +4,13 @@ from .in_deps import*
 
 class BtpyCheckers:
 
-    def are_all_same(array:list)->bool:
+    def are_all_the_same(ARRAY:list)->bool:
         """
+        TESTED
         Checks if all elements
         of an array are equal.
         """
-        return are_all_same(array)
+        return are_all_the_same(ARRAY)
     
     def in_range(NUMBER: int|float, 
             RANGE_ARR_X2: list[int])\
@@ -26,34 +27,7 @@ class BtpyCheckers:
             NUMBER, 
             RANGE_ARR_X2
         )
-
-    def is_number(data) -> bool:
-        """
-        Checks if the data sent
-        is of a numeric type.
-        """
-        return is_number(data)
     
-    def is_error(value)->bool:
-        """
-        Function that tests whether a value
-        is a return error such as -1,
-        none, void string, void dict, or void
-        array
-        """
-        return is_error(value)
-    
-    def is_byte_256(ANY_DATA : any)\
-        -> bool:
-        """
-        TESTED
-        Function that returns true if 
-        the data sent is a byte 256 type, 
-        that is, an 8-bit integer in the 
-        range between 0 and 256.
-        """
-        return is_byte_256(ANY_DATA)
-
     def is_byte_127(ANY_DATA : any)\
             -> bool:
         """
@@ -65,34 +39,57 @@ class BtpyCheckers:
         """
         return is_byte_127(ANY_DATA)
     
-    def is_RGB(ANY : any)->bool:
+    def is_byte_256(ANY_DATA : any)\
+        -> bool:
         """
         TESTED
-        Checker que verifica si un 
-        dato es de tipo rgb lista
+        Function that returns true if 
+        the data sent is a byte 256 type, 
+        that is, an 8-bit integer in the 
+        range between 0 and 256.
         """
-        return is_RGB(ANY)
+        return is_byte_256(ANY_DATA)
     
-    def is_RGBA(ANY:any)->bool:
+    def is_error_return(ANY_DATA:any)\
+            ->bool:
         """
         TESTED
-        Checker que verifica si un 
-        dato es de tipo rgba lista o tupla
+        Function that tests whether a value
+        is a return error such as 
+        none, void string, void dict void
+        array, or void tuple
         """
-        return is_RGBA(ANY)
+        return is_error_return(ANY_DATA)
     
-    def is_function(ANY : any)->bool:
+    def is_function(ANY_DATA : any)->bool:
         """
         TESTED
-        Función que verifica si 
-        un dato enviado este tipo 
-        función retornando verdadero 
-        sí lo es y falso si no. Considera
-        funciones a las funciones lambda,
-        las funciones con nombre y los 
-        metodos.
+        Function that returns true if 
+        the data sent is of function 
+        type and returns false if it 
+        is not. Lambda functions, named 
+        functions, and methods are 
+        considered functions.
         """
-        return is_function(ANY)
+        return is_function(ANY_DATA)
+    
+    def is_hex_color(ANY_DATA : any)\
+            -> bool:
+        """
+        TESTED
+        Function that returns true if 
+        the data sent is a hexadecimal 
+        color code string (hex color) and 
+        returns false if it is not.
+        """
+        return is_hex_color(ANY_DATA)
+
+    def is_number(data) -> bool:
+        """
+        Checks if the data sent
+        is of a numeric type.
+        """
+        return is_number(data)
     
     def is_point_2d(data)->bool:
         """
@@ -118,13 +115,22 @@ class BtpyCheckers:
         """
         return is_range(RANGE_ARRAY)
     
-    def is_hex_color(ANY : any):
+    def is_RGB(ANY : any)->bool:
         """
         TESTED
-        Funcion que verifica si una cadena 
-        es un color hexadecimal válido.
+        Checker que verifica si un 
+        dato es de tipo rgb lista
         """
-        return is_hex_color(ANY)
+        return is_RGB(ANY)
+    
+    def is_RGBA(ANY:any)->bool:
+        """
+        TESTED
+        Checker que verifica si un 
+        dato es de tipo rgba lista o tupla
+        """
+        return is_RGBA(ANY)
+
     
     
     

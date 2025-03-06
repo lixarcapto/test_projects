@@ -3,15 +3,16 @@
 
 import re
 
-def is_hex_color(ANY : any):
+def is_hex_color(ANY_DATA : any)\
+        -> bool:
     """
     TESTED
-    Funcion que verifica si una cadena 
-    es un color hexadecimal válido.
+    Function that returns true if 
+    the data sent is a hexadecimal 
+    color code string (hex color) and 
+    returns false if it is not.
     """
-    if (not isinstance(ANY, str)):
+    if (not isinstance(ANY_DATA, str)):
         return False
-    # Expresión regular para verificar 
-    # el formato hexadecimal
     patron = r'^#([0-9A-Fa-f]{3}){1,2}$'
-    return bool(re.match(patron, ANY))
+    return bool(re.match(patron, ANY_DATA))

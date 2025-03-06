@@ -1,17 +1,16 @@
 
 
 
-def is_function(ANY : any)->bool:
+def is_function(ANY_DATA : any)->bool:
     """
     TESTED
-    Función que verifica si 
-    un dato enviado este tipo 
-    función retornando verdadero 
-    sí lo es y falso si no. Considera
-    funciones a las funciones lambda,
-    las funciones con nombre y los 
-    metodos.
+    Function that returns true if 
+    the data sent is of function 
+    type and returns false if it 
+    is not. Lambda functions, named 
+    functions, and methods are 
+    considered functions.
     """
-    if(hasattr(ANY, "__name__")):
+    if(hasattr(ANY_DATA, "__name__")):
         return True
     return False
