@@ -2,13 +2,16 @@
 
 
 
-def is_byte_127(ANY : any)\
+def is_byte_127(ANY_DATA : any)\
         -> bool:
     """
-    función que verifica si el dato 
-    enviado es un tipo byte 127
+    TESTED
+    Function that returns true if 
+    the data sent is a byte 127 type, 
+    that is, an 8-bit integer between 
+    the range -127 and 127.
     """
-    if(not type(ANY) == int): return False
-    if(ANY >= 127): return False
-    if(ANY <= -127): return False
+    if(not type(ANY_DATA) == int): return False
+    if(ANY_DATA >= 127): return False
+    if(ANY_DATA <= -127): return False
     return True

@@ -6,7 +6,7 @@
         "country_array": ["France"]
     },
     "nordic": {
-        "country_array": ["Norway"]
+        "country_array": ["Norway", "Iceland", "Sweden"]
     }
 
 }
