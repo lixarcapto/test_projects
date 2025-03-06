@@ -34,3 +34,4 @@ from .mod.random_geo_adress.random_geo_adress import*
 from .mod.character_profile.CharacterProfile import CharacterProfile
 from .mod.random_profession.random_profession import*
 from .mod.random_region.random_region import*
+from .mod.character_profile.CharacterProfile import CharacterProfile

@@ -36,6 +36,7 @@ def random_name(
         * "japanese"
         * "polinesian"
         * "italic"
+        * "slavic"
         """
         # carga un cache para almacenar
         # los nombres leidos del archivo

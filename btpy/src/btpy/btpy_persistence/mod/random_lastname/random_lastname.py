@@ -28,6 +28,7 @@ def random_lastname(
         * "japanese"
         * "polinesian"
         * "italic"
+        * "slavic"
         """
         # carga un cache con los nombres
         name:str = ""

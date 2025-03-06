@@ -18,6 +18,9 @@ class BtpyPersistence(BtpyMaths):
     COUNTRY_DICT_PATH:str \
         = "./btpy/res/country_dict.xlsx"
     COUNTRY_DICT:dict = {}
+    COUNTRY_PROPERTIES_PATH \
+        = "./btpy/res/culture_properties.json"
+    COUNTRY_PROPERTIES:dict = {}
 
     def set_name_male_path(PATH):
         """
@@ -167,6 +170,7 @@ class BtpyPersistence(BtpyMaths):
         * "japanese"
         * "polinesian"
         * "italic"
+        * "slavic"
         """
         return random_name(
             read_excel_dict,
@@ -197,6 +201,7 @@ class BtpyPersistence(BtpyMaths):
         * "japanese"
         * "polinesian"
         * "italic"
+        * "slavic"
         """
         return random_lastname(
           read_excel_dict,
@@ -209,8 +214,8 @@ class BtpyPersistence(BtpyMaths):
             .REGIONS_DICT
     
     def random_full_name(
-                names_number,
-                lastnames_number,
+                names_number:int,
+                lastnames_number:int,
                 culture = "", 
                 gender = ""):
         """
@@ -236,6 +241,7 @@ class BtpyPersistence(BtpyMaths):
         * "japanese"
         * "polinesian"
         * "italic"
+        * "slavic"
         """
         return random_full_name(
             read_excel_dict,
@@ -396,6 +402,7 @@ class BtpyPersistence(BtpyMaths):
     def random_geo_adress(
             country_key:str = ""):
         geo_adress = GeoAdress()
+        geo_adress.country = country_key
         if(country_key == ""):
             geo_adress.country \
             = BtpyPersistence\
@@ -461,3 +468,39 @@ class BtpyPersistence(BtpyMaths):
                     BtpyPersistence\
                     .COUNTRY_DICT_PATH
             )
+
+    def __load_culture_properties()->None:
+        if(BtpyPersistence.COUNTRY_PROPERTIES 
+                == {}):
+            BtpyPersistence.COUNTRY_PROPERTIES \
+                = read_json_object(
+                    BtpyPersistence\
+                    .COUNTRY_PROPERTIES_PATH
+            )
+
+    def random_country_by_culture(culture):
+        BtpyPersistence\
+            .__load_culture_properties()
+        country_prop = BtpyPersistence\
+            .COUNTRY_PROPERTIES
+        country_arr = country_prop[culture]\
+            ["country_array"]
+        return random.choice(country_arr)
+
+    def random_profile(culture):
+        profile = CharacterProfile(
+            culture)
+        profile.name = BtpyPersistence\
+            .random_name(
+                culture, 
+                profile.gender
+            )
+        profile.lastname = BtpyPersistence\
+            .random_lastname(culture)
+        profile.profession = BtpyPersistence\
+            .random_profession("digital")
+        country = BtpyPersistence\
+            .random_country_by_culture(culture)
+        profile.geo_adress = BtpyPersistence\
+            .random_geo_adress(country)
+        return profile

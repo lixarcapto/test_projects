@@ -9,9 +9,9 @@ def main():
     r = None
     # -------------------------------------
     
-    Btpy.set_profession_path(
-        "./btpy/res/profession_data.xlsx")
-    r = Btpy.random_profession("medieval")
+    for i in range(5):
+        r = Btpy.random_profile("nordic")
+        print(r.write())
 
 
 

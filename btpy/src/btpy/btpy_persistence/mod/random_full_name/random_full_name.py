@@ -40,6 +40,7 @@ def random_full_name(
         * "japanese"
         * "polinesian"
         * "italic"
+        * "slavic"
         """
         global CACHE_CULTURES_LIST
         if(CACHE_CULTURES_LIST == []):

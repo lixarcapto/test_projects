@@ -1,0 +1,14 @@
+
+
+Función que divida direcciones urls 
+en diccionarios de varios Campos con 
+el protocolo, el dominio y las rutas 
+a recursos.
+
+ALG:
+* Extraer el protocolo con el 
+símbolo :// 
+* Con el restante String extraer 
+el dominio hasta el símbolo / 
+* Con el restante String es traer 
+la query url con el símbolo ?

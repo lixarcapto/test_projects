@@ -31,15 +31,21 @@ def random_profession(
 def random_level(level):
     global PROFESSION_CACHE
     final_list = []
+    final_list \
+            = PROFESSION_CACHE["primitive"]
+    if(level == "primitive"):
+        return random.choice(final_list)
+    final_list \
+            = final_list \
+            + PROFESSION_CACHE["medieval"]
     if(level == "medieval"):
-        final_list \
-            = PROFESSION_CACHE["medieval"]
-    if(level == "victorian"):
-        final_list \
+        return random.choice(final_list)
+    final_list \
             = final_list \
             + PROFESSION_CACHE["victorian"]
-    if(level == "digital"):
-        final_list \
+    if(level == "victorian"):
+        return random.choice(final_list)
+    final_list \
             = final_list \
             + PROFESSION_CACHE["digital"]
     return random.choice(final_list)
