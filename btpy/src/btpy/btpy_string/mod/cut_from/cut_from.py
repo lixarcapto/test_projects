@@ -1,7 +1,6 @@
 
 
 
-from ....btpy_validator.mod.valid_string import*
 from ..remove_char.remove_char import*
 from ..divide_string.divide_string import*
 from .split_by_last_string import*

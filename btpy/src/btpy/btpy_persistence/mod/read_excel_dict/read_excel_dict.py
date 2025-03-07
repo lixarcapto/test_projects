@@ -2,7 +2,6 @@
 
 
 import openpyxl
-from ....btpy_validator.mod.valid_string.valid_string import*
 
 
 def read_excel_dict(ROUTE:str)->dict[list]:
@@ -16,7 +15,6 @@ def read_excel_dict(ROUTE:str)->dict[list]:
     lists of subsequent elements in 
     those rows.
     """
-    valid_string(ROUTE, 1, True)
     EXTENSION = ".xlsx"
     if(not EXTENSION in ROUTE):
         filename += EXTENSION

@@ -1,8 +1,6 @@
 
 
 
-from ....btpy_validator\
-    .mod.valid_string.valid_string import*
 
 def charat(STRING:str, INDEX:int) -> str:
     """
@@ -11,7 +9,6 @@ def charat(STRING:str, INDEX:int) -> str:
     del string en un index 
     especifico usando slicing.
     """
-    valid_string(STRING, 1)
     # valid index
     if(not type(INDEX) == int):
         raise Exception("index is not int")

@@ -5,6 +5,39 @@ from ..btpy_loops.BtpyLoops import BtpyLoops
 
 class BtpyMaths(BtpyLoops):
 
+    # return point
+    def center_square(
+        POINT_2D:list[int|float], 
+        WIDTH:int|float, 
+        HEIGHT:int|float)\
+        ->list[int|float]:
+        """
+        TESTED
+        This function return the center 
+        point of a square.
+        """
+        return center_square(
+            POINT_2D, 
+            WIDTH, 
+            HEIGHT
+        )
+    
+    def colliding_square(square1:dict[int], 
+      square2:dict[int])->bool:
+        """
+        This function checks if two squares 
+        are colliding based on their 
+        coordinates and dimensions. By gemini.
+        square = {
+            "x":location_x
+            "y":location_y
+            "width":size_x
+            "height":size_y
+        }
+        """
+        return colliding_square(square1, 
+            square2)
+
     def abs_sum(a_chief:int|float, 
         b:int|float)->int|float:
         """
@@ -127,19 +160,6 @@ class BtpyMaths(BtpyLoops):
         return whats_range(ranges_named, 
             number)
     
-    def point_in_space(punto:list[int], 
-                   rango_x:list[int], 
-                   rango_y:list[int])\
-                    ->bool:
-        """
-        Analiza y verifica si un punto 
-        en forma de lista se encuentra 
-        dentro de los intervalos de los 
-        ejes enviados en x e y.
-        """
-        return point_in_space(punto, 
-            rango_x, rango_y)
-    
     def Probability():
         """
         Es un objeto que sirve para 
@@ -172,34 +192,6 @@ class BtpyMaths(BtpyLoops):
             alto
         )
     
-    # return point
-    def center_square(point:list[int], 
-        size_x:int, 
-        size_y:int)->list[int]:
-        """
-        This function calculates the center 
-        point of a square represented by 
-        a dictionary.
-        """
-        return center_square(point, size_x, 
-            size_y)
-    
-    def colliding_square(square1:dict[int], 
-      square2:dict[int])->bool:
-        """
-        This function checks if two squares 
-        are colliding based on their 
-        coordinates and dimensions. By gemini.
-        square = {
-            "x":location_x
-            "y":location_y
-            "width":size_x
-            "height":size_y
-        }
-        """
-        return colliding_square(square1, 
-            square2)
-    
     def origin_by_center(point:list[int], 
       size_x:int, size_y:int)->list[int]:
         """
@@ -221,14 +213,6 @@ class BtpyMaths(BtpyLoops):
         """
         return left_point_rectangle(
             range_location, size_x, size_y)
-    
-    def in_rectangle(origen_point, ancho, alto):
-        """
-        Determina si un punto se encuentra 
-        dentro de un rectángulo.
-        """
-        return in_rectangle(origen_point, 
-            ancho, alto)
     
     def square_to_space(POINT, size_x, 
             size_y):

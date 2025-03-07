@@ -19,6 +19,16 @@ class BtpyCheckers:
         """
         return are_all_the_same(ARRAY)
     
+    def equal_string(STRING_1:str, 
+        STRING_2:str)-> bool:
+        """
+        TESTED
+        Function that checks if two 
+        strings are equal, ignoring case.
+        """
+        return equal_string(STRING_1, 
+            STRING_2)
+    
     def in_range(NUMBER: int|float, 
             RANGE_ARR_X2: list[int])\
             -> bool:
@@ -56,6 +66,20 @@ class BtpyCheckers:
         range between 0 and 256.
         """
         return is_byte_256(ANY_DATA)
+    
+    def is_dict_square(ANY_DATA: any)\
+            -> bool:
+        """
+        TESTED
+        Function that verifies if the 
+        data sent is a rectangle in 
+        dictionary format; this format 
+        must contain the keys x for 
+        location x, y for location y, 
+        width for the size in x and height 
+        for the size in y.
+        """
+        return is_dict_square(ANY_DATA)
     
     def is_error_return(ANY_DATA:any)\
             ->bool:
