@@ -1,12 +1,14 @@
 
 
 
-def is_number(data) -> bool:
+def is_number(ANY_DATA:any) -> bool:
     """
-    Checks if the data sent
-    is of a numeric type.
+    TESTED
+    Function that returns true if 
+    the data sent is of float or 
+    integer type.
     """
-    if(not type(data) == int
-    and not type(data) == float): 
+    if(not type(ANY_DATA) == int
+    and not type(ANY_DATA) == float): 
         return False
     return True

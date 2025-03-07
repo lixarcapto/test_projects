@@ -1,35 +1,42 @@
 
 
-def is_point_2d(data)->bool:
+def is_point_2D(ANY_DATA : any)->bool:
      """
-      Función que verifica  el dato 
-      enviado es un punto 2D
+     Function that returns true if 
+     the data sent is a point 2D in array 
+     format; that is, an array of 
+     numbers with two elements where 
+     the first element is the x 
+     coordinate and the second element 
+     is the y coordinate.
      """
-     return __is_point(data, 2)
+     return __is_point(ANY_DATA, 2)
 
 
-def is_point_3d(data)->bool:
+def is_point_3D(ANY_DATA : any)->bool:
      """
-      Función que verifica  el dato 
-      enviado es un punto 3D
+     Function that returns true if 
+     the data sent is a 3D point in 
+     array format; that is, an array 
+     of numbers with two elements where 
+     the first element is the x 
+     coordinate, the second element is 
+     the y coordinate, and the third 
+     element is the z coordinate.
      """
-     return __is_point(data, 3)
+     return __is_point(ANY_DATA, 3)
 
-def __is_point(data, size:int):
-        # valida el size
-        if(not type(size) == int):
-             return False
-        if((not size == 2)
-           or (size == 3)):
-             return False
-        # si no es lista
-        if(not type(data) == list):
+def __is_point(ANY_DATA:any, SIZE:int)\
+               -> bool:
+        # if is not a list
+        if(not type(ANY_DATA) == list):
             return False
-        # si es mas pequeño
-        if(not len(data) == size):
+        # if is litle
+        if(not len(ANY_DATA) == SIZE):
             return False
-        # si no son numeros
-        for e in data: 
+        # If the coordinates are not 
+        # numbers
+        for e in ANY_DATA: 
             if(not type(e) == int
             and not type(e) == float):
                 return False
