@@ -14,7 +14,6 @@ from .mod.crono.Crono import*
 from .mod.clean_console.clean_console import*
 from .mod.iterator.Iterator import*
 from .mod.counter_call.CounterCall import*
-from .mod.limit_number.LimitNumber import*
 from .mod.switch.Switch import*
 from .mod.url_split.url_split import*
 from .mod.related_dict.RelatedDict import*

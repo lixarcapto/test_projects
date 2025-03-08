@@ -14,32 +14,32 @@ sys.path.append(parent_dir)
 from btpy.Btpy import Btpy
 
 def main():
-    r = Btpy.center_square([0, 0],
+    r = Btpy.center_rectangle([0, 0],
         100, 100)
     r = [50, 50] == r
     print(r == True)
     try:
-        r = Btpy.center_square([0, 0, 0],
+        r = Btpy.center_rectangle([0, 0, 0],
         100, 100)
     except Exception as e:
         print(e)
     try:
-        r = Btpy.center_square([0, 0],
+        r = Btpy.center_rectangle([0, 0],
         "100", 100)
     except Exception as e:
         print(e)
     try:
-        r = Btpy.center_square([0, 0],
+        r = Btpy.center_rectangle([0, 0],
         100, "100")
     except Exception as e:
         print(e)
     try:
-        r = Btpy.center_square([0, 0],
+        r = Btpy.center_rectangle([0, 0],
         0, 100)
     except Exception as e:
         print(e)
     try:
-        r = Btpy.center_square([0, 0],
+        r = Btpy.center_rectangle([0, 0],
         100, 0)
     except Exception as e:
         print(e)

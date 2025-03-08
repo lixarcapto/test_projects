@@ -17,8 +17,7 @@ from .mod.sum_point.sum_point import*
 from .mod.whats_range.whats_ranges import*
 from .mod.probability.Probability import*
 from .mod.translade_points.translade_points import*
-from .mod.center_square.center_square import*
-from .mod.colliding_square.colliding_square import*
+from .mod.center_rectangle.center_rectangle import*
 from .mod.origin_by_center.origin_by_center import*
 from .mod.left_point_rectangle.left_point_rectangle import*
 from .mod.square_to_space.square_to_space import*

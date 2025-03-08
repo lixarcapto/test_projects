@@ -6,7 +6,7 @@ from ..btpy_loops.BtpyLoops import BtpyLoops
 class BtpyMaths(BtpyLoops):
 
     # return point
-    def center_square(
+    def center_rectangle(
         POINT_2D:list[int|float], 
         WIDTH:int|float, 
         HEIGHT:int|float)\
@@ -14,29 +14,13 @@ class BtpyMaths(BtpyLoops):
         """
         TESTED
         This function return the center 
-        point of a square.
+        point of a rectangle.
         """
-        return center_square(
+        return center_rectangle(
             POINT_2D, 
             WIDTH, 
             HEIGHT
         )
-    
-    def colliding_square(square1:dict[int], 
-      square2:dict[int])->bool:
-        """
-        This function checks if two squares 
-        are colliding based on their 
-        coordinates and dimensions. By gemini.
-        square = {
-            "x":location_x
-            "y":location_y
-            "width":size_x
-            "height":size_y
-        }
-        """
-        return colliding_square(square1, 
-            square2)
 
     def abs_sum(a_chief:int|float, 
         b:int|float)->int|float:

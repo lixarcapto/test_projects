@@ -67,6 +67,25 @@ class BtpyCheckers:
         """
         return is_byte_256(ANY_DATA)
     
+    def is_colliding_rect(
+            RECT_DICT_1:dict[int], 
+            RECT_DICT_2:dict[int])->bool:
+        """
+        This function checks if two squares 
+        are colliding based on their 
+        coordinates and dimensions. By gemini.
+        square = {
+            "x":location_x
+            "y":location_y
+            "width":size_x
+            "height":size_y
+        }
+        """
+        return is_colliding_rect(
+            RECT_DICT_1, 
+            RECT_DICT_2
+        )
+    
     def is_dict_square(ANY_DATA: any)\
             -> bool:
         """
@@ -79,7 +98,7 @@ class BtpyCheckers:
         width for the size in x and height 
         for the size in y.
         """
-        return is_dict_square(ANY_DATA)
+        return is_dict_rectangle(ANY_DATA)
     
     def is_error_return(ANY_DATA:any)\
             ->bool:

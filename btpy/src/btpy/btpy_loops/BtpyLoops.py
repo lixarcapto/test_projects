@@ -16,17 +16,6 @@ class BtpyLoops(BtpyList):
         """
         return mapp(array, function)
     
-    def repeat_each(repetition: int, 
-           seconds: int | float, 
-           function):
-        """
-        Funcion de repeticion temporal 
-        de una funcion en el hilo 
-        actual. No crea un nuevo hilo.
-        """
-        repeat_each(repetition, seconds, 
-            function)
-    
     def has_all(array:list, function):
         """
         Función que itera sobre los 
@@ -49,8 +38,7 @@ class BtpyLoops(BtpyList):
         return has_some(array, function)
     
     def repeat_each(INTERVAL_TIME:int, 
-            FUNCTION,  
-            REPETITIONS:int|float = -1)\
+            FUNCTION)\
             ->None:
         """
         Repite la función especificada cada 
@@ -59,8 +47,8 @@ class BtpyLoops(BtpyList):
         una flag. Tambien recibe un numero int que 
         indica el numero de repeticiones.
         """
-        repeat_each(INTERVAL_TIME, FUNCTION, 
-            REPETITIONS)
+        repeat_each(INTERVAL_TIME, 
+            FUNCTION)
         
     def mapp(DATA:list|dict|str, FUNCTION)\
         -> list|dict|str:

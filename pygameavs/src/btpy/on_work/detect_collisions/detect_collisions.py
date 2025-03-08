@@ -16,7 +16,7 @@ def detect_collisions(square_dict):
     for k1 in square_dict:
          for k2 in square_dict:
             if(k1 == k2): continue
-            is_collide = Btpy.colliding_square(
+            is_collide = Btpy.is_colliding_rect(
                 square_dict[k1],
                 square_dict[k2]
             )

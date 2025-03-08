@@ -17,5 +17,6 @@ from .mod.is_string_of_size.is_string_of_size import*
 from .mod.is_index.is_index import*
 from .mod.is_point_in_rect.is_point_in_rect import*
 from .mod.equal_string.equal_string import*
-from .mod.is_dict_square.is_dict_square import*
+from .mod.is_dict_rectangle.is_dict_rectangle import*
+from .mod.is_colliding_rect.is_colliding_rect import*
 from .mod.is_tree_graph_dict.is_tree_graph_dict import*

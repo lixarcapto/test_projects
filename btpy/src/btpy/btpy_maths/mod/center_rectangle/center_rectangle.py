@@ -1,11 +1,10 @@
 
 
-from ....btpy_checkers.mod.is_point\
-    .is_point import is_point_2D
+from ....btpy_checkers.mod.is_point.is_point import is_point_2D
 from ....btpy_checkers.mod.is_number.is_number import*
 
 # return point
-def center_square(
+def center_rectangle(
         POINT_2D:list[int|float], 
         WIDTH:int|float, 
         HEIGHT:int|float)\
@@ -13,7 +12,7 @@ def center_square(
     """
     TESTED
     This function return the center 
-    point of a square.
+    point of a rectangle.
     """
     if(not is_point_2D(POINT_2D)):
         raise Exception(f"<!>Error: The parameter POINT_2D is not a 2D point in array format; its value is \"{POINT_2D}\" and the type is {type(WIDTH)}.")

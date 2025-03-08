@@ -1,9 +1,9 @@
 
 
 
-from ...mod.is_number.is_number import is_number
+from ..is_number.is_number import is_number
 
-def is_dict_square(ANY_DATA: any)-> bool:
+def is_dict_rectangle(ANY_DATA: any)-> bool:
     """
     Function that verifies if the 
     data sent is a rectangle in 

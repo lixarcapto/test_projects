@@ -12,14 +12,14 @@ sys.path.append(parent_dir)
 from btpy.Btpy import Btpy
 
 def main():
-    r = Btpy.is_dict_square(
+    r = Btpy.is_dict_rectangle(
         {
             "x":0, "y":0, 
             "height":100, "width":100
          }
     )
     print(r == True)
-    r = Btpy.is_dict_square(
+    r = Btpy.is_dict_rectangle(
         {
             "X":0, "Y":0, 
             "height":100, "width":100

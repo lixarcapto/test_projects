@@ -255,7 +255,7 @@ class GObject:
 
     def calculate_center(self):
         square = self.get_box_square()
-        self.mid_point = Btpy.center_square(
+        self.mid_point = Btpy.center_rectangle(
             [square["x"], square["y"]],
             square["width"],
             square["height"])

@@ -160,10 +160,6 @@ class BtpyUtilitys(BtpyString):
         formateara.
         """
         return CounterCall(limit)
-    
-    def LimitNumber(number, range_arr):
-        return LimitNumber(number, 
-            range_arr)
 
     def Switch(state = False):
         """
