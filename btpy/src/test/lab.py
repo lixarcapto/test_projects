@@ -13,11 +13,46 @@ sys.path.append(parent_dir)
 from btpy.Btpy import Btpy
 
 def main():
-    r = Btpy.LimitNumber(4, [0, 10])
-    def fn(n):
-        r.sum(3)
-        print("funciona " + str(r.get()))
-        if(n == 5): return True
-    Btpy.repeat_each(0.7, fn)
+    g = Btpy.Graph()
+    g.load_graph_dict({
+        "Castilla y la mancha":
+        [
+            "Madrid", 
+            "Castilla y Leon"
+        ],
+        "Madrid":
+        [
+            "Castilla y la mancha",
+            "Castilla y Leon"
+        ],
+        "Castilla y Leon":
+        [
+            "Castilla y la mancha",
+            "Madrid",
+            "La Rioja"
+        ],
+        "La Rioja":
+        [
+            "Castilla y la mancha"
+        ],
+        "Navarra":
+        [
+            "La Rioja"
+        ]
+    },
+    {
+        "Castilla y la mancha": None,
+        "Madrid": None,
+        "Castilla y Leon": None,
+        "La Rioja":None,
+        "Navarra":None
+    })
+    print(g.get_neighbors_keys(
+        "Castilla y la mancha"))
+    print("path", g.get_deep_search_path(
+        "Castilla y la mancha",
+        "Navarra"
+    ))
+    print(g)
 
 main()

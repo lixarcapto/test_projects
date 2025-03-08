@@ -14,4 +14,5 @@ class BtpyDataTypes(BtpyConst):
     """
 
     LimitNumber = LimitNumber
+    Graph = Graph
 

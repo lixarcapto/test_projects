@@ -58,6 +58,18 @@ class LimitNumber:
             self.__range_arr
         )
 
+    def is_at_maximum(self)-> bool:
+        if(self.__number
+                == self.__range_arr[1]):
+            return True 
+        return False
+
+    def is_at_minimum(self)-> bool:
+        if(self.__number
+                == self.__range_arr[0]):
+            return True 
+        return False
+
     def sum(self, NUMBER:int|float)-> None:
         """
         Adds the number sent to the 
