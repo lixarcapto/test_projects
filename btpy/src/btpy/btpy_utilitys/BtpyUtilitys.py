@@ -160,22 +160,6 @@ class BtpyUtilitys(BtpyString):
         formateara.
         """
         return CounterCall(limit)
-
-    def Switch(state = False):
-        """
-        Clase interruptor para realizar 
-        cambios automaticos a variables 
-        boolean con cada llamada. Para 
-        usarla solo debe crearse un 
-        objeto con un nombre estilo
-        boolean y comprobarlo con 
-        is_true().
-        **NOTE**
-        La variable rcy es una variable 
-        reciclada, para evitar creaciones 
-        constantes en los bucles.
-        """
-        return Switch(state)
     
     def url_split(url:str)->dict[str]:
         """
@@ -185,23 +169,6 @@ class BtpyUtilitys(BtpyString):
         protocol, domain, route y query
         """
         return url_split(url)
-    
-    def RelatedDict()->RelatedDict:
-        """
-            Esta clase es un diccionario 
-        especial que permite busquedas 
-        de claves relacionadas. Su 
-        estructura es un diccionario 
-        de nodos que contienen claves.
-            Para usarlo debes asignar con 
-        set una clave multiple separada 
-        con dos puntos :, y un dato.
-        pueden modificarse los datos con 
-        set(key, dato) y obtener el dato 
-        con get(key)
-        """
-        return RelatedDict(
-            similar_percent = 70)
     
     def DesitionThree():
         return DecisionThree()

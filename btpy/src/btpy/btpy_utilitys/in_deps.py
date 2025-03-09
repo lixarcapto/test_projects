@@ -14,9 +14,7 @@ from .mod.crono.Crono import*
 from .mod.clean_console.clean_console import*
 from .mod.iterator.Iterator import*
 from .mod.counter_call.CounterCall import*
-from .mod.switch.Switch import*
 from .mod.url_split.url_split import*
-from .mod.related_dict.RelatedDict import*
 from .mod.decision_three.DecisionThree import*
 from .mod.rgb_to_hex.rgb_to_hex import*
 from .mod.unique_int.UniqueInt import*
