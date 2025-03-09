@@ -40,13 +40,18 @@ class BtpyMaths(BtpyLoops):
         """
         return get_symbol(n)
     
-    def mid(array:list)->float:
+    def calculate_average(
+            ITERABLE:list[int|float]
+            |tuple[int|float]
+            |dict[str, int|float]
+            |set[int|float])->int|float:
         """
-        Función que calcula el
-        promedio de los números en
-        la matriz enviada.
+        TESTED
+        Function that calculates the
+        average of the numbers in the
+        submitted iterable.
         """
-        return mid(array)
+        return calculate_average(ITERABLE)
     
     def set_in_range(value: int, 
         range_arr: list)->int:
@@ -67,14 +72,19 @@ class BtpyMaths(BtpyLoops):
         return random_probability(
             porcentage)
     
-    def vector_sum(array1:list[int], 
-        array2:list[int])->list[int]:
+    def vector_sum(
+            ARRAY_1:list[int|float]|
+            tuple[int|float], 
+            ARRAY_2:list[int|float]|
+            tuple[int|float])\
+            ->list[int|float]:
         """
-        Función que suma los elementos 
-        de dos arrays de números en la 
-        misma posición del array.
+        TESTED
+        Function that adds the elements
+        of two arrays of numbers in the 
+        same position of the array.
         """
-        return vector_sum(array1, array2)
+        return vector_sum(ARRAY_1, ARRAY_2)
     
     def sum_in_range(value_a:int|float, 
         value_b:int|float, 

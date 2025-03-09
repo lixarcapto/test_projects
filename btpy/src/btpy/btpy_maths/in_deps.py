@@ -4,7 +4,7 @@
 # MATHS
 from .mod.mix_operation.abs_sum import*
 from .mod.mix_operation.get_symbol import*
-from .mod.mid.mid import*
+from .mod.calculate_average.calculate_average import*
 from .mod.random_probability.random_probability import*
 from .mod.set_in_range.set_in_range import*
 from .mod.vector_sum.vector_sum import*

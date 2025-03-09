@@ -19,4 +19,8 @@ from .mod.is_point_in_rect.is_point_in_rect import*
 from .mod.equal_string.equal_string import*
 from .mod.is_dict_rectangle.is_dict_rectangle import*
 from .mod.is_colliding_rect.is_colliding_rect import*
+from .mod.has_all.has_all import*
+from .mod.is_iterable.is_iterable import*
+from .mod.has_some.has_some import*
+from .mod.iterable_is_of_type.iterable_is_of_type import*
 from .mod.is_tree_graph_dict.is_tree_graph_dict import*

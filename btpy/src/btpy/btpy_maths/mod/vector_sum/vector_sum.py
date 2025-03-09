@@ -1,16 +1,40 @@
 
 
+from ....btpy_checkers.mod.iterable_is_of_type.iterable_is_of_type import*
 
-
-def vector_sum(array1:list[int], 
-        array2:list[int])->list[int]:
+def vector_sum(
+        ARRAY_1:list[int|float]|
+        tuple[int|float], 
+        ARRAY_2:list[int|float]|
+        tuple[int|float])\
+        ->list[int|float]:
     """
-    Función que suma los elementos 
-    de dos arrays de números en la 
-    misma posición del array.
+    TESTED
+    Function that adds the elements
+    of two arrays of numbers in the 
+    same position of the array.
     """
-    #
-    new_array = array1.copy()
-    for i in range(len(array1)):
-        new_array[i] += array2[i]
+    if(not isinstance(ARRAY_1, list)
+    and not isinstance(ARRAY_1, tuple)):
+        raise Exception(f"<!>Error: The parameter ARRAY_1 is not a valid type, it must be a list or tuple type.")
+    if(not isinstance(ARRAY_2, list)
+    and not isinstance(ARRAY_2, tuple)):
+        raise Exception(f"<!>Error: The parameter ARRAY_2 is not a valid type, it must be a list or tuple type.")
+    if((not iterable_is_of_type(
+            ARRAY_1, int))
+    and (not iterable_is_of_type(
+            ARRAY_1, float))):
+        raise Exception(f"<!>Error: parameter ARRAY_1 is not an iterable integer or float.")
+    if((not iterable_is_of_type(
+            ARRAY_2, int))
+    and (not iterable_is_of_type(
+            ARRAY_2, float))):
+        raise Exception(f"<!>Error: parameter ARRAY_2 is not an iterable integer or float.")
+    if(len(ARRAY_1) != len(ARRAY_2)):
+        raise Exception(f"<!>Error: The parameter ARRAY_1 and the ARRAY_2 do not have the same size, therefore the vector sum cannot be calculated.")
+    new_array:list[int|float] = ARRAY_1\
+        .copy()
+    for i in range(len(ARRAY_1)):
+        new_array[i] += ARRAY_2[i]
     return new_array
+

@@ -16,27 +16,6 @@ class BtpyLoops(BtpyList):
         """
         return mapp(array, function)
     
-    def has_all(array:list, function):
-        """
-        Función que itera sobre los 
-        elementos del array enviado 
-        buscando si todos los elementos 
-        del array retornan true a la 
-        función enviada.
-        """
-        return has_all(array, function)
-    
-    def has_some(array:list, 
-            function)->bool:
-        """
-        Función que itera sobre los 
-        elementos del array enviado 
-        buscando si alguno de los 
-        elementos del array retornan 
-        true a la función enviada.
-        """
-        return has_some(array, function)
-    
     def repeat_each(INTERVAL_TIME:int, 
             FUNCTION)\
             ->None:

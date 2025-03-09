@@ -13,46 +13,8 @@ sys.path.append(parent_dir)
 from btpy.Btpy import Btpy
 
 def main():
-    g = Btpy.Graph()
-    g.load_graph_dict({
-        "Castilla y la mancha":
-        [
-            "Madrid", 
-            "Castilla y Leon"
-        ],
-        "Madrid":
-        [
-            "Castilla y la mancha",
-            "Castilla y Leon"
-        ],
-        "Castilla y Leon":
-        [
-            "Castilla y la mancha",
-            "Madrid",
-            "La Rioja"
-        ],
-        "La Rioja":
-        [
-            "Castilla y la mancha"
-        ],
-        "Navarra":
-        [
-            "La Rioja"
-        ]
-    },
-    {
-        "Castilla y la mancha": None,
-        "Madrid": None,
-        "Castilla y Leon": None,
-        "La Rioja":None,
-        "Navarra":None
-    })
-    print(g.get_neighbors_keys(
-        "Castilla y la mancha"))
-    print("path", g.get_deep_search_path(
-        "Castilla y la mancha",
-        "Navarra"
-    ))
-    print(g)
+    cadena2 = "123a5"
+    resultado6 = all(caracter.isdigit() for caracter in cadena2)
+    print(f"¿Todos los caracteres de la cadena2 son digitos? {resultado6}") #False
 
 main()

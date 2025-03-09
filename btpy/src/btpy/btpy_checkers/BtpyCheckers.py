@@ -29,6 +29,31 @@ class BtpyCheckers:
         return equal_string(STRING_1, 
             STRING_2)
     
+    from typing import Callable
+
+    def has_all(ITERABLE:list|dict|str, 
+            FUNCTION:Callable)-> bool:
+        """
+        TESTED
+        Function that returns true if
+        the checker function applied to all
+        the elements of the iterable return
+        true when each element is received.
+        """
+        return has_all(ITERABLE, FUNCTION)
+    
+    def has_some(ITERABLE
+            :list|dict|str|tuple|set, 
+            FUNCTION:callable)->bool:
+        """
+        TESTED
+        Function that returns true if 
+        the verification function applied 
+        to all elements returns false in 
+        any case.
+        """
+        return has_some(ITERABLE, FUNCTION)
+
     def in_range(NUMBER: int|float, 
             RANGE_ARR_X2: list[int])\
             -> bool:
@@ -143,6 +168,16 @@ class BtpyCheckers:
         correct index for the array sent.
         """
         return is_index(INDEX, ARRAY)
+    
+    def is_iterable(ANY_DATA:any)-> bool:
+        """
+        TESTED
+        Function that returns true if
+        the data sent is of an iterable 
+        type; that is a list, set, dict, 
+        tuple, or string type.
+        """
+        return is_iterable(ANY_DATA)
 
     def is_number(ANY_DATA:any) -> bool:
         """
@@ -254,6 +289,21 @@ class BtpyCheckers:
         """
         return is_string_of_size(ANY_DATA,
             SIZE)
+    
+    def iterable_is_of_type(
+            ITERABLE:list|set|tuple|dict, 
+            KEY_TYPE)-> bool:
+        """
+        TESTED
+        Function that returns true if
+        all elements of the iterable
+        are the same type of data sent
+        in the KEY_TYPE parameter.
+        """
+        return iterable_is_of_type(
+            ITERABLE, 
+            KEY_TYPE
+        )
 
     
     
