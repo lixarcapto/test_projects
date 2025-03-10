@@ -3,6 +3,7 @@
 
 from .in_deps import*
 from ..btpy_internet.BtpyInternet import BtpyInternet
+from typing import Callable
 
 class BtpyList(BtpyInternet):
 
@@ -103,19 +104,22 @@ class BtpyList(BtpyInternet):
             FILL_TYPE)
     
     def count_true_checks(
-            STRUCTURE:list|dict,
-            CHECKER_FUNCTION)-> int:
+            ITERABLE:list|str|tuple
+            |set|dict,
+            CHECKER_FUNCTION
+            :Callable[[any],bool])\
+            -> int:
         """
         TESTED
-        Funcion que cuenta el numero de 
-        verificaciones al recorrer una
-        estructura. Funciona aplicando a 
-        cada elemento de la estructura 
-        la funcion checker enviada y 
-        contando los resultados verdaderos.
+        Function that counts the number of
+        checks when going through a
+        structure. It works by applying 
+        the checker function sent to
+        each element of the structure 
+        and counting the true results.
         """
         return count_true_checks(
-            STRUCTURE, CHECKER_FUNCTION)
+            ITERABLE, CHECKER_FUNCTION)
     
     def find_value(DICT:dict, DATA)->str:
         """

@@ -16,7 +16,6 @@ from .mod.iterator.Iterator import*
 from .mod.counter_call.CounterCall import*
 from .mod.url_split.url_split import*
 from .mod.decision_three.DecisionThree import*
-from .mod.rgb_to_hex.rgb_to_hex import*
 from .mod.unique_int.UniqueInt import*
 from .mod.call_after.call_after import*
 from .mod.duplicate.Duplicate import*

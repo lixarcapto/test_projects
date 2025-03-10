@@ -188,6 +188,18 @@ class BtpyCheckers:
         """
         return is_number(ANY_DATA)
     
+    def is_ordered_iterable(ANY_DATA:any)\
+            -> bool:
+        """
+        TESTED
+        Function that returns true if 
+        the data sent is an ordered 
+        iterable type such as list, 
+        tuple, and string.
+        """
+        return is_ordered_iterable(
+            ANY_DATA)
+    
     def is_point_2D(ANY_DATA : any)->bool:
         """
         TESTED
@@ -312,6 +324,17 @@ class BtpyCheckers:
         return is_string_of_size(ANY_DATA,
             SIZE)
     
+    def is_unordered_iterable(ANY_DATA:any)\
+            -> bool:
+        """
+        Function that returns true if 
+        the data sent is an unordered 
+        iterable type such as dict 
+        and set.
+        """
+        return is_unordered_iterable(
+            ANY_DATA)
+    
     def iterable_is_of_type(
             ITERABLE:list|set|tuple|dict, 
             KEY_TYPE)-> bool:
@@ -326,6 +349,12 @@ class BtpyCheckers:
             ITERABLE, 
             KEY_TYPE
         )
+    
+    def is_checker_function(
+            FUNCTION:callable)\
+            -> bool:
+        return is_checker_function(
+            FUNCTION)
 
     
     

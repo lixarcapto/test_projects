@@ -1,19 +1,30 @@
 
 
+from ....btpy_checkers.mod.is_function\
+    .is_function import*
+from ....btpy_checkers.mod.is_iterable.is_iterable import*
+from typing import Callable
 
-def count_true_checks(STRUCTURE:list|dict,
-        CHECKER_FUNCTION)-> int:
+def count_true_checks(
+        ITERABLE:list|str|tuple|set|dict,
+        CHECKER_FUNCTION
+        :Callable[[any],bool])-> int:
     """
-    Funcion que cuenta el numero de 
-    verificaciones al recorrer una
-    estructura. Funciona aplicando a 
-    cada elemento de la estructura 
-    la funcion checker enviada y contando 
-    los resultados verdaderos.
+    TESTED
+    Function that counts the number of
+    checks when going through a
+    structure. It works by applying 
+    the checker function sent to
+    each element of the structure 
+    and counting the true results.
     """
+    if(not is_iterable(ITERABLE)):
+        raise Exception("The parameter ITERABLE is not an iterable, it must be a str, list, tuple, set or dict type.")
+    if(not is_function(CHECKER_FUNCTION)):
+        raise Exception("The FUNCTION parameter is not a function.")
     n:int = 0
     array:list = []
-    type_:str = type(STRUCTURE)
+    type_:str = type(ITERABLE)
     # si no es una funcion checker
     if(not type(CHECKER_FUNCTION(1)) 
             == bool):
@@ -23,9 +34,9 @@ def count_true_checks(STRUCTURE:list|dict,
     and (not type_ == list)):
         raise Exception(f"<!>Error: STRUCTURE is not a valid data type is ({type_}), it must be dict or list")
     if(type_ == dict):
-        array = STRUCTURE.values()
+        array = ITERABLE.values()
     else:
-        array = STRUCTURE
+        array = ITERABLE
     for e in array:
         if(CHECKER_FUNCTION(e)):
             n += 1

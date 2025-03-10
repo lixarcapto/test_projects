@@ -1,19 +1,23 @@
 
 
 
-def clean_voids(ARRAY : list)->list:
+def clean_voids(ITERABLE : list|tuple|set)\
+        ->list:
     """
-    TESTED
-    Función que crea un nuevo array
-    eliminando todos los valores de tipo
-    None y void como void string "",
-    void array [], y void dict {}
+    Function that creates a new array
+    by removing all values ​​of type
+    None and void such as void string "",
+    void array [], and void set {}
     """
+    if(not isinstance(ITERABLE, list)
+    and not isinstance(ITERABLE, tuple)
+    and not isinstance(ITERABLE, set)):
+        raise Exception("the ITERABLE parameter is not a valid type, it must be list, set or tuple.")
     new_array:list = []
-    for i in range(len(ARRAY)):
-        if(ARRAY[i] == None): continue
-        if(ARRAY[i] == ""): continue
-        if(ARRAY[i] == []): continue
-        if(ARRAY[i] == {}): continue
-        new_array.append(ARRAY[i])
+    for i in range(len(ITERABLE)):
+        if(ITERABLE[i] == None): continue
+        if(ITERABLE[i] == ""): continue
+        if(ITERABLE[i] == []): continue
+        if(ITERABLE[i] == {}): continue
+        new_array.append(ITERABLE[i])
     return new_array

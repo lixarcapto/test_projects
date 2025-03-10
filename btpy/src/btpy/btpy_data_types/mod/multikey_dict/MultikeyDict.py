@@ -6,7 +6,6 @@ from ..counting_dict.CountingDict import CountingDict
 class MultikeyDict:
 
     """
-    TESTED
     This is a special dictionary 
     that allows storing values ​​with 
     multiple keys.

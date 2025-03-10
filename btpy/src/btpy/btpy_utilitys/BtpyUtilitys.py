@@ -1,11 +1,11 @@
 
 
 from .in_deps import*
-from ..btpy_string.BtpyString import BtpyString
+from ..btpy_transformers.BtpyTransformers import BtpyTransformers
 import time
 from typing import Callable
 
-class BtpyUtilitys(BtpyString):
+class BtpyUtilitys(BtpyTransformers):
 
     Tester = Tester
     EmotionSim = EmotionSim
@@ -172,13 +172,6 @@ class BtpyUtilitys(BtpyString):
     
     def DesitionThree():
         return DecisionThree()
-    
-    def rgb_to_hex(rgb_list:list)->str:
-        """
-        Convierte un color RGB en su 
-        representación hexadecimal.
-        """
-        return rgb_to_hex(rgb_list)
     
     def UniqueInt():
         return UniqueInt()
