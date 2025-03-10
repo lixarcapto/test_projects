@@ -22,9 +22,10 @@ from .mod.is_colliding_rect.is_colliding_rect import*
 from .mod.has_all.has_all import*
 from .mod.is_iterable.is_iterable import*
 from .mod.has_some.has_some import*
-from .mod.iterable_is_of_type.iterable_is_of_type import*
+from .mod.instanceof_iterable.instanceof_iterable import*
 from .mod.is_point_list.is_point_list import*
 from .mod.is_checker_function.is_checker_function import*
 from .mod.is_ordered_iterable.is_ordered_iterable import*
 from .mod.is_unordered_iterable.is_unordered_iterable import*
+from .mod.type_iterable.type_iterable import*
 from .mod.is_tree_graph_dict.is_tree_graph_dict import*

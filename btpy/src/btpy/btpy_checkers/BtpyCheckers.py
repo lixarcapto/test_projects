@@ -335,7 +335,7 @@ class BtpyCheckers:
         return is_unordered_iterable(
             ANY_DATA)
     
-    def iterable_is_of_type(
+    def instanceof_iterable(
             ITERABLE:list|set|tuple|dict, 
             KEY_TYPE)-> bool:
         """
@@ -345,7 +345,7 @@ class BtpyCheckers:
         are the same type of data sent
         in the KEY_TYPE parameter.
         """
-        return iterable_is_of_type(
+        return instanceof_iterable(
             ITERABLE, 
             KEY_TYPE
         )
@@ -355,6 +355,17 @@ class BtpyCheckers:
             -> bool:
         return is_checker_function(
             FUNCTION)
+    
+    def type_iterable(ITERABLE
+            :list|tuple|dict|set)-> str:
+        """
+        TESTED
+        Function that returns the data 
+        type of the data contained within 
+        an iterable if it is an iterable 
+        of homogeneous types.
+        """
+        return type_iterable(ITERABLE)
 
     
     

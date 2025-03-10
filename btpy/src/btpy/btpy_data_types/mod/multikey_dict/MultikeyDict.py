@@ -1,6 +1,6 @@
 
 
-from ....btpy_checkers.mod.iterable_is_of_type.iterable_is_of_type import*
+from ....btpy_checkers.mod.instanceof_iterable.instanceof_iterable import*
 from ..counting_dict.CountingDict import CountingDict
 
 class MultikeyDict:
@@ -100,6 +100,6 @@ class MultikeyDict:
             -> None:
         if(not isinstance(ANY_TYPE, list)):
             raise Exception(f"<!>Error: The KEY parameter must be a list type, but its type is {type(ANY_TYPE)}, and its value is \"{ANY_TYPE}\".")
-        if(not iterable_is_of_type(
+        if(not instanceof_iterable(
                 ANY_TYPE, str)):
             raise Exception(f"<!>Error: The KEY_LIST parameter must be a list of string types and it is not, and its value is \"{ANY_TYPE}\".")

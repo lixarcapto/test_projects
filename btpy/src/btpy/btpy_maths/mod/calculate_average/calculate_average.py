@@ -1,6 +1,6 @@
 
 
-from ....btpy_checkers.mod.iterable_is_of_type.iterable_is_of_type import*
+from ....btpy_checkers.mod.instanceof_iterable.instanceof_iterable import*
 
 def calculate_average(
         ITERABLE:list[int|float]
@@ -13,9 +13,9 @@ def calculate_average(
     average of the numbers in the
     submitted iterable.
     """
-    if((not iterable_is_of_type(
+    if((not instanceof_iterable(
             ITERABLE, int))
-    and (not iterable_is_of_type(
+    and (not instanceof_iterable(
             ITERABLE, float))):
         raise Exception(f"<!>Error: parameter ITERABLE is not an iterable integer or float.")
     if(isinstance(ITERABLE, dict)):

@@ -1,9 +1,9 @@
 
 
 from .in_deps import*
-from ..btpy_data_types.BtpyDataTypes import BtpyDataTypes
+from ..btpy_dict.BtpyDict import BtpyDict
 
-class BtpyImages(BtpyDataTypes):
+class BtpyImages(BtpyDict):
 
     """
     Modulo statico de herramientas 

@@ -35,34 +35,27 @@ class BtpyList(BtpyInternet):
         """
         return create_list(size)
     
-    def max_dict(dict:dict[int|float])\
-            ->int|float:
+    def filter(
+            ITERABLE:list|tuple|dict
+            |set|str, 
+            CHECKER_FUNCTION
+            :Callable[[any], bool])\
+            ->list[any]:
         """
-        Calcula el valor máximo en un 
-        diccionario.
+        TESTED
+        Filter function that obtains all 
+        elements of an iterable that meet 
+        a given condition. The given 
+        condition is defined by the checker 
+        function passed; the checker 
+        function must receive the data 
+        type of the iterable with a single 
+        parameter and return a boolean.
         """
-        return max_dict(dict)
-    
-    def min_dict(dict:dict[int|float])\
-            ->int|float:
-        """
-        Calcula la clave del valor mínimo 
-        en un diccionario.
-        """
-        return min_dict(dict)
+        return filter(ITERABLE, CHECKER_FUNCTION)
     
     def write(send_list:list)->str:
         return write(send_list)
-    
-    def filter2(DATA:list|dict, CONDITION, 
-        QUANTITY:int = -1)->list:
-        """
-        función que busca la cantidad 
-        determinada de elementos por la 
-        condición enviada en la lista
-        """
-        return filter2(DATA, CONDITION,
-            QUANTITY)
     
     def clean_voids(ARRAY : list)->list:
         """
@@ -75,69 +68,14 @@ class BtpyList(BtpyInternet):
         """
         return clean_voids(ARRAY)
     
-    def merge_as_dict(KEYS_LIST:list, 
-            VALUES_LIST:list)->dict:
+    def fit(ORDERDER_ITERABLE
+            :list|tuple|str, 
+            SIZE:int)->list:
         """
-        Funcion que crea un diccionario 
-        utilizando dos listas.
+        Function that adjusts the sent list
+        to the indicated size.
         """
-        return merge_as_dict(KEYS_LIST, 
-            VALUES_LIST)
-    
-    def map_in_keys(OLD_DICT:dict, function)\
-            ->dict:
-        """
-        function that goes through all the 
-        keys in a dictionary by applying 
-        the sent function.
-        """
-        return map_in_keys(OLD_DICT, 
-            function)
-    
-    def fit_list(LIST, SIZE, 
-        FILL_TYPE = None)->list:
-        """
-        Funcion que ajusta la lista enviada 
-        al tamaño indicado.
-        """
-        return fit_list(LIST, SIZE, 
-            FILL_TYPE)
-    
-    def count_true_checks(
-            ITERABLE:list|str|tuple
-            |set|dict,
-            CHECKER_FUNCTION
-            :Callable[[any],bool])\
-            -> int:
-        """
-        TESTED
-        Function that counts the number of
-        checks when going through a
-        structure. It works by applying 
-        the checker function sent to
-        each element of the structure 
-        and counting the true results.
-        """
-        return count_true_checks(
-            ITERABLE, CHECKER_FUNCTION)
-    
-    def find_value(DICT:dict, DATA)->str:
-        """
-        Busca la clave del valor enviado
-        en el diccionario.
-        """
-        return find_value(DICT, DATA)
-
-    def find_closest_lower(DICT:dict, 
-            NUMBER:int|float):
-        """
-        funcion que identifique en un 
-        diccionario de numeros que numero 
-        es el mas cercano inferior al numero 
-        enviado retornando su clave.
-        """
-        return find_closest_lower(DICT, 
-                NUMBER)
+        return fit(ORDERDER_ITERABLE, SIZE)
     
     def flatten(matrix:list[list])\
             ->list[any]:

@@ -1,6 +1,6 @@
 
 
-from ....btpy_checkers.mod.iterable_is_of_type.iterable_is_of_type import*
+from ....btpy_checkers.mod.instanceof_iterable.instanceof_iterable import*
 
 def vector_sum(
         ARRAY_1:list[int|float]|
@@ -20,14 +20,14 @@ def vector_sum(
     if(not isinstance(ARRAY_2, list)
     and not isinstance(ARRAY_2, tuple)):
         raise Exception(f"<!>Error: The parameter ARRAY_2 is not a valid type, it must be a list or tuple type.")
-    if((not iterable_is_of_type(
+    if((not instanceof_iterable(
             ARRAY_1, int))
-    and (not iterable_is_of_type(
+    and (not instanceof_iterable(
             ARRAY_1, float))):
         raise Exception(f"<!>Error: parameter ARRAY_1 is not an iterable integer or float.")
-    if((not iterable_is_of_type(
+    if((not instanceof_iterable(
             ARRAY_2, int))
-    and (not iterable_is_of_type(
+    and (not instanceof_iterable(
             ARRAY_2, float))):
         raise Exception(f"<!>Error: parameter ARRAY_2 is not an iterable integer or float.")
     if(len(ARRAY_1) != len(ARRAY_2)):

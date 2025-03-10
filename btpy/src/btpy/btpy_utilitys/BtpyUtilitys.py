@@ -7,7 +7,6 @@ from typing import Callable
 
 class BtpyUtilitys(BtpyTransformers):
 
-    Tester = Tester
     EmotionSim = EmotionSim
     
     def deep(array:list) -> int:

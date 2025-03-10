@@ -1,6 +1,6 @@
 
 
-from ....btpy_list.mod.merge_as_dict.merge_as_dict import*
+from ....btpy_dict.mod.merge_as_dict.merge_as_dict import*
 import openpyxl
 
 def read_nested_column_xlsx(
