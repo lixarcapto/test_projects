@@ -28,20 +28,6 @@ class BtpyUtilitys(BtpyTransformers):
         tras cada carácter
         """
         slow_print(text, speed)
-
-    def max_key(dict_of_numbers:dict)->str:
-        """
-        Calcula la clave mas alta en 
-        un diccionario de numeros.
-        """
-        return max_key(dict_of_numbers)
-    
-    def min_key(dict_of_numbers:dict)->str:
-        """
-        Calcula la clave mas baja en 
-        un diccionario de numeros.
-        """
-        return min_key(dict_of_numbers)
     
     def count_repeats(array:list)\
         ->dict[int]:

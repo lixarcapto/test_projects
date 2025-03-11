@@ -15,24 +15,18 @@ class BtpyDict(BtpyDataTypes):
         """
         return key_of(DICT, VALUE)
     
-    def merge_as_dict(KEYS_LIST:list, 
-            VALUES_LIST:list)->dict:
-        """
-        Funcion que crea un diccionario 
-        utilizando dos listas.
-        """
-        return merge_as_dict(KEYS_LIST, 
-            VALUES_LIST)
-    
-    def map_in_keys(OLD_DICT:dict, function)\
+    def map_in_keys(DICT:dict, 
+            FUNCTION_PROCESSOR
+            :Callable[[str], str])\
             ->dict:
         """
-        function that goes through all the 
+        TEST
+        Function that goes through all the 
         keys in a dictionary by applying 
         the sent function.
         """
-        return map_in_keys(OLD_DICT, 
-            function)
+        return map_in_keys(DICT, 
+            FUNCTION_PROCESSOR)
     
     def find_closest_lower(DICT:dict, 
             NUMBER:int|float):
@@ -45,21 +39,33 @@ class BtpyDict(BtpyDataTypes):
         return find_closest_lower(DICT, 
                 NUMBER)
     
-    def max_dict(dict:dict[int|float])\
-            ->int|float:
+    def max_key(NUMBER_DICT
+            :dict[str, int|float])\
+            ->str:
         """
-        Calcula el valor máximo en un 
-        diccionario.
+        TESTED
+        Function that finds the maximum 
+        value in a dictionary and returns 
+        the key of that value. If there 
+        are two equal values, it uses the 
+        one that is first in the dictionary 
+        order.
         """
-        return max_dict(dict)
+        return max_key(NUMBER_DICT)
     
-    def min_dict(dict:dict[int|float])\
-            ->int|float:
+    def min_key(NUMBER_DICT
+            :dict[str, int|float])\
+            ->str:
         """
-        Calcula la clave del valor mínimo 
-        en un diccionario.
+        TESTED
+        Function that finds the minimum 
+        value in a dictionary and returns 
+        the key of that value. If there 
+        are two equal values, it uses the 
+        one that is first in the dictionary 
+        order.
         """
-        return min_dict(dict)
+        return min_key(NUMBER_DICT)
     
     
 
