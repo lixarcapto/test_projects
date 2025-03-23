@@ -1,6 +1,5 @@
 
 
-from ....btpy_dict.mod.merge_as_dict.merge_as_dict import*
 import openpyxl
 
 def read_nested_column_xlsx(
@@ -27,8 +26,8 @@ def read_nested_column_xlsx(
         diccionario_columnas[worksheet.cell(row=1, column=col_num).value] = valores_columna
     final_dict = {}
     for k in diccionario_columnas:
-       final_dict[k] = merge_as_dict(
-          key_list,
-          diccionario_columnas[k]
-       )
+       final_dict[k] = dict(zip(
+               key_list, 
+               diccionario_columnas[k]
+        ))
     return final_dict
