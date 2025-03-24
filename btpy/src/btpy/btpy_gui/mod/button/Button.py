@@ -15,6 +15,9 @@ class Button(WidgetStandard):
     def set_text(self, TEXT:str):
         self.widget.config(text = TEXT)
 
+    def get_text(self):
+        return self.widget.cget("text")
+
     def add_listener(self, CALLBACK)->None:
         self.widget.config(
             command = CALLBACK)

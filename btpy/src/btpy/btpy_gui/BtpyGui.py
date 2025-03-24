@@ -13,6 +13,11 @@ from .mod.color_popup.color_popup import*
 from .mod.binary_popup.BinaryPopup import BinaryPopup
 from .mod.dropdown_box.DropdownBox import DropdownBox
 from .mod.input_slider.InputSlider import InputSlider
+from .mod.swipper_number.SwipperNumber import SwipperNumber
+from .mod.select_button.SelectButton import SelectButton
+from .mod.check_box.CheckBox import CheckBox
+from .mod.radio_box.RadioBox import RadioBox
+from .mod.button_intentory.ButtonInventory import ButtonInventory
 
 class BtpyGui(BtpyDict):
 
@@ -26,6 +31,11 @@ class BtpyGui(BtpyDict):
     BinaryPopup = BinaryPopup
     DropdownBox = DropdownBox
     InputSlider = InputSlider
+    SwipperNumber = SwipperNumber
+    SelectButton = SelectButton
+    CheckBox = CheckBox
+    RadioBox = RadioBox
+    ButtonInventory = ButtonInventory
     pass
 
     def color_popup(CALLBACK):

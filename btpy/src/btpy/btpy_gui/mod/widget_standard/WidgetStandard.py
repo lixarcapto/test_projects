@@ -23,6 +23,12 @@ class WidgetStandard:
         self.font_style = style
         self.__update_font()
 
+    def set_text(self, TEXT:str)->None:
+        pass
+
+    def get_text(self)-> str:
+        pass
+
     def set_text_color(self, COLOR):
         self.widget.config(fg = COLOR)
 

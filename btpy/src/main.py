@@ -15,11 +15,12 @@ def main():
     button = Btpy.ButtonIcon(window, 
         "../res/image/fish.png")
     button.pack()
-    slider = Btpy.InputSlider(window)
-    slider.set_mark_interval(15)
-    slider.set_slide_distance(15)
-    slider.set_range([0, 100])
-    slider.pack()
+    dropdown = Btpy.DropdownBox(window,
+            ["gusano", "sardina", "imitacion"])
+    dropdown.pack()
+    def fn():
+        print(dropdown.get_value())
+    button.add_listener(fn)
     window.start()
 
     #---------------------------------
