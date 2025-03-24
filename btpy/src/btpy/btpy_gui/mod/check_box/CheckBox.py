@@ -3,7 +3,7 @@
 
 import tkinter as tk
 from ..widget_standard.WidgetStandard import WidgetStandard
-from ...mod.select_button.SelectButton import SelectButton
+from ...mod.check_button.CheckButton import CheckButton
 from ..frame.Frame import Frame
 
 class CheckBox(WidgetStandard):
@@ -44,7 +44,7 @@ class CheckBox(WidgetStandard):
             KEY_LIST:list[str])->None:
         button = None
         for e in KEY_LIST:
-            button = SelectButton(
+            button = CheckButton(
                 self.widget, e)
             button.widget.config(
                 borderwidth=0)

@@ -12,15 +12,15 @@ def main():
     
     window = Btpy.Window("titulo")
     window.set_is_fullscreen(True)
-    button = Btpy.ButtonIcon(window, 
-        "../res/image/fish.png")
+    button = Btpy.SelectButton(window,
+            "click")
     button.pack()
-    dropdown = Btpy.DropdownBox(window,
-            ["gusano", "sardina", "imitacion"])
-    dropdown.pack()
+    button_2 = Btpy.Button(window, 
+        "unpress")
+    button_2.pack()
     def fn():
-        print(dropdown.get_value())
-    button.add_listener(fn)
+        button.set_value(False)
+    button_2.add_listener(fn)
     window.start()
 
     #---------------------------------

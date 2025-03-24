@@ -11,8 +11,12 @@ class WidgetStandard:
         self.font_size:int = 14
         self.font_style:str = ""
 
-    def pack(self):
-        self.widget.pack(pady=5)
+    def pack(self, MARGIN:int = 0):
+        self.widget.pack(
+            pady=MARGIN, padx=MARGIN)
+    
+    def unpack(self)-> None:
+        self.widget.pack_forget()
 
     def get_font(self):
         return self.widget.cget("font")
@@ -43,6 +47,12 @@ class WidgetStandard:
 
     def get_font_type(self):
         return self.font_type
+    
+    def set_border(self, PIXEL_WIDTH:int):
+        self.widget.config(
+            borderwidth = PIXEL_WIDTH,
+            relief = "solid"
+        )
     
     def set_font_type(self, FONT_TYPE:str):
         self.font_type = FONT_TYPE

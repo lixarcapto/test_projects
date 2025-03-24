@@ -2,7 +2,6 @@
 
 import tkinter as tk
 from ..widget_standard.WidgetStandard import WidgetStandard
-from ...mod.select_button.SelectButton import SelectButton
 from ..frame.Frame import Frame
 
 class RadioBox(WidgetStandard):
