@@ -27,10 +27,10 @@ class WidgetStandard:
         self.font_style = style
         self.__update_font()
 
-    def set_text(self, TEXT:str)->None:
+    def set_title(self, TEXT:str)->None:
         pass
 
-    def get_text(self)-> str:
+    def get_title(self)-> str:
         pass
 
     def set_text_color(self, COLOR):

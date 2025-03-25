@@ -20,12 +20,12 @@ class InputSlider(WidgetStandard):
             tickinterval = 0
         )
         self.is_in_horizontal = False
-        self.set_text(text)
+        self.set_title(text)
 
-    def set_text(self, TEXT:str):
+    def set_title(self, TEXT:str):
         self.label.config(text = TEXT)
 
-    def get_text(self)->str:
+    def get_title(self)->str:
         return self.label.cget("text")
 
     def pack(self):

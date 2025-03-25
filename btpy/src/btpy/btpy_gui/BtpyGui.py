@@ -11,7 +11,7 @@ from .mod.text_field.TextField import TextField
 from .mod.text_area.TextArea import TextArea
 from .mod.color_popup.color_popup import*
 from .mod.binary_popup.BinaryPopup import BinaryPopup
-from .mod.dropdown_box.DropdownBox import DropdownBox
+from .mod.combobox.Combobox import Combobox
 from .mod.input_slider.InputSlider import InputSlider
 from .mod.swipper_number.SwipperNumber import SwipperNumber
 from .mod.check_button.CheckButton import CheckButton
@@ -20,8 +20,18 @@ from .mod.radio_box.RadioBox import RadioBox
 from .mod.button_intentory.ButtonInventory import ButtonInventory
 from .mod.button_box.ButtonBox import ButtonBox
 from .mod.select_button.SelectButton import SelectButton
+from .mod.selector_box.SelectorBox import SelectorBox
+from .mod.label_label.LabelLabel import LabelLabel
 
 class BtpyGui(BtpyDict):
+
+    """
+    Esta clase estatica es una parte 
+    de la clase parcializada BTPY. 
+    Contiene multiples modulos de 
+    interface grafica creados para mejorar
+    Tkinter modulos.
+    """
 
     Window = Window
     Label = Label
@@ -31,7 +41,7 @@ class BtpyGui(BtpyDict):
     TextField = TextField
     TextArea = TextArea
     BinaryPopup = BinaryPopup
-    DropdownBox = DropdownBox
+    Combobox = Combobox
     InputSlider = InputSlider
     SwipperNumber = SwipperNumber
     CheckButton = CheckButton
@@ -40,6 +50,8 @@ class BtpyGui(BtpyDict):
     ButtonInventory = ButtonInventory
     ButtonBox = ButtonBox
     SelectButton = SelectButton
+    SelectorBox = SelectorBox
+    LabelLabel = LabelLabel
     pass
 
     def color_popup(CALLBACK):

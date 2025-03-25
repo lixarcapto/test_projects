@@ -17,10 +17,10 @@ class CheckButton(WidgetStandard):
             relief= "solid"
         )
 
-    def set_text(self, TEXT:str):
+    def set_title(self, TEXT:str):
         self.widget.config(text = TEXT)
 
-    def get_text(self):
+    def get_title(self):
         return self.widget.cget("text")
 
     def set_value(self, BOOL):

@@ -28,10 +28,10 @@ class TextArea(WidgetStandard):
     def pack(self):
         self.widget.pack()
 
-    def set_text(self, TEXT:str):
+    def set_title(self, TEXT:str):
         self.text_area.insert(tk.END, TEXT)
 
-    def get_text(self)->str:
+    def get_title(self)->str:
         return  self.text_area.get(
             "1.0", tk.END)
     

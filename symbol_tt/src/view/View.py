@@ -28,7 +28,7 @@ class View:
         self.button.pack_without_expansion(
             self.button.SIDE.BOTTOM
         )
-        self.button.set_text("translate")
+        self.button.set_title("translate")
         self.area = Btpy.Input(self.window)
         self.area.pack_without_expansion(
             self.button.SIDE.BOTTOM

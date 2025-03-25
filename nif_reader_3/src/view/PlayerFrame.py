@@ -86,7 +86,7 @@ class PlayerFrame:
         )
         
     def receive(self, message:dict):
-        self.label.set_text(message["title"])
+        self.label.set_title(message["title"])
         self.write_in_input(message["text"])
         if(message["route_image"] != ""):
             self.set_image(message["route_image"])

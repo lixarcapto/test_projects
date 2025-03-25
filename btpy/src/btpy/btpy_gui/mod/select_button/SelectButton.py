@@ -4,7 +4,8 @@ from ..widget_standard.WidgetStandard import WidgetStandard
 
 class SelectButton(WidgetStandard):
 
-    def __init__(self, window, TEXT = ""):
+    def __init__(self, window, TEXT = "")\
+            -> None:
         super().__init__()
         self.widget = tk.Button(
             window.widget,
@@ -22,35 +23,41 @@ class SelectButton(WidgetStandard):
             = self.widget.cget("fg")
         # #F0F0F0
 
+    def get_title(self)->str:
+        return self.widget.cget("text")
+    
+    def set_title(self, TEXT:str)->None:
+        self.widget.config(text = TEXT)
+
     def get_value(self)->bool:
         return self.is_selected
     
     def set_value(self, BOOL:bool)->None:
         self.is_selected = BOOL
         if(self.is_selected):
-            self.select()
+            self.__select()
         else:
             self\
-            .deselect()
+            .__deselect()
 
-    def select(self):
+    def __select(self)-> None:
         self.is_selected = True
         self.widget.config(
             bg= self.press_background,
             fg= self.press_foreground
         )
 
-    def deselect(self):
+    def __deselect(self)-> None:
         self.is_selected = False
         self.widget.config(
             bg= self.original_background,
             fg= self.original_foreground
         )
 
-    def __add_default_listener(self):
+    def __add_default_listener(self)->None:
         def fn():
             if(self.is_selected):
-                self.deselect()
+                self.__deselect()
             else:
-                self.select()
+                self.__select()
         self.widget.config(command= fn)

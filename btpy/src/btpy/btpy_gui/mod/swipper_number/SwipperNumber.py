@@ -22,7 +22,7 @@ class SwipperNumber(WidgetStandard):
         self.button_up = None
         self.__init_components()
         self.__init_default_listener()
-        self.set_text(TEXT)
+        self.set_title(TEXT)
         self.__update_label_number()
 
     def __init_components(self):
@@ -40,7 +40,7 @@ class SwipperNumber(WidgetStandard):
         self.label_number.grid(row=0, column=2, padx=5, pady=5)
         self.button_up.grid(row=0, column=3, padx=5, pady=5)
 
-    def set_text(self, TEXT:str):
+    def set_title(self, TEXT:str):
         self.label.config(text = TEXT)
 
     def get_increment(self)->int|float:

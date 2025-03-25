@@ -10,9 +10,9 @@ class Label(WidgetStandard):
         super().__init__()
         self.widget = tk.Label(
                 window.widget)
-        self.set_text(text)
+        self.set_title(text)
 
-    def set_text(self, TEXT:str)->None:
+    def set_title(self, TEXT:str)->None:
         self.widget.config(text = TEXT)
 
     def pack(self):

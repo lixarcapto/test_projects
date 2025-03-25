@@ -15,7 +15,7 @@ class View:
         self.button.pack_without_expansion(
             self.button.SIDE.TOP
         )
-        self.button.set_text(
+        self.button.set_title(
             "to Phonetic Alphabet")
         self.area = Btpy.Input(self.window)
         self.area.pack_without_expansion(

@@ -63,7 +63,7 @@ class View:
             )
             self.label_arr.append(label)
             combo = Btpy.Combobox(self.window)
-            combo.widget.grid(
+            combo.combobox.grid(
                 row=x, 
                 column=y +1
             )
@@ -74,14 +74,14 @@ class View:
             else:
                 x += 1
         self.button = Btpy.Button(self.window)
-        self.button.set_text("print")
+        self.button.set_title("print")
         x = self.size_column + 1
         self.button.widget.grid(
                 row=x, 
                 column=0
         )
         self.button_random = Btpy.Button(self.window)
-        self.button_random.set_text(
+        self.button_random.set_title(
             "random")
         x = self.size_column + 2
         self.button_random.widget.grid(
