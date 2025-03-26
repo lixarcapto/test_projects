@@ -25,6 +25,7 @@ from .mod.label_label.LabelLabel import LabelLabel
 from .mod.link.Link import Link
 from .mod.button_icon_text.ButtonIconText import ButtonIconText
 from .mod.swiper_image.SwiperImage import SwiperImage
+from .mod.swiper_text.SwiperText import SwiperText
 
 class BtpyGui(BtpyDict):
 
@@ -58,6 +59,7 @@ class BtpyGui(BtpyDict):
     Link = Link
     ButtonIconText = ButtonIconText
     SwiperImage = SwiperImage
+    SwiperText = SwiperText
     pass
 
     def color_popup(CALLBACK):

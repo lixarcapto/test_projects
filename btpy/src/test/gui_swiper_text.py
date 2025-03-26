@@ -15,17 +15,13 @@ from btpy.Btpy import Btpy
 def main():
     window = Btpy.Window("titulo")
     window.set_is_fullscreen(True)
-    swiper = Btpy.SwiperImage(window, 
+    swiper = Btpy.SwiperText(window, 
         "animales")
     swiper.pack()
     swiper.set_is_cyclical(True)
-    swiper.set_arroy_is_bold(True)
-    swiper.set_image_size(300, 300)
     swiper.set_element_list([
-        "../btpy/res/image/capture/clam.png",
-        "../btpy/res/image/capture/hake.png",
-        "../btpy/res/image/capture/octopus.png",
-        "../btpy/res/image/capture/sardine.png"
+        "perro", "gato", "elefante", 
+        "caiman"
     ])
     window.start()
 
