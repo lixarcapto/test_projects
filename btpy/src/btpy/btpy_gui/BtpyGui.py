@@ -22,6 +22,9 @@ from .mod.button_box.ButtonBox import ButtonBox
 from .mod.select_button.SelectButton import SelectButton
 from .mod.selector_box.SelectorBox import SelectorBox
 from .mod.label_label.LabelLabel import LabelLabel
+from .mod.link.Link import Link
+from .mod.button_icon_text.ButtonIconText import ButtonIconText
+from .mod.swiper_image.SwiperImage import SwiperImage
 
 class BtpyGui(BtpyDict):
 
@@ -52,6 +55,9 @@ class BtpyGui(BtpyDict):
     SelectButton = SelectButton
     SelectorBox = SelectorBox
     LabelLabel = LabelLabel
+    Link = Link
+    ButtonIconText = ButtonIconText
+    SwiperImage = SwiperImage
     pass
 
     def color_popup(CALLBACK):

@@ -4,18 +4,20 @@
 import threading
 import time
 
-
 def repeat_each_async(
         INTERVAL_TIME:int|float, 
-        FUNCTION,  
-        REPETITIONS:int = -1)->None:
+        FUNCTION)->None:
     """
-    Repite la función especificada en 
-    un thread propio cada cierto intervalo 
-    que retorna una flag para controlar la 
-    repeticion. Tambien 
-    recibe un numero int que 
+    Repite la función especificada cada 
+    cierto intervalo que retorna una flag
+    para controlar la repeticion. Si 
+    la funcion retorna True se terminaran
+    las repeticiones.
+    Tambien recibe un numero int que 
     indica el numero de repeticiones.
+    Esta funcion repite la callback en 
+    un hilo propio asincrono al hilo
+    principal.
     """
     def run_repeatedly():
         flag = True
@@ -25,14 +27,8 @@ def repeat_each_async(
             result = FUNCTION(n)
             # permite romper el bucle durante 
             # la ejecucion
-            if(not type(result) == bool):
-                flag = True
-            else:
-                flag = result
-            # permite añadir un limite
-            if(REPETITIONS > 0):
-                if(n >= REPETITIONS -1):
-                    break
+            if(result == True):
+                flag = False
             time.sleep(INTERVAL_TIME)
             n += 1
     # Create a thread to run the action 

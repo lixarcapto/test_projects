@@ -12,15 +12,59 @@ class LabelImage(WidgetStandard):
         self.widget = tk.Label(
                 window.widget)
         self.__buffer_image:ImageTk = None
+        self.__has_defined_size:bool = False
+        self.__has_image:bool = False
+        self.__width:int = 0
+        self.__height:int = 0
+        self.__path_image:str = PATH
         if(PATH != ""):
-            self.paint_image(PATH)
+            self.set_path_image(PATH)
 
-    def paint_image(self, PATH:str)->None:
-        imagen_pil = Image.open(PATH)
+    def get_path_image(self)->str:
+        return self.__path_image
+
+    def set_size(self, WIDTH:int, 
+                HEIGHT:int):
+        self.__has_defined_size = True
+        self.__width = WIDTH
+        self.__height = HEIGHT
+
+    def __resize_image(self):
+        if(not self.__has_image): 
+            return None
+        self.set_path_image(
+            self.__path_image)
+
+    def get_size(self)->tuple[int]:
+        return (self.__height, self.widget)
+    
+    def get_height(self)->int:
+        return self.__height
+    
+    def get_width(self)->int:
+        return self.__width
+
+    def set_path_image(self, PATH:str)\
+            ->None:
+        self.__has_image = True
+        self.__path_image = PATH
+        self.__update_image()
+        
+    def __update_image(self):
+        imagen_pil = Image.open(
+            self.__path_image)
+        if(self.__has_defined_size):
+            imagen_pil = imagen_pil\
+                    .resize((
+                self.__width, 
+                self.__height
+            ))
         imagen_tk = ImageTk.PhotoImage(
             imagen_pil)
-        self.widget.config(image=imagen_tk)
         self.__buffer_image = imagen_tk
+        self.widget.config(
+            image=imagen_tk)
 
-    def pack(self):
-        self.widget.pack(pady=5)
+    def pack(self, MARGIN:int = 0):
+        self.widget.pack(pady=MARGIN, 
+            padx= MARGIN)

@@ -79,19 +79,24 @@ class BtpyUtilitys(BtpyTransformers):
             size_celd, size_x, size_y)
     
     def repeat_each_async(
-            INTERVAL_TIME:int|float, 
-            FUNCTION,  
-            REPETITIONS:int = -1)->None:
+        INTERVAL_TIME:int|float, 
+        FUNCTION)->None:
         """
-        Función que repite una acción 
-        enviada en un intervalo de 
-        segundos usando un hilo propio.
+        Repite la función especificada cada 
+        cierto intervalo que retorna una flag
+        para controlar la repeticion. Si 
+        la funcion retorna True se terminaran
+        las repeticiones.
+        Tambien recibe un numero int que 
+        indica el numero de repeticiones.
+        Esta funcion repite la callback en 
+        un hilo propio asincrono al hilo
+        principal.
         """
         return repeat_each_async(
             INTERVAL_TIME, 
-            FUNCTION, 
-            REPETITIONS
-            )
+            FUNCTION
+        )
     
     def route_in_dict(seek_string:str,
             dict:dict[dict]) ->list[str]:

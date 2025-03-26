@@ -2,6 +2,7 @@
 
 import tkinter as tk
 from PIL import Image, ImageTk
+import tkinter.font as font
 
 class WidgetStandard:
 
@@ -9,7 +10,22 @@ class WidgetStandard:
         self.widget = None
         self.font_type:str = "Arial"
         self.font_size:int = 14
-        self.font_style:str = ""
+        self.font_style:str = "roman"
+        self.is_bold = False
+        self.is_underline = False
+        self.is_overstrike = False
+
+    def set_is_bold(self, BOOL):
+        self.is_bold = BOOL
+        self.__update_font()
+
+    def set_is_underline(self, BOOL):
+        self.is_underline = BOOL
+        self.__update_font()
+
+    def set_is_overstrike(self, BOOL):
+        self.is_overstrike = BOOL
+        self.__update_font()
 
     def pack(self, MARGIN:int = 0):
         self.widget.pack(
@@ -71,11 +87,18 @@ class WidgetStandard:
             justify=justify_key)
 
     def __update_font(self):
-        self.widget.config(font=(
-            self.get_font_type(), 
-            self.get_font_size(), 
-            self.get_font_style()
-        ))
+        new_weight = "normal"
+        if(self.is_bold):
+            new_weight = "bold"
+        new_font = font.Font(
+            family=self.get_font_type(),
+            size=self.get_font_size(),
+            weight=new_weight,
+            slant=self.get_font_style(),
+            underline=self.is_underline,
+            overstrike=self.is_overstrike,
+        )
+        self.widget.config(font=new_font)
     
     def get_font_size(self):
         return self.font_size
