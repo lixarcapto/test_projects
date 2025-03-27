@@ -17,7 +17,7 @@ class SwiperImage(SwiperStandard):
         self.label_image = LabelImage(
             self.get_center_frame())
         def fn():
-            e = self.get_index_element()
+            e = self.get_value()
             self.label_image.set_path_image(
                 e
             )

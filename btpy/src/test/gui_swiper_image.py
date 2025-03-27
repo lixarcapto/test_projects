@@ -21,7 +21,7 @@ def main():
     swiper.set_is_cyclical(True)
     swiper.set_arroy_is_bold(True)
     swiper.set_image_size(300, 300)
-    swiper.set_element_list([
+    swiper.set_values_list([
         "../btpy/res/image/capture/clam.png",
         "../btpy/res/image/capture/hake.png",
         "../btpy/res/image/capture/octopus.png",

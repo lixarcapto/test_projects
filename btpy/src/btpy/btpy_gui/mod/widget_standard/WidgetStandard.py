@@ -8,24 +8,44 @@ class WidgetStandard:
 
     def __init__(self):
         self.widget = None
-        self.font_type:str = "Arial"
-        self.font_size:int = 14
-        self.font_style:str = "roman"
-        self.is_bold = False
         self.is_underline = False
         self.is_overstrike = False
 
+    def get_font(self):
+        return self.widget.cget("font")
+
     def set_is_bold(self, BOOL):
-        self.is_bold = BOOL
-        self.__update_font()
+        weight_ = "normal"
+        if(BOOL):
+            weight_ = "bold"
+        font_ = self.widget.cget("font")
+        font_.config(weight = weight_)
+        self.widget.config(font = font_)
+        
+
+    def get_is_bold(self)->bool:
+        result = self.widget.cget("font")\
+            .actual()["weight"]
+        if("bold" == result): return True
+        return False
 
     def set_is_underline(self, BOOL):
-        self.is_underline = BOOL
-        self.__update_font()
+        font_ = self.widget.cget("font")
+        font_.config(underline = BOOL)
+        self.widget.config(font = font_)
+
+    def get_is_underline(self)->bool:
+        return self.widget.cget("font")\
+            .actual()["underline"]
 
     def set_is_overstrike(self, BOOL):
-        self.is_overstrike = BOOL
-        self.__update_font()
+        font_ = self.widget.cget("font")
+        font_.config(overstrike = BOOL)
+        self.widget.config(font = font_)
+
+    def get_is_overstrike(self)->bool:
+        return self.widget.cget("font")\
+            .actual()["overstrike"]
 
     def pack(self, MARGIN:int = 0):
         self.widget.pack(
@@ -37,10 +57,8 @@ class WidgetStandard:
     def get_font(self):
         return self.widget.cget("font")
     
-    def set_font(self, type, size, style):
-        self.font_type = type
-        self.font_size = size
-        self.font_style = style
+    def set_font(self,  FONT):
+        self.widget.config(font =FONT)
         self.__update_font()
 
     def set_title(self, TEXT:str)->None:
@@ -60,19 +78,12 @@ class WidgetStandard:
 
     def get_background_color(self):
         return self.widget.cget("bg")
-
-    def get_font_type(self):
-        return self.font_type
     
     def set_border(self, PIXEL_WIDTH:int):
         self.widget.config(
             borderwidth = PIXEL_WIDTH,
             relief = "solid"
         )
-    
-    def set_font_type(self, FONT_TYPE:str):
-        self.font_type = FONT_TYPE
-        self.__update_font()
 
     def place(self, X, Y, WIDTH, HEIGHT):
         self.widget.place(
@@ -94,23 +105,27 @@ class WidgetStandard:
             family=self.get_font_type(),
             size=self.get_font_size(),
             weight=new_weight,
-            slant=self.get_font_style(),
+            slant=self.get_font_family(),
             underline=self.is_underline,
             overstrike=self.is_overstrike,
         )
         self.widget.config(font=new_font)
     
     def get_font_size(self):
-        return self.font_size
+        return self.widget.cget("font")\
+            .actual()["size"]
     
     def set_font_size(self, SIZE:int):
-        self.font_size = SIZE
-        self.__update_font()
+        font_ = self.widget.cget("font")
+        font_.config(size = SIZE)
+        self.widget.config(font = font_)
     
-    def get_font_style(self):
-        return self.font_style
+    def get_font_family(self):
+        return self.widget.cget("font")\
+            .actual()["family"]
     
-    def set_font_style(self, STYLE:str):
-        self.font_style = STYLE
-        self.__update_font()
+    def set_font_family(self, FAMILY:str):
+        font_ = self.widget.cget("font")
+        font_.config(family = FAMILY)
+        self.widget.config(font = font_)
     

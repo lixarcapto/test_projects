@@ -10,7 +10,7 @@ class SwiperText(SwiperStandard):
         self.label_text = tk.Label(
             self.get_center_frame().widget)
         def fn():
-            e = self.get_index_element()
+            e = self.get_value()
             self.label_text.config(
                 text = e)
         self.set_update_callback(fn)

@@ -15,14 +15,10 @@ from btpy.Btpy import Btpy
 def main():
     window = Btpy.Window("titulo")
     window.set_is_fullscreen(True)
-    swiper = Btpy.SwiperText(window, 
-        "animales")
+    swiper = Btpy.SwiperRange(window,
+            "age")
     swiper.pack()
-    swiper.set_is_cyclical(True)
-    swiper.set_values_list([
-        "perro", "gato", "elefante", 
-        "caiman"
-    ])
+    swiper.set_values_list([16, 70])
     window.start()
 
 main()

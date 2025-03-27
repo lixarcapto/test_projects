@@ -33,9 +33,11 @@ class SwiperStandard(WidgetStandard):
         # OBJECTS -------------------------
         self.widget = None
         self.__label_title = None
+        self.__button_max = None
         self.__button_back = None
         self.__frame_center = None
         self.__button_next = None
+        self.__button_min = None
         self.__label_counter = None
         # CALLS ---------------------------
         self.__init_components(window)
@@ -49,7 +51,7 @@ class SwiperStandard(WidgetStandard):
             CALLBACK:callable):
         self.__update_callback = CALLBACK
 
-    def get_index_element(self)->str:
+    def get_value(self)->str:
         """
         Funcion que retorna la PATH de 
         la imagen seleccionada.
@@ -64,7 +66,7 @@ class SwiperStandard(WidgetStandard):
     def get_is_cyclical(self)->bool:
         return self.__is_cyclical
     
-    def set_element_list(self, ARRAY):
+    def set_values_list(self, ARRAY):
         self.__element_list = ARRAY
         self.__update_element()
 
@@ -109,6 +111,8 @@ class SwiperStandard(WidgetStandard):
         self.widget.set_border(1)
         self.__label_title = tk.Label(
             self.widget.widget)
+        self.__button_min = Button(
+            self.widget, "<|")
         self.__button_back = Button(self.widget,
             "<<")
         self.__frame_center = Frame(
@@ -116,6 +120,8 @@ class SwiperStandard(WidgetStandard):
         self.__frame_center.set_border(1)
         self.__button_next = Button(self.widget,
             ">>")
+        self.__button_max = Button(
+            self.widget, "|>")
         self.__label_counter = tk.Label(
             self.widget.widget)
             
