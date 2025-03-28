@@ -28,6 +28,9 @@ from .mod.swiper_image.SwiperImage import SwiperImage
 from .mod.swiper_text.SwiperText import SwiperText
 from .mod.canvas.Canvas import Canvas
 from .mod.create_photo_image.create_photo_image import*
+from .mod.input_date.InputDate import InputDate
+from .mod.swiper_range_simple.SwiperRangeSimple import SwiperRangeSimple
+from .mod.frame.Frame import Frame
 
 class BtpyGui(BtpyDict):
 
@@ -63,6 +66,9 @@ class BtpyGui(BtpyDict):
     SwiperImage = SwiperImage
     SwiperText = SwiperText
     Canvas = Canvas
+    InputDate = InputDate
+    SwiperRangeSimple = SwiperRangeSimple
+    Frame = Frame
     pass
 
     def color_popup(CALLBACK):
@@ -81,6 +87,5 @@ class BtpyGui(BtpyDict):
         ventana Tkinter para que funcione.
         """
         create_photo_image(PATH, 
-            SIZE_LIST[0], 
-            SIZE_LIST[1]
+            SIZE_LIST
         )

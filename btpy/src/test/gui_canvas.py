@@ -18,10 +18,23 @@ def main():
     
     canvas = Btpy.Canvas(window, "title")
     canvas.pack()
-    canvas.set_size(300, 300)
-    canvas.draw_image([0,0],
-        "../btpy/res/image/capture/sardine.png",
-        [150, 150])
+    canvas.set_size(600, 600)
+    last_point = [0, 0]
+    is_first = True
+    def fn(event):
+        nonlocal last_point
+        nonlocal is_first
+        point = canvas.get_point_cursor()
+        if(is_first):
+            is_first = False
+            canvas.draw_point(point)
+            last_point = point
+        canvas.draw_line(
+            last_point,
+            point)
+        last_point = point
+        print("draw_point")
+    canvas.add_right_click_listener(fn)
     window.start()
 
 main()

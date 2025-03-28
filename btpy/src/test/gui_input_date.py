@@ -15,19 +15,20 @@ from btpy.Btpy import Btpy
 def main():
     window = Btpy.Window("titulo")
     window.set_is_fullscreen(True)
-    combobox = Btpy.Combobox(window, 
-            "animal favorito", [
-                "gato",
-                "tortuga",
-                "perro",
-                "oso",
-                "lagartija"
-            ]
-    )
-    combobox.pack(5)
+    date = Btpy.InputDate(window, "date")
+    date.set_recomended_years([
+        "2000",
+        "2001"
+    ])
+    date.pack()
+    btn = Btpy.Button(window, "get date")
+    btn.pack()
+    label = Btpy.Label(window, "")
+    label.pack()
     def fn(e):
-        print(combobox.get_value())
-    combobox.add_change_listener(fn)
+        label.set_title(date.get_value())
+        print("button event")
+    btn.add_listener("LEFT_CLICK", fn)
     window.start()
 
 main()

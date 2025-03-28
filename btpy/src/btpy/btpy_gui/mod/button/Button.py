@@ -19,6 +19,11 @@ class Button(WidgetStandard):
         )
         self.set_title(text)
 
+    def pack(self, MARGIN:int = 0):
+        self.widget.pack(
+            padx=MARGIN, pady=MARGIN
+        )
+
     def unpack(self):
         self.widget.pack_forget()
 
@@ -39,17 +44,17 @@ class Button(WidgetStandard):
         """
         if(EVENT_KEY == "LEFT_CLICK"):
             self.widget.bind("<Button-1>", 
-                lambda e:CALLBACK())
+                CALLBACK)
         elif(EVENT_KEY == "RIGHT_CLICK"):
             self.widget.bind("<Button-3>", 
-                lambda e:CALLBACK())
+                CALLBACK)
         elif(EVENT_KEY == "WHEEL_CLICK"):
             self.widget.bind("<Button-2>", 
-                lambda e:CALLBACK())
+                CALLBACK)
         elif(EVENT_KEY == "MOUSE_OVER"):
             self.widget.bind("<Enter>", 
-                lambda e:CALLBACK())
+                CALLBACK)
         elif(EVENT_KEY == "MOUSE_LEAVE"):
             self.widget.bind("<Leave>", 
-                lambda e:CALLBACK())
+                CALLBACK)
         

@@ -15,19 +15,10 @@ from btpy.Btpy import Btpy
 def main():
     window = Btpy.Window("titulo")
     window.set_is_fullscreen(True)
-    combobox = Btpy.Combobox(window, 
-            "animal favorito", [
-                "gato",
-                "tortuga",
-                "perro",
-                "oso",
-                "lagartija"
-            ]
-    )
-    combobox.pack(5)
-    def fn(e):
-        print(combobox.get_value())
-    combobox.add_change_listener(fn)
+    swiper = Btpy.SwiperRangeSimple(window,
+        "day")
+    swiper.pack()
+    swiper.set_values_list([0, 31])
     window.start()
 
 main()

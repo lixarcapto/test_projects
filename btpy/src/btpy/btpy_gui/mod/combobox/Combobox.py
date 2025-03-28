@@ -8,7 +8,7 @@ from ..frame.Frame import Frame
 class Combobox(WidgetStandard):
 
     def __init__(self, window, title:str,
-            VALUES_LIST:list[str]):
+            VALUES_LIST:list[str] = []):
         super().__init__()
         self.widget = Frame(window)
         self.widget.set_border(1)
@@ -18,8 +18,19 @@ class Combobox(WidgetStandard):
         )
         self.combobox = ttk.Combobox(
             self.widget.widget)
-        self.set_values_list(
+        if(VALUES_LIST != []):
+            self.set_values_list(
                 VALUES_LIST)
+        self.label_title.grid(
+            row=0, column=0, sticky="w")
+        self.combobox.grid(
+            row=0, column=1, sticky="ew")
+        
+    def add_change_listener(self, CALLBACK):
+        self.combobox.bind(
+            "<<ComboboxSelected>>", 
+            CALLBACK
+        )
             
     def set_title(self, TEXT:str):
         self.label_title.config(
@@ -30,10 +41,6 @@ class Combobox(WidgetStandard):
             
     def pack(self, MARGIN:int = 0):
         self.widget.pack(MARGIN)
-        self.label_title.grid(
-            row=0, column=0, sticky="w")
-        self.combobox.grid(
-            row=0, column=1, sticky="ew")
         
     def set_values_list(self, 
             VALUES_LIST:list[str]):

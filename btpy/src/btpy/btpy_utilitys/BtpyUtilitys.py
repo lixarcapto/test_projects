@@ -8,6 +8,9 @@ from typing import Callable
 class BtpyUtilitys(BtpyTransformers):
 
     EmotionSim = EmotionSim
+    Crono = Crono
+    Time = Time
+    Date = Date
     
     def deep(array:list) -> int:
         """
@@ -109,15 +112,6 @@ class BtpyUtilitys(BtpyTransformers):
         """
         return route_in_dict(seek_string, 
             dict)
-    
-    def Crono():
-        """
-        Clase que almacena el tiempo 
-        actual y retorna la resta del 
-        nuevo tiempo en que el llamado
-        el método stop
-        """
-        return Crono()
     
     def pause(SECONDS):
         time.sleep(SECONDS)

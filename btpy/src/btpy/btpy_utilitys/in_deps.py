@@ -28,3 +28,5 @@ from .mod.char.Char import Char
 from .mod.emotion_sim.EmotionSim import EmotionSim
 from .mod.create_console_loop\
     .create_console_loop import*
+from .mod.time.Time import Time
+from .mod.date.Date import Date
