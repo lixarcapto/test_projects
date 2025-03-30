@@ -17,14 +17,14 @@ class Time:
             MICROSECOND:int = 0
         ):
         self.time = datetime.time()
-        self.set_hour(
+        self.set_time(
             HOUR, 
             MINUTE, 
             SECOND, 
             MICROSECOND
         )
         
-    def set_hour(self, 
+    def set_time(self, 
             HOUR:int, 
             MINUTE:int, 
             SECOND:int = 0,
@@ -37,7 +37,7 @@ class Time:
             MICROSECOND
         )
 
-    def set_time(self, TIME)\
+    def set_datetime(self, TIME)\
             ->datetime.time:
         self.time = TIME
 
@@ -45,26 +45,31 @@ class Time:
         return self.time.hour
     
     def set_hour(self, HOUR:int):
-        self.time = HOUR
+        self.time.replace(
+            hour = HOUR)
     
     def get_minute(self)->int:
         return self.time.minute
     
     def set_minute(self, MINUTE:int):
-        self.get_minute = MINUTE
+        self.time.replace(
+            minute = MINUTE)
     
     def get_second(self)->int:
         return self.time.second
     
     def set_second(self, SECONDS:int):
-        self.time.second = SECONDS
+        self.time.replace(
+            second = SECONDS)
     
     def get_microsecond(self)->int:
         return self.time.microsecond
     
     def set_microsecond(self, 
             MICROSECOND:int):
-        self.time.microsecond = MICROSECOND
+        self.time.replace(
+            microsecond = MICROSECOND
+        )
 
     def get_time(self):
         return self.time

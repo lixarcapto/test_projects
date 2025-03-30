@@ -20,10 +20,13 @@ class InputDate(WidgetStandard):
         )
         self.combobox_day = Combobox(
             self.widget, "day")
+        self.combobox_day.set_size(3)
         self.combobox_month = Combobox(
             self.widget, "month")
+        self.combobox_month.set_size(10)
         self.combobox_year = Combobox(
             self.widget, "year")
+        self.combobox_year.set_size(5)
         self.update_months()
         self.set_title(title)
         self.__add_default_listener()

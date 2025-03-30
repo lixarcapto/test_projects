@@ -36,6 +36,10 @@ class Combobox(WidgetStandard):
         self.label_title.config(
             text = TEXT)
         
+    def set_size(self, CHAR_SIZE:int):
+        self.combobox.config(
+            width=CHAR_SIZE)
+        
     def get_title(self)->str:
         return self.label_title.cget("text")
             

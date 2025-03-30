@@ -31,6 +31,9 @@ from .mod.create_photo_image.create_photo_image import*
 from .mod.input_date.InputDate import InputDate
 from .mod.swiper_range_simple.SwiperRangeSimple import SwiperRangeSimple
 from .mod.frame.Frame import Frame
+from .mod.input_file.InputFile import InputFile
+from .mod.data_bar.DataBar import DataBar
+from .mod.input_time.InputTime import InputTime
 
 class BtpyGui(BtpyDict):
 
@@ -69,6 +72,9 @@ class BtpyGui(BtpyDict):
     InputDate = InputDate
     SwiperRangeSimple = SwiperRangeSimple
     Frame = Frame
+    InputFile = InputFile
+    DataBar = DataBar
+    InputTime = InputTime
     pass
 
     def color_popup(CALLBACK):

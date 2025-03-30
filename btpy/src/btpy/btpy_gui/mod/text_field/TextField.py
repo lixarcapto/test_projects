@@ -13,10 +13,11 @@ class TextField(WidgetStandard):
     def set_is_password(self):
         self.config(show="*")
 
-    def get_title(self)->str:
+    def get_value(self)->str:
         return self.widget.get()
 
-    def set_title(self, TEXT:str):
+    def set_value(self, TEXT:str):
+        self.widget.delete(0, tk.END)
         self.widget.insert(0, TEXT)
 
     def set_character_width(self, 

@@ -1,0 +1,113 @@
+
+
+import tkinter as tk
+from ..widget_standard.WidgetStandard import WidgetStandard
+from ..frame.Frame import Frame
+from ..combobox.Combobox import Combobox
+from tkinter import ttk
+from ....btpy_utilitys.mod.time.Time import Time
+from ..text_field.TextField import TextField
+from ....btpy_utilitys.mod.time.Time import Time
+
+class InputTime(WidgetStandard):
+
+    def __init__(self, window, title:str):
+        super().__init__()
+        self.widget = Frame(window)
+        self.widget.set_border(1)
+        self.time = Time(1, 1, 1)
+        self.label_title = tk.Label(
+            self.widget.widget
+        )
+        self.combobox_hour = Combobox(
+            self.widget, "hour")
+        self.combobox_hour.set_size(3)
+        self.combobox_minute = Combobox(
+            self.widget, "minute")
+        self.combobox_minute.set_size(3)
+        self.combobox_second = Combobox(
+            self.widget, "second")
+        self.combobox_second.set_size(3)
+        self.set_title(title)
+        self.__add_default_listener()
+        self.update_options()
+
+    def get_value(self):
+        return self.time
+    
+    def set_value(self, DATE):
+        self.time = DATE
+
+    def __add_default_listener(self):
+        self.__add_save_hour_listener()
+        self.__add_save_minute_listener()
+        self.__add_save_second_listener()
+
+    def __add_save_hour_listener(self):
+        def fn(e):
+            hour = self.combobox_hour\
+                .get_value()
+            self.time.set_hour(int(hour))
+        self.combobox_hour\
+            .add_change_listener(fn)
+        
+    def __add_save_minute_listener(self):
+        def fn(e):
+            minute = self.combobox_minute\
+                .get_value()
+            self.time.set_minute(
+                int(minute))
+        self.combobox_minute\
+            .add_change_listener(fn)
+            
+    def __add_save_second_listener(self):
+        def fn(e):
+            second = self.combobox_second\
+                .get_value()
+            self.time.set_second(
+                int(second))
+        self.combobox_second\
+            .add_change_listener(fn)
+
+    def set_title(self, TEXT:str):
+        self.label_title.config(
+            text = TEXT)
+        
+    def get_title(self)->str:
+        return self.label_title.cget("text")
+
+    def pack(self):
+        self.widget.widget.pack()
+        self.label_title.grid(
+            row=0, column=0
+        )
+        self.combobox_hour.widget.widget.grid(
+            row=0, column=1
+        )
+        self.combobox_minute.widget.widget.grid(
+            row=0, column=2
+        )
+        self.combobox_second.widget.widget.grid(
+            row=0, column=3
+        )
+
+    def set_recomended_years(self, 
+                YEARS_LIST:list[str]):
+        self.combobox_second.set_values_list(
+            YEARS_LIST
+        )
+
+
+    def update_options(self):
+        list_60_numbers = []
+        for i in range(0, 60):
+            list_60_numbers.append(str(i))
+        self.combobox_minute.set_values_list(
+            list_60_numbers)
+        self.combobox_second.set_values_list(
+            list_60_numbers)
+        list_24_numbers = []
+        for i in range(0, 24):
+            list_24_numbers.append(str(i))
+        self.combobox_hour.set_values_list(
+            list_24_numbers)
