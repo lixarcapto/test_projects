@@ -36,3 +36,4 @@ from .mod.input_time.InputTime import InputTime
 from .mod.binary_button_double.BinaryButtonDouble import BinaryButtonDouble
 from .mod.label_color.LabelColor import LabelColor
 from .mod.button_icon_overlay.ButtonIconOverlay import ButtonIconOverlay
+from .mod.button_box_icon.ButtonBoxIcon import ButtonBoxIcon

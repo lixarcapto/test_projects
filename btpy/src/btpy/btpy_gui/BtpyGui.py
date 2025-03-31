@@ -46,6 +46,7 @@ class BtpyGui(BtpyDict):
     BinaryButtonDouble = BinaryButtonDouble
     LabelColor = LabelColor
     ButtonIconOverlay = ButtonIconOverlay
+    ButtonBoxIcon = ButtonBoxIcon
     pass
 
     def color_popup(CALLBACK):

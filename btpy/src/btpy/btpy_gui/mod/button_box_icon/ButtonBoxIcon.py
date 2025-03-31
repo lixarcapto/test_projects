@@ -4,34 +4,32 @@
 import tkinter as tk
 from ..widget_standard.WidgetStandard import WidgetStandard
 from ..frame.Frame import Frame
+from ..button_icon.ButtonIcon \
+    import ButtonIcon
 
-class ButtonBox(WidgetStandard):
+class ButtonBoxIcon(WidgetStandard):
 
     """
-    Este componente es un grid de botones
-    que comparten una unica callback 
-    la cual recibe como argumento el
-    texto que identifica a cada boton; 
-    esto facilita añadir comportamientos
-    iguales a varios botones.
+    Este componente sirve para crear
+    un grid de botones de tipo icono 
+    de forma facil y rapida.
     """
 
-    def __init__(self, window, title:str,
-            key_list:list[str]):
+    def __init__(self, window, title:str):
         super().__init__()
         self.widget = None
         self.label_title = None
         self.inner_frame = None
         self.grid_size:int = 1
-        self.__button_dict:dict = {}
+        self.__button_icon_dict:dict = {}
         self.__init_components(window,
-            title, key_list)
+            title)
         
     def set_grid_size(self, SIZE:int):
         self.grid_size = SIZE
 
     def __init_components(self, window,
-            title, key_list)->None:
+            title)->None:
         self.widget = Frame(
             window
         )
@@ -43,22 +41,26 @@ class ButtonBox(WidgetStandard):
         self.inner_frame = Frame(
             self.widget)
         self.inner_frame.set_border(1)
-        self.create_button_dict(key_list)
 
     def create_button_dict(self, 
-            KEY_LIST:list[str])->None:
+            KEY_LIST:list[str], 
+            PATH_LIST:list[str])->None:
         button = None
+        n = 0
         for k in KEY_LIST:
-            button = tk.Button(
-                self.inner_frame.widget, 
-                text = k
+            button = ButtonIcon(
+                self.inner_frame,
+                k,
+                PATH_LIST[n]
             )
-            self.__button_dict[k] = button
+            self.__button_icon_dict[k] \
+                = button
+            n += 1
             
     def add_listener_to(self, 
             KEY_BUTTON:str, 
             CALLBACK:callable):
-        button = self.__button_dict\
+        button = self.__button_icon_dict\
             [KEY_BUTTON]
         button.bind("<Button-1>", 
             CALLBACK)
@@ -75,17 +77,17 @@ class ButtonBox(WidgetStandard):
         todos los botones.
         """
         button = None
-        for k in self.__button_dict:
-            button = self.__button_dict[k]
+        for k in self.__button_icon_dict:
+            button = self.__button_icon_dict[k]
             def aux(key):
                 def fn():
                     CALLBACK(key)
                 return fn
-            button.config(command = aux(
-                k))
+            button.widget.config(
+                command = aux(k))
             
     def unpack(self)-> None:
-        for button in self.__button_dict:
+        for button in self.__button_icon_dict:
             button.grid_forget()
         self.inner_frame.unpack()
         self.label_title.pack_forget()
@@ -102,9 +104,9 @@ class ButtonBox(WidgetStandard):
         self.label_title.pack()
         self.inner_frame.pack(3)
         button = None
-        for k in self.__button_dict:
-            button = self.__button_dict[k] 
-            button.grid(
+        for k in self.__button_icon_dict:
+            button = self.__button_icon_dict[k] 
+            button.widget.grid(
                 row=x, column=y,
                 sticky=tk.NSEW
             )

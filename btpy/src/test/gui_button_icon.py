@@ -16,29 +16,10 @@ def main():
     window = Btpy.Window("titulo")
     window.set_is_fullscreen(True)
     button = Btpy.ButtonIcon(window, 
+        "girl_fishing",
         "../btpy/res/image/capture/girl_fishing_kawaii.png")
     button.pack()
     button.set_size(300, 300)
-    def fn():
-        print("right")
-    button.add_listener("RIGHT_CLICK", 
-            fn)
-    def fn():
-        print("left")
-    button.add_listener("LEFT_CLICK", 
-            fn)
-    def fn():
-        print("wheel")
-    button.add_listener("WHEEL_CLICK", 
-            fn)
-    def fn():
-        print("leave")
-    button.add_listener("MOUSE_LEAVE", 
-            fn)
-    def fn():
-        print("over")
-    button.add_listener("MOUSE_OVER", 
-            fn)
     window.start()
 
 main()

@@ -33,28 +33,8 @@ class Button(WidgetStandard):
     def get_title(self):
         return self.widget.cget("text")
         
-    def add_listener(self, EVENT_KEY:str,
+    def add_listener(self,
             CALLBACK:callable)->None:
-        """
-        * "RIGHT_CLICK"
-        * "LEFT_CLICK"
-        * "WHEEL_CLICK"
-        * "MOUSE_OVER"
-        * "MOUSE_LEAVE"
-        """
-        if(EVENT_KEY == "LEFT_CLICK"):
-            self.widget.bind("<Button-1>", 
-                CALLBACK)
-        elif(EVENT_KEY == "RIGHT_CLICK"):
-            self.widget.bind("<Button-3>", 
-                CALLBACK)
-        elif(EVENT_KEY == "WHEEL_CLICK"):
-            self.widget.bind("<Button-2>", 
-                CALLBACK)
-        elif(EVENT_KEY == "MOUSE_OVER"):
-            self.widget.bind("<Enter>", 
-                CALLBACK)
-        elif(EVENT_KEY == "MOUSE_LEAVE"):
-            self.widget.bind("<Leave>", 
+        self.widget.bind("<Button-1>", 
                 CALLBACK)
         

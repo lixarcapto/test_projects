@@ -2,6 +2,7 @@
 import tkinter as tk
 from PIL import Image, ImageTk
 from ..button.Button import Button
+from ..tool_tip.ToolTip import ToolTip
 
 class ButtonIcon(Button):
 
@@ -11,14 +12,18 @@ class ButtonIcon(Button):
     sin texto.
     """
 
-    def __init__(self, window, PATH = ""):
+    def __init__(self, window, 
+                KEY:str, PATH = ""):
         super().__init__(window, "")
         self.__buffer_image\
             :ImageTk.PhotoImage = None
         self.__has_defined_size:bool = False
         self.__width:int = 0
+        self.key = KEY
         self.__height:int = 0
         self.__path_image:str = PATH
+        self.tooltip = ToolTip(
+            self.widget, self.key)
         if(PATH != ""):
             self.set_path_image(PATH)
 
@@ -33,7 +38,8 @@ class ButtonIcon(Button):
         self.__resize_image()
 
     def __resize_image(self):
-        self.set_path_image(self.__path_image)
+        self.set_path_image(
+            self.__path_image)
 
     def get_size(self)->tuple[int]:
         return (self.__height, self.widget)
@@ -45,6 +51,11 @@ class ButtonIcon(Button):
             ->None:
         self.__height = PIXEL_SIZE
         self.__resize_image()
+
+    def add_listener(self, 
+            CALLBACK:callable):
+        self.widget.bind("<Button-1>", 
+                CALLBACK)
 
     def set_width(self, PIXEL_SIZE:int)\
             ->None:
