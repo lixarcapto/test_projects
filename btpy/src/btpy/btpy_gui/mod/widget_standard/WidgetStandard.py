@@ -67,10 +67,10 @@ class WidgetStandard:
     def get_title(self)-> str:
         pass
 
-    def set_text_color(self, COLOR):
+    def set_foreground_color(self, COLOR):
         self.widget.config(fg = COLOR)
 
-    def get_text_color(self):
+    def get_foreground_color(self):
         return self.widget.cget("fg")
 
     def set_background_color(self, COLOR):

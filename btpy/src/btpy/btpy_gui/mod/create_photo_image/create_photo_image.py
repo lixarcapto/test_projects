@@ -5,7 +5,7 @@ import tkinter as tk
 from PIL import Image, ImageTk
 
 def create_photo_image(PATH:str, 
-        SIZE_LIST:list[int])\
+        SIZE_LIST:list[int] = [0, 0])\
         ->ImageTk.PhotoImage:
     """
     Funcion que crea un objeto Photoimage
