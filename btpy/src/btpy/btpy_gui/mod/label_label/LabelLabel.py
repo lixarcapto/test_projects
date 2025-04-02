@@ -10,15 +10,10 @@ class LabelLabel(WidgetStandard):
 
     def __init__(self, window, title = ""):
         super().__init__()
-        self.widget = Frame(
-            window
-        )
-        self.widget.set_border(1)
-        self.label_title = tk.Label(
-            self.widget.widget)
-        self.label_text = tk.Label(
-            self.widget.widget,
-            bg = "white")
+        self.widget = None
+        self.label_title = None
+        self.label_text = None
+        self.__init_components(window)
         self.set_title(title)
 
     def get_title(self)->str:
@@ -35,9 +30,18 @@ class LabelLabel(WidgetStandard):
     def get_text(self)->str:
         return self.label_text.cget(
             "text")
-
-    def pack(self):
-        self.widget.pack()
+    
+    def __init_components(self, window):
+        self.widget = Frame(
+            window
+        )
+        self.widget.set_border(1)
+        self.label_title = tk.Label(
+            self.widget.widget)
+        self.label_text = tk.Label(
+            self.widget.widget,
+            bg = "white")
+        # draw components
         self.label_title.grid(
             row=0, 
             column=0, 

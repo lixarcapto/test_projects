@@ -8,6 +8,20 @@ class InputSlider(WidgetStandard):
 
     def __init__(self, window, text = ""):
         super().__init__()
+        self.widget = None
+        self.label = None
+        self.slider = None
+        self.is_in_horizontal = False
+        self.__init_components()
+        self.set_title(text)
+
+    def set_title(self, TEXT:str):
+        self.label.config(text = TEXT)
+
+    def get_title(self)->str:
+        return self.label.cget("text")
+    
+    def __init_components(self, window):
         self.widget = tk.Frame(
             window.widget,
             borderwidth = 1,
@@ -19,17 +33,7 @@ class InputSlider(WidgetStandard):
             orient=tk.HORIZONTAL,
             tickinterval = 0
         )
-        self.is_in_horizontal = False
-        self.set_title(text)
-
-    def set_title(self, TEXT:str):
-        self.label.config(text = TEXT)
-
-    def get_title(self)->str:
-        return self.label.cget("text")
-
-    def pack(self):
-        self.widget.pack()
+        # dibujar ------------------------
         self.label.grid(row=0, column=0, 
             padx=10, pady=10)
         self.slider.grid(row=0, 

@@ -77,31 +77,6 @@ class SwiperStandard(WidgetStandard):
     def get_title(self)->str:
         return self.__label_title\
             .cget("text")
-
-    def pack(self, MARGIN = 0)->None:
-        self.widget.pack(MARGIN)
-        self.__label_title.grid(
-            row=0, column=0, columnspan=3, 
-            sticky="ns")
-        self.__button_back.widget.grid(
-            row=1, column=0, sticky="ns")
-        self.__frame_center.widget.grid(
-            row=1, column=1)
-        self.__button_next.widget.grid(
-            row=1, column=2, sticky="ns")
-        self.__label_counter.grid(
-            row=2, column=0, sticky="ns")
-        
-    def unpack(self):
-        self.__label_title.grid_forget()
-        self.__button_back.widget\
-            .grid_forget()
-        self.__frame_center.widget\
-            .grid_forget()
-        self.__button_next.widget\
-            .grid_forget()
-        self.__label_counter.grid_forget()
-        self.widget.widget.pack_forget()
         
     # ------------------------------------
     # PRIVATE ----------------------------
@@ -124,7 +99,18 @@ class SwiperStandard(WidgetStandard):
             self.widget, "|>")
         self.__label_counter = tk.Label(
             self.widget.widget)
-            
+        # dibujar --------------------------
+        self.__label_title.grid(
+            row=0, column=0, columnspan=3, 
+            sticky="ns")
+        self.__button_back.widget.grid(
+            row=1, column=0, sticky="ns")
+        self.__frame_center.widget.grid(
+            row=1, column=1)
+        self.__button_next.widget.grid(
+            row=1, column=2, sticky="ns")
+        self.__label_counter.grid(
+            row=2, column=0, sticky="ns")
         
     def set_arroy_is_bold(self, BOOL:bool):
         self.__button_back.set_is_bold(BOOL)

@@ -12,21 +12,13 @@ class InputDate(WidgetStandard):
 
     def __init__(self, window, title:str):
         super().__init__()
-        self.widget = Frame(window)
-        self.widget.set_border(1)
-        self.date = Date(1, 1, 2025)
-        self.label_title = tk.Label(
-            self.widget.widget
-        )
-        self.combobox_day = Combobox(
-            self.widget, "day")
-        self.combobox_day.set_size(3)
-        self.combobox_month = Combobox(
-            self.widget, "month")
-        self.combobox_month.set_size(10)
-        self.combobox_year = Combobox(
-            self.widget, "year")
-        self.combobox_year.set_size(5)
+        self.widget = None
+        self.date = None
+        self.label_title = None
+        self.combobox_day = None
+        self.combobox_month = None
+        self.combobox_year = None
+        self.__init_components()
         self.update_months()
         self.set_title(title)
         self.__add_default_listener()
@@ -76,8 +68,23 @@ class InputDate(WidgetStandard):
     def get_title(self)->str:
         return self.label_title.cget("text")
 
-    def pack(self):
-        self.widget.widget.pack()
+    def __init_components(self, window):
+        self.widget = Frame(window)
+        self.widget.set_border(1)
+        self.date = Date(1, 1, 2025)
+        self.label_title = tk.Label(
+            self.widget.widget
+        )
+        self.combobox_day = Combobox(
+            self.widget, "day")
+        self.combobox_day.set_size(3)
+        self.combobox_month = Combobox(
+            self.widget, "month")
+        self.combobox_month.set_size(10)
+        self.combobox_year = Combobox(
+            self.widget, "year")
+        self.combobox_year.set_size(5)
+        # dibujar ------------------------
         self.label_title.grid(
             row=0, column=0
         )

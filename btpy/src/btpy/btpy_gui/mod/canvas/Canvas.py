@@ -85,9 +85,6 @@ class Canvas(WidgetStandard):
 
     def get_brush_color(self):
         return self.__brush_color
-        
-    def pack(self, MARGIN:int = 0):
-        self.widget.pack()
 
     def set_size(self, WIDTH:int, 
                 HEIGHT:int):

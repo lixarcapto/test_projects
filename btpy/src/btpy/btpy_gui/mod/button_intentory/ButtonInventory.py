@@ -10,28 +10,15 @@ class ButtonInventory(WidgetStandard):
     def __init__(self, window, title:str,
             key_list:list[str]):
         super().__init__()
-        self.widget = Frame(
-            window,
-        )
-        self.widget.widget.config(
-            borderwidth=1,
-            relief = "solid"
-        )
-        self.label_title = tk.Label(
-            self.widget.widget, 
-            text = title
-        )
-        self.frame_selector = Frame(
-            self.widget)
-        self.label = tk.Label(
-            self.widget.widget, 
-            text = "Inventory"
-        )
-        self.frame_inventory = Frame(
-            self.widget
-        )
+        self.widget = None
+        self.label_title = None
+        self.frame_selector = None
+        self.label = None
+        self.frame_inventory = None
         self.__button_list = []
         self.__button_inventory = []
+        self.__init_components(window)
+        self.set_title(title)
         self.create_button_list(key_list)
 
     def is_selected(self, key):
@@ -86,9 +73,28 @@ class ButtonInventory(WidgetStandard):
                 del(self.__button_inventory[n])
             n += 1
         return False
-        
-    def pack(self):
-        self.widget.pack()
+    
+    def __init_components(self, window):
+        self.widget = Frame(
+            window
+        )
+        self.widget.widget.config(
+            borderwidth=1,
+            relief = "solid"
+        )
+        self.label_title = tk.Label(
+            self.widget.widget
+        )
+        self.frame_selector = Frame(
+            self.widget)
+        self.label = tk.Label(
+            self.widget.widget, 
+            text = "Inventory"
+        )
+        self.frame_inventory = Frame(
+            self.widget
+        )
+        # dibujar -------------------------
         self.label_title.pack()
         self.frame_selector.pack()
         self.label.pack()

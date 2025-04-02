@@ -7,6 +7,18 @@ class TextArea(WidgetStandard):
     def __init__(self, window, 
             title:str = ""):
         super().__init__()
+        self.widget = None
+        self.label_title = None
+        self.text_area = None
+        self.scroll_bar = None
+        self.__init_components(window)
+        self.set_title(title)
+
+    def set_title(self, TEXT:str):
+        self.label_title.config(
+            text = TEXT)
+        
+    def __init_components(self, window):
         self.widget = tk.Frame(
             window.widget)
         self.label_title = tk.Label(
@@ -15,14 +27,7 @@ class TextArea(WidgetStandard):
             self.widget)
         self.scroll_bar =  tk.Scrollbar(
             self.widget)
-        self.set_title(title)
-        self.__init_components()
-
-    def set_title(self, TEXT:str):
-        self.label_title.config(
-            text = TEXT)
-        
-    def __init_components(self):
+        # dibujar -------------------------
         self.label_title.grid(
             row=0, column=0)
         self.scroll_bar.config(
@@ -38,9 +43,6 @@ class TextArea(WidgetStandard):
             0, weight=1)
         self.widget.grid_columnconfigure(
             0, weight=1)
-        
-    def pack(self):
-        self.widget.pack()
 
     def set_value(self, TEXT:str):
         self.text_area.insert(tk.END, TEXT)

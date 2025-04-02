@@ -78,34 +78,6 @@ class SwiperRangeSimple(WidgetStandard):
         self.__value = RANGE_LIST[0]
         self.__update_label_number()
 
-    def pack(self, MARGIN:int = 0):
-        self.widget.pack(MARGIN)
-        inner_margin_y = 3
-        self.__label_title.grid(
-            row=0, column=0, 
-            padx=3, 
-            pady=inner_margin_y
-        )
-        self.__button_back.widget.grid(
-            row=0, column=2, 
-            pady=inner_margin_y
-        )
-        self.__label_number.grid(
-            row=0, column=3, sticky="nsew", 
-            pady=inner_margin_y
-        )
-        self.__button_next.widget.grid(
-            row=0, column=4, 
-            pady=inner_margin_y
-        )
-
-    def unpack(self):
-        self.__label_title.widget.grid_forget()
-        self.__button_back.widget.grid_forget()
-        self.__label_number.widget.grid_forget()
-        self.__button_next.widget.grid_forget()
-        self.widget.pack_forget()
-
     # -------------------------------------
     # PRIVATE ------------------------------
         
@@ -133,6 +105,25 @@ class SwiperRangeSimple(WidgetStandard):
         )
         self.__button_next = Button(
             self.widget, text = ">>")
+        # dibujar -------------------------
+        inner_margin_y = 3
+        self.__label_title.grid(
+            row=0, column=0, 
+            padx=3, 
+            pady=inner_margin_y
+        )
+        self.__button_back.widget.grid(
+            row=0, column=2, 
+            pady=inner_margin_y
+        )
+        self.__label_number.grid(
+            row=0, column=3, sticky="nsew", 
+            pady=inner_margin_y
+        )
+        self.__button_next.widget.grid(
+            row=0, column=4, 
+            pady=inner_margin_y
+        )
         
     def __add_increment_listener(self):
         self.__button_next.widget.config(

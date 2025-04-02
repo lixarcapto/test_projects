@@ -9,6 +9,14 @@ class LabelColor(WidgetStandard):
     def __init__(self, window, title,
             color = ""):
         super().__init__()
+        self.widget = None
+        self.label_title = None
+        self.label_color = None
+        self.__init_components()
+        self.set_title(title)
+        self.set_label_color(color)
+
+    def __init_components(self, window):
         self.widget = Frame(
             window
         )
@@ -16,17 +24,13 @@ class LabelColor(WidgetStandard):
         self.label_title = tk.Label(
             self.widget.widget
         )
+        # dibujar componentes
         self.label_color = tk.Label(
             self.widget.widget
         )
         self.label_color.config(
             text = "     "
         )
-        self.set_title(title)
-        self.set_label_color(color)
-
-    def pack(self, MARGIN:int = 0):
-        self.widget.pack(MARGIN)
         self.label_title.grid(
             row = 0, column = 0,
             padx= 2, pady= 2
@@ -35,11 +39,6 @@ class LabelColor(WidgetStandard):
             row = 0, column = 1,
             padx= 2, pady= 2
         )
-
-    def unpack(self):
-        self.widget.unpack()
-        self.label_title.grid_forget()
-        self.label_color.grid_forget()
         
     def set_label_color(self, color):
         self.label_color.config(

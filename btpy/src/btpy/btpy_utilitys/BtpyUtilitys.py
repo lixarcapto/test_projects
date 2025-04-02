@@ -226,4 +226,7 @@ class BtpyUtilitys(BtpyTransformers):
             PIPE_FUNCTION
         )
     
+    def turn_off():
+        turn_off()
+    
 

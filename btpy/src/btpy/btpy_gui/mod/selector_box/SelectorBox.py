@@ -10,19 +10,12 @@ class SelectorBox(WidgetStandard):
     def __init__(self, window, title:str,
             key_list:list[str]):
         super().__init__()
-        self.widget = Frame(
-            window
-        )
-        self.label = tk.Label(
-            self.widget.widget,
-            text = title)
-        self.inner_frame = Frame(
-            self.widget
-        )
-        self.widget.set_border(1)
-        self.inner_frame.set_border(1)
+        self.widget = None
+        self.label = None
+        self.inner_frame = None
         self.grid_size = 1
         self.__button_list = []
+        self.__init_components(window)
         self.__create_button_list(key_list)
 
     def set_grid_size(self, SIZE:int):
@@ -52,17 +45,10 @@ class SelectorBox(WidgetStandard):
                 self.inner_frame, e)
             self.__button_list.append(
                 button)
-        
-    def pack(self)-> None:
-        """
-        Esta funcion organiza los botones
-        como un grid con el tamaño indicado.
-        """
+            
+    def __arrange_button_in_grid(self):
         x:int = 0
         y:int = 0
-        self.widget.pack(3)
-        self.label.pack(anchor=tk.W)
-        self.inner_frame.pack()
         for button in self.__button_list:
             button.widget.grid(
                 row=x, column=y,
@@ -72,4 +58,20 @@ class SelectorBox(WidgetStandard):
             if(x == self.grid_size):
                 y += 1
                 x = 0
+
+    def __init_components(self, window):
+        self.widget = Frame(
+            window
+        )
+        self.label = tk.Label(
+            self.widget.widget)
+        self.inner_frame = Frame(
+            self.widget
+        )
+        self.widget.set_border(1)
+        self.inner_frame.set_border(1)
+        # dibujar ------------------------
+        self.label.pack(anchor=tk.W)
+        self.inner_frame.pack()
+        self.__arrange_button_in_grid()
     

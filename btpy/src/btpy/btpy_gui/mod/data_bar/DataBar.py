@@ -16,19 +16,15 @@ class DataBar(WidgetStandard):
     def __init__(self, window, title = ""):
         super().__init__()
         # Crear el Canvas
-        self.widget = Frame(window)
-        self.widget.set_border(1)
-        self.canvas = tk.Canvas(
-            self.widget.widget,
-            bg="gray")
-        self.label_title = tk.Label(
-            self.widget.widget
-        )
+        self.widget = None
+        self.canvas = None
+        self.label_title = None
         self.bar_color = "red"
         self.is_horizontal:bool = True
         self.is_graduated:bool = False
         self.graduation_number:int = 0
         self.range_list:list[int] = [0, 0]
+        self.__init_components()
         self.set_size(100, 20)
         self.set_title(title)
 
@@ -148,8 +144,16 @@ class DataBar(WidgetStandard):
             HEIGHT
         )
 
-    def pack(self, MARGIN:int = 0):
-        self.widget.pack(MARGIN)
+    def __init_components(self, window):
+        self.widget = Frame(window)
+        self.widget.set_border(1)
+        self.canvas = tk.Canvas(
+            self.widget.widget,
+            bg="gray")
+        self.label_title = tk.Label(
+            self.widget.widget
+        )
+        # dibujar -----------------------
         if(self.is_horizontal):
             self.label_title.grid(
                 row=0, column=0

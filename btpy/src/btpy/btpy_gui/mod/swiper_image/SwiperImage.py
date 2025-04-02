@@ -16,6 +16,8 @@ class SwiperImage(SwiperStandard):
         super().__init__(window, TEXT)
         self.label_image = LabelImage(
             self.get_center_frame())
+        # dibujar -----------------------
+        self.label_image.pack()
         def fn():
             e = self.get_value()
             self.label_image.set_path_image(
@@ -27,7 +29,3 @@ class SwiperImage(SwiperStandard):
                 HEIGHT:int):
         self.label_image.set_size(WIDTH,
             HEIGHT)
-
-    def pack(self):
-        super().pack()
-        self.label_image.pack()

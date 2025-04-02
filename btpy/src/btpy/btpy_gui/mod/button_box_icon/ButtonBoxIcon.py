@@ -22,25 +22,34 @@ class ButtonBoxIcon(WidgetStandard):
         self.inner_frame = None
         self.grid_size:int = 1
         self.__button_icon_dict:dict = {}
-        self.__init_components(window,
-            title)
+        self.__init_components(window)
+
+    def set_title(self, TEXT:str):
+        self.label_title.config(
+            text = TEXT)
+        
+    def get_title(self)->str:
+        return self.label_title.cget("text")
         
     def set_grid_size(self, SIZE:int):
         self.grid_size = SIZE
 
-    def __init_components(self, window,
-            title)->None:
+    def __init_components(self, window)\
+            ->None:
         self.widget = Frame(
             window
         )
         self.widget.set_border(1)
         self.label_title = tk.Label(
-            self.widget.widget, 
-            text = title
+            self.widget.widget
         )
         self.inner_frame = Frame(
             self.widget)
         self.inner_frame.set_border(1)
+        # dibujar ---------------------------
+        self.label_title.pack()
+        self.inner_frame.pack(3)
+        self.__arrange_button_dict()
 
     def create_button_dict(self, 
             KEY_LIST:list[str], 
@@ -85,24 +94,10 @@ class ButtonBoxIcon(WidgetStandard):
                 return fn
             button.widget.config(
                 command = aux(k))
-            
-    def unpack(self)-> None:
-        for button in self.__button_icon_dict:
-            button.grid_forget()
-        self.inner_frame.unpack()
-        self.label_title.pack_forget()
-        self.widget.unpack()
-            
-    def pack(self)-> None:
-        """
-        Esta funcion organiza los botones
-        como un grid con el tamaño indicado.
-        """
+
+    def __arrange_button_dict(self):
         x:int = 0
         y:int = 0
-        self.widget.pack()
-        self.label_title.pack()
-        self.inner_frame.pack(3)
         button = None
         for k in self.__button_icon_dict:
             button = self.__button_icon_dict[k] 

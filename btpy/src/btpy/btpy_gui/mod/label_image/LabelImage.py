@@ -64,7 +64,3 @@ class LabelImage(WidgetStandard):
         self.__buffer_image = imagen_tk
         self.widget.config(
             image=imagen_tk)
-
-    def pack(self, MARGIN:int = 0):
-        self.widget.pack(pady=MARGIN, 
-            padx= MARGIN)

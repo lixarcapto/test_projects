@@ -10,6 +10,14 @@ class InputFile(WidgetStandard):
 
     def __init__(self, window, title:str):
         super().__init__()
+        self.widget = None
+        self.label_title = None
+        self.button_load = None
+        self.text_field = None
+        self.__init_components()
+        self.set_title(title)
+
+    def __init_components(self, window):
         self.widget = Frame(window)
         self.widget.set_border(1)
         self.label_title = tk.Label(
@@ -22,7 +30,16 @@ class InputFile(WidgetStandard):
         self.text_field = TextField(
             self.widget
         )
-        self.set_title(title)
+        # dibujar ------------------------
+        self.label_title.grid(
+            row = 0, column= 0
+        )
+        self.button_load.grid(
+            row = 0, column= 1
+        )
+        self.text_field.widget.grid(
+            row = 0, column= 2
+        )
 
     def search_folder(self):
         def fn():
@@ -58,15 +75,3 @@ class InputFile(WidgetStandard):
 
     def get_title(self)->str:
         return self.label_title.cget("text")
-
-    def pack(self, MARGIN:int = 0):
-        self.widget.pack(MARGIN)
-        self.label_title.grid(
-            row = 0, column= 0
-        )
-        self.button_load.grid(
-            row = 0, column= 1
-        )
-        self.text_field.widget.grid(
-            row = 0, column= 2
-        )

@@ -13,6 +13,17 @@ class InputTime(WidgetStandard):
 
     def __init__(self, window, title:str):
         super().__init__()
+        self.widget = None
+        self.time = None
+        self.label_title = None
+        self.combobox_hour = None
+        self.combobox_minute = None
+        self.combobox_second = None
+        self.__init_components()
+        self.__add_default_listener()
+        self.update_options()
+
+    def __init_components(self, window):
         self.widget = Frame(window)
         self.widget.set_border(1)
         self.time = Time(1, 1, 1)
@@ -28,9 +39,19 @@ class InputTime(WidgetStandard):
         self.combobox_second = Combobox(
             self.widget, "second")
         self.combobox_second.set_size(3)
-        self.set_title(title)
-        self.__add_default_listener()
-        self.update_options()
+        # dibujar ------------------------
+        self.label_title.grid(
+            row=0, column=0
+        )
+        self.combobox_hour.widget.widget.grid(
+            row=0, column=1
+        )
+        self.combobox_minute.widget.widget.grid(
+            row=0, column=2
+        )
+        self.combobox_second.widget.widget.grid(
+            row=0, column=3
+        )
 
     def get_value(self):
         return self.time
@@ -75,21 +96,6 @@ class InputTime(WidgetStandard):
         
     def get_title(self)->str:
         return self.label_title.cget("text")
-
-    def pack(self):
-        self.widget.widget.pack()
-        self.label_title.grid(
-            row=0, column=0
-        )
-        self.combobox_hour.widget.widget.grid(
-            row=0, column=1
-        )
-        self.combobox_minute.widget.widget.grid(
-            row=0, column=2
-        )
-        self.combobox_second.widget.widget.grid(
-            row=0, column=3
-        )
 
     def set_recomended_years(self, 
                 YEARS_LIST:list[str]):

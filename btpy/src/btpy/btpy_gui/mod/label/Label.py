@@ -14,6 +14,3 @@ class Label(WidgetStandard):
 
     def set_title(self, TEXT:str)->None:
         self.widget.config(text = TEXT)
-
-    def pack(self):
-        self.widget.pack(pady=5)

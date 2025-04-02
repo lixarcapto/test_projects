@@ -44,6 +44,10 @@ class ButtonBox(WidgetStandard):
             self.widget)
         self.inner_frame.set_border(1)
         self.create_button_dict(key_list)
+        # dibujar elementos
+        self.__arrange_button_dict()
+        self.label_title.pack()
+        self.inner_frame.pack()
 
     def create_button_dict(self, 
             KEY_LIST:list[str])->None:
@@ -54,6 +58,9 @@ class ButtonBox(WidgetStandard):
                 text = k
             )
             self.__button_dict[k] = button
+
+    def pack(self, MARGIN:int = 0):
+        self.widget.pack(MARGIN)
             
     def add_listener_to(self, 
             KEY_BUTTON:str, 
@@ -83,24 +90,10 @@ class ButtonBox(WidgetStandard):
                 return fn
             button.config(command = aux(
                 k))
-            
-    def unpack(self)-> None:
-        for button in self.__button_dict:
-            button.grid_forget()
-        self.inner_frame.unpack()
-        self.label_title.pack_forget()
-        self.widget.unpack()
-            
-    def pack(self)-> None:
-        """
-        Esta funcion organiza los botones
-        como un grid con el tamaño indicado.
-        """
+
+    def __arrange_button_dict(self):
         x:int = 0
         y:int = 0
-        self.widget.pack()
-        self.label_title.pack()
-        self.inner_frame.pack(3)
         button = None
         for k in self.__button_dict:
             button = self.__button_dict[k] 

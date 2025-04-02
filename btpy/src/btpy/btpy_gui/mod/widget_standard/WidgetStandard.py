@@ -6,6 +6,13 @@ import tkinter.font as font
 
 class WidgetStandard:
 
+    class POSITION:
+        CENTER = None
+        TOP = tk.TOP
+        BOTTOM = tk.BOTTOM
+        LEFT = tk.LEFT
+        RIGHT = tk.RIGHT
+
     def __init__(self):
         self.widget = None
         self.is_underline = False
@@ -48,8 +55,8 @@ class WidgetStandard:
             .actual()["overstrike"]
 
     def pack(self, MARGIN:int = 0):
-        self.widget.pack(
-            pady=MARGIN, padx=MARGIN)
+        self.widget.pack(padx = MARGIN,
+            pady = MARGIN)
     
     def unpack(self)-> None:
         self.widget.pack_forget()

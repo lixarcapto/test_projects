@@ -1,14 +1,21 @@
 
 
 from btpy.Btpy import Btpy
-from init_html_gui import init_html_gui
+
+class Model:
+
+    def request(self, dict):
+        response = {}
+        response["message"] = "esta es la respuesta"
+        return response
 
 def main():
     print("init...")
     r = None
     # -------------------------------------
     
-    init_html_gui("./index.html")
+    Btpy.init_html_gui(Model(), 
+        "index.html")
 
     #---------------------------------
     print(r)

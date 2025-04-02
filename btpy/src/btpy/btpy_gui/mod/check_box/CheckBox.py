@@ -12,18 +12,12 @@ class CheckBox(WidgetStandard):
     def __init__(self, window, title:str,
             key_list:list[str]):
         super().__init__()
-        self.widget = Frame(
-            window,
-        )
-        self.label = tk.Label(
-            self.widget.widget,
-            text = title)
-        self.widget.widget.config(
-            borderwidth=1,
-            relief = "solid"
-        )
+        self.widget = None
+        self.label = None
         self.__button_list = []
+        self.__init_components(window)
         self.__create_button_list(key_list)
+        self.set_title(title)
 
     def get_value(self)->list[str]:
         key_list = []
@@ -52,8 +46,18 @@ class CheckBox(WidgetStandard):
             self.__button_list.append(
                 button)
             
-    def pack(self):
-        self.widget.pack()
+    def __init_components(self, window):
+        self.widget = Frame(
+            window
+        )
+        self.label = tk.Label(
+            self.widget.widget)
+        self.widget.widget.config(
+            borderwidth=1,
+            relief = "solid"
+        )
+        # dibujar ----------------------
         self.label.pack(anchor=tk.W)
         for button in self.__button_list:
             button.widget.pack(anchor=tk.W)
+        

@@ -19,14 +19,6 @@ class Button(WidgetStandard):
         )
         self.set_title(text)
 
-    def pack(self, MARGIN:int = 0):
-        self.widget.pack(
-            padx=MARGIN, pady=MARGIN
-        )
-
-    def unpack(self):
-        self.widget.pack_forget()
-
     def set_title(self, TEXT:str):
         self.widget.config(text = TEXT)
 

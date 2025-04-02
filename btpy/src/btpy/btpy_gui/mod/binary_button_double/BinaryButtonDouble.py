@@ -10,6 +10,25 @@ class BinaryButtonDouble(WidgetStandard):
             title, 
             content_list:list[str] = []):
         super().__init__()
+        self.widget = None
+        self.label_title = None
+        self.button_1 = None
+        self.button_2 = None
+        self.selection_bg_color = "blue"
+        self.selection_fg_color = "white"
+        self.foreground_color = self\
+            .button_1.cget("fg")
+        self.background_color = self\
+            .button_1.cget("bg")
+        self.value:bool = False
+        self.__init_components(window)
+        self.set_title(title)
+        if(content_list != []):
+            self.set_content(content_list)
+        self.react_click_1()
+        self.add_default_listener()
+
+    def __init_components(self, window):
         self.widget = Frame(window)
         self.widget.set_border(1)
         self.label_title = tk.Label(
@@ -21,18 +40,6 @@ class BinaryButtonDouble(WidgetStandard):
         self.button_2 = tk.Button(
             self.widget.widget
         )
-        self.selection_bg_color = "blue"
-        self.selection_fg_color = "white"
-        self.foreground_color = self\
-            .button_1.cget("fg")
-        self.background_color = self\
-            .button_1.cget("bg")
-        self.value:bool = False
-        self.set_title(title)
-        if(content_list != []):
-            self.set_content(content_list)
-        self.react_click_1()
-        self.add_default_listener()
 
     def set_title(self, TEXT:str):
         self.label_title.config(
