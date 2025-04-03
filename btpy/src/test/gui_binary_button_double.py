@@ -20,6 +20,9 @@ def main():
         ["si", "no"]
     )
     button.pack()
+    def fn(e):
+        print(button.get_value())
+    button.add_listener(fn)
     window.start()
 
 main()

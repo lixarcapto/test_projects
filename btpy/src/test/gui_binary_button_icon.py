@@ -22,6 +22,10 @@ def main():
     )
     button.pack()
     button.set_size(300, 300)
+    def fn(e):
+        print("valor " + str(button.get_value()))
+    button.add_listener(fn)
+    button.set_title("chica pescando")
     window.start()
 
 main()

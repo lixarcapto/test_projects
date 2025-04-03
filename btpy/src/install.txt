@@ -4,6 +4,7 @@ para usar BTPY:
 
 * PIL
 * numpy
+* flask
 
 Puedes usar btpy copiando la carpeta
 btpy en la raiz del proyecto.

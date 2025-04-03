@@ -19,7 +19,10 @@ def main():
         "girl_fishing",
         "../btpy/res/image/capture/girl_fishing_kawaii.png")
     button.pack()
-    button.set_size(300, 300)
+    button.set_size_image(300, 300)
+    def fn(e):
+        print("funciona")
+    button.add_listener(fn)
     window.start()
 
 main()

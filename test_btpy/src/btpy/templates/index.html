@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Página de Saludo</title>
+</head>
+<body>
+    <h1>¡Hola Mundo!</h1>
+    <p>¡Bienvenido a mi página de saludo!</p>
+    <button id="enviarPost">Enviar Mensaje JSON</button>
+    <div id="respuesta"></div>
+
+    <script>
+        const enviarPostButton = document.getElementById('enviarPost');
+        const respuestaDiv = document.getElementById('respuesta');
+
+        enviarPostButton.addEventListener('click', () => {
+            // URL del servidor Flask (o cualquier servidor que acepte POST con JSON)
+            const url = 'http://127.0.0.1:5000/request'; 
+            // Asegúrate de que esta URL sea correcta
+
+            // El mensaje JSON que se 
+            // enviará en el cuerpo de 
+            // la solicitud
+            const mensaje = {
+                mensaje: 'Hola, servidor Flask!'
+            };
+
+            // Configuración de la solicitud POST
+            const configuracion = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'  // Indica que el cuerpo de la solicitud es JSON
+                },
+                body: JSON.stringify(mensaje) // Convierte el objeto JavaScript a cadena JSON
+            };
+
+            // Realiza la petición POST usando fetch
+            fetch(url, configuracion)
+                .then(response => {
+                    // Verifica si la respuesta del servidor es exitosa
+                    if (!response.ok) {
+                        throw new Error(`Error en la petición: ${response.status}`);
+                    }
+                    // Parsea la respuesta JSON
+                    return response.json();
+                })
+                .then(data => {
+                    // Muestra la respuesta del servidor en la página
+                    respuestaDiv.innerHTML = `<p>Respuesta del servidor:</p>
+                                               <p>Mensaje: ${data}</p>
+                                               <p>Mensaje Recibido: ${data}</p>`;
+                })
+                .catch(error => {
+                    // Maneja los errores de la petición
+                    respuestaDiv.innerHTML = `<p>Error: ${error.message}</p>`;
+                });
+        });
+    </script>
+</body>
+</html>

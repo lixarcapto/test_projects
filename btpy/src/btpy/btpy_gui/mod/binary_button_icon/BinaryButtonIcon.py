@@ -35,23 +35,47 @@ class BinaryButtonIcon(Button):
             = PATH_1
         self.__path_image_false:str \
             = PATH_2
-        self.tooltip = ToolTip(
-            self.widget, self.__key)
+        self.__callback = None
+        self.tooltip = None
+        self.__init_tooltip()
         if(PATH_1 != "" 
                 and PATH_2 != ""):
-            self.set_path_image_true(PATH_1)
-            self.set_path_image_false(PATH_2)
+            self.set_path_image_true(
+                PATH_1)
+            self.set_path_image_false(
+                PATH_2)
         self.__add_default_listener()
         self.__paint_image_false()
+
+    def add_listener(self, 
+            CALLBACK:callable):
+        self.__callback = CALLBACK
+
+    def __init_tooltip(self):
+        self.tooltip = ToolTip(
+            self.widget, self.__key)
+
+    def get_value(self)->bool:
+        return self.__value
+    
+    def set_value(self, BOOL:bool):
+        self.__value = BOOL
+        self.__update_image()
+
+    def __update_image(self):
+        if(self.__value):
+            self.__paint_image_false()
+        else:
+            self.__paint_image_true()
 
     def __add_default_listener(self):
         def fn(e):
             if(self.__value):
-                self.__paint_image_false()
                 self.__value = False
             else:
-                self.__paint_image_true()
                 self.__value = True
+            self.__update_image()
+            self.__callback(e)
         self.widget.bind("<Button-1>", fn)
 
     def set_size(self, WIDTH:int, 
@@ -79,9 +103,11 @@ class BinaryButtonIcon(Button):
         
     def set_title(self, TEXT:str):
         self.__key = TEXT
+        self.__init_tooltip()
 
     def get_size(self)->tuple[int]:
-        return (self.__height, self.widget)
+        return (self.__width, 
+                self.__height)
     
     def get_height(self)->int:
         return self.__height
@@ -107,15 +133,16 @@ class BinaryButtonIcon(Button):
     def get_path_image_false(self)->str:
         return self.__path_image_false
     
-    def __paint_image_true(self):
+    def __paint_image_true(self)->None:
         self.widget.config(
             image = self.__buffer_image_1)
         
-    def __paint_image_false(self):
+    def __paint_image_false(self)->None:
         self.widget.config(
             image = self.__buffer_image_2)
 
-    def set_path_image_true(self, PATH:str):
+    def set_path_image_true(self, 
+            PATH:str)->None:
         self.__path_image_true = PATH
         self.__buffer_image_1 \
             = create_photo_image(
@@ -124,7 +151,8 @@ class BinaryButtonIcon(Button):
                 self.get_height()]
             )
     
-    def set_path_image_false(self, PATH:str):
+    def set_path_image_false(self, 
+            PATH:str)->None:
         self.__path_image_false = PATH
         self.__buffer_image_2 \
             = create_photo_image(

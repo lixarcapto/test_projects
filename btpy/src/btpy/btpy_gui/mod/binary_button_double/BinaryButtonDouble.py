@@ -14,19 +14,25 @@ class BinaryButtonDouble(WidgetStandard):
         self.label_title = None
         self.button_1 = None
         self.button_2 = None
-        self.selection_bg_color = "blue"
-        self.selection_fg_color = "white"
+        self.background_color_2 = ""
+        self.selection_fg_color = ""
+        self.foreground_color_2 = ""
+        self.background_color = ""
+        self.value:bool = False
+        self.callback = None
+        # CALLS---------------------------
+        self.__init_components(window)
+        self.background_color_2 = "blue"
+        self.foreground_color_2 = "white"
         self.foreground_color = self\
             .button_1.cget("fg")
         self.background_color = self\
             .button_1.cget("bg")
-        self.value:bool = False
-        self.__init_components(window)
         self.set_title(title)
         if(content_list != []):
             self.set_content(content_list)
-        self.react_click_1()
-        self.add_default_listener()
+        self.__react_click_1(None)
+        self.__add_default_listener()
 
     def __init_components(self, window):
         self.widget = Frame(window)
@@ -55,11 +61,11 @@ class BinaryButtonDouble(WidgetStandard):
         self.button_2.config(
             text = content_list[1])
         
-    def set_back_select_color(self, COLOR):
-        self.selection_bg_color = COLOR
+    def set_background_color_2(self, COLOR):
+        self.background_color_2 = COLOR
     
-    def set_text_select_color(self, COLOR):
-        self.foreground_color = COLOR
+    def set_foreground_color_2(self, COLOR):
+        self.foreground_color_2 = COLOR
 
     def set_background_color(self, COLOR):
         super().set_background_color(COLOR)
@@ -75,36 +81,43 @@ class BinaryButtonDouble(WidgetStandard):
     def set_value(self, BOOL:bool):
         self.value = BOOL
 
-    def react_click_1(self):
+    def add_listener(self, 
+            CALLBACK:callable):
+        self.callback = CALLBACK
+
+    def __react_click_1(self, e):
         self.value = True
         self.button_1.config(
-            bg = self.selection_bg_color)
-        self.button_2.config(
-            bg = self.background_color)
-        #
-        self.button_1.config(
-            fg = self.selection_fg_color)
-        self.button_2.config(
-            fg = self.foreground_color)
-        
-    def react_click_2(self):
-        self.value = False
-        self.button_1.config(
-            bg = self.background_color)
-        self.button_2.config(
-            bg = self.selection_bg_color)
-        #
-        self.button_1.config(
-            fg = self.foreground_color)
-        self.button_2.config(
-            fg = self.selection_fg_color)
-        
-    def add_default_listener(self):
-        self.button_1.config(
-            command = self.react_click_1
+            bg = self.background_color_2,
+            fg = self.foreground_color_2
         )
         self.button_2.config(
-            command = self.react_click_2
+            bg = self.background_color,
+            fg = self.foreground_color
+        )
+        if(self.callback != None):
+            self.callback(e)
+        #
+        
+    def __react_click_2(self, e):
+        self.value = False
+        self.button_1.config(
+            bg = self.background_color,
+            fg = self.foreground_color
+        )
+        self.button_2.config(
+            bg = self.background_color_2,
+            fg = self.foreground_color_2
+        )
+        if(self.callback != None):
+            self.callback(e)
+        
+    def __add_default_listener(self):
+        self.button_1.bind("<Button-1>", 
+                self.__react_click_1
+        )
+        self.button_2.bind("<Button-1>", 
+                self.__react_click_2
         )
 
     def pack(self, MARGIN:int = 0):
