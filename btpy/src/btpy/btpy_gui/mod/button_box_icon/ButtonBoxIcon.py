@@ -23,6 +23,7 @@ class ButtonBoxIcon(WidgetStandard):
         self.grid_size:int = 1
         self.__button_icon_dict:dict = {}
         self.__init_components(window)
+        self.set_title(title)
 
     def set_title(self, TEXT:str):
         self.label_title.config(
@@ -33,6 +34,9 @@ class ButtonBoxIcon(WidgetStandard):
         
     def set_grid_size(self, SIZE:int):
         self.grid_size = SIZE
+
+    def pack(self, MARGIN:int = 0):
+        self.widget.pack(MARGIN)
 
     def __init_components(self, window)\
             ->None:
@@ -49,11 +53,27 @@ class ButtonBoxIcon(WidgetStandard):
         # dibujar ---------------------------
         self.label_title.pack()
         self.inner_frame.pack(3)
+
+    def set_content(self, 
+            KEY_LIST:list[str], 
+            PATH_LIST:list[str]
+        ):
+        """
+        Funcion que crea una lista de 
+        botones de tipo icono recibiendo
+        una lista de claves y rutas
+        de imagenes para cada boton.
+        """
+        self.__create_button_dict(
+            KEY_LIST,
+            PATH_LIST
+        )
         self.__arrange_button_dict()
 
-    def create_button_dict(self, 
+    def __create_button_dict(self, 
             KEY_LIST:list[str], 
             PATH_LIST:list[str])->None:
+        self.__button_icon_dict = []
         button = None
         n = 0
         for k in KEY_LIST:

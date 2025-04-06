@@ -39,3 +39,4 @@ from .mod.button_icon_overlay.ButtonIconOverlay import ButtonIconOverlay
 from .mod.button_box_icon.ButtonBoxIcon import ButtonBoxIcon
 from .mod.binary_button_icon.BinaryButtonIcon import*
 from .mod.window_nav.WindowNav import WindowNav
+from .mod.get_image_size.get_image_size import get_image_size

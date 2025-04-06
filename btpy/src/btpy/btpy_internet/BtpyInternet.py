@@ -27,6 +27,10 @@ class BtpyInternet(BtpyImages):
             PATH_HTML:str, 
             PORT:int = 5000):
         """
+        XXX: No funciona, no carga los 
+        archivos estaticos de las paginas
+        webs; solo carga el index.html.
+        
         Esta funcion inicia directamente
         una interface del navegador en local
         utilizando un servidor flask y 

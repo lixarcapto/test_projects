@@ -18,31 +18,8 @@ def main():
     button = Btpy.Button(window, "click")
     button.pack()
     def fn(e):
-        print("right")
-    button.add_listener("RIGHT_CLICK", 
-            fn)
-    def fn(e):
-        print("left")
-    button.add_listener("LEFT_CLICK", 
-            fn)
-    def fn(e):
-        print("wheel")
-    button.add_listener("WHEEL_CLICK", 
-            fn)
-    def fn(e):
-        print("leave")
-    button.add_listener("MOUSE_LEAVE", 
-            fn)
-    def fn(e):
-        print("over")
-    button.add_listener("MOUSE_OVER", 
-            fn)
-    frame = Btpy.Frame(window)
-    frame.pack()
-    button_2 = Btpy.Button(frame, "innerbutton")
-    button_2.pack()
-    button_2.add_listener("LEFT_CLICK",
-        lambda e:print("left click"))
+        print("funciona")
+    button.add_listener(fn)
     window.start()
 
 main()

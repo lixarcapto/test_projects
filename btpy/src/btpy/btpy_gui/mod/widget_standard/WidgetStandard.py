@@ -3,6 +3,8 @@
 import tkinter as tk
 from PIL import Image, ImageTk
 import tkinter.font as font
+from ....btpy_transformers.mod.RGB_to_hex.RGB_to_hex import*
+from ....btpy_checkers.mod.is_RGB.is_RGB import*
 
 class WidgetStandard:
 
@@ -75,13 +77,19 @@ class WidgetStandard:
         pass
 
     def set_foreground_color(self, COLOR):
-        self.widget.config(fg = COLOR)
+        f_color = COLOR
+        if(is_RGB(COLOR)):
+            f_color = RGB_to_hex(COLOR)
+        self.widget.config(fg = f_color)
 
     def get_foreground_color(self):
         return self.widget.cget("fg")
 
     def set_background_color(self, COLOR):
-        self.widget.config(bg = COLOR)
+        f_color = COLOR
+        if(is_RGB(COLOR)):
+            f_color = RGB_to_hex(COLOR)
+        self.widget.config(bg = f_color)
 
     def get_background_color(self):
         return self.widget.cget("bg")

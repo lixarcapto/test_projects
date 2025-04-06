@@ -69,3 +69,14 @@ class BtpyGui(BtpyDict):
         create_photo_image(PATH, 
             SIZE_LIST
         )
+
+    def get_image_size(PATH:str)\
+            ->list[int]:
+        """
+        Function that obtains the size of 
+        an image with the sent path, 
+        returning a list of the size of a 
+        rectangle; that is, an array with 
+        the int width and height.
+        """
+        return get_image_size(PATH)

@@ -17,7 +17,7 @@ def main():
     window.set_is_fullscreen(True)
     box = Btpy.ButtonBoxIcon(window, 
                 "frutas")
-    box.create_button_dict(
+    box.set_content(
         ["manzana", "pera", "uvas", "mora"],
         [
             "../btpy/res/image/cell.png",
