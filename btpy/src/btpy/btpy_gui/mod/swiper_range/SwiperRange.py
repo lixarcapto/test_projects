@@ -107,7 +107,7 @@ class SwiperRange(WidgetStandard):
         self.__button_min = Button(
             self.widget)
         self.__button_back = Button(
-            self.widget, text = "<<")
+            self.widget, TITLE = "<<")
         self.__label_number = tk.Label(
             self.widget.widget
         )
@@ -117,7 +117,7 @@ class SwiperRange(WidgetStandard):
             relief= "solid"
         )
         self.__button_next = Button(
-            self.widget, text = ">>")
+            self.widget, TITLE = ">>")
         self.__button_max = Button(
             self.widget)
         # dibujar ------------------------

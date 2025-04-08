@@ -11,19 +11,26 @@ class Button(WidgetStandard):
     area para ejecutar una funcion callback.
     """
 
-    def __init__(self, window, text = ""):
-        super().__init__()
+    def __init__(self, window, 
+            TITLE:str = ""):
+        super().__init__(window)
         self.widget = tk.Button(
-            window.widget, 
+            self.margin, 
             text="Haz clic aquí"
         )
-        self.set_title(text)
+        self.widget.pack(
+            padx=1, 
+            pady=(2, 1)
+        )
+        self.set_title(TITLE)
 
-    def set_title(self, TEXT:str):
-        self.widget.config(text = TEXT)
-
-    def get_title(self):
-        return self.widget.cget("text")
+    def set_title(self, TITLE:str)->None:
+        self.widget.config(
+            text = TITLE)
+        
+    def get_title(self)->str:
+        return self.widget.cget(
+            "text")
         
     def add_listener(self,
             CALLBACK:callable)->None:

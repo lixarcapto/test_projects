@@ -15,19 +15,16 @@ from btpy.Btpy import Btpy
 def main():
     window = Btpy.Window("titulo")
     window.set_is_fullscreen(True)
-    button = Btpy.BinaryButtonDouble(
-        window, "opciones", 
-        ["si", "no"]
+    checkbox = Btpy.CheckBox(window, 
+        "elige", [
+            "axxx", "bxxx", "cxxx", "dxxx"
+        ])
+    checkbox.create_button_list(
+        [
+            "axxx", "bxxx", "cxxx", "dxxx"
+        ]
     )
-    button.pack()
-    def fn(e):
-        print(button.get_value())
-    button.add_listener(fn)
-    button2 = Btpy.BinaryButtonDouble(
-        window, "Activar efectos", 
-        ["si", "no"]
-    )
-    button2.pack()
+    checkbox.pack()
     window.start()
 
 main()

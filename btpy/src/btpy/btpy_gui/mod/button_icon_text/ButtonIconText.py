@@ -7,20 +7,24 @@ class ButtonIconText(WidgetStandard):
 
     def __init__(self, window, 
                  TITLE = ""):
-        super().__init__()
-        self.widget = tk.Button(
-            window.widget
+        super().__init__(window)
+        self.button = tk.Button(
+            self.margin
+        )
+        self.button.pack(
+            padx=1, 
+            pady=(2, 1)
         )
         self.buffer_image\
             :ImageTk.PhotoImage = None
         self.set_title(TITLE)
         self.set_text_position("LEFT")
-        
-    def set_title(self, TEXT:str):
-        self.widget.config(text = TEXT)
 
-    def get_title(self)->None:
-        self.widget.cget("text")
+    def set_title(self, TEXT:str):
+        self.button.config(text = TEXT)
+
+    def get_title(self)->str:
+        return self.button.cget("text")
 
     def set_text_position(self, 
             POSITION_KEY:str):
@@ -31,16 +35,16 @@ class ButtonIconText(WidgetStandard):
         * "RIGHT"
         """
         if(POSITION_KEY == "TOP"):
-            self.widget.config(
+            self.button.config(
                 compound=tk.TOP)
         elif(POSITION_KEY == "LEFT"):
-            self.widget.config(
+            self.button.config(
                 compound=tk.LEFT)
         elif(POSITION_KEY == "BOTTOM"):
-            self.widget.config(
+            self.button.config(
                 compound=tk.BOTTOM)
         elif(POSITION_KEY == "RIGHT"):
-            self.widget.config(
+            self.button.config(
                 compound=tk.RIGHT)
 
 
@@ -49,8 +53,8 @@ class ButtonIconText(WidgetStandard):
         imagen_tk = ImageTk.PhotoImage(
             imagen_pil)
         self.buffer_image = imagen_tk
-        self.widget.config(image=imagen_tk)
+        self.button.config(image=imagen_tk)
 
     def add_listener(self, CALLBACK)->None:
-        self.widget.config(
+        self.button.config(
             command = CALLBACK)

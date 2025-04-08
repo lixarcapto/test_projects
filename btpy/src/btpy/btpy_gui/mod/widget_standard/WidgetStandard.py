@@ -8,6 +8,19 @@ from ....btpy_checkers.mod.is_RGB.is_RGB import*
 
 class WidgetStandard:
 
+    """
+    TODO: ahora los widgets se 
+    componen de dos frames, el widget
+    principal que contiene el label 
+    title, y el segundo widget que es
+    un frame contenedor, esto
+    permite crear margenes y titulos 
+    mas faciles.
+
+    Crear dos tipos de widgets, los simples
+    y los compuestos.
+    """
+
     class POSITION:
         CENTER = None
         TOP = tk.TOP
@@ -15,7 +28,17 @@ class WidgetStandard:
         LEFT = tk.LEFT
         RIGHT = tk.RIGHT
 
-    def __init__(self):
+    def __init__(self, widget):
+        self.margin = None
+        # permite recibir objetos
+        # widget wrappers y widgets TK
+        if(hasattr(widget, "widget")):
+            self.margin = tk.Frame(
+                widget.widget)
+        else:
+            self.margin = tk.Frame(
+                widget)
+        self.margin.config(bg = "red")
         self.widget = None
         self.is_underline = False
         self.is_overstrike = False
@@ -57,8 +80,13 @@ class WidgetStandard:
             .actual()["overstrike"]
 
     def pack(self, MARGIN:int = 0):
-        self.widget.pack(padx = MARGIN,
-            pady = MARGIN)
+        self.margin.pack(
+            padx = 1 + MARGIN,
+            pady = (2 + MARGIN, 
+                    1 + MARGIN), 
+            ipadx=1, 
+            ipady=1
+        )
     
     def unpack(self)-> None:
         self.widget.pack_forget()
@@ -70,10 +98,10 @@ class WidgetStandard:
         self.widget.config(font =FONT)
         self.__update_font()
 
-    def set_title(self, TEXT:str)->None:
+    def set_title(self, TITLE:str)->None:
         pass
-
-    def get_title(self)-> str:
+        
+    def get_title(self)->str:
         pass
 
     def set_foreground_color(self, COLOR):
@@ -83,13 +111,25 @@ class WidgetStandard:
         self.widget.config(fg = f_color)
 
     def get_foreground_color(self):
-        return self.widget.cget("fg")
+        pass
+
+    def get_margin_color(self):
+        return self.margin.cget("bg")
+
+    def set_margin_color(self, COLOR):
+        f_color = COLOR
+        if(is_RGB(COLOR)):
+            f_color = RGB_to_hex(COLOR)
+        self.margin.config(bg = f_color)
 
     def set_background_color(self, COLOR):
         f_color = COLOR
         if(is_RGB(COLOR)):
             f_color = RGB_to_hex(COLOR)
         self.widget.config(bg = f_color)
+
+    def get_background_color(self, COLOR):
+        pass
 
     def get_background_color(self):
         return self.widget.cget("bg")

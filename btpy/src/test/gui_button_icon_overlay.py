@@ -19,13 +19,11 @@ def main():
     button.set_title("Click Aqui")
     button.set_size(150, 150)
     button.set_path_image("../btpy/res/image/image_500x500/loli_anime_kawaii_257_500x500.png")
-    label = Btpy.Label(window)
-    label.pack()
     n = 0
     def fn(e):
         nonlocal n
         n += 1
-        label.set_title(f"clicks {n}")
+        button.set_title(f"clicks {n}")
     button.add_listener(fn)
     button.pack()
     window.start()

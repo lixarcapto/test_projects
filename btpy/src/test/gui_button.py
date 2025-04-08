@@ -17,8 +17,11 @@ def main():
     window.set_is_fullscreen(True)
     button = Btpy.Button(window, "click")
     button.pack()
+    n = 0
     def fn(e):
-        print("funciona")
+        nonlocal n
+        button.set_title(f"click {n}")
+        n += 1
     button.add_listener(fn)
     window.start()
 

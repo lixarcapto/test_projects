@@ -95,7 +95,7 @@ class SwiperRangeSimple(WidgetStandard):
         self.__label_title = tk.Label(
             self.widget.widget)
         self.__button_back = Button(
-            self.widget, text = "<<")
+            self.widget, TITLE = "<<")
         self.__label_number = tk.Label(
             self.widget.widget)
         self.__label_number.config(
@@ -104,7 +104,7 @@ class SwiperRangeSimple(WidgetStandard):
             relief= "solid"
         )
         self.__button_next = Button(
-            self.widget, text = ">>")
+            self.widget, TITLE = ">>")
         # dibujar -------------------------
         inner_margin_y = 3
         self.__label_title.grid(

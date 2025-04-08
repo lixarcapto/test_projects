@@ -2,10 +2,10 @@
 
 
 import tkinter as tk
-from ..widget_standard.WidgetStandard import WidgetStandard
+from ..widget_composite.WidgetComposite import WidgetComposite
 from ..frame.Frame import Frame
 
-class ButtonBox(WidgetStandard):
+class ButtonBox(WidgetComposite):
 
     """
     Este componente es un grid de botones
@@ -18,49 +18,30 @@ class ButtonBox(WidgetStandard):
 
     def __init__(self, window, title:str,
             key_list:list[str]):
-        super().__init__()
-        self.widget = None
-        self.label_title = None
-        self.inner_frame = None
+        super().__init__(window)
         self.grid_size:int = 1
         self.__button_dict:dict = {}
-        self.__init_components(window,
-            title, key_list)
+        self.__init_components(key_list)
+        self.set_title(title)
         
     def set_grid_size(self, SIZE:int):
         self.grid_size = SIZE
 
-    def __init_components(self, window,
-            title, key_list)->None:
-        self.widget = Frame(
-            window
-        )
-        self.widget.set_border(1)
-        self.label_title = tk.Label(
-            self.widget.widget, 
-            text = title
-        )
-        self.inner_frame = Frame(
-            self.widget)
-        self.inner_frame.set_border(1)
+    def __init_components(self,
+            key_list)->None:
         self.create_button_dict(key_list)
         # dibujar elementos
         self.__arrange_button_dict()
-        self.label_title.pack()
-        self.inner_frame.pack()
 
     def create_button_dict(self, 
             KEY_LIST:list[str])->None:
         button = None
         for k in KEY_LIST:
             button = tk.Button(
-                self.inner_frame.widget, 
+                self.widget, 
                 text = k
             )
             self.__button_dict[k] = button
-
-    def pack(self, MARGIN:int = 0):
-        self.widget.pack(MARGIN)
             
     def add_listener_to(self, 
             KEY_BUTTON:str, 

@@ -17,11 +17,15 @@ class ButtonIconOverlay(WidgetStandard):
 
     def __init__(self, window, 
             TITLE:str = "", PATH:str = ""):
-        super().__init__()
+        super().__init__(window)
         # Crear el Canvas
         self.widget = tk.Canvas(
-            window.widget,
+            self.margin,
             bg="white")
+        self.widget.pack(
+            padx=1, 
+            pady=(2, 1)
+        )
         self.__buffer_image = None
         self.__path:str = ""
         self.__title:str = ""

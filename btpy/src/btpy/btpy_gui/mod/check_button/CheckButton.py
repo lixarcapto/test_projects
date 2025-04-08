@@ -6,15 +6,19 @@ from ..widget_standard.WidgetStandard import WidgetStandard
 class CheckButton(WidgetStandard):
 
     def __init__(self, window, text = ""):
-        super().__init__()
+        super().__init__(window)
         self.is_selected = tk.BooleanVar()
         self.widget = tk.Checkbutton(
-            window.widget, 
+            self.margin, 
             text=text, 
             variable=self.is_selected, 
             onvalue=True, offvalue=False,
             borderwidth = 1,
             relief= "solid"
+        )
+        self.widget.pack(
+            padx=1, 
+            pady=(2, 1)
         )
 
     def set_title(self, TEXT:str):

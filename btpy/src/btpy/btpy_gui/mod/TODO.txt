@@ -1,0 +1,6 @@
+
+Continuar arreglando desde 
+Canvas. Ademas hacer 
+que el widget button icon box use 
+iconos con margin para añadir un focus
+effect.

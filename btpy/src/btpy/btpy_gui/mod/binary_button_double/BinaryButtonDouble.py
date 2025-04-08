@@ -1,17 +1,15 @@
 
 
 import tkinter as tk
-from ..widget_standard.WidgetStandard import WidgetStandard
+from ..widget_composite.WidgetComposite import WidgetComposite
 from ..frame.Frame import Frame
 
-class BinaryButtonDouble(WidgetStandard):
+class BinaryButtonDouble(WidgetComposite):
 
-    def __init__(self, window, 
+    def __init__(self, widget, 
             title, 
             content_list:list[str] = []):
-        super().__init__()
-        self.widget = None
-        self.label_title = None
+        super().__init__(widget)
         self.button_1 = None
         self.button_2 = None
         self.background_color_2 = ""
@@ -21,7 +19,7 @@ class BinaryButtonDouble(WidgetStandard):
         self.value:bool = False
         self.callback = None
         # CALLS---------------------------
-        self.__init_components(window)
+        self.__init_components()
         self.background_color_2 = "blue"
         self.foreground_color_2 = "white"
         self.foreground_color = self\
@@ -34,25 +32,23 @@ class BinaryButtonDouble(WidgetStandard):
         self.__react_click_1(None)
         self.__add_default_listener()
 
-    def __init_components(self, window):
-        self.widget = Frame(window)
-        self.widget.set_border(1)
-        self.label_title = tk.Label(
-            self.widget.widget
-        )
+    def __init_components(self):
         self.button_1 = tk.Button(
-            self.widget.widget
+            self.widget
         )
         self.button_2 = tk.Button(
-            self.widget.widget
+            self.widget
         )
-
-    def set_title(self, TEXT:str):
-        self.label_title.config(
-            text = TEXT)
-
-    def get_title(self)->str:
-        return self.label_title.cget("text")
+        self.widget.columnconfigure(
+            0, weight=1)
+        self.widget.columnconfigure(
+            1, weight=1)
+        self.button_1.grid(
+            row = 0, column= 0, sticky="ew"
+        )
+        self.button_2.grid(
+            row = 0, column= 1, sticky="ew"
+        )
 
     def set_content(self, 
             content_list:list[str]):
@@ -118,16 +114,4 @@ class BinaryButtonDouble(WidgetStandard):
         )
         self.button_2.bind("<Button-1>", 
                 self.__react_click_2
-        )
-
-    def pack(self, MARGIN:int = 0):
-        self.widget.pack(MARGIN)
-        self.label_title.grid(
-            row = 0, column= 0
-        )
-        self.button_1.grid(
-            row = 0, column= 1
-        )
-        self.button_2.grid(
-            row = 0, column= 2
         )

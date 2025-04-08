@@ -13,12 +13,16 @@ class Canvas(WidgetStandard):
     """
 
     def __init__(self, window, text = ""):
-        super().__init__()
+        super().__init__(window)
         # Crear el Canvas
         self.widget = tk.Canvas(
-            window.widget, 
+            self.margin, 
             width=400, height=300, 
             bg="white")
+        self.widget.pack(
+            padx=1, 
+            pady=(2, 1)
+        )
         self.__buffer_image_list:list = []
         self.__brush_color = "black"
         self.__fill_color = "red"
