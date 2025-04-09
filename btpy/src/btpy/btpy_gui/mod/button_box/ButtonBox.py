@@ -2,7 +2,8 @@
 
 
 import tkinter as tk
-from ..widget_composite.WidgetComposite import WidgetComposite
+from ..widget_composite.WidgetComposite \
+    import WidgetComposite
 from ..frame.Frame import Frame
 
 class ButtonBox(WidgetComposite):

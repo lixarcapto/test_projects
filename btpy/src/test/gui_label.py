@@ -15,20 +15,8 @@ from btpy.Btpy import Btpy
 def main():
     window = Btpy.Window("titulo")
     window.set_is_fullscreen(True)
-    date = Btpy.InputDate(window, "date")
-    date.set_recomended_years([
-        "2000",
-        "2001"
-    ])
-    date.pack()
-    btn = Btpy.Button(window, "get date")
-    btn.pack()
-    label = Btpy.Label(window, "")
+    label = Btpy.Label(window, "texto")
     label.pack()
-    def fn(e):
-        label.set_title(date.get_value())
-        print("button event")
-    btn.add_listener(fn)
     window.start()
 
 main()

@@ -19,24 +19,11 @@ def main():
     bar = Btpy.DataBar(window, "data")
     bar.set_is_horizontal(False)
     bar.set_size(30, 100)
-    bar.set_value(range_2)
-    bar.pack(3)
+    bar.set_value([30, 100])
+    bar.pack()
     bar2 = Btpy.DataBar(window, "data")
-    bar2.set_value(range_2)
-    bar2.pack(3)
-    btn = Btpy.Button(window, "sum")
-    btn.pack()
-    def fn(e):
-        nonlocal range_2
-        print("funciona")
-        range_2[0] = Btpy.sum_in_range(
-            range_2[0],
-            5, 
-            [0, 100]
-        )
-        bar2.set_value(range_2)
-        bar.set_value(range_2)
-    btn.add_listener("LEFT_CLICK", fn)
+    bar2.set_value([30, 100])
+    bar2.pack()
     window.start()
 
 main()

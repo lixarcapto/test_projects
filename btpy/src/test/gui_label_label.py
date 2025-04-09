@@ -17,7 +17,7 @@ def main():
     window.set_is_fullscreen(True)
     label_list = []
     label = None
-    for i in range(12):
+    for i in range(6):
         label = Btpy.LabelLabel(window, 
         "nombre")
         label.set_text("Juan")

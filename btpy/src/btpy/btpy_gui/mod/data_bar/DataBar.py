@@ -3,7 +3,7 @@
 
 
 import tkinter as tk
-from ..widget_standard.WidgetStandard import WidgetStandard
+from ..widget_composite.WidgetComposite import WidgetComposite
 from ...mod.create_photo_image.create_photo_image import*
 from ....btpy_maths.mod.sum_in_range.sum_in_range import*
 from ....btpy_maths.mod.set_in_range.set_in_range import*
@@ -11,32 +11,23 @@ from ....btpy_maths.mod.percent.part_from_percent import*
 from ....btpy_maths.mod.percent.percent_from_part import*
 from ...mod.frame.Frame import Frame
 
-class DataBar(WidgetStandard):
+class DataBar(WidgetComposite):
 
     def __init__(self, window, title = ""):
-        super().__init__()
+        super().__init__(window)
         # Crear el Canvas
-        self.widget = None
         self.canvas = None
-        self.label_title = None
         self.bar_color = "red"
         self.is_horizontal:bool = True
         self.is_graduated:bool = False
         self.graduation_number:int = 0
         self.range_list:list[int] = [0, 0]
-        self.__init_components()
+        self.__init_components(window)
         self.set_size(100, 20)
         self.set_title(title)
 
     def set_is_horizontal(self, BOOL:bool):
         self.is_horizontal = BOOL
-
-
-    def set_title(self, TEXT:str):
-        self.label_title.config(text = TEXT)
-
-    def get_title(self)->str:
-        return self.label_title.cget("text")
 
     def draw_value(self, WIDTH, HEIGHT):
         text_ = f"{self.range_list[0]}"\
@@ -145,29 +136,10 @@ class DataBar(WidgetStandard):
         )
 
     def __init_components(self, window):
-        self.widget = Frame(window)
-        self.widget.set_border(1)
         self.canvas = tk.Canvas(
-            self.widget.widget,
+            self.widget,
             bg="gray")
-        self.label_title = tk.Label(
-            self.widget.widget
-        )
-        # dibujar -----------------------
-        if(self.is_horizontal):
-            self.label_title.grid(
-                row=0, column=0
-            )
-            self.canvas.grid(
-                row=0, column=1
-            )
-        else:
-            self.label_title.grid(
-                row=0, column=0
-            )
-            self.canvas.grid(
-                row=1, column=0
-            )
+        self.canvas.pack()
     
     def draw_margin(self, WIDTH:int, 
             HEIGHT:int):

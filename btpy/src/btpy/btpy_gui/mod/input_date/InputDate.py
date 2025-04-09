@@ -1,20 +1,18 @@
 
 
 import tkinter as tk
-from ..widget_standard.WidgetStandard import WidgetStandard
+from ..widget_composite.WidgetComposite import WidgetComposite
 from ..frame.Frame import Frame
 from ....btpy_gui.mod.combobox.Combobox import Combobox
 from tkinter import ttk
 from ....btpy_utilitys.mod.date.Date import Date
 from ....btpy_gui.mod.text_field.TextField import TextField
 
-class InputDate(WidgetStandard):
+class InputDate(WidgetComposite):
 
     def __init__(self, window, title:str):
-        super().__init__()
-        self.widget = None
+        super().__init__(window)
         self.date = None
-        self.label_title = None
         self.combobox_day = None
         self.combobox_month = None
         self.combobox_year = None
@@ -61,20 +59,8 @@ class InputDate(WidgetStandard):
         self.combobox_year\
             .add_change_listener(fn)
 
-    def set_title(self, TEXT:str):
-        self.label_title.config(
-            text = TEXT)
-        
-    def get_title(self)->str:
-        return self.label_title.cget("text")
-
-    def __init_components(self, window):
-        self.widget = Frame(window)
-        self.widget.set_border(1)
+    def __init_components(self):
         self.date = Date(1, 1, 2025)
-        self.label_title = tk.Label(
-            self.widget.widget
-        )
         self.combobox_day = Combobox(
             self.widget, "day")
         self.combobox_day.set_size(3)
@@ -85,17 +71,14 @@ class InputDate(WidgetStandard):
             self.widget, "year")
         self.combobox_year.set_size(5)
         # dibujar ------------------------
-        self.label_title.grid(
+        self.combobox_day.margin.grid(
             row=0, column=0
         )
-        self.combobox_day.widget.widget.grid(
+        self.combobox_month.margin.grid(
             row=0, column=1
         )
-        self.combobox_month.widget.widget.grid(
+        self.combobox_year.margin.grid(
             row=0, column=2
-        )
-        self.combobox_year.widget.widget.grid(
-            row=0, column=3
         )
 
     def set_recomended_years(self, 

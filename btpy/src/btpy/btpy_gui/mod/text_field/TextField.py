@@ -6,9 +6,9 @@ from ..widget_standard.WidgetStandard import WidgetStandard
 class TextField(WidgetStandard):
 
     def __init__(self, window):
-        super().__init__()
+        super().__init__(window)
         self.widget = tk.Entry(
-            window.widget)
+            window)
 
     def set_is_password(self):
         self.config(show="*")

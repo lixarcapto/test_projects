@@ -8,9 +8,13 @@ class LabelImage(WidgetStandard):
 
     def __init__(self, window, 
             PATH:str = ""):
-        super().__init__()
+        super().__init__(window)
         self.widget = tk.Label(
-                window.widget)
+                self.margin)
+        self.widget.pack(
+            padx=1, 
+            pady=(2, 1)
+        )
         self.__buffer_image:ImageTk = None
         self.__has_defined_size:bool = False
         self.__has_image:bool = False

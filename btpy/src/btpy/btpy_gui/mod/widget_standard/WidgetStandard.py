@@ -87,6 +87,11 @@ class WidgetStandard:
             ipadx=1, 
             ipady=1
         )
+
+    def grid(self, ROW:int, COLUMN:int):
+        self.margin.grid(row = ROW,
+            column=COLUMN)
+
     
     def unpack(self)-> None:
         self.widget.pack_forget()

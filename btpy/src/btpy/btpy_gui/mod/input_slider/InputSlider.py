@@ -1,43 +1,25 @@
 
 
 import tkinter as tk
-from ..widget_standard.WidgetStandard import WidgetStandard
+from ..widget_composite.WidgetComposite import WidgetComposite
 
-
-class InputSlider(WidgetStandard):
+class InputSlider(WidgetComposite):
 
     def __init__(self, window, text = ""):
-        super().__init__()
-        self.widget = None
-        self.label = None
+        super().__init__(window, True)
         self.slider = None
         self.is_in_horizontal = False
         self.__init_components()
         self.set_title(text)
-
-    def set_title(self, TEXT:str):
-        self.label.config(text = TEXT)
-
-    def get_title(self)->str:
-        return self.label.cget("text")
     
-    def __init_components(self, window):
-        self.widget = tk.Frame(
-            window.widget,
-            borderwidth = 1,
-            relief= "solid"
-        )
-        self.label = tk.Label(self.widget)
+    def __init_components(self):
         self.slider = tk.Scale(
             self.widget,
             orient=tk.HORIZONTAL,
             tickinterval = 0
         )
         # dibujar ------------------------
-        self.label.grid(row=0, column=0, 
-            padx=10, pady=10)
-        self.slider.grid(row=0, 
-            column=1, padx=10, pady=10)
+        self.slider.pack()
 
     def set_range(self, RANGE_LIST
             :list[int|float])->None:
