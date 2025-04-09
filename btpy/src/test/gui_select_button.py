@@ -15,17 +15,9 @@ from btpy.Btpy import Btpy
 def main():
     window = Btpy.Window("titulo")
     window.set_is_fullscreen(True)
-    selector_box = Btpy.SelectorBox(
-        window, 
-            "animal favorito", [
-                "gato",
-                "tortuga",
-                "perro",
-                "oso",
-                "lagartija"
-            ]
-    )
-    selector_box.pack()
+    select = Btpy.SelectButton(window,
+        "select")
+    select.pack()
     window.start()
 
 main()

@@ -2,21 +2,18 @@
 
 import tkinter as tk
 from ..frame.Frame import Frame
-from ..widget_standard.WidgetStandard import WidgetStandard
 from ..select_button.SelectButton import SelectButton
+from ..widget_composite.WidgetComposite import WidgetComposite
 
-class SelectorBox(WidgetStandard):
+class SelectorBox(WidgetComposite):
 
     def __init__(self, window, title:str,
             key_list:list[str]):
-        super().__init__()
-        self.widget = None
-        self.label = None
-        self.inner_frame = None
+        super().__init__(window)
         self.grid_size = 1
         self.__button_list = []
-        self.__init_components(window)
-        self.__create_button_list(key_list)
+        self.set_title(title)
+        self.set_components(key_list)
 
     def set_grid_size(self, SIZE:int):
         self.grid_size = SIZE
@@ -37,12 +34,23 @@ class SelectorBox(WidgetStandard):
                 else:
                     button.set_value(False)
 
+    def __format_buttons(self):
+        for button in self.__button_list:
+            button.grid_forget()
+        self.__button_list = []
+
+    def set_components(self, KEY_LIST):
+        self.__format_buttons()
+        self.__create_button_list(
+            KEY_LIST)
+        self.__arrange_button_in_grid()
+
     def __create_button_list(self,
             KEY_LIST:list[str])->None:
         button = None
         for e in KEY_LIST:
             button = SelectButton(
-                self.inner_frame, e)
+                self.widget, e)
             self.__button_list.append(
                 button)
             
@@ -50,28 +58,9 @@ class SelectorBox(WidgetStandard):
         x:int = 0
         y:int = 0
         for button in self.__button_list:
-            button.widget.grid(
-                row=x, column=y,
-                sticky=tk.NSEW
-            )
+            button.grid(x, y)
             x += 1
             if(x == self.grid_size):
                 y += 1
                 x = 0
-
-    def __init_components(self, window):
-        self.widget = Frame(
-            window
-        )
-        self.label = tk.Label(
-            self.widget.widget)
-        self.inner_frame = Frame(
-            self.widget
-        )
-        self.widget.set_border(1)
-        self.inner_frame.set_border(1)
-        # dibujar ------------------------
-        self.label.pack(anchor=tk.W)
-        self.inner_frame.pack()
-        self.__arrange_button_in_grid()
     

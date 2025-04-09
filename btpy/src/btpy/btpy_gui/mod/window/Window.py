@@ -6,7 +6,7 @@ class Window:
     def __init__(self, title:str):
         self.window = tk.Tk()
         self.window.title(title)
-        self.window.config(bg = "blue")
+        self.window.config(bg = "gray")
         self.widget = tk.Frame()
         self.widget.pack(
             padx=2, pady=2,

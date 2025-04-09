@@ -4,14 +4,25 @@ from ..widget_standard.WidgetStandard import WidgetStandard
 
 class SelectButton(WidgetStandard):
 
+    """
+    This component creates a binary 
+    text button that changes color 
+    each time it is pressed.
+    """
+
     def __init__(self, window, TEXT = "")\
             -> None:
-        super().__init__()
+        super().__init__(window)
         self.widget = tk.Button(
-            window.widget,
-            text = TEXT
+            self.margin,
+            text = TEXT,
+            bg = "white"
         )
-        self.press_background = "blue"
+        self.widget.pack(
+            padx=1, 
+            pady=(2, 1)
+        )
+        self.press_background = "#0C0C0C"
         self.press_foreground = "white"
         self.original_background = ""
         self.original_foreground = ""

@@ -39,6 +39,7 @@ class WidgetStandard:
             self.margin = tk.Frame(
                 widget)
         self.margin.config(bg = "red")
+        self.margin.config(bg = "gray")
         self.widget = None
         self.is_underline = False
         self.is_overstrike = False
