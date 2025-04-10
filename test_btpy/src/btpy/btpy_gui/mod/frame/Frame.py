@@ -6,6 +6,6 @@ from ..widget_standard.WidgetStandard import WidgetStandard
 class Frame(WidgetStandard):
 
     def __init__(self, window):
-        super().__init__()
+        super().__init__(window)
         self.widget = tk.Frame(
-            window.widget)
+            self.margin)

@@ -1,35 +1,23 @@
 
 import tkinter as tk
-from ..widget_standard.WidgetStandard import WidgetStandard
+from ..widget_composite.WidgetComposite import WidgetComposite
 
-class TextArea(WidgetStandard):
+class TextArea(WidgetComposite):
 
     def __init__(self, window, 
             title:str = ""):
-        super().__init__()
-        self.widget = None
-        self.label_title = None
+        super().__init__(window)
         self.text_area = None
         self.scroll_bar = None
-        self.__init_components(window)
+        self.__init_components()
         self.set_title(title)
-
-    def set_title(self, TEXT:str):
-        self.label_title.config(
-            text = TEXT)
         
-    def __init_components(self, window):
-        self.widget = tk.Frame(
-            window.widget)
-        self.label_title = tk.Label(
-            self.widget)
+    def __init_components(self):
         self.text_area = tk.Text(
             self.widget)
         self.scroll_bar =  tk.Scrollbar(
             self.widget)
         # dibujar -------------------------
-        self.label_title.grid(
-            row=0, column=0)
         self.scroll_bar.config(
             command=self.text_area.yview)
         self.text_area.config(

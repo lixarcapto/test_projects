@@ -2,12 +2,11 @@
 
 
 import tkinter as tk
-from ..widget_standard.WidgetStandard import WidgetStandard
+from ..widget_composite.WidgetComposite import WidgetComposite
 from ..frame.Frame import Frame
-from ..button_icon.ButtonIcon \
-    import ButtonIcon
+from ..create_photo_image.create_photo_image import*
 
-class ButtonBoxIcon(WidgetStandard):
+class ButtonBoxIcon(WidgetComposite):
 
     """
     Este componente sirve para crear
@@ -16,13 +15,11 @@ class ButtonBoxIcon(WidgetStandard):
     """
 
     def __init__(self, window, title:str):
-        super().__init__()
-        self.widget = None
-        self.label_title = None
-        self.inner_frame = None
+        super().__init__(window)
         self.grid_size:int = 1
         self.__button_icon_dict:dict = {}
-        self.__init_components(window)
+        self.set_title(title)
+        self.buffer_image_list = []
 
     def set_title(self, TEXT:str):
         self.label_title.config(
@@ -34,33 +31,41 @@ class ButtonBoxIcon(WidgetStandard):
     def set_grid_size(self, SIZE:int):
         self.grid_size = SIZE
 
-    def __init_components(self, window)\
-            ->None:
-        self.widget = Frame(
-            window
+    def set_content(self, 
+            KEY_LIST:list[str], 
+            PATH_LIST:list[str]
+        ):
+        """
+        Funcion que crea una lista de 
+        botones de tipo icono recibiendo
+        una lista de claves y rutas
+        de imagenes para cada boton.
+        """
+        self.__create_button_dict(
+            KEY_LIST,
+            PATH_LIST
         )
-        self.widget.set_border(1)
-        self.label_title = tk.Label(
-            self.widget.widget
-        )
-        self.inner_frame = Frame(
-            self.widget)
-        self.inner_frame.set_border(1)
-        # dibujar ---------------------------
-        self.label_title.pack()
-        self.inner_frame.pack(3)
         self.__arrange_button_dict()
 
-    def create_button_dict(self, 
+    def __create_button_dict(self, 
             KEY_LIST:list[str], 
             PATH_LIST:list[str])->None:
+        self.__button_icon_dict = {}
+        self.buffer_image_list = []
         button = None
         n = 0
+        image = None
         for k in KEY_LIST:
-            button = ButtonIcon(
-                self.inner_frame,
-                k,
-                PATH_LIST[n]
+            image = create_photo_image(
+                PATH_LIST[n])
+            self.buffer_image_list.append(
+                image
+            )
+            button = tk.Button(
+                self.widget,
+                text = k,
+                image = image,
+                bg = "gray"
             )
             self.__button_icon_dict[k] \
                 = button
@@ -92,8 +97,9 @@ class ButtonBoxIcon(WidgetStandard):
                 def fn():
                     CALLBACK(key)
                 return fn
-            button.widget.config(
-                command = aux(k))
+            button.config(
+                command = aux(k)
+            )
 
     def __arrange_button_dict(self):
         x:int = 0
@@ -101,7 +107,7 @@ class ButtonBoxIcon(WidgetStandard):
         button = None
         for k in self.__button_icon_dict:
             button = self.__button_icon_dict[k] 
-            button.widget.grid(
+            button.grid(
                 row=x, column=y,
                 sticky=tk.NSEW
             )

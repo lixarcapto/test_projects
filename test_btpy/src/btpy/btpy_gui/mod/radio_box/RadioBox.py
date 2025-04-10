@@ -1,19 +1,17 @@
 
 
 import tkinter as tk
-from ..widget_standard.WidgetStandard import WidgetStandard
+from ..widget_composite.WidgetComposite \
+    import WidgetComposite
 from ..frame.Frame import Frame
 
-class RadioBox(WidgetStandard):
+class RadioBox(WidgetComposite):
 
     def __init__(self, window, title:str,
             key_list:list[str]):
-        super().__init__()
-        self.widget = None
-        self.label = None
-        self.__value = None
+        super().__init__(window)
+        self.__value = tk.IntVar()
         self.__button_list = []
-        self.__init_components(window)
         self.__create_button_list(key_list)
         self.set_title(title)
 
@@ -36,28 +34,12 @@ class RadioBox(WidgetStandard):
         n = 0
         for e in KEY_LIST:
             button = tk.Radiobutton(
-                self.widget.widget, 
+                self.widget, 
                 text = e, 
                 variable= self.__value,
                 value = n
             )
             self.__button_list.append(
                 button)
-            n += 1
-
-    def __init_components(self, window):
-        self.widget = Frame(
-            window
-        )
-        self.label = tk.Label(
-            self.widget.widget
-        )
-        self.widget.widget.config(
-            borderwidth=1,
-            relief = "solid"
-        )
-        self.__value = tk.IntVar()
-        # dibujar ---------------------
-        self.label.pack(anchor=tk.W)
-        for button in self.__button_list:
             button.pack(anchor=tk.W)
+            n += 1

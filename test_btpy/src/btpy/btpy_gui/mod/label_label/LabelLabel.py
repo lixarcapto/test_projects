@@ -2,55 +2,31 @@
 
 
 import tkinter as tk
-from ..widget_standard.WidgetStandard import WidgetStandard
+from ..widget_composite.WidgetComposite \
+    import WidgetComposite
 from ..frame.Frame import Frame
 import tkinter.font as font
 
-class LabelLabel(WidgetStandard):
+class LabelLabel(WidgetComposite):
 
     def __init__(self, window, title = ""):
-        super().__init__()
-        self.widget = None
-        self.label_title = None
-        self.label_text = None
-        self.__init_components(window)
+        super().__init__(window, True)
+        self.label_content = None
+        self.__init_components()
         self.set_title(title)
 
-    def get_title(self)->str:
-        return self.label_title.cget(
-            "text")
-
-    def set_title(self, TEXT:str)->None:
-        self.label_title.config(
-            text = TEXT)
-
     def set_text(self, TEXT:str):
-        self.label_text.config(text = TEXT)
+        self.label_content.config(text = TEXT)
 
     def get_text(self)->str:
-        return self.label_text.cget(
+        return self.label_content.cget(
             "text")
     
-    def __init_components(self, window):
-        self.widget = Frame(
-            window
-        )
-        self.widget.set_border(1)
-        self.label_title = tk.Label(
-            self.widget.widget)
-        self.label_text = tk.Label(
-            self.widget.widget,
-            bg = "white")
-        # draw components
-        self.label_title.grid(
-            row=0, 
-            column=0, 
-            sticky="w"
-        )  
+    def __init_components(self):
+        self.label_content = tk.Label(
+            self.widget)
         # Alinea a la izquierda
-        self.label_text.grid(
-            row=0, 
-            column=1, 
-            sticky="e"
-        )  
+        self.label_content.pack(
+            expand=True, fill=tk.BOTH
+        )
         # Alinea a la derecha

@@ -17,7 +17,14 @@ class SwiperText(SwiperStandard):
         
     def __init_components(self):
         self.label_text = tk.Label(
-            self.get_center_frame().widget)
+            self.get_center_frame(),
+            bg = "white",
+            borderwidth = 1,
+            relief= "solid"
+        )
         # dibujar -----------------------
-        self.label_text.pack()
+        self.label_text.pack(
+            expand=True, 
+            fill=tk.BOTH
+        )
         

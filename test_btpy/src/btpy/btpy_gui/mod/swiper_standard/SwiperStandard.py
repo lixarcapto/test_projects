@@ -1,11 +1,11 @@
 
 import tkinter as tk
-from ..widget_standard.WidgetStandard import WidgetStandard
+from ..widget_composite.WidgetComposite import WidgetComposite
 from ..label_image.LabelImage import LabelImage
 from ..frame.Frame import Frame
 from ..button.Button import Button
 
-class SwiperStandard(WidgetStandard):
+class SwiperStandard(WidgetComposite):
 
     """
     Este es un modulo estandard para
@@ -24,15 +24,13 @@ class SwiperStandard(WidgetStandard):
 
     def __init__(self, window, 
             TEXT:str = "")->None:
-        super().__init__()
+        super().__init__(window)
         self.__index:int = 0
         self.__element_list\
             :list[str] = []
         self.__is_cyclical:bool = False
         self.__update_callback = lambda e:e
         # OBJECTS -------------------------
-        self.widget = None
-        self.__label_title = None
         self.__button_max = None
         self.__button_back = None
         self.__frame_center = None
@@ -40,7 +38,7 @@ class SwiperStandard(WidgetStandard):
         self.__button_min = None
         self.__label_counter = None
         # CALLS ---------------------------
-        self.__init_components(window)
+        self.__init_components()
         self.__add_listener_default()
         self.set_title(TEXT)
 
@@ -69,58 +67,42 @@ class SwiperStandard(WidgetStandard):
     def set_values_list(self, ARRAY):
         self.__element_list = ARRAY
         self.__update_element()
-
-    def set_title(self, TEXT:str):
-        self.__label_title.config(
-            text = TEXT)
-    
-    def get_title(self)->str:
-        return self.__label_title\
-            .cget("text")
         
     # ------------------------------------
     # PRIVATE ----------------------------
 
-    def __init_components(self, window):
-        self.widget = Frame(window)
-        self.widget.set_border(1)
-        self.__label_title = tk.Label(
-            self.widget.widget)
-        self.__button_min = Button(
-            self.widget, "<|")
-        self.__button_back = Button(self.widget,
-            "<<")
-        self.__frame_center = Frame(
+    def __init_components(self):
+        self.__button_min = tk.Button(
+            self.widget, text = "<|")
+        self.__button_back = tk.Button(
+            self.widget,
+            text = "<<")
+        self.__frame_center = tk.Frame(
             self.widget)
-        self.__frame_center.set_border(1)
-        self.__button_next = Button(self.widget,
-            ">>")
-        self.__button_max = Button(
-            self.widget, "|>")
+        self.__button_next = tk.Button(
+            self.widget,
+            text = ">>")
+        self.__button_max = tk.Button(
+            self.widget, text = "|>")
         self.__label_counter = tk.Label(
-            self.widget.widget)
+            self.widget)
         # dibujar --------------------------
-        self.__label_title.grid(
-            row=0, column=0, columnspan=3, 
-            sticky="ns")
-        self.__button_back.widget.grid(
-            row=1, column=0, sticky="ns")
-        self.__frame_center.widget.grid(
-            row=1, column=1)
-        self.__button_next.widget.grid(
-            row=1, column=2, sticky="ns")
+        self.__button_back.grid(
+            row=0, column=0, sticky="ewns")
+        self.__frame_center.grid(
+            row=0, column=1, sticky="ewns")
+        self.__button_next.grid(
+            row=0, column=2, sticky="ewns")
         self.__label_counter.grid(
-            row=2, column=0, sticky="ns")
+            row=1, column=0, sticky="ewns")
         
     def set_arroy_is_bold(self, BOOL:bool):
-        self.__button_back.set_is_bold(BOOL)
-        self.__button_next\
-            .set_is_bold(BOOL)
+        pass
         
     def __add_listener_default(self):
-        self.__button_next.widget.config(
+        self.__button_next.config(
             command = self.__next_element)
-        self.__button_back.widget.config(
+        self.__button_back.config(
             command = self.__back_element)
 
     def __next_element(self):

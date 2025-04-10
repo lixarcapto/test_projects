@@ -5,27 +5,40 @@ import tkinter as tk
 from ..widget_standard.WidgetStandard import WidgetStandard
 import webbrowser
 import tkinter.font as font
+from ..tool_tip.ToolTip import ToolTip
 
 class Link(WidgetStandard):
 
     def __init__(self, window, 
             TITLE:str, URL:str):
-        super().__init__()
-        self.__hyperlink_URL:str = ""
+        super().__init__(window)
+        self.__hyperlink_URL:str = URL
         self.__was_clicked:bool = False
+        self.tooltip = None
         self.widget = tk.Button(
-                window.widget,
-                text= TITLE
+                self.margin,
+                text= TITLE,
+                bg = "white"
         )
         self.widget.config(
             font = font.Font(
-                underline=True,
-                weight="bold"
+                underline=True
         ))
         self.widget.config(
             fg = "#0D0AE1")
+        self.widget.pack(
+            padx=1, 
+            pady=(2, 1)
+        )
         self.__add_default_listener()
+        self.__init_tooltip()
         self.set_hyperlink_URL(URL)
+
+    def __init_tooltip(self):
+        self.tooltip = ToolTip(
+            self.widget, 
+            self.__hyperlink_URL
+        )
 
     def __add_default_listener(self):
         self.widget.config(

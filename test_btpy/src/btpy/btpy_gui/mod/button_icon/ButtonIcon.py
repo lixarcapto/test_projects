@@ -3,6 +3,7 @@ import tkinter as tk
 from PIL import Image, ImageTk
 from ..button.Button import Button
 from ..tool_tip.ToolTip import ToolTip
+from ...mod.create_photo_image.create_photo_image import*
 
 class ButtonIcon(Button):
 
@@ -13,24 +14,34 @@ class ButtonIcon(Button):
     """
 
     def __init__(self, window, 
-                KEY:str, PATH = ""):
+                TITLE:str, PATH = ""):
         super().__init__(window, "")
         self.__buffer_image\
             :ImageTk.PhotoImage = None
         self.__has_defined_size:bool = False
         self.__width:int = 0
-        self.key = KEY
+        self.__title = TITLE
         self.__height:int = 0
         self.__path_image:str = PATH
-        self.tooltip = ToolTip(
-            self.widget, self.key)
+        self.tooltip = None
+        self.__init_tooltip()
         if(PATH != ""):
             self.set_path_image(PATH)
+
+    def add_listener(self, CALLBACK):
+        self.widget.bind("<Button-1>", 
+            CALLBACK)
+
+    def set_title(self, TEXT:str):
+        self.__title = TEXT
+
+    def get_title(self)->str:
+        return self.__title
 
     def get_path_image(self)->str:
         return self.__path_image
 
-    def set_size(self, WIDTH:int, 
+    def set_size_image(self, WIDTH:int, 
                 HEIGHT:int):
         self.__has_defined_size = True
         self.__width = WIDTH
@@ -40,8 +51,12 @@ class ButtonIcon(Button):
     def __resize_image(self):
         self.set_path_image(
             self.__path_image)
+        
+    def __init_tooltip(self):
+        self.tooltip = ToolTip(
+            self.widget, self.__title)
 
-    def get_size(self)->tuple[int]:
+    def get_size_image(self)->tuple[int]:
         return (self.__height, self.widget)
     
     def get_height(self)->int:
@@ -64,7 +79,6 @@ class ButtonIcon(Button):
     
     def get_width(self)->int:
         return self.__width
-        self.__resize_image()
 
     def set_path_image(self, PATH:str)\
             ->None:

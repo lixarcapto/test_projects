@@ -1,44 +1,34 @@
 
 import tkinter as tk
-from ..widget_standard.WidgetStandard import WidgetStandard
+from ..widget_composite.WidgetComposite import WidgetComposite
 from ..frame.Frame import Frame
 from tkinter import ttk
 from ....btpy_gui.mod.text_field.TextField import TextField
 from tkinter import filedialog
 
-class InputFile(WidgetStandard):
+class InputFile(WidgetComposite):
 
     def __init__(self, window, title:str):
-        super().__init__()
-        self.widget = None
-        self.label_title = None
+        super().__init__(window)
         self.button_load = None
         self.text_field = None
         self.__init_components()
         self.set_title(title)
 
-    def __init_components(self, window):
-        self.widget = Frame(window)
-        self.widget.set_border(1)
-        self.label_title = tk.Label(
-            self.widget.widget
-        )
+    def __init_components(self):
         self.button_load = tk.Button(
-            self.widget.widget, 
+            self.widget, 
             text = "search"
         )
         self.text_field = TextField(
             self.widget
         )
         # dibujar ------------------------
-        self.label_title.grid(
+        self.button_load.grid(
             row = 0, column= 0
         )
-        self.button_load.grid(
-            row = 0, column= 1
-        )
         self.text_field.widget.grid(
-            row = 0, column= 2
+            row = 0, column= 1
         )
 
     def search_folder(self):
@@ -69,9 +59,3 @@ class InputFile(WidgetStandard):
     
     def set_value(self, TEXT:str):
         self.text_field.set_value(TEXT)
-
-    def set_title(self, TEXT:str):
-        self.label_title.config(text = TEXT)
-
-    def get_title(self)->str:
-        return self.label_title.cget("text")
