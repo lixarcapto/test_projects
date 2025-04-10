@@ -23,7 +23,8 @@ class WidgetComposite(WidgetStandard):
             self.set_in_horizontal()
         else:
             self.set_in_vertical()
-        self.set_background_color("#EEEEEE")
+        self.set_background_color(
+            "#EEEEEE")
         self.set_margin_color("gray")
         self.set_title_background("white")
         

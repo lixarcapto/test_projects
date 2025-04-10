@@ -15,19 +15,9 @@ from btpy.Btpy import Btpy
 def main():
     window = Btpy.Window("titulo")
     window.set_is_fullscreen(True)
-    text = Btpy.TextArea(
-        window, "write something")
-    text.pack()
-    text.set_size(10, 5)
-    label = Btpy.Label(window)
-    label.pack()
-    btn = Btpy.Button(window, 
-        "is it ready")
-    btn.pack()
-    def fn(e):
-        txt = text.get_value()
-        label.set_title(txt)
-    btn.add_listener(fn)
+    field = Btpy.TextField(window,
+        "campo")
+    field.pack()
     window.start()
 
 main()

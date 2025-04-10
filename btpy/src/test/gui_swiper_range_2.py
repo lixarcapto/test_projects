@@ -15,10 +15,10 @@ from btpy.Btpy import Btpy
 def main():
     window = Btpy.Window("titulo")
     window.set_is_fullscreen(True)
-    swiper = Btpy.SwiperRangeSimple(window,
-        "day")
+    swiper = Btpy.SwiperRange2(window,
+            "age")
     swiper.pack()
-    swiper.set_values_list([0, 31])
+    swiper.set_values_list([16, 70])
     window.start()
 
 main()

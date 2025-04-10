@@ -23,7 +23,7 @@ class BtpyGui(BtpyDict):
     BinaryPopup = BinaryPopup
     Combobox = Combobox
     InputSlider = InputSlider
-    SwiperRange = SwiperRange
+    SwiperRange2 = SwiperRange2
     CheckButton = CheckButton
     CheckBox = CheckBox
     RadioBox = RadioBox
@@ -38,7 +38,7 @@ class BtpyGui(BtpyDict):
     SwiperText = SwiperText
     Canvas = Canvas
     InputDate = InputDate
-    SwiperRangeSimple = SwiperRangeSimple
+    SwiperRange = SwiperRange
     Frame = Frame
     InputFile = InputFile
     DataBar = DataBar

@@ -1,14 +1,20 @@
 
 
 import tkinter as tk
-from ..widget_standard.WidgetStandard import WidgetStandard
+from ..widget_composite.WidgetComposite import WidgetComposite
 
-class TextField(WidgetStandard):
+class TextField(WidgetComposite):
 
-    def __init__(self, window):
-        super().__init__(window)
-        self.widget = tk.Entry(
-            window)
+    def __init__(self, window, 
+                TEXT:str = ""):
+        super().__init__(window, True)
+        self.label_title.config(
+            bg = "#EEEEEE")
+        self.entry = tk.Entry(
+            self.widget
+        )
+        self.entry.pack()
+        self.set_title(TEXT)
 
     def set_is_password(self):
         self.config(show="*")
@@ -17,10 +23,10 @@ class TextField(WidgetStandard):
         return self.widget.get()
 
     def set_value(self, TEXT:str):
-        self.widget.delete(0, tk.END)
-        self.widget.insert(0, TEXT)
+        self.entry.delete(0, tk.END)
+        self.entry.insert(0, TEXT)
 
     def set_character_width(self, 
             CHAR_NUMBER:int):
-        self.widget.config(
+        self.entry.config(
             width = CHAR_NUMBER)

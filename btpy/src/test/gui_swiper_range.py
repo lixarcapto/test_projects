@@ -16,9 +16,9 @@ def main():
     window = Btpy.Window("titulo")
     window.set_is_fullscreen(True)
     swiper = Btpy.SwiperRange(window,
-            "age")
+        "day")
     swiper.pack()
-    swiper.set_values_list([16, 70])
+    swiper.set_values_list([0, 31])
     window.start()
 
 main()

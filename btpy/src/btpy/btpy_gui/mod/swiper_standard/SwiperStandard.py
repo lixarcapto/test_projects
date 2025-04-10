@@ -88,13 +88,13 @@ class SwiperStandard(WidgetComposite):
             self.widget)
         # dibujar --------------------------
         self.__button_back.grid(
-            row=0, column=0, sticky="ns")
+            row=0, column=0, sticky="ewns")
         self.__frame_center.grid(
-            row=0, column=1, sticky="ns")
+            row=0, column=1, sticky="ewns")
         self.__button_next.grid(
-            row=0, column=2, sticky="ns")
+            row=0, column=2, sticky="ewns")
         self.__label_counter.grid(
-            row=1, column=0, sticky="ns")
+            row=1, column=0, sticky="ewns")
         
     def set_arroy_is_bold(self, BOOL:bool):
         pass
