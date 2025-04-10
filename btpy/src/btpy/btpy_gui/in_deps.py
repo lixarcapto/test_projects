@@ -40,3 +40,4 @@ from .mod.button_box_icon.ButtonBoxIcon import ButtonBoxIcon
 from .mod.switch_icon.SwitchIcon import SwitchIcon
 from .mod.window_nav.WindowNav import WindowNav
 from .mod.get_image_size.get_image_size import get_image_size
+from .mod.selfdestruct_button.SelfdestructButton import SelfdestructButton

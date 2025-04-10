@@ -4,6 +4,7 @@
 import tkinter as tk
 from ..frame.Frame import Frame
 from ..widget_composite.WidgetComposite import WidgetComposite
+from ..selfdestruct_button.SelfdestructButton import SelfdestructButton
 
 class ChipInput(WidgetComposite):
 
@@ -42,7 +43,7 @@ class ChipInput(WidgetComposite):
 
     def is_selected(self, key):
         for button in self.__button_inventory:
-            if(key == button.cget("text")):
+            if(key == button.get_title()):
                 return True
         return False
     
@@ -89,27 +90,23 @@ class ChipInput(WidgetComposite):
                 button)
 
     def __create_button(self, key):
-        button = tk.Button(
-            self.__frame_inventory, 
-            text = key,
-            borderwidth = 1,
-            relief = "solid",
-            bg = self.__label.cget("bg"),
-            fg = self.__label.cget("fg")
+        button = SelfdestructButton(
+            self.__frame_inventory,
+            key
         )
-        def fn():
+        def fn(e):
             self.__destroy_button(key)
-        button.config(command = fn)
-        button.pack(side=tk.LEFT)
+        button.add_listener(fn)
+        button.pack()
         self.__button_inventory.append(
             button)
         
     def __destroy_button(self, key):
         n = 0
         for button in self.__button_inventory:
-            if(key == button.cget("text")):
+            if(key == button.get_title()):
                 self.__button_inventory[n]\
-                    .destroy()
+                .margin.pack_forget()
                 del(self.__button_inventory[n])
             n += 1
         return False

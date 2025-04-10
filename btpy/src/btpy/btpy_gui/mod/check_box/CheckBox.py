@@ -4,6 +4,7 @@
 import tkinter as tk
 from ..frame.Frame import Frame
 from ..widget_composite.WidgetComposite import WidgetComposite
+from ..switch_check.SwitchCheck import SwitchCheck
 
 class CheckBox(WidgetComposite):
 
@@ -12,7 +13,6 @@ class CheckBox(WidgetComposite):
         super().__init__(window)
         self.__button_list = []
         self.set_title(title)
-        self.values_list:list = []
         self.create_button_list(key_list)
 
     def get_value(self)->list[str]:
@@ -30,32 +30,16 @@ class CheckBox(WidgetComposite):
                     button.set_value(True)
                 else:
                     button.set_value(False)
-
-    def create_checkbutton(self,
-            TEXT, variable):
-        button = tk.Checkbutton(
-            self.widget, 
-            text=TEXT, 
-            variable=variable, 
-            onvalue=True, offvalue=False
-        )
-        button.pack()
-        return button
     
     def create_button_list(self, 
                 TITLE_LIST:str):
-        self.values_list = []
         leng = len(TITLE_LIST)
         button = None
         for i in range(leng):
-            self.values_list.append(
-                tk.BooleanVar())
-        for i in range(leng):
-            button = self\
-                .create_checkbutton(
-                    TITLE_LIST[i],
-                    self.values_list[i]
-                )
+            button = SwitchCheck(
+                self.widget, TITLE_LIST[i]
+            )
             self.__button_list.append(
                 button)
+            button.pack(True)
         

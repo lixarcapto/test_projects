@@ -51,6 +51,7 @@ class BtpyGui(BtpyDict):
     ButtonBoxIcon = ButtonBoxIcon
     Button = Button
     ButtonIcon = ButtonIcon
+    SelfdestructButton = SelfdestructButton
     # -----------------------------------
     # Swipers ---------------------------
     SwiperImage = SwiperImage
