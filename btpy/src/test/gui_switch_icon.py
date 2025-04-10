@@ -15,9 +15,17 @@ from btpy.Btpy import Btpy
 def main():
     window = Btpy.Window("titulo")
     window.set_is_fullscreen(True)
-    check = Btpy.CheckButton(window, 
-        "check")
-    check.pack()
+    button = Btpy.SwitchIcon(window, 
+        "girl_fishing",
+        "../btpy/res/image/capture/girl_fishing_kawaii.png",
+        "../btpy/res/image/capture/octopus.png"
+    )
+    button.pack()
+    button.set_size(300, 300)
+    def fn(e):
+        print("valor " + str(button.get_value()))
+    button.add_listener(fn)
+    button.set_title("chica pescando")
     window.start()
 
 main()

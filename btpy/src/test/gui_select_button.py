@@ -15,7 +15,7 @@ from btpy.Btpy import Btpy
 def main():
     window = Btpy.Window("titulo")
     window.set_is_fullscreen(True)
-    select = Btpy.SelectButton(window,
+    select = Btpy.SwitchColor(window,
         "select")
     select.pack()
     window.start()

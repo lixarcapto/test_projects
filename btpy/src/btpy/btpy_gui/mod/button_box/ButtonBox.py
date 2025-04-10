@@ -4,6 +4,7 @@
 import tkinter as tk
 from ..widget_composite.WidgetComposite \
     import WidgetComposite
+from ..button.Button import Button
 from ..frame.Frame import Frame
 
 class ButtonBox(WidgetComposite):
@@ -38,9 +39,8 @@ class ButtonBox(WidgetComposite):
             KEY_LIST:list[str])->None:
         button = None
         for k in KEY_LIST:
-            button = tk.Button(
-                self.widget, 
-                text = k
+            button = Button(
+                self.widget, k
             )
             self.__button_dict[k] = button
             
@@ -49,8 +49,7 @@ class ButtonBox(WidgetComposite):
             CALLBACK:callable):
         button = self.__button_dict\
             [KEY_BUTTON]
-        button.bind("<Button-1>", 
-            CALLBACK)
+        button.add_listener(CALLBACK)
             
     def add_single_listener(self, 
                 CALLBACK:callable):
@@ -67,11 +66,12 @@ class ButtonBox(WidgetComposite):
         for k in self.__button_dict:
             button = self.__button_dict[k]
             def aux(key):
-                def fn():
+                def fn(e):
                     CALLBACK(key)
                 return fn
-            button.config(command = aux(
-                k))
+            button.add_listener(
+                aux(k)
+            )
 
     def __arrange_button_dict(self):
         x:int = 0
@@ -79,10 +79,7 @@ class ButtonBox(WidgetComposite):
         button = None
         for k in self.__button_dict:
             button = self.__button_dict[k] 
-            button.grid(
-                row=x, column=y,
-                sticky=tk.NSEW
-            )
+            button.grid(x, y)
             x += 1
             if(x == self.grid_size):
                 y += 1

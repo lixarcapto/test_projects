@@ -3,7 +3,7 @@
 import tkinter as tk
 from ..widget_standard.WidgetStandard import WidgetStandard
 
-class CheckButton(WidgetStandard):
+class SwitchCheck(WidgetStandard):
 
     def __init__(self, window, text = ""):
         super().__init__(window)

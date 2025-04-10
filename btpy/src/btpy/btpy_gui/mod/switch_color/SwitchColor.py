@@ -2,7 +2,7 @@
 import tkinter as tk
 from ..widget_standard.WidgetStandard import WidgetStandard
 
-class SelectButton(WidgetStandard):
+class SwitchColor(WidgetStandard):
 
     """
     This component creates a binary 

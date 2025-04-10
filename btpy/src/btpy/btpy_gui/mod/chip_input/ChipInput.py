@@ -5,7 +5,7 @@ import tkinter as tk
 from ..frame.Frame import Frame
 from ..widget_composite.WidgetComposite import WidgetComposite
 
-class ButtonInventory(WidgetComposite):
+class ChipInput(WidgetComposite):
 
     def __init__(self, window, title:str,
             key_list:list[str]):
@@ -28,7 +28,8 @@ class ButtonInventory(WidgetComposite):
             button.config(fg = COLOR)
 
     def set_background_color(self, COLOR):
-        super().set_background_color(COLOR)
+        super().set_background_color(
+            COLOR)
         self.__label.config(bg = COLOR)
         self.__frame_inventory.config(
             bg = COLOR)

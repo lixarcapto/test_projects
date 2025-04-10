@@ -15,7 +15,7 @@ from btpy.Btpy import Btpy
 def main():
     window = Btpy.Window("titulo")
     window.set_is_fullscreen(True)
-    inventory = Btpy.ButtonInventory(
+    inventory = Btpy.ChipInput(
         window, "inventario", [
             "Manzana",
             "Espada",
@@ -29,8 +29,6 @@ def main():
             "Pan",
             "Pañuelo"
         ])
-    inventory.set_background_color("green")
-    inventory.set_foreground_color("white")
     window.start()
 
 main()

@@ -4,12 +4,12 @@ import tkinter as tk
 from ..widget_composite.WidgetComposite import WidgetComposite
 from ..frame.Frame import Frame
 
-class BinaryButtonDouble(WidgetComposite):
+class SwitchDouble(WidgetComposite):
 
     def __init__(self, widget, 
             title, 
             content_list:list[str] = []):
-        super().__init__(widget)
+        super().__init__(widget, True)
         self.button_1 = None
         self.button_2 = None
         self.background_color_2 = ""

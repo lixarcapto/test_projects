@@ -4,9 +4,9 @@ import tkinter as tk
 from PIL import Image, ImageTk
 from ..button.Button import Button
 from ..tool_tip.ToolTip import ToolTip
-from ...mod.create_photo_image.create_photo_image import*
+from ..create_photo_image.create_photo_image import*
 
-class BinaryButtonIcon(Button):
+class SwitchIcon(Button):
 
     """
     Este modulo crea un boton binario

@@ -15,7 +15,7 @@ from btpy.Btpy import Btpy
 def main():
     window = Btpy.Window("titulo")
     window.set_is_fullscreen(True)
-    button = Btpy.BinaryButtonDouble(
+    button = Btpy.SwitchDouble(
         window, "opciones", 
         ["si", "no"]
     )
@@ -23,7 +23,7 @@ def main():
     def fn(e):
         print(button.get_value())
     button.add_listener(fn)
-    button2 = Btpy.BinaryButtonDouble(
+    button2 = Btpy.SwitchDouble(
         window, "Activar efectos", 
         ["si", "no"]
     )
