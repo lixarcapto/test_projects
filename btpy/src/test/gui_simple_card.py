@@ -15,8 +15,9 @@ from btpy.Btpy import Btpy
 def main():
     window = Btpy.Window("titulo")
     window.set_is_fullscreen(True)
+    # vertical -----------------------------
     card = Btpy.SimpleCard(window,
-        "vertical", "Monica")
+        "vertical", True)
     card.set_icon(
         "../btpy/res/image/image_500x500/face_girl_1_530x530.png",
         [150, 150]
@@ -24,8 +25,9 @@ def main():
     card.set_description(
         "ella es una experta en el tema")
     card.grid(0, 0)
+    # vertical invert ---------------------
     card2 = Btpy.SimpleCard(window,
-        "vertical_invert", "Monica")
+        "vertical_invert", True)
     card2.set_icon(
         "../btpy/res/image/image_500x500/face_girl_1_530x530.png",
         [150, 150]
@@ -33,8 +35,9 @@ def main():
     card2.set_description(
         "ella es una experta en el tema")
     card2.grid(0, 1)
+    # horizontal --------------------------
     card3 = Btpy.SimpleCard(window,
-        "horizontal", "Monica")
+        "horizontal", True)
     card3.set_icon(
         "../btpy/res/image/image_500x500/face_girl_1_530x530.png",
         [150, 150]
@@ -42,8 +45,9 @@ def main():
     card3.set_description(
         "ella es una experta en el tema")
     card3.grid(1, 0)
+    # horizontal invert --------------------
     card4 = Btpy.SimpleCard(window,
-        "horizontal_invert", "Monica")
+        "horizontal_invert", True)
     card4.set_icon(
         "../btpy/res/image/image_500x500/face_girl_1_530x530.png",
         [150, 150]

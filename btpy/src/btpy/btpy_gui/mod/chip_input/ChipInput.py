@@ -4,7 +4,7 @@
 import tkinter as tk
 from ..frame.Frame import Frame
 from ..widget_composite.WidgetComposite import WidgetComposite
-from ..selfdestruct_button.SelfdestructButton import SelfdestructButton
+from ..button_symbol.ButtonSymbol import ButtonSymbol
 
 class ChipInput(WidgetComposite):
 
@@ -90,14 +90,14 @@ class ChipInput(WidgetComposite):
                 button)
 
     def __create_button(self, key):
-        button = SelfdestructButton(
+        button = ButtonSymbol(
             self.__frame_inventory,
             key
         )
         def fn(e):
             self.__destroy_button(key)
         button.add_listener(fn)
-        button.pack()
+        button.margin.pack(anchor="w")
         self.__button_inventory.append(
             button)
         

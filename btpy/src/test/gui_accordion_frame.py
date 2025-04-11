@@ -15,11 +15,15 @@ from btpy.Btpy import Btpy
 def main():
     window = Btpy.Window("titulo")
     window.set_is_fullscreen(True)
-    button = Btpy.SelfdestructButton(
-        window, "click")
+    frame = Btpy.AccordionFrame(window, 
+        "acordeon")
+    frame.pack()
+    frame.set_activated_by_mouseenter(True)
+    button = Btpy.Button(
+        frame, "click")
     button.pack()
     def fn(e):
-        button.margin.pack_forget()
+        print("funciona")
     button.add_listener(fn)
     window.start()
 

@@ -15,14 +15,14 @@ from btpy.Btpy import Btpy
 def main():
     window = Btpy.Window("titulo")
     window.set_is_fullscreen(True)
-    pattern = Btpy.PatternInput(window,
-        "patron", 5)
-    pattern.pack()
-    pattern.add_listener(
-        lambda :print("funciona"))
-    pattern.set_key_right([
-        1, 2, 3, 4
-    ])
+    button = Btpy.ButtonSymbol(
+        window, "click", "$")
+    button.set_color_symbol(
+        "green", "white")
+    button.pack()
+    def fn(e):
+        button.margin.pack_forget()
+    button.add_listener(fn)
     window.start()
 
 main()

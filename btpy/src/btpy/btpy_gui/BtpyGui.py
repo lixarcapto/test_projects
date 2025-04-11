@@ -35,6 +35,7 @@ class BtpyGui(BtpyDict):
     CheckBox = CheckBox
     RadioBox = RadioBox
     SwitchDouble = SwitchDouble
+    AccordionFrame = AccordionFrame
     # -----------------------------------
     # Labels ---------------------------
     LabelLabel = LabelLabel
@@ -51,7 +52,7 @@ class BtpyGui(BtpyDict):
     ButtonBoxIcon = ButtonBoxIcon
     Button = Button
     ButtonIcon = ButtonIcon
-    SelfdestructButton = SelfdestructButton
+    ButtonSymbol = ButtonSymbol
     # -----------------------------------
     # Swipers ---------------------------
     SwiperImage = SwiperImage
@@ -67,7 +68,6 @@ class BtpyGui(BtpyDict):
     Window = Window
     ItemFrame = ItemFrame
     SimpleCard = SimpleCard
-    PatternInput = PatternInput
     # -----------------------------------
     # Input Text -------------------------
     TextField = TextField

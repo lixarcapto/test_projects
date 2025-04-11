@@ -7,10 +7,11 @@ from ..widget_composite.WidgetComposite \
 from ..frame.Frame import Frame
 from tkinter import font
 
-class SelfdestructButton(WidgetComposite):
+class ButtonSymbol(WidgetComposite):
 
     def __init__(self, window, 
-            TITLE:str = ""):
+            TITLE:str = "", 
+            symbol:str = ""):
         super().__init__(window, True)
         self.widget.config(
             borderwidth = 1,
@@ -25,21 +26,48 @@ class SelfdestructButton(WidgetComposite):
         self.back_color_1 = "gray"
         self.back_color_2 = "yellow"
         self.label = tk.Label(
-            self.widget,
-            text = " X ", 
+            self.widget, 
             bg = "red",
             fg = "white",
             font = font_
         )
+        self.set_symbol(symbol)
         self.label.pack()
         self.add_default_listener()
+
+    def set_symbol(self, SYMBOL):
+        self.label.config(
+            text = f" {SYMBOL} ")
         
-    def add_listener(self, CALLBACK):
-        self.label.bind("<Button-1>", 
+    def set_color_symbol(self, 
+            background, foreground):
+        self.label.config(
+            bg = background,
+            fg = foreground
+        )
+        
+    def add_listener(self, CALLBACK,
+            EVENT_KEY:str = "default"):
+        if(EVENT_KEY == "default"):
+            self.label.bind("<Button-1>", 
                 CALLBACK)
-        self.label_title.bind("<Button-1>", 
+            self.label_title.bind("<Button-1>", 
                 CALLBACK)
-        self.margin.bind("<Button-1>", 
+            self.margin.bind("<Button-1>", 
+                CALLBACK)
+        elif(EVENT_KEY == "mouse_enter"):
+            self.label.bind("<Enter>", 
+                CALLBACK)
+            self.label_title.bind("<Enter>", 
+                CALLBACK)
+            self.margin.bind("<Enter>", 
+                CALLBACK)
+        elif(EVENT_KEY == "mouse_leave"):
+            self.label.bind("<Leave>", 
+                CALLBACK)
+            self.label_title.bind("<Leave>", 
+                CALLBACK)
+            self.margin.bind("<Leave>", 
                 CALLBACK)
         
     def add_default_listener(self):

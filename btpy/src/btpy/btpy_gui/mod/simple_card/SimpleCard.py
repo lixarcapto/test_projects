@@ -4,20 +4,32 @@ import tkinter as tk
 from ..widget_standard.WidgetStandard import WidgetStandard
 from ..create_photo_image.create_photo_image import*
 from tkinter import font
+from ..button.Button import Button
 
 class SimpleCard(WidgetStandard):
 
     """
+    Esta es una carta simple generica
+    que sirve tanto para button card
+    como label card. 
+    __init__(
+        widget, 
+        key_order:str,
+        has_button:bool
+    )
     Estilos:
     * vertical
     * vertical_invert
     * horizontal
     * horizontal_invert
+
+    TODO: mejorar para que no desperdicie
+    memoria en widgets que no se usan.
     """
 
-    def __init__(self, window, 
+    def __init__(self, window,
                  key_order:str,
-                 TITLE:str = ""):
+                 has_button:bool):
         """
         * vertical
         * vertical_invert
@@ -28,11 +40,16 @@ class SimpleCard(WidgetStandard):
         self.widget = tk.Frame(
             self.margin
         )
+        TITLE = "no title"
         self.buffer_image = None
         self.label_icon = tk.Label(
             self.widget,
             bg = "black"
         )
+        self.has_button:bool = has_button
+        self.button_click = None
+        self.label_title = None
+        self.label_description = None
         if(key_order == "vertical"):
             self.__draw_vertical(TITLE)
             self.__grid_vertical_normal()
@@ -46,6 +63,16 @@ class SimpleCard(WidgetStandard):
             self.__draw_horizontal(TITLE)
             self.__grid_horizontal_invert()
         self.set_margin_color("black")
+
+    def __init_button(self, widget):
+        self.has_button:bool = True
+        self.button_click = Button(
+            widget, "click here"
+        )
+        self.button_click\
+            .set_background_color("green")
+        self.button_click\
+            .set_foreground_color("white")
 
     def __draw_horizontal(self, TITLE):
         font_ = font.Font(
@@ -72,6 +99,12 @@ class SimpleCard(WidgetStandard):
         self.label_description.grid(
             row=1, column=0, sticky="nsew"
         )
+        if(self.has_button):
+            self.__init_button(
+                self.frame_title)
+            self.button_click.grid(
+                2, 0
+            )
         # dibujado ----------------------
 
     def __grid_horizontal_normal(self):
@@ -117,6 +150,12 @@ class SimpleCard(WidgetStandard):
         self.label_description.grid(
             row=2, column=0, sticky="nsew"
         )
+        if(self.has_button):
+            self.__init_button(
+                self.widget)
+            self.button_click.grid(
+                3, 0
+            )
 
     def __grid_vertical_invert(self):
         
@@ -129,6 +168,15 @@ class SimpleCard(WidgetStandard):
         self.label_description.grid(
             row=2, column=0, sticky="nsew"
         )
+        if(self.has_button):
+            self.__init_button(
+                self.widget)
+            self.button_click.grid(
+                3, 0
+            )
+
+    def set_button_text(self, TEXT:str):
+        self.button_click.set_title(TEXT)
 
     def set_title(self, TEXT:str):
         self.label_title.config(
@@ -137,6 +185,11 @@ class SimpleCard(WidgetStandard):
     def set_description(self, TEXT:str):
         self.label_description.config(
             text = TEXT)
+        
+    def add_listener(self, CALLBACK):
+        if(self.has_button):
+            self.button_click\
+                .add_listener(CALLBACK)
 
     def set_icon(self, PATH:str, 
             size_list:list[int] = []):
