@@ -68,6 +68,7 @@ class BtpyGui(BtpyDict):
     Window = Window
     ItemFrame = ItemFrame
     SimpleCard = SimpleCard
+    Dialog = Dialog
     # -----------------------------------
     # Input Text -------------------------
     TextField = TextField

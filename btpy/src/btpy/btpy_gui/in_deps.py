@@ -44,3 +44,4 @@ from .mod.button_symbol.ButtonSymbol import ButtonSymbol
 from .mod.item_frame.ItemFrame import ItemFrame
 from .mod.simple_card.SimpleCard import SimpleCard
 from .mod.accordion_frame.AccordionFrame import AccordionFrame
+from .mod.dialog.Dialog import Dialog
