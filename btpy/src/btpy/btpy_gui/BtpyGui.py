@@ -65,6 +65,9 @@ class BtpyGui(BtpyDict):
     Frame = Frame
     WindowNav = WindowNav
     Window = Window
+    ItemFrame = ItemFrame
+    SimpleCard = SimpleCard
+    PatternInput = PatternInput
     # -----------------------------------
     # Input Text -------------------------
     TextField = TextField

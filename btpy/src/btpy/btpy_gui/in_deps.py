@@ -41,3 +41,6 @@ from .mod.switch_icon.SwitchIcon import SwitchIcon
 from .mod.window_nav.WindowNav import WindowNav
 from .mod.get_image_size.get_image_size import get_image_size
 from .mod.selfdestruct_button.SelfdestructButton import SelfdestructButton
+from .mod.item_frame.ItemFrame import ItemFrame
+from .mod.simple_card.SimpleCard import SimpleCard
+from .mod.pattern_input.PatternInput import PatternInput
