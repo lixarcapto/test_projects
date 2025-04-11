@@ -1,8 +1,19 @@
 
 
 from ..simple_card.SimpleCard import SimpleCard
+from .read_dialogue import*
+from .read_cards_json import*
 
 class Dialog(SimpleCard):
+
+    """
+    TODO: 
+    * añadir las descripciones al 
+    inicio del dialogo.
+    * hacer que todo lo que este sin nombre
+    sea enviado automaticamente a un
+    narrador.
+    """
 
     def __init__(self, window):
         super().__init__(window, 
@@ -32,6 +43,47 @@ class Dialog(SimpleCard):
             self.icon_size_list)
         self.set_description(
             dialogue["description"])
+        
+    def load_json_cards(self, PATH):
+        """
+        Esta funcion permite cargar
+        objetos cards desde un archivo
+        json en formato json cards; 
+        este formato consiste en escribir
+        un list de objetos json
+        con los atributos descritpion, 
+        title y path.
+        {
+            "title": "",
+            "description": "",
+            "path": ""
+        }
+        """
+        self.card_dict_nested \
+            = read_cards_json(PATH)
+        
+    def load_dialogue_txt(self, PATH:str):
+        """
+        Esta funcion permite cargar un
+        archivo TXT con dialogos en 
+        el formato indicado para dialogos.
+        Este formato consiste en separar
+        cada dialogo por un salto de linea,
+        la primera seccion se separa por
+        dos puntos y representa al titulo
+        del personaje y la segunda al
+        texto que se muestra debajo como
+        descripcion; por ejemplo:
+
+        Monica: Hola!
+        Antonia: Buen dia
+        Monica: como te va
+        Antonia: exelente
+        Monica: me alegro
+        """
+        dialogue_list = read_dialogue(
+            PATH)
+        self.set_dialog_list(dialogue_list)
         
     def add_end_listener(self, CALLBACK):
         self.callback = CALLBACK

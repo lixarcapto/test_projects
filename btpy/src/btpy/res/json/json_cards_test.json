@@ -1,0 +1,15 @@
+
+
+
+[
+    {   
+        "title": "Antonia",
+        "description": "",
+        "path": "../btpy/res/image/face/face_girl_1.png"
+    },
+    { 
+        "title": "Monica",
+        "description": "",
+        "path": "../btpy/res/image/face/face_girl_2.png"
+    }
+]

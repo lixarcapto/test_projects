@@ -18,38 +18,12 @@ def main():
     dialogue = Btpy.Dialog(window)
     dialogue.pack()
     res_path = "../btpy/res/image/face/"
-    dialogue.set_character_card_dict(
-        {
-            "title": "Monica",
-            "description": "",
-            "path": res_path + "face_girl_1.png"
-        }
+    dialogue.load_json_cards(
+        "../btpy/res/json/json_cards_test.json"
     )
-    dialogue.set_character_card_dict(
-        {
-            "title": "Antonia",
-            "description": "",
-            "path": res_path + "face_girl_2.png"
-        }
+    dialogue.load_dialogue_txt(
+        "../btpy/res/txt/dialogue_test.txt"
     )
-    dialogue.set_dialog_list([
-        {
-            "title": "Antonia", 
-            "description": "Que haces monica?"
-        },
-        {
-            "title": "Monica", 
-            "description": "Solo pasaba a divertirme"
-        },
-        {
-            "title": "Antonia", 
-            "description": "Vete de aqui"
-        },
-        {
-            "title": "Monica", 
-            "description": "No quiero"
-        }
-    ])
     def fn():
         import sys
         sys.exit()
