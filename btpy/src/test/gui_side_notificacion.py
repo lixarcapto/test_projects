@@ -15,20 +15,13 @@ from btpy.Btpy import Btpy
 def main():
     window = Btpy.Window("titulo")
     window.set_is_fullscreen(True)
-    dialogue = Btpy.Dialogue(window)
-    dialogue.pack()
-    res_path = "../btpy/res/image/face/"
-    dialogue.load_json_cards(
-        "../btpy/res/json/json_cards_test.json"
-    )
-    dialogue.load_dialogue_txt(
-        "../btpy/res/txt/dialogue_test.txt"
-    )
-    def fn():
-        import sys
-        sys.exit()
-    dialogue.add_end_listener(fn)
-    dialogue.start()
+    button = Btpy.Button(window, "new")
+    button.pack()
+    noti = Btpy.SideNotificacion(window)
+    noti.pack()
+    def fn(e):
+        noti.show("hola!")
+    button.add_listener(fn)
     window.start()
 
 main()

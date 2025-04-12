@@ -44,4 +44,6 @@ from .mod.button_symbol.ButtonSymbol import ButtonSymbol
 from .mod.item_frame.ItemFrame import ItemFrame
 from .mod.simple_card.SimpleCard import SimpleCard
 from .mod.accordion_frame.AccordionFrame import AccordionFrame
-from .mod.dialog.Dialog import Dialog
+from .mod.dialogue.Dialogue import Dialogue
+from .mod.create_info_popup.create_info_popup import*
+from .mod.side_notification.SideNotificacion import SideNotificacion

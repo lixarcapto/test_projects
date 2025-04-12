@@ -3,6 +3,7 @@
 
 import threading
 import time
+from ....btpy_utilitys.mod.duplicate.Duplicate import Duplicate
 
 def repeat_each_async(
         INTERVAL_TIME:int|float, 
@@ -19,23 +20,26 @@ def repeat_each_async(
     un hilo propio asincrono al hilo
     principal.
     """
+    flag = Duplicate(True)
     def run_repeatedly():
-        flag = True
+        nonlocal INTERVAL_TIME
+        nonlocal flag
         n = 0
         result = None
-        while flag:
-            result = FUNCTION(n)
+        while flag.get():
             # permite romper el bucle durante 
             # la ejecucion
-            if(result == True):
-                flag = False
             time.sleep(INTERVAL_TIME)
+            result = FUNCTION(n)
+            if(result == True):
+                flag.set(False)
             n += 1
     # Create a thread to run the action 
     # repeatedly
     thread = threading.Thread(\
         target=run_repeatedly)
-    thread.daemon = True  
+    thread.daemon = True
     # Set the thread as a daemon 
     # to avoid blocking main thread exit
     thread.start()
+    return flag

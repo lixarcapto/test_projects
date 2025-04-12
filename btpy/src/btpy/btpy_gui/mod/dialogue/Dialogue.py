@@ -4,7 +4,7 @@ from ..simple_card.SimpleCard import SimpleCard
 from .read_dialogue import*
 from .read_cards_json import*
 
-class Dialog(SimpleCard):
+class Dialogue(SimpleCard):
 
     """
     TODO: 
@@ -28,9 +28,32 @@ class Dialog(SimpleCard):
             self.next_dialog()
         self.callback = None
         self.add_listener(fn)
+
+    def set_icon_size(self, size_list):
+        self.icon_size_list = size_list
         
+    def __add_first_dialogues(self):
+        """
+        Agrega las descripciones como
+        el primer dialogo.
+        """
+        new_list:list = []
+        dialogue_dict:dict = {}
+        card_dict:dict = {}
+        for k in self.card_dict_nested:
+            card_dict = self\
+                .card_dict_nested[k]
+            dialogue_dict = {}
+            dialogue_dict["title"]\
+                = k
+            dialogue_dict["description"]\
+                = card_dict["description"]
+            new_list.append(dialogue_dict)
+        self.dialogue_list = new_list \
+            + self.dialogue_list 
 
     def start(self):
+        self.__add_first_dialogues()
         self.update_dialogue()
 
     def update_dialogue(self):

@@ -68,7 +68,8 @@ class BtpyGui(BtpyDict):
     Window = Window
     ItemFrame = ItemFrame
     SimpleCard = SimpleCard
-    Dialog = Dialog
+    Dialogue = Dialogue
+    SideNotificacion = SideNotificacion
     # -----------------------------------
     # Input Text -------------------------
     TextField = TextField
@@ -80,6 +81,10 @@ class BtpyGui(BtpyDict):
 
     def color_popup(CALLBACK):
         return color_popup(CALLBACK)
+    
+    def create_info_popup(TITLE:str, 
+            CONTENT:str):
+        create_info_popup(TITLE, CONTENT)
     
     def create_photo_image(PATH:str, 
             SIZE_LIST:list[int] = [0, 0])\

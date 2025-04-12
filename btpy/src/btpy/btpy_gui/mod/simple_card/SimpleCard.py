@@ -41,6 +41,10 @@ class SimpleCard(WidgetStandard):
             self.margin
         )
         TITLE = "no title"
+        self.widget.pack(
+            padx=1, pady=1,
+            expand=True, fill=tk.BOTH
+        )
         self.buffer_image = None
         self.label_icon = tk.Label(
             self.widget,
@@ -92,7 +96,6 @@ class SimpleCard(WidgetStandard):
             anchor="w"
         )
         # --------------------------------
-        self.widget.pack(padx=1, pady=1)
         self.label_title.grid(
             row=0, column=0, sticky="nsew"
         )
@@ -138,7 +141,6 @@ class SimpleCard(WidgetStandard):
             anchor="w"
         )
         # --------------------------------
-        self.widget.pack(padx=1, pady=1)
         
     def __grid_vertical_normal(self):
         self.label_title.grid(
