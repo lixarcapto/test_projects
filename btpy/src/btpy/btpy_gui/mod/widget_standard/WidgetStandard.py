@@ -90,9 +90,17 @@ class WidgetStandard:
             self.margin.pack()
 
 
-    def grid(self, ROW:int, COLUMN:int):
-        self.margin.grid(row = ROW,
-            column=COLUMN)
+    def grid(self, ROW:int, COLUMN:int,
+            STICKY:str = ""):
+        if(STICKY == ""):
+            self.margin.grid(row = ROW,
+                column=COLUMN)
+        else:
+            self.margin.grid(
+                row = ROW,
+                column=COLUMN,
+                sticky=STICKY
+            )
 
     
     def unpack(self)-> None:

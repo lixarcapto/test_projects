@@ -44,11 +44,11 @@ class WidgetComposite(WidgetStandard):
 
     def set_in_vertical(self):
         self.label_title.grid(
-            row = 0, column= 0, sticky="ew",
+            row = 0, column= 0, sticky="nsew",
             padx=(2, 1), pady=(2, 0)
         )
         self.widget.grid(
-            row = 1, column= 0, sticky="ew",
+            row = 1, column= 0, sticky="nsew",
             padx=(2, 1), pady=(0, 1)
         )
 

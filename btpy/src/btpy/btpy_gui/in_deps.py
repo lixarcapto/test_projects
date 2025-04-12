@@ -47,3 +47,5 @@ from .mod.accordion_frame.AccordionFrame import AccordionFrame
 from .mod.dialogue.Dialogue import Dialogue
 from .mod.create_info_popup.create_info_popup import*
 from .mod.side_notification.SideNotificacion import SideNotificacion
+from .mod.swiper_card.SwiperCard import SwiperCard
+from .mod.label_box.LabelBox import LabelBox

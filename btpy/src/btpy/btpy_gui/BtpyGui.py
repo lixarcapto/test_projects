@@ -42,6 +42,7 @@ class BtpyGui(BtpyDict):
     LabelColor = LabelColor
     Label = Label
     LabelImage = LabelImage
+    LabelBox = LabelBox
     # -----------------------------------
     # Push button-----------------------
     SelectorBox = SelectorBox
@@ -59,6 +60,7 @@ class BtpyGui(BtpyDict):
     SwiperText = SwiperText
     SwiperRange = SwiperRange
     SwiperRange2 = SwiperRange2
+    SwiperCard = SwiperCard
     # -----------------------------------
     # Others ---------------------------
     Canvas = Canvas
