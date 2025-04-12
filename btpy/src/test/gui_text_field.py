@@ -17,7 +17,16 @@ def main():
     window.set_is_fullscreen(True)
     field = Btpy.TextField(window,
         "campo")
+    field.set_shadow_text("nombre")
     field.pack()
+    field2 = Btpy.TextField(window,
+        "campo")
+    field2.set_right_input()
+    field2.pack()
+    field3 = Btpy.TextField(window,
+        "campo")
+    field3.set_wrong_input()
+    field3.pack()
     window.start()
 
 main()

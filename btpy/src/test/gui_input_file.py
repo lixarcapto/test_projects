@@ -15,10 +15,22 @@ from btpy.Btpy import Btpy
 def main():
     window = Btpy.Window("titulo")
     window.set_is_fullscreen(True)
-    file = Btpy.InputFile(window, 
-            "busca el compontente")
-    file.search_file()
+    file = Btpy.InputFile(window,
+            "image", 
+            "busca image")
     file.pack()
+    file2 = Btpy.InputFile(window,
+            "folder", 
+            "busca folder")
+    file2.pack()
+    file3 = Btpy.InputFile(window,
+            "text", 
+            "busca text")
+    file3.pack()
+    file4 = Btpy.InputFile(window,
+            "any_file", 
+            "busca any file")
+    file4.pack()
     window.start()
 
 main()
