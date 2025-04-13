@@ -136,17 +136,13 @@ class SwiperRange(WidgetComposite):
         maximum = self.__range_list[1]
         minimum = self.__range_list[0]
         if(self.__value == maximum):
-            self.__button_next.widget\
-            .config(state="disabled")
+            self.__button_next.disable()
         if(self.__value != maximum):
-            self.__button_next.widget\
-            .config(state="normal")
+            self.__button_next.enable()
         if(self.__value == minimum):
-             self.__button_back.widget\
-            .config(state="disabled")
+             self.__button_back.disable()
         if(self.__value != minimum):
-            self.__button_back.widget\
-            .config(state="normal")
+            self.__button_back.enable()
         
     def __increment(self, event):
         maximum = self.__range_list[1]

@@ -15,28 +15,50 @@ class Button(WidgetStandard):
             TITLE:str = ""):
         super().__init__(window)
         self.widget = tk.Button(
-            self.margin, 
-            text="Haz clic aquí"
+            self.margin
         )
+        self.__callback = None
+        self.is_enabled:bool = True
         self.back_color_1 = "gray"
         self.back_color_2 = "yellow"
         self.widget.pack(
             padx=1, 
             pady=(2, 1)
         )
-        self.add_default_listener()
+        self.__add_default_listener()
         self.set_title(TITLE)
 
+    def enable(self):
+        self.is_enabled = True
+        self.widget.config(
+            state="normal")
+
+    def disable(self):
+        self.is_enabled = False
+        self.widget.config(
+            state="disabled")
+        
+    def set_foreground_color(self, COLOR):
+        color_tk = self\
+            .convert_to_tk_color(COLOR)
+        self.widget.config(fg = color_tk)
+
     def set_background_color(self, COLOR):
-        return super()\
-            .set_background_color(COLOR)
-        self.back_color_1 = COLOR
+        color_tk = self\
+            .convert_to_tk_color(COLOR)
+        self.widget.config(bg = color_tk)
 
     def set_focus_color(self, COLOR):
-        self.back_color_2 = COLOR
+        self.back_color_2 = self\
+            .convert_to_tk_color(COLOR)
 
-    def add_default_listener(self):
+    def get_focus_color(self):
+        return self.back_color_2
+
+    def __add_default_listener(self):
         def enter_fn(e):
+            if(not self.is_enabled):
+                return None
             self.set_margin_color(
                 self.back_color_2)
         self.widget.bind("<Enter>", 
@@ -57,6 +79,10 @@ class Button(WidgetStandard):
         
     def add_listener(self,
             CALLBACK:callable)->None:
-        self.widget.bind("<Button-1>", 
-                CALLBACK)
+        self.__callback = CALLBACK
+        def fn(e):
+            if(self.__callback != None
+            and self.is_enabled):
+                self.__callback(e)
+        self.widget.bind("<Button-1>", fn)
         

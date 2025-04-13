@@ -86,15 +86,18 @@ class BtpyUtilitys(BtpyTransformers):
         FUNCTION)->None:
         """
         Repite la función especificada cada 
-        cierto intervalo que retorna una flag
-        para controlar la repeticion. Si 
-        la funcion retorna True se terminaran
-        las repeticiones.
-        Tambien recibe un numero int que 
-        indica el numero de repeticiones.
-        Esta funcion repite la callback en 
-        un hilo propio asincrono al hilo
-        principal.
+    cierto intervalo de forma asincrona. Si 
+    la funcion retorna True se terminaran
+    las repeticiones.
+    Tambien recibe un numero int que 
+    indica el numero de repeticiones.
+    Esta funcion repite la callback en 
+    un hilo propio asincrono al hilo
+    principal.
+    Retorna un objeto llamado FlagAsync 
+    que tiene un metodo stop para
+    detener el hilo, y un metodo get para
+        saber su estado.
         """
         return repeat_each_async(
             INTERVAL_TIME, 

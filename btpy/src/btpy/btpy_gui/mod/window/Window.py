@@ -1,6 +1,7 @@
 
 
 import tkinter as tk
+from ..create_photo_image.create_photo_image import*
 
 class Window:
     def __init__(self, title:str):
@@ -12,13 +13,40 @@ class Window:
             padx=2, pady=2,
             expand=True, fill=tk.BOTH
         )
+        self.label_back = None
+        self.buffer_image = None
         self.width = 0
         self.height = 0
         self.is_fullscreen = False
-        self.init_basic_listeners()
+        self.__init_basic_listeners()
 
     def set_background(self, COLOR:str):
         self.widget.config(bg = COLOR)
+
+    def set_path_image(self, PATH:str, 
+            SIZE_LIST:list[int] = []):
+        if(SIZE_LIST == []):
+            self.buffer_image \
+            = create_photo_image(
+                PATH
+            )
+        else:
+            self.buffer_image \
+            = create_photo_image(
+                PATH, 
+                SIZE_LIST
+            )
+        self.buffer_image
+        self.label_back = tk.Label(
+            self.widget, 
+            image=self.buffer_image
+        )  
+        # Etiqueta con la imagen
+        self.label_back.place(
+            x=0, y=0, 
+            relwidth=1, relheight=1
+        )  
+        # Cubre el frame
 
     def get_background(self):
         return self.widget.cget("bg")
@@ -36,7 +64,7 @@ class Window:
         self.window.wm_attributes(
             '-alpha', alpha)
 
-    def init_basic_listeners(self):
+    def __init_basic_listeners(self):
         def exit_full_screen(event):
             self.set_is_fullscreen(False)
         self.window.bind("<Escape>", 

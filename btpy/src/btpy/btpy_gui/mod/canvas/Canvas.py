@@ -3,6 +3,7 @@
 import tkinter as tk
 from ..widget_standard.WidgetStandard import WidgetStandard
 from ...mod.create_photo_image.create_photo_image import*
+from ..get_image_size.get_image_size import get_image_size
 
 class Canvas(WidgetStandard):
 
@@ -20,6 +21,8 @@ class Canvas(WidgetStandard):
             width=400, height=300, 
             bg="white")
         self.widget.pack(
+            fill = tk.BOTH,
+            expand= True,
             padx=1, 
             pady=(2, 1)
         )
@@ -94,6 +97,10 @@ class Canvas(WidgetStandard):
                 HEIGHT:int):
         self.widget.config(
             width=WIDTH, height=HEIGHT)
+        self.margin.config(
+            width=self.widget.winfo_reqwidth(), 
+            height=self.widget.winfo_reqwidth()
+        )
 
     def draw_line(self, POINT_1:list[int], 
                 POINT_2:list[int]):
@@ -205,8 +212,20 @@ class Canvas(WidgetStandard):
         )
         self.__buffer_image_list.append(
             photo_image)
+        # crea un nuevo origen para 
+        # dibujar la imagen en la esquina
+        # superior izquierda
+        new_origen = [0, 0]
+        new_origen[0] = round(POINT[0] \
+            + (photo_image.width() / 2)
+        )
+        new_origen[1] = round(
+            POINT[1] \
+            + (photo_image.height() / 2)
+        )
         self.widget.create_image(
-            POINT[0], POINT[1], 
+            new_origen[0], 
+            new_origen[1], 
             image=photo_image
         )
 

@@ -73,6 +73,7 @@ class BtpyGui(BtpyDict):
     Dialogue = Dialogue
     SideNotificacion = SideNotificacion
     FrameSectioned = FrameSectioned
+    IconFace = IconFace
     # -----------------------------------
     # Input Text -------------------------
     TextField = TextField

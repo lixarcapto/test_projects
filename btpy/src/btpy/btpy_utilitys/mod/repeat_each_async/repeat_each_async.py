@@ -5,13 +5,23 @@ import threading
 import time
 from ....btpy_utilitys.mod.duplicate.Duplicate import Duplicate
 
+class FlagAsync:
+
+    def __init__(self):
+        self.__bool:bool = True
+
+    def get(self):
+        return self.__bool
+
+    def stop(self):
+        self.__bool = False
+
 def repeat_each_async(
         INTERVAL_TIME:int|float, 
         FUNCTION)->None:
     """
     Repite la función especificada cada 
-    cierto intervalo que retorna una flag
-    para controlar la repeticion. Si 
+    cierto intervalo de forma asincrona. Si 
     la funcion retorna True se terminaran
     las repeticiones.
     Tambien recibe un numero int que 
@@ -19,8 +29,12 @@ def repeat_each_async(
     Esta funcion repite la callback en 
     un hilo propio asincrono al hilo
     principal.
+    Retorna un objeto llamado FlagAsync 
+    que tiene un metodo stop para
+    detener el hilo, y un metodo get para
+    saber su estado.
     """
-    flag = Duplicate(True)
+    flag = FlagAsync()
     def run_repeatedly():
         nonlocal INTERVAL_TIME
         nonlocal flag
@@ -32,7 +46,7 @@ def repeat_each_async(
             time.sleep(INTERVAL_TIME)
             result = FUNCTION(n)
             if(result == True):
-                flag.set(False)
+                flag.stop()
             n += 1
     # Create a thread to run the action 
     # repeatedly

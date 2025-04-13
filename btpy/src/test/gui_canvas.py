@@ -19,6 +19,7 @@ def main():
     canvas = Btpy.Canvas(window, "title")
     canvas.pack()
     canvas.set_size(600, 600)
+    canvas.draw_image([0, 0],"../btpy/res/image/feto_100x100.png")
     last_point = [0, 0]
     is_first = True
     def fn(event):

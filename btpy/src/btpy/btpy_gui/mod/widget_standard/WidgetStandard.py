@@ -38,7 +38,6 @@ class WidgetStandard:
         else:
             self.margin = tk.Frame(
                 widget)
-        self.margin.config(bg = "red")
         self.margin.config(bg = "gray")
         self.widget = None
         self.is_underline = False
@@ -118,6 +117,12 @@ class WidgetStandard:
     def get_title(self)->str:
         pass
 
+    def convert_to_tk_color(self, COLOR):
+        f_color = COLOR
+        if(is_RGB(COLOR)):
+            f_color = RGB_to_hex(COLOR)
+        return f_color
+
     def set_foreground_color(self, COLOR):
         f_color = COLOR
         if(is_RGB(COLOR)):
@@ -141,9 +146,6 @@ class WidgetStandard:
         if(is_RGB(COLOR)):
             f_color = RGB_to_hex(COLOR)
         self.widget.config(bg = f_color)
-
-    def get_background_color(self, COLOR):
-        pass
 
     def get_background_color(self):
         return self.widget.cget("bg")

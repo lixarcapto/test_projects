@@ -22,3 +22,11 @@ class BtpyTransformers(BtpyString):
         hexadecimal representation.
         """
         return RGB_to_hex(RGB_OR_RGBA)
+    
+    def hex_to_RGB(HEX_COLOR:str)->list[int]:
+        """
+        Convierte un color en formato 
+        hexadecimal (como #RRGGBB o #RRGGBBAA) 
+        a una lista RGB.
+        """
+        return hex_to_RGB(HEX_COLOR)
