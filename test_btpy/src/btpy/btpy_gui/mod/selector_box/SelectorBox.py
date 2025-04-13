@@ -2,7 +2,7 @@
 
 import tkinter as tk
 from ..frame.Frame import Frame
-from ..select_button.SelectButton import SelectButton
+from ..switch_color.SwitchColor import SwitchColor
 from ..widget_composite.WidgetComposite import WidgetComposite
 
 class SelectorBox(WidgetComposite):
@@ -49,7 +49,7 @@ class SelectorBox(WidgetComposite):
             KEY_LIST:list[str])->None:
         button = None
         for e in KEY_LIST:
-            button = SelectButton(
+            button = SwitchColor(
                 self.widget, e)
             self.__button_list.append(
                 button)

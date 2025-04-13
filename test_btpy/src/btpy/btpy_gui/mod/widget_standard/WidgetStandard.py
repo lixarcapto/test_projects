@@ -80,18 +80,27 @@ class WidgetStandard:
         return self.widget.cget("font")\
             .actual()["overstrike"]
 
-    def pack(self, MARGIN:int = 0):
-        self.margin.pack(
-            padx = 1 + MARGIN,
-            pady = (2 + MARGIN, 
-                    1 + MARGIN), 
-            ipadx=1, 
-            ipady=1
-        )
+    def pack(self, is_expandable = False):
+        if(is_expandable):
+            self.margin.pack(
+                fill=tk.BOTH, 
+                expand=True
+            )
+        else:
+            self.margin.pack()
 
-    def grid(self, ROW:int, COLUMN:int):
-        self.margin.grid(row = ROW,
-            column=COLUMN)
+
+    def grid(self, ROW:int, COLUMN:int,
+            STICKY:str = ""):
+        if(STICKY == ""):
+            self.margin.grid(row = ROW,
+                column=COLUMN)
+        else:
+            self.margin.grid(
+                row = ROW,
+                column=COLUMN,
+                sticky=STICKY
+            )
 
     
     def unpack(self)-> None:

@@ -23,10 +23,11 @@ class WidgetComposite(WidgetStandard):
             self.set_in_horizontal()
         else:
             self.set_in_vertical()
-        self.set_background_color(
-            "#EEEEEE")
+        super().set_background_color("#EEEEEE")
+        self.label_title.config(
+            bg = "#EEEEEE")
         self.set_margin_color("gray")
-        self.set_title_background("white")
+        self.set_title_background("#EEEEEE")
         
 
     def set_in_horizontal(self):
@@ -43,11 +44,11 @@ class WidgetComposite(WidgetStandard):
 
     def set_in_vertical(self):
         self.label_title.grid(
-            row = 0, column= 0, sticky="ew",
+            row = 0, column= 0, sticky="nsew",
             padx=(2, 1), pady=(2, 0)
         )
         self.widget.grid(
-            row = 1, column= 0, sticky="ew",
+            row = 1, column= 0, sticky="nsew",
             padx=(2, 1), pady=(0, 1)
         )
 

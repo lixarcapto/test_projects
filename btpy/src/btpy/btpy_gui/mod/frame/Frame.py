@@ -9,3 +9,5 @@ class Frame(WidgetStandard):
         super().__init__(window)
         self.widget = tk.Frame(
             self.margin)
+        self.widget.pack(fill =tk.BOTH,
+            expand=True)

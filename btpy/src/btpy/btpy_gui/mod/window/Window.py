@@ -7,7 +7,7 @@ class Window:
         self.window = tk.Tk()
         self.window.title(title)
         self.window.config(bg = "gray")
-        self.widget = tk.Frame()
+        self.widget = tk.Frame(self.window)
         self.widget.pack(
             padx=2, pady=2,
             expand=True, fill=tk.BOTH
@@ -71,10 +71,12 @@ class Window:
             self.window.attributes(
                 "-fullscreen", False)
             self.is_fullscreen = False
+            self.window.update()
         else:
             self.window.attributes(
                 "-fullscreen", True)
             self.is_fullscreen = True
+            self.window.update()
 
     """
     Método que ajusta la ventana como la 

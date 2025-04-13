@@ -2,6 +2,7 @@
 
 from ..window.Window import Window
 from ..button_box.ButtonBox import ButtonBox
+import tkinter as tk
 
 class WindowNav(Window):
 
@@ -10,17 +11,20 @@ class WindowNav(Window):
         self.actual_key_frame = ""
         self.button_nav_bar = None
         self.__frame_dict = {}
-
-    def update_nav_bar(self):
-        if(self.button_nav_bar != None):
-            self.button_nav_bar.widget\
-                .unpack()
         self.button_nav_bar = ButtonBox(
-            self,
+            self.widget,
+            True,
             "nav",
             list(self.__frame_dict.keys())
         )
-        self.button_nav_bar.pack()
+        self.button_nav_bar.margin.pack(
+            anchor = "nw", fill ="x"
+        )
+
+    def update_nav_bar(self):
+        self.button_nav_bar.set_components(
+            list(self.__frame_dict.keys())
+        )
         def fn(key):
             self.select_frame(key)
         self.button_nav_bar\
@@ -36,7 +40,7 @@ class WindowNav(Window):
     def delete_frame(self, KEY:str):
         if(KEY == self.actual_key_frame):
             self.__frame_dict[KEY]\
-                .unpack()
+                .margin.pack_forget()
             self.actual_key_frame = ""
         del(self.__frame_dict[KEY])
 
@@ -45,7 +49,7 @@ class WindowNav(Window):
         if(self.actual_key_frame != ""):
             last_key = self.actual_key_frame
             self.__frame_dict[last_key]\
-                .unpack()
+                .margin.pack_forget()
         # muestra el nuevo frame
         self.__frame_dict[KEY].pack()
         self.actual_key_frame = KEY

@@ -104,14 +104,13 @@ class WidgetStandard:
 
     
     def unpack(self)-> None:
-        self.widget.pack_forget()
+        self.margin.pack_forget()
 
     def get_font(self):
         return self.widget.cget("font")
     
     def set_font(self,  FONT):
         self.widget.config(font =FONT)
-        self.__update_font()
 
     def set_title(self, TITLE:str)->None:
         pass
@@ -168,9 +167,10 @@ class WidgetStandard:
             justify=justify_key)
 
     def __update_font(self):
+        """
+        XXX: No funciona
+        """
         new_weight = "normal"
-        if(self.is_bold):
-            new_weight = "bold"
         new_font = font.Font(
             family=self.get_font_type(),
             size=self.get_font_size(),

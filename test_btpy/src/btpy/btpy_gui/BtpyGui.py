@@ -13,46 +13,80 @@ class BtpyGui(BtpyDict):
     Tkinter modulos.
     """
 
-    Window = Window
-    Label = Label
-    LabelImage = LabelImage
-    Button = Button
-    ButtonIcon = ButtonIcon
-    TextField = TextField
-    TextArea = TextArea
+    # -----------------------------------
+    # Popups ----------------------------
     BinaryPopup = BinaryPopup
-    Combobox = Combobox
+    # -----------------------------------
+    # Sliders ----------------------------
     InputSlider = InputSlider
-    SwiperRange2 = SwiperRange2
-    CheckButton = CheckButton
+    # -----------------------------------
+    # Boxes ----------------------------
+    ChipInput = ChipInput
+    # -----------------------------------
+    # Dropdown ---------------------------
+    Combobox = Combobox
+    InputDate = InputDate
+    InputTime = InputTime
+    # -----------------------------------
+    # Switchs ---------------------------
+    SwitchColor = SwitchColor
+    SwitchIcon = SwitchIcon
+    SwitchCheck = SwitchCheck
     CheckBox = CheckBox
     RadioBox = RadioBox
-    ButtonInventory = ButtonInventory
-    ButtonBox = ButtonBox
-    SelectButton = SelectButton
-    SelectorBox = SelectorBox
+    SwitchDouble = SwitchDouble
+    AccordionFrame = AccordionFrame
+    # -----------------------------------
+    # Labels ---------------------------
     LabelLabel = LabelLabel
+    LabelColor = LabelColor
+    Label = Label
+    LabelImage = LabelImage
+    LabelBox = LabelBox
+    # -----------------------------------
+    # Push button-----------------------
+    SelectorBox = SelectorBox
     Link = Link
     ButtonIconText = ButtonIconText
-    SwiperImage = SwiperImage
-    SwiperText = SwiperText
-    Canvas = Canvas
-    InputDate = InputDate
-    SwiperRange = SwiperRange
-    Frame = Frame
-    InputFile = InputFile
-    DataBar = DataBar
-    InputTime = InputTime
-    BinaryButtonDouble = BinaryButtonDouble
-    LabelColor = LabelColor
+    ButtonBox = ButtonBox
     ButtonIconOverlay = ButtonIconOverlay
     ButtonBoxIcon = ButtonBoxIcon
-    BinaryButtonIcon = BinaryButtonIcon
+    Button = Button
+    ButtonIcon = ButtonIcon
+    ButtonSymbol = ButtonSymbol
+    # -----------------------------------
+    # Swipers ---------------------------
+    SwiperImage = SwiperImage
+    SwiperText = SwiperText
+    SwiperRange = SwiperRange
+    SwiperRange2 = SwiperRange2
+    SwiperCard = SwiperCard
+    # -----------------------------------
+    # Others ---------------------------
+    Canvas = Canvas
+    InputFile = InputFile
+    Frame = Frame
     WindowNav = WindowNav
+    Window = Window
+    ItemFrame = ItemFrame
+    SimpleCard = SimpleCard
+    Dialogue = Dialogue
+    SideNotificacion = SideNotificacion
+    # -----------------------------------
+    # Input Text -------------------------
+    TextField = TextField
+    TextArea = TextArea
+    # -----------------------------------
+    # Data Bar ---------------------------
+    DataBar = DataBar
     pass
 
     def color_popup(CALLBACK):
         return color_popup(CALLBACK)
+    
+    def create_info_popup(TITLE:str, 
+            CONTENT:str):
+        create_info_popup(TITLE, CONTENT)
     
     def create_photo_image(PATH:str, 
             SIZE_LIST:list[int] = [0, 0])\

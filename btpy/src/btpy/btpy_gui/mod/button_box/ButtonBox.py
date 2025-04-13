@@ -18,21 +18,23 @@ class ButtonBox(WidgetComposite):
     iguales a varios botones.
     """
 
-    def __init__(self, window, title:str,
+    def __init__(self, window, 
+            is_horizontal, 
+            title:str,
             key_list:list[str]):
-        super().__init__(window)
+        super().__init__(window, 
+            is_horizontal)
         self.grid_size:int = 1
         self.__button_dict:dict = {}
-        self.__init_components(key_list)
+        self.set_components(key_list)
         self.set_title(title)
         
     def set_grid_size(self, SIZE:int):
         self.grid_size = SIZE
 
-    def __init_components(self,
-            key_list)->None:
-        self.create_button_dict(key_list)
-        # dibujar elementos
+    def set_components(self, KEY_LIST):
+        self.format_button_list()
+        self.create_button_dict(KEY_LIST)
         self.__arrange_button_dict()
 
     def create_button_dict(self, 
@@ -72,6 +74,13 @@ class ButtonBox(WidgetComposite):
             button.add_listener(
                 aux(k)
             )
+
+    def format_button_list(self):
+        button = None
+        for k in self.__button_dict:
+            button = self.__button_dict[k] 
+            button.margin.grid_forget()
+        self.__button_dict = {}
 
     def __arrange_button_dict(self):
         x:int = 0

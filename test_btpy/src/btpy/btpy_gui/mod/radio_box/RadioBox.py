@@ -4,6 +4,7 @@ import tkinter as tk
 from ..widget_composite.WidgetComposite \
     import WidgetComposite
 from ..frame.Frame import Frame
+from ..switch_radio.SwitchRadio import SwitchRadio
 
 class RadioBox(WidgetComposite):
 
@@ -18,7 +19,7 @@ class RadioBox(WidgetComposite):
     def set_value(self, KEY:str):
         n = 0
         for button in self.__button_list:
-            if(button.cget("text") == KEY):
+            if(button.get_title() == KEY):
                 self.__value.set(n)
                 break
             n += 1
@@ -26,20 +27,21 @@ class RadioBox(WidgetComposite):
     def get_value(self)->list[str]:
         index = self.__value.get()
         return self.__button_list[index]\
-            .cget("text")
+            .get_title()
 
     def __create_button_list(self,
             KEY_LIST:list[str])->None:
         button = None
         n = 0
         for e in KEY_LIST:
-            button = tk.Radiobutton(
+            button = SwitchRadio(
                 self.widget, 
-                text = e, 
-                variable= self.__value,
-                value = n
+                self.__value,
+                n, 
+                e
             )
             self.__button_list.append(
                 button)
-            button.pack(anchor=tk.W)
+            button.margin.pack(
+                fill=tk.BOTH, expand=True)
             n += 1

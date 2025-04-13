@@ -19,7 +19,7 @@ def main():
         "animales")
     swiper.pack()
     swiper.set_is_cyclical(True)
-    swiper.set_values_list([
+    swiper.set_content([
         "perro", "gato", "elefante", 
         "caiman"
     ])

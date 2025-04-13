@@ -18,7 +18,9 @@ def main():
     swiper = Btpy.SwiperRange(window,
         "day")
     swiper.pack()
-    swiper.set_values_list([0, 31])
+    swiper.add_listener(
+        lambda e:print("funciona"))
+    swiper.set_content([0, 7])
     window.start()
 
 main()

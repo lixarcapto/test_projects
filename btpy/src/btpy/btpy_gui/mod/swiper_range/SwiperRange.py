@@ -5,7 +5,9 @@ from ..widget_composite.WidgetComposite import WidgetComposite
 from ....btpy_maths.mod.set_in_range.set_in_range import*
 from ..button.Button import Button
 from ..frame.Frame import Frame
+from ..button.Button import Button
 import tkinter as tk
+from tkinter import font
 
 class SwiperRange(WidgetComposite):
 
@@ -38,23 +40,17 @@ class SwiperRange(WidgetComposite):
             RANGE_LIST:list[int] = [0, 1]):
         super().__init__(window, True)
         self.__value:int|float = 0
-        self.__increment = 1
         self.__range_list:list = [0, 1]
         self.__button_back = None
         self.__label_number = None
         self.__button_next = None
+        self.__margin_value = 3
+        self.__change_callback = None
         self.__init_components(window)
         self.__init_default_listener()
         self.set_title(TEXT)
-        self.set_values_list(RANGE_LIST)
+        self.set_content(RANGE_LIST)
         self.__update_label_number()
-
-    def get_increment(self)->int|float:
-        return self.__increment
-    
-    def set_increment(self, 
-            INCREMENT:int|float)-> None:
-        self.__increment = INCREMENT
 
     def get_value(self)->int|float:
         return self.__value
@@ -63,12 +59,23 @@ class SwiperRange(WidgetComposite):
         r = set_in_range(NUMBER,
             self.__range_list)
         self.__value = r
+        self.__identify_enabled_buttons()
 
-    def set_values_list(self, RANGE_LIST
+    def add_listener(self, CALLBACK):
+        self.__change_callback = CALLBACK
+
+    def set_content(self, RANGE_LIST
             :list[int|float]):
+        """
+        Funcion que recibe un rango en
+        formato lista que servira
+        como rango de numeros 
+        que pueden seleccionarse.
+        """
         self.__range_list = RANGE_LIST
         self.__value = RANGE_LIST[0]
         self.__update_label_number()
+        self.__identify_enabled_buttons()
 
     # -------------------------------------
     # PRIVATE ------------------------------
@@ -78,12 +85,25 @@ class SwiperRange(WidgetComposite):
         self.__add_decrement_listener()
 
     def __update_label_number(self):
+        margin = " " * self.__margin_value
+        text_ = margin\
+            + str(self.__value) + margin
         self.__label_number.config(
-            text = f" {self.__value} ")
+            text = text_
+        )
 
     def __init_components(self, window):
-        self.__button_back = tk.Button(
-            self.widget, text = "<<")
+        font_ = font.Font(
+            size=10, weight="bold")
+        self.__button_back = Button(
+            self.widget, 
+            " < "
+        )
+        self.__button_back\
+            .set_background_color("gray")
+        self.__button_back\
+            .set_foreground_color("white")
+        self.__button_back.set_font(font_)
         self.__label_number = tk.Label(
             self.widget)
         self.__label_number.config(
@@ -91,43 +111,63 @@ class SwiperRange(WidgetComposite):
             borderwidth = 1,
             relief= "solid"
         )
-        self.__button_next = tk.Button(
-            self.widget, text = ">>")
+        self.__button_next = Button(
+            self.widget, 
+            " > "
+        )
+        self.__button_next\
+            .set_background_color("gray")
+        self.__button_next\
+            .set_foreground_color("white")
+        self.__button_next.set_font(font_)
         # dibujar -------------------------
-        self.__button_back.grid(
-            row=0, column=2)
+        self.__button_back.grid(0, 2)
         self.__label_number.grid(
             row=0, column=3, 
             sticky="nsew", 
         )
-        self.__button_next.grid(
-            row=0, column=4, 
-        )
+        self.__button_next.grid(0, 4)
         
     def __add_increment_listener(self):
-        self.__button_next.config(
-            command=self.increment)
+        self.__button_next.add_listener(
+            self.__increment)
         
-    def increment(self):
-        result = self.__value + self\
-            .__increment
+    def __identify_enabled_buttons(self):
         maximum = self.__range_list[1]
-        if(maximum > result):
-            self.__value = result
-        else:
-            self.__value = maximum
+        minimum = self.__range_list[0]
+        if(self.__value == maximum):
+            self.__button_next.widget\
+            .config(state="disabled")
+        if(self.__value != maximum):
+            self.__button_next.widget\
+            .config(state="normal")
+        if(self.__value == minimum):
+             self.__button_back.widget\
+            .config(state="disabled")
+        if(self.__value != minimum):
+            self.__button_back.widget\
+            .config(state="normal")
+        
+    def __increment(self, event):
+        maximum = self.__range_list[1]
+        if(self.__value < maximum):
+            self.__value += 1
+        self.__identify_enabled_buttons()
+        if(self.__change_callback!= None):
+            self.__change_callback(
+                event)
         self.__update_label_number()
         
     def __add_decrement_listener(self):
-        self.__button_back.config(
-            command=self.decrement)
+        self.__button_back.add_listener(
+            self.__decrement)
         
-    def decrement(self):
-        result = self.__value - self\
-            .__increment
+    def __decrement(self, event):
         minimum = self.__range_list[0]
-        if(minimum < result):
-             self.__value = result
-        else:
-            self.__value = minimum
+        if(self.__value > minimum):
+             self.__value -= 1
+        self.__identify_enabled_buttons()
+        if(self.__change_callback!= None):
+            self.__change_callback(
+                event)
         self.__update_label_number()

@@ -3,6 +3,7 @@
 from btpy.Btpy import Btpy
 import webbrowser
 
+"""
 def main():
     print("init...")
     window = Btpy.Window("ventana")
@@ -46,5 +47,12 @@ def main():
         update()
     button.add_listener(fn)
     window.start()
+"""
+
+from View import View
+
+def main():
+    view = View()
+    view.start()
 
 main()

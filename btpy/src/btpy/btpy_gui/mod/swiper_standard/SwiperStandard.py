@@ -4,6 +4,7 @@ from ..widget_composite.WidgetComposite import WidgetComposite
 from ..label_image.LabelImage import LabelImage
 from ..frame.Frame import Frame
 from ..button.Button import Button
+from tkinter import font
 
 class SwiperStandard(WidgetComposite):
 
@@ -37,6 +38,7 @@ class SwiperStandard(WidgetComposite):
         self.__button_next = None
         self.__button_min = None
         self.__label_counter = None
+        self.__change_callback = None
         # CALLS ---------------------------
         self.__init_components()
         self.__add_listener_default()
@@ -48,6 +50,21 @@ class SwiperStandard(WidgetComposite):
     def set_update_callback(self, 
             CALLBACK:callable):
         self.__update_callback = CALLBACK
+
+    def get_index_value(self):
+        """
+        Funcion que retorna el indice
+        del valor actual en la lista.
+        """
+        return self.__index
+    
+    def add_listener(self, CALLBACK):
+        """
+        Agrega un listener a los botones
+        de cambio. Es una callback event
+        pj; lambda e:e.
+        """
+        self.__change_callback = CALLBACK
 
     def get_value(self)->str:
         """
@@ -64,24 +81,36 @@ class SwiperStandard(WidgetComposite):
     def get_is_cyclical(self)->bool:
         return self.__is_cyclical
     
-    def set_values_list(self, ARRAY):
-        self.__element_list = ARRAY
+    def set_content(self, 
+            ELEMENT_LIST:list[str]):
+        self.__element_list = ELEMENT_LIST
         self.__update_element()
         
     # ------------------------------------
     # PRIVATE ----------------------------
 
     def __init_components(self):
+        font_ = font.Font(
+            size=14, weight="bold")
         self.__button_min = tk.Button(
-            self.widget, text = "<|")
+            self.widget, text = "<|"
+        )
         self.__button_back = tk.Button(
             self.widget,
-            text = "<<")
+            text = "<",
+            bg = "gray",
+            fg = "white",
+            font = font_
+        )
         self.__frame_center = tk.Frame(
             self.widget)
         self.__button_next = tk.Button(
             self.widget,
-            text = ">>")
+            text = ">",
+            bg = "gray",
+            fg = "white",
+            font = font_
+        )
         self.__button_max = tk.Button(
             self.widget, text = "|>")
         self.__label_counter = tk.Label(
@@ -100,18 +129,30 @@ class SwiperStandard(WidgetComposite):
         pass
         
     def __add_listener_default(self):
-        self.__button_next.config(
-            command = self.__next_element)
-        self.__button_back.config(
-            command = self.__back_element)
+        self.__button_next.bind(
+            "<Button-1>",
+            self.__next_element
+        )
+        self.__button_back.bind(
+            "<Button-1>",
+            self.__back_element
+        )
 
-    def __next_element(self):
+    def __next_element(self, event):
         leng = len(self.__element_list)
         if(self.__index < leng -1):
             self.__index += 1
+            if(self.__change_callback \
+                    != None):
+                self.__change_callback(
+                    event)
         else:
             if(self.__is_cyclical):
                 self.__index = 0
+            if(self.__change_callback \
+                    != None):
+                self.__change_callback(
+                    event)
         self.__update_element()
 
     def __update_element(self):
@@ -126,11 +167,19 @@ class SwiperStandard(WidgetComposite):
         self.__label_counter.config(
             text = fraction)
 
-    def __back_element(self):
+    def __back_element(self, event):
         leng = len(self.__element_list)
         if(self.__index > 0):
             self.__index -= 1
+            if(self.__change_callback \
+                    != None):
+                self.__change_callback(
+                    event)
         else:
             if(self.__is_cyclical):
                 self.__index = leng - 1
+            if(self.__change_callback \
+                    != None):
+                self.__change_callback(
+                    event)
         self.__update_element()

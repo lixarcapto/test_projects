@@ -72,6 +72,7 @@ class BtpyGui(BtpyDict):
     SimpleCard = SimpleCard
     Dialogue = Dialogue
     SideNotificacion = SideNotificacion
+    FrameSectioned = FrameSectioned
     # -----------------------------------
     # Input Text -------------------------
     TextField = TextField

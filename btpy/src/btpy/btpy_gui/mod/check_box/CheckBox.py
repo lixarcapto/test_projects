@@ -8,7 +8,8 @@ from ..switch_check.SwitchCheck import SwitchCheck
 
 class CheckBox(WidgetComposite):
 
-    def __init__(self, window, title:str,
+    def __init__(self, window, 
+            title:str,
             key_list:list[str]):
         super().__init__(window)
         self.__button_list = []

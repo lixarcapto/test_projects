@@ -21,7 +21,13 @@ def main():
     swiper.set_is_cyclical(True)
     swiper.set_arroy_is_bold(True)
     swiper.set_image_size(300, 300)
-    swiper.set_values_list([
+    n = 0
+    def fn(e):
+        nonlocal n
+        print(f"activar {n}")
+        n += 1
+    swiper.add_listener(fn)
+    swiper.set_content([
         "../btpy/res/image/capture/clam.png",
         "../btpy/res/image/capture/hake.png",
         "../btpy/res/image/capture/octopus.png",

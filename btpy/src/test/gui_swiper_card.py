@@ -20,7 +20,7 @@ def main():
     swiper.pack()
     swiper.set_is_cyclical(True)
     swiper.set_arroy_is_bold(True)
-    swiper.set_values_list([
+    swiper.set_content([
         {
             "title": "sardina",
             "path": "../btpy/res/image/capture/sardine.png",

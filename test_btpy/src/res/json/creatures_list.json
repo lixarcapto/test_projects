@@ -1,0 +1,24 @@
+
+
+
+[
+    {
+        "name": "Talitha",
+        "group": "talitha_adult",
+        "position": "",
+        "image_name": "talitha_adult_normal",
+        "max_life_time": "10",
+        "life_time": "0",
+        "mood": "25",
+        "food": "0",
+        "energy": "0",
+        "mood_image_dict": {
+            "normal":"talitha_adult_normal",
+            "happy":"talitha_adult_happy",
+            "angry":"talitha_adult_angry"
+        },
+        "position_image_dict": {
+            "receiving":"talitha_adult_receiving"
+        }
+    }
+]
