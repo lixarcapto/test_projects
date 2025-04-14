@@ -15,21 +15,30 @@ from btpy.Btpy import Btpy
 def main():
     window = Btpy.Window("titulo")
     window.set_is_fullscreen(True)
-    label = Btpy.Label(window, "")
-    label.pack()
-    option = Btpy.Option(window, "option")
-    option.set_content(
-        "Te gusta esta aplicacion?",
-        "si",
-        "no"
-    )
-    def fn(answer):
-        if(answer):
-            label.set_title("te gusta :)")
-        else:
-            label.set_title("no te gusta :q")
-    option.add_listener(fn)
-    option.pack()
+    question = Btpy.Questionary(
+        window, "question")
+    question.pack()
+    question.set_questionary_list([
+        {
+            "question":"Pais mas grande",
+            "option_list":["Rusia", "China"]
+        },
+        {
+            "question":"Color del cobre oxidad",
+            "option_list":["Verde", "rojo"]
+        },
+        {
+            "question":"Capital de Serbia",
+            "option_list":["Belgrado", "Sofia"]
+        },
+        {
+            "question":"Material de construccion antiguo",
+            "option_list":["Adobe", "Pladur"]
+        } 
+    ])
+    def fn(answer_list):
+        print(answer_list)
+    question.add_listener(fn)
     window.start()
 
 main()

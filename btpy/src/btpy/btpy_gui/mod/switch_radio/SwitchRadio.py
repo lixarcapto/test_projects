@@ -31,12 +31,14 @@ class SwitchRadio(WidgetStandard):
         self.add_default_listener()
 
     def add_listener(self, CALLBACK):
-        self.widget.bind("<Button-1>",
-            CALLBACK
-        )
-        self.margin.bind("<Button-1>",
-            CALLBACK
-        )
+        self.widget.bind("<Button-1>", 
+                CALLBACK)
+        """
+        self.widget.config(
+            command = lambda :CALLBACK)
+        """
+        self.margin.bind("<Button-1>", 
+                CALLBACK)
         
     
     def add_default_listener(self):
