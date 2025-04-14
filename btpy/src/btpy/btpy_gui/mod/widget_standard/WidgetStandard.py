@@ -38,7 +38,7 @@ class WidgetStandard:
         else:
             self.margin = tk.Frame(
                 widget)
-        self.margin.config(bg = "gray")
+        self.margin.config(bg = "black")
         self.widget = None
         self.is_underline = False
         self.is_overstrike = False
@@ -69,6 +69,12 @@ class WidgetStandard:
     def get_is_underline(self)->bool:
         return self.widget.cget("font")\
             .actual()["underline"]
+    
+    def pack_forget(self):
+        self.margin.pack_forget()
+
+    def grid_forget(self):
+        self.margin.grid_forget()
 
     def set_is_overstrike(self, BOOL):
         font_ = self.widget.cget("font")

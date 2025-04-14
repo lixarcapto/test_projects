@@ -50,4 +50,5 @@ from .mod.side_notification.SideNotificacion import SideNotificacion
 from .mod.swiper_card.SwiperCard import SwiperCard
 from .mod.label_box.LabelBox import LabelBox
 from .mod.frame_sectioned.FrameSectioned import FrameSectioned
-from .mod.icon_face.IconFace import IconFace
+from .mod.option.Option import Option
+from .mod.questionary.Questionary import Questionary

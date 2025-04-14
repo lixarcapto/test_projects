@@ -19,15 +19,25 @@ class SwitchRadio(WidgetStandard):
             relief= "solid",
             anchor="w"
         )
-        self.back_color_1 = "gray"
+        self.back_color_1\
+            = self.margin.cget("bg")
         self.back_color_2 = "yellow"
         self.widget.pack(
-            padx=2, 
-            pady=(2, 2),
+            padx=1, 
+            pady=1,
             fill=tk.BOTH, 
             expand=True
         )
         self.add_default_listener()
+
+    def add_listener(self, CALLBACK):
+        self.widget.bind("<Button-1>",
+            CALLBACK
+        )
+        self.margin.bind("<Button-1>",
+            CALLBACK
+        )
+        
     
     def add_default_listener(self):
         def enter_fn(e):

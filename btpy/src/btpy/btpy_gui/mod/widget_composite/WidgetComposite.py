@@ -8,6 +8,7 @@ class WidgetComposite(WidgetStandard):
     def __init__(self, widget, 
             is_horizontal:bool = False):
         super().__init__(widget)
+        self.key = ""
         self.label_title = tk.Label(
             self.margin,
             borderwidth = 1,
@@ -26,8 +27,7 @@ class WidgetComposite(WidgetStandard):
         super().set_background_color("#EEEEEE")
         self.label_title.config(
             bg = "#EEEEEE")
-        self.set_margin_color("gray")
-        self.set_title_background("#EEEEEE")
+        self.set_title_background("#BABABA")
         
 
     def set_in_horizontal(self):
@@ -66,8 +66,9 @@ class WidgetComposite(WidgetStandard):
         self.label_title.config(bg = COLOR)
 
     def set_title(self, TEXT:str):
+        self.key = TEXT
         self.label_title.config(
-            text = TEXT)
+            text = "  " + TEXT + "  ")
         
     def get_title(self):
-        return self.label_title.cget("text")
+        return self.key

@@ -9,12 +9,18 @@ from ..switch_radio.SwitchRadio import SwitchRadio
 class RadioBox(WidgetComposite):
 
     def __init__(self, window, title:str,
-            key_list:list[str]):
+            key_list:list[str] = []):
         super().__init__(window)
         self.__value = tk.IntVar()
         self.__button_list = []
-        self.__create_button_list(key_list)
+        if(key_list != []):
+            self.__create_button_list(
+                key_list)
         self.set_title(title)
+
+    def add_listener(self, CALLBACK):
+        for button in self.__button_list:
+            button.add_listener(CALLBACK)
 
     def set_value(self, KEY:str):
         n = 0
@@ -28,6 +34,16 @@ class RadioBox(WidgetComposite):
         index = self.__value.get()
         return self.__button_list[index]\
             .get_title()
+    
+    def set_content(self, 
+                KEY_LIST:list[str]):
+        self.__format_button()
+        self.__create_button_list()
+    
+    def __format_button(self):
+        for button in self.__button_list:
+            button.pack_forget()
+        self.__button_list = []
 
     def __create_button_list(self,
             KEY_LIST:list[str])->None:
@@ -43,5 +59,6 @@ class RadioBox(WidgetComposite):
             self.__button_list.append(
                 button)
             button.margin.pack(
-                fill=tk.BOTH, expand=True)
+                fill=tk.BOTH, expand=True
+            )
             n += 1

@@ -4,39 +4,23 @@
 import tkinter as tk
 from ..widget_standard.WidgetStandard import WidgetStandard
 from ..canvas.Canvas import Canvas
+from .key_const import*
 
 class IconFace(WidgetStandard):
 
     resource_path = "../res/image/icon_face/"
     image_extension = ".png"
     name_image_dict = {
-        "EYES":{
             "EYES_ASIAN_NORMAL":
                 "eyes_asian_normal",
-            "EYES_ASIAN_NORMAL":
-                "eyes_asian_close",
-            "EYES_ASIAN_NORMAL":
-                "eyes_asian_happy",
-            "EYES_ASIAN_NORMAL":
-                "eyes_asian_angry",
-        },
-        "FACE":{
             "FACE_PALE": "face_pale",
             "FACE_WHITE": "face_white",
             "FACE_ALMOND": "face_almond",
             "FACE_BROWN": "face_brown",
-            "FACE_BLACK": "face_black"
-        },
-        "HAIR":{
-            "HAIR_POT_BLACK": 
-                "hair_pot_black"
-        },
-        "MOUTH":{
-            "MOUTH_NORMAL": "mouth_normal"
-        },
-        "NOSE":{
+            "FACE_BLACK": "face_black",
+            "HAIR_POT_BLACK": "hair_pot_black",
+            "MOUTH_NORMAL": "mouth_normal",
             "NOSE_TYPE_A":"nose_type_a"
-        }
     }
 
     def __init__(self, window):
@@ -45,11 +29,6 @@ class IconFace(WidgetStandard):
             "icon face")
         self.widget.set_size(150, 150)
         self.widget.pack()
-        self.face_key = "FACE_WHITE"
-        self.mouth_key = "MOUTH_NORMAL"
-        self.hair_key = "HAIR_POT_BLACK"
-        self.nose_key = "NOSE_TYPE_A"
-        self.eyes_key = "EYES_ASIAN_NORMAL"
 
     def set_face_key(self, KEY:str):
         self.face_key = KEY
@@ -67,34 +46,19 @@ class IconFace(WidgetStandard):
         self.eyes_key = KEY
 
     def get_eyes_keys_list(self):
-        return list(
-            IconFace.name_image_dict\
-                ["EYES"].keys()
-        )
+        return EYES_KEYS_TUPLE
     
     def get_face_keys_list(self):
-        return list(
-            IconFace.name_image_dict\
-                ["FACE"].keys()
-        )
+        return SKIN_KEYS_TUPLE
     
     def get_mouth_keys_list(self):
-        return list(
-            IconFace.name_image_dict\
-                ["MOUTH"].keys()
-        )
+        return MOUTH_TUPLE
     
     def get_hair_keys_list(self):
-        return list(
-            IconFace.name_image_dict\
-                ["HAIR"].keys()
-        )
+        return HAIR_TUPLE
     
     def get_nose_keys_list(self):
-        return list(
-            IconFace.name_image_dict\
-                ["NOSE"].keys()
-        )
+        return NOSE_TUPLE
 
     def set_face_dict(self, DICT):
         """
@@ -106,6 +70,7 @@ class IconFace(WidgetStandard):
             "EYES": "EYES_ASIAN_NORMAL"
         }
         """
+        
         self.face_key = DICT["FACE"]
         self.mouth_key = DICT["MOUTH"]
         self.hair_key = DICT["HAIR"]
@@ -122,15 +87,15 @@ class IconFace(WidgetStandard):
 
     def get_path_list(self):
         face_path = IconFace.name_image_dict\
-            ["FACE"][self.face_key]
+            [self.face_key]
         mouth_path = IconFace.name_image_dict\
-            ["MOUTH"][self.mouth_key]
+            [self.mouth_key]
         hair_path = IconFace.name_image_dict\
-            ["HAIR"][self.hair_key]
+            [self.hair_key]
         nose_path = IconFace.name_image_dict\
-            ["NOSE"][self.nose_key]
+            [self.nose_key]
         eyes_key = IconFace.name_image_dict\
-            ["EYES"][self.eyes_key]
+            [self.eyes_key]
         return [
             self.create_path(face_path),
             self.create_path(nose_path),
