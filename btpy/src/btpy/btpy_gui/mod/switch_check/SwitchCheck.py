@@ -5,29 +5,30 @@ from ..widget_standard.WidgetStandard import WidgetStandard
 
 class SwitchCheck(WidgetStandard):
 
-    def __init__(self, window, text = ""):
+    def __init__(self, window, 
+            TITLE:str = ""):
         super().__init__(window)
-        self.is_selected = tk.BooleanVar()
+        self.__value:tk.BooleanVar \
+            = tk.BooleanVar()
         self.widget = tk.Checkbutton(
             self.margin, 
-            text=text, 
-            variable=self.is_selected, 
+            text=TITLE, 
+            variable=self.__value, 
             onvalue=True, offvalue=False,
-            borderwidth = 1,
-            relief= "solid",
             anchor="w"
         )
-        self.back_color_1 = "gray"
+        self.back_color_1 = self\
+            .margin.cget("bg")
         self.back_color_2 = "yellow"
         self.widget.pack(
-            padx=2, 
-            pady=(2, 2),
+            padx=1, 
+            pady=1,
             fill=tk.BOTH, 
             expand=True
         )
-        self.add_default_listener()
+        self.__add_default_listener()
     
-    def add_default_listener(self):
+    def __add_default_listener(self):
         def enter_fn(e):
             self.set_margin_color(
                 self.back_color_2)
@@ -38,6 +39,11 @@ class SwitchCheck(WidgetStandard):
                 self.back_color_1)
         self.widget.bind("<Leave>", 
                 leave_fn)
+        
+    def add_on_change_listener(self, 
+            CALLBACK_X0:callable):
+        self.widget.config(
+            command= CALLBACK_X0)
         
     def set_background_color(self, COLOR):
         return super()\
@@ -54,7 +60,7 @@ class SwitchCheck(WidgetStandard):
         return self.widget.cget("text")
 
     def set_value(self, BOOL):
-        self.is_selected.set(BOOL)
+        self.__value.set(BOOL)
 
     def get_value(self)->bool:
-        return self.is_selected.get()
+        return self.__value.get()

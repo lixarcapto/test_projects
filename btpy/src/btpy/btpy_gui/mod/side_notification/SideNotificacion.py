@@ -22,7 +22,7 @@ class SideNotificacion(WidgetStandard):
             self.margin, text = "",
             bg = "white"
         )
-        self.flag = None
+        self.async_flag = None
         self.is_waiting = False
         self.time_notificacion = 2
         self.widget.grid(
@@ -43,6 +43,8 @@ class SideNotificacion(WidgetStandard):
         Esta función se activará después 
         de 3 segundos.
         """
+        # si la funcion esta en espera
+        # cancela la ejecucion
         if(self.is_waiting): return None
         self.is_waiting = True
         self.set_title(text)
@@ -54,11 +56,14 @@ class SideNotificacion(WidgetStandard):
         def fn(n):
             self.close()
             return True
-        self.flag = repeat_each_async(
+        self.async_flag = repeat_each_async(
             self.time_notificacion, fn
         )
+
+    def cancel(self):
+        self.async_flag.stop()
         
     def close(self):
         self.content_label.grid_forget()
         self.is_waiting = False
-        self.flag.set(False)
+        self.async_flag.stop()

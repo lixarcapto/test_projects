@@ -51,7 +51,6 @@ def __cut(return_side,
     -> str:
     index = {"from":1,"until":0}[return_side]
     # valida el string ingresado
-    valid_string(primal_str, 2, True)
     r_string = ""
     if searched_str not in primal_str: 
         return ""
