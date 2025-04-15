@@ -20,7 +20,7 @@ def main():
     for i in range(6):
         label = Btpy.LabelLabel(window, 
         "nombre")
-        label.set_text("Juan")
+        label.set_content("Juan")
         label.pack()
         label_list.append(label)
     window.start()

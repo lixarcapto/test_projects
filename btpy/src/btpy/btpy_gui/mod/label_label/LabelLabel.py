@@ -15,8 +15,9 @@ class LabelLabel(WidgetStandard):
             borderwidth = 1,
             relief = "solid"
         )
+        self.key = ""
         self.widget.config(
-            bg = "#EEEEEE"
+            bg = "white"
         )
         self.label_content = tk.Label(
             self.margin,
@@ -31,26 +32,44 @@ class LabelLabel(WidgetStandard):
             1, weight=1)
         # Alinea a la izquierda
         self.widget.grid(
-            row=0, column=0, sticky="ew"
+            row=0, column=0, sticky="nsew"
         )
         self.label_content.grid(
-            row=0, column=1, sticky="ew"
+            row=0, column=1, sticky="nsew"
         )
         # Alinea a la derecha
         self.set_title(title)
 
+    def set_content_color(self, 
+            BACKGROUND, FOREGROUND):
+        self.label_content.config(
+            bg = BACKGROUND, 
+            fg = FOREGROUND
+        )
+
+    def set_font_content(self,
+            FAMILY, SIZE, IS_BOLD):
+        font_ = font.Font(
+                family=FAMILY, 
+                size=SIZE, 
+                )
+        if(IS_BOLD):
+            font_.config(weight="bold")
+        self.label_content.config(
+            font= font_)
+
     def set_title(self, TITLE:str)->None:
+        self.key = TITLE
         self.widget.config(
-            text = TITLE)
+            text = " " + TITLE + " ")
         
     def get_title(self)->str:
-        return self.widget.cget(
-            "text")
+        return self.key
 
-    def set_text(self, TEXT:str):
+    def set_content(self, TEXT:str):
         self.label_content.config(
             text = TEXT)
 
-    def get_text(self)->str:
+    def get_content(self)->str:
         return self.label_content.cget(
             "text")

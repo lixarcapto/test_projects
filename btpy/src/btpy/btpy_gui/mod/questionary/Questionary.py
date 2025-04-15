@@ -4,6 +4,9 @@ import tkinter as tk
 from ..widget_composite.WidgetComposite import WidgetComposite
 from ..frame.Frame import Frame
 from ..radio_box.RadioBox import RadioBox
+from tkinter import font
+from ..label_label.LabelLabel import LabelLabel
+
 
 class Questionary(WidgetComposite):
 
@@ -16,7 +19,24 @@ class Questionary(WidgetComposite):
         )
         self.radio_box.label_title.config(
             bg = "#FFFFFF")
-        self.radio_box.pack()
+        font_ = font.Font(
+                family="Arial", 
+                size=15, 
+                weight="bold"
+                )
+        self.label_symbol = LabelLabel(
+            self.widget, 
+            "you completed the questionnaire",
+        )
+        self.label_symbol.set_content(
+            " ✔ ")
+        self.label_symbol.set_font_content(
+            "Arial", 12, True
+        )
+        self.label_symbol.set_content_color(
+            "green",
+            "white"
+        )
         self.set_title(title)
         self.questionary_list\
             :list[dict] = []
@@ -24,6 +44,13 @@ class Questionary(WidgetComposite):
         self.set_title(title)
         self.callback = None
         self.index = 0
+
+    def show_final_quest(self):
+        self.radio_box.pack_forget()
+        self.label_symbol.pack()
+
+    def show_radio_box(self):
+        self.radio_box.pack()
 
     def get_value(self)->list[str]:
         return self.answer_list
@@ -63,6 +90,10 @@ class Questionary(WidgetComposite):
         ]
         """
         self.questionary_list = LIST
+        self.__start_questionary()
+        
+    def __start_questionary(self):
+        self.show_radio_box()
         self.update_question()
 
     def __is_limit_question(self):
@@ -70,23 +101,33 @@ class Questionary(WidgetComposite):
         if(self.index == leng):
             return True
         return False
+    
+    def has_all_answer(self)->bool:
+        len_answer = len(self.answer_list)
+        len_question = len(
+            self.questionary_list)
+        if(len_question == len_answer):
+            return True
+        return False
+    
+    def __react_to_selection(self, e):
+        if(not self.has_all_answer()):
+            self.__add_answer()
+        if(not self.__is_limit_question()):
+            self.increment_index()
+            self.update_question()
+        if(self.has_all_answer()):
+            if(self.callback != None):
+                self.callback(
+                self.answer_list
+            )
+            self.show_final_quest()
+        
 
     def __add_default_listener(self):
         """
         TODO: arreglar este codigo esta
         muy feo.
         """
-        def fn(e):
-            if(len(self.questionary_list) \
-                != len(self.answer_list)):
-                self.__add_answer()
-            if(not self.__is_limit_question()):
-                self.increment_index()
-                self.update_question()
-            if((self.callback != None)
-            and len(self.questionary_list) \
-                == len(self.answer_list)):
-                self.callback(
-                    self.answer_list
-                )
-        self.radio_box.add_listener(fn)
+        self.radio_box.add_listener(
+            self.__react_to_selection)
