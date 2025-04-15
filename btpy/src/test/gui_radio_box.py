@@ -25,9 +25,9 @@ def main():
             "Gato"
              ])
     radio.pack()
-    def fn(e):
+    def fn():
         print(radio.get_value())
-    radio.add_listener(fn)
+    radio.add_on_change_listener(fn)
     window.start()
 
 main()
