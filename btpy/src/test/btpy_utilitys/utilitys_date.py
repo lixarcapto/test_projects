@@ -5,29 +5,25 @@ import os
 
 # Obtiene la ruta absoluta del directorio del script actual.
 directorio_actual = os.path.dirname(os.path.abspath(__file__))
-
 # Sube dos niveles en la jerarquía de directorios.
 directorio_padre = os.path.dirname(directorio_actual)
 directorio_abuelo = os.path.dirname(directorio_padre)
-
 # Añade el directorio abuelo al sys.path.
 sys.path.append(directorio_abuelo)
+import time
 
 from btpy.Btpy import Btpy
 
 def main():
-    window = Btpy.Window("titulo")
-    window.set_is_fullscreen(True)
-    slider = Btpy.InputSlider(window, 
-        True, "volumen")
-    slider.set_range([0, 40])
-    slider.set_slider_background_color(
-        "#FFFFFF"
-    )
-    slider.set_bar_size(300, 20)
-    slider.set_mark_interval(5)
-    slider.set_marker_width(50)
-    slider.pack()
-    window.start()
+    time = Btpy.Date(26, 10, 2023)
+    time2 = Btpy.Date(1, 1, 1)
+    print("numeric date",
+        time.get_numeric_british_date())
+    print("days", time2.convert_to_days())
+    time.sum_date_time(time2)
+    print("british date",
+        time.get_british_date())
+    print("numeric date",
+        time.get_numeric_british_date())
 
 main()

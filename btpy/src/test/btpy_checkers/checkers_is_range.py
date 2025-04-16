@@ -16,18 +16,22 @@ sys.path.append(directorio_abuelo)
 from btpy.Btpy import Btpy
 
 def main():
-    window = Btpy.Window("titulo")
-    window.set_is_fullscreen(True)
-    slider = Btpy.InputSlider(window, 
-        True, "volumen")
-    slider.set_range([0, 40])
-    slider.set_slider_background_color(
-        "#FFFFFF"
-    )
-    slider.set_bar_size(300, 20)
-    slider.set_mark_interval(5)
-    slider.set_marker_width(50)
-    slider.pack()
-    window.start()
+    #"es un rango entero"
+    r = Btpy.is_range([0, 1])
+    #"es un rango float"
+    r = Btpy.is_range([0.1, 1.2])
+    print(r == True)
+    #"no existe rango"
+    r = Btpy.is_range([1, 1])
+    print(r == False)
+    #"si el rango esta invertido"
+    r = Btpy.is_range([5, 1])
+    print(r == False)
+    #"no es array"
+    r = Btpy.is_range(2)
+    print(r == False)
+    #"es texto"
+    r = Btpy.is_range("[0, 1]")
+    print(r == False)
 
 main()

@@ -2,6 +2,7 @@
 
 import tkinter as tk
 from ..widget_standard.WidgetStandard import WidgetStandard
+from tkinter import font
 
 class WidgetComposite(WidgetStandard):
 
@@ -27,6 +28,12 @@ class WidgetComposite(WidgetStandard):
         super().set_background_color("#EEEEEE")
         self.label_title.config(
             bg = "#EEEEEE")
+        font_ = font.Font(
+            family="Arial", 
+            size=12
+        )
+        self.label_title.config(
+            font = font_)
         self.set_title_background("#BABABA")
         
 
@@ -41,6 +48,9 @@ class WidgetComposite(WidgetStandard):
             sticky="nsew",
             padx=(0, 1), pady=(2, 1)
         )
+
+    def get_font(self)->font.Font:
+        self.label_title.cget("font")
 
     def set_in_vertical(self):
         self.label_title.grid(

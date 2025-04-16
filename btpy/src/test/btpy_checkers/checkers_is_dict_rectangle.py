@@ -1,5 +1,4 @@
 
-
 import sys
 import os
 
@@ -16,18 +15,19 @@ sys.path.append(directorio_abuelo)
 from btpy.Btpy import Btpy
 
 def main():
-    window = Btpy.Window("titulo")
-    window.set_is_fullscreen(True)
-    slider = Btpy.InputSlider(window, 
-        True, "volumen")
-    slider.set_range([0, 40])
-    slider.set_slider_background_color(
-        "#FFFFFF"
+    r = Btpy.is_dict_rectangle(
+        {
+            "x":0, "y":0, 
+            "height":100, "width":100
+         }
     )
-    slider.set_bar_size(300, 20)
-    slider.set_mark_interval(5)
-    slider.set_marker_width(50)
-    slider.pack()
-    window.start()
+    print(r == True)
+    r = Btpy.is_dict_rectangle(
+        {
+            "X":0, "Y":0, 
+            "height":100, "width":100
+         }
+    )
+    print(r == False)
 
 main()

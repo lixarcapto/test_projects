@@ -16,18 +16,25 @@ sys.path.append(directorio_abuelo)
 from btpy.Btpy import Btpy
 
 def main():
-    window = Btpy.Window("titulo")
-    window.set_is_fullscreen(True)
-    slider = Btpy.InputSlider(window, 
-        True, "volumen")
-    slider.set_range([0, 40])
-    slider.set_slider_background_color(
-        "#FFFFFF"
-    )
-    slider.set_bar_size(300, 20)
-    slider.set_mark_interval(5)
-    slider.set_marker_width(50)
-    slider.pack()
-    window.start()
+    #
+    r = Btpy.is_byte_256(255)
+    print(r == True)
+    #
+    r = Btpy.is_byte_256(0)
+    print(r == True)
+    #
+    r = Btpy.is_byte_256(256)
+    print(r == False)
+    #
+    r = Btpy.is_byte_256(255.0)
+    print(r == False)
+    #
+    r = Btpy.is_byte_256("255")
+    print(r == False)
+    #
+    r = Btpy.is_byte_256(-1)
+    print(r == False)
+    #
+
 
 main()
