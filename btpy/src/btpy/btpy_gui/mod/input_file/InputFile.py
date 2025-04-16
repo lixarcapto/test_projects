@@ -26,6 +26,7 @@ class InputFile(WidgetComposite):
         self.text_field = None
         self.key_type = ""
         self.title = title
+        self.auto_fit_text:bool = False
         self.text_button = "search"
         self.__init_components()
         self.set_type_search(file_type)
@@ -84,8 +85,9 @@ class InputFile(WidgetComposite):
             path = filedialog.askdirectory(
                 title=self.title
             )
-            self.text_field\
-                .set_character_width(
+            if(self.auto_fit_text):
+                self.text_field\
+                    .set_character_width(
                     len(path))
             self.text_field.set_value(
                 path)
@@ -103,8 +105,9 @@ class InputFile(WidgetComposite):
                 title=self.title,
                 filetypes = filetypes_
             )
-            self.text_field\
-                .set_character_width(
+            if(self.auto_fit_text):
+                self.text_field\
+                    .set_character_width(
                     len(path))
             self.text_field.set_value(
                 path)
@@ -122,8 +125,9 @@ class InputFile(WidgetComposite):
                 title=self.title,
                 filetypes = filetypes_
             )
-            self.text_field\
-                .set_character_width(
+            if(self.auto_fit_text):
+                self.text_field\
+                    .set_character_width(
                     len(path))
             self.text_field.set_value(
                 path)
@@ -136,8 +140,9 @@ class InputFile(WidgetComposite):
                 .askopenfilename(
                 title=self.title
             )
-            self.text_field\
-                .set_character_width(
+            if(self.auto_fit_text):
+                self.text_field\
+                    .set_character_width(
                     len(path))
             self.text_field.set_value(
                 path)

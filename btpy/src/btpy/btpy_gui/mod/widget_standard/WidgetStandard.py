@@ -30,11 +30,16 @@ class WidgetStandard:
 
     def __init__(self, widget):
         self.margin = None
+        self.__default_font = font.Font(
+            family="Arial", 
+            size=12
+        )
         # permite recibir objetos
         # widget wrappers y widgets TK
         if(hasattr(widget, "widget")):
             self.margin = tk.Frame(
-                widget.widget)
+                widget.widget
+            )
         else:
             self.margin = tk.Frame(
                 widget)
@@ -70,6 +75,9 @@ class WidgetStandard:
         return self.widget.cget("font")\
             .actual()["underline"]
     
+    def place_forget(self):
+        self.margin.place_forget()
+    
     def pack_forget(self):
         self.margin.pack_forget()
 
@@ -85,14 +93,26 @@ class WidgetStandard:
         return self.widget.cget("font")\
             .actual()["overstrike"]
 
-    def pack(self, is_expandable = False):
-        if(is_expandable):
+    def pack(self, 
+            IS_EXPANDABLE:bool = False,
+            SIDE_KEY:str = "left"):
+        """
+        SIDE_KEY:
+        * left
+        * top
+        * right
+        * bottom
+        """
+        if(IS_EXPANDABLE):
             self.margin.pack(
                 fill=tk.BOTH, 
-                expand=True
+                expand=True,
+                side = SIDE_KEY
             )
         else:
-            self.margin.pack()
+            self.margin.pack(
+                side = SIDE_KEY
+            )
 
 
     def grid(self, ROW:int, COLUMN:int,
@@ -106,10 +126,6 @@ class WidgetStandard:
                 column=COLUMN,
                 sticky=STICKY
             )
-
-    
-    def unpack(self)-> None:
-        self.margin.pack_forget()
 
     def get_font(self):
         return self.widget.cget("font")
@@ -163,7 +179,7 @@ class WidgetStandard:
         )
 
     def place(self, X, Y, WIDTH, HEIGHT):
-        self.widget.place(
+        self.margin.place(
             x=X, y=Y, 
             width=WIDTH, 
             height=HEIGHT

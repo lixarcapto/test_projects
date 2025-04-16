@@ -21,19 +21,19 @@ def main():
     file = Btpy.InputFile(window,
             "image", 
             "busca image")
-    file.pack()
+    file.pack(False, "top")
     file2 = Btpy.InputFile(window,
             "folder", 
             "busca folder")
-    file2.pack()
+    file2.pack(False, "top")
     file3 = Btpy.InputFile(window,
             "text", 
             "busca text")
-    file3.pack()
+    file3.pack(False, "top")
     file4 = Btpy.InputFile(window,
             "any_file", 
             "busca any file")
-    file4.pack()
+    file4.pack(False, "top")
     window.start()
 
 main()

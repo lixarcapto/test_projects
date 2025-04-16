@@ -1,0 +1,9 @@
+
+
+* Los label titulos no aparecen
+aunque sean asignados con strings no
+void.
+
+* el article se autoajusta con cada 
+asignacion de texto desordenando todo,
+es mejor quitarlo.

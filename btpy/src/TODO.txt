@@ -1,0 +1,6 @@
+
+* añadir que pueda configurarse
+margenes externos para los widgets.
+
+* add funcion set_value None al checkbox
+y radiobutton.

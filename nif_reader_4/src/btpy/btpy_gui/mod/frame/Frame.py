@@ -10,4 +10,7 @@ class Frame(WidgetStandard):
         self.widget = tk.Frame(
             self.margin)
         self.widget.pack(fill =tk.BOTH,
-            expand=True)
+            expand=True,
+            padx=1,
+            pady=1
+        )

@@ -17,4 +17,5 @@ class BtpyDataTypes(BtpyConst):
     Graph = Graph
     Switch = Switch
     MultikeyDict = MultikeyDict
+    CountingDict = CountingDict
 

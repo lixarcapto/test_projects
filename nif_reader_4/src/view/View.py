@@ -10,33 +10,42 @@ class View:
         self.window = Btpy.Window(
             "NIF reader")
         self.window.set_size(1000, 700)
+        self.frame_head = Btpy.Frame(
+            self.window)
+        self.frame_head.pack(False, "top")
+        self.frame_head.set_background_color(
+            "yellow")
         self.title_nif = Btpy.LabelImage(
-            self.window,
+            self.frame_head,
             "./res/image/nif_icon.png"
         )
-        self.title_nif.pack()
+        self.title_nif.pack(False, 
+            "left")
         self.input_file = Btpy.InputFile(
-            self.window, "text", "NIF path"
+            self.frame_head, "text", "NIF path"
         )
-        self.input_file.pack()
+        self.input_file.pack(False, 
+            "left")
         self.button_read = Btpy.Button(
-            self.window)
+            self.frame_head)
         self.button_read.set_title("Read")
-        self.button_read.pack()
+        self.button_read.pack(False, 
+            "left")
         self.button_reset = Btpy.Button(
-            self.window)
+            self.frame_head)
         self.button_reset.set_title("Reset")
-        self.button_reset.pack()
+        self.button_reset.pack(False, 
+            "left")
         self.article = Btpy.Article(
             self.window, "Nif actual"
         )
+        self.article.pack(False, "left")
         self.article.label_title_article\
             .grid_forget()
         self.radio_box = Btpy.RadioBox(
             self.window, "Elige una opcion:"
         )
-        self.article.pack()
-        self.radio_box.pack()
+        self.radio_box.pack(False, "left")
         def fn(e):
             self.load_and_start()
         self.button_read.add_listener(fn)
@@ -71,10 +80,6 @@ class View:
         )
         value = self.radio_box\
                 .get_value()
-        print("init radio box", value)
-        self.radio_box.set_value(
-                "INVESTIGAR"
-            )
         def fn():
             value = self.radio_box\
                 .get_value()
