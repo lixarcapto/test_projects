@@ -10,6 +10,11 @@ class View:
         self.window = Btpy.Window(
             "NIF reader")
         self.window.set_size(1000, 700)
+        self.title_nif = Btpy.LabelImage(
+            self.window,
+            "./res/image/nif_icon.png"
+        )
+        self.title_nif.pack()
         self.input_file = Btpy.InputFile(
             self.window, "text", "NIF path"
         )
@@ -22,16 +27,15 @@ class View:
             self.window)
         self.button_reset.set_title("Reset")
         self.button_reset.pack()
-        self.label_title = Btpy.Label(
-            self.window)
-        self.label_content = Btpy.Label(
-            self.window
+        self.article = Btpy.Article(
+            self.window, "Nif actual"
         )
+        self.article.label_title_article\
+            .grid_forget()
         self.radio_box = Btpy.RadioBox(
             self.window, "Elige una opcion:"
         )
-        self.label_title.pack()
-        self.label_content.pack()
+        self.article.pack()
         self.radio_box.pack()
         def fn(e):
             self.load_and_start()
@@ -50,10 +54,13 @@ class View:
     def update(self):
         scene_dict = self.model\
             .get_actual_scene_dict()
-        self.label_title.set_title(
-            scene_dict["KEY"]
+        title:str = scene_dict["KEY"]
+        title = title.lower()
+        title = title.title()
+        self.article.set_subtitle(
+            title
         )
-        self.label_content.set_title(
+        self.article.set_content(
             scene_dict["TEXT"]
         )
         if(self.model.is_end): 

@@ -9,12 +9,14 @@ from ..switch_check.SwitchCheck import SwitchCheck
 class CheckBox(WidgetComposite):
 
     def __init__(self, window, 
-            title:str,
-            key_list:list[str]):
+            TITLE:str,
+            KEY_LIST:list[str] = []):
         super().__init__(window)
-        self.__button_list = []
-        self.set_title(title)
-        self.create_button_list(key_list)
+        self.__button_list:SwitchCheck = []
+        if(KEY_LIST != []):
+            self.__create_button_list(
+                KEY_LIST)
+        self.set_title(TITLE)
 
     def get_value(self)->list[str]:
         key_list = []
@@ -32,7 +34,34 @@ class CheckBox(WidgetComposite):
                 else:
                     button.set_value(False)
     
-    def create_button_list(self, 
+    def add_on_change_listener(self, 
+            CALLBACK_X0:callable)->None:
+        """
+        Funcion que activa la callback
+        cuando el listener detecta 
+        los eventos on_change sobre
+        los botones SwitchCheck.
+        La callback recibe cero argumentos,
+        por eso su nombre X0.
+        """
+        leng = self.__button_list
+        for i in self.__button_list:
+            self.__button_list[i]\
+                .add_on_change_listener(
+                    CALLBACK_X0
+                )
+            
+    def set_content(self, KEY_LIST:str):
+        self.__format_button()
+        self.__create_button_list(KEY_LIST)
+            
+    def __format_button(self):
+        button:SwitchCheck = None
+        for button in self.__button_list:
+            button.pack_forget()
+        self.__button_list = []
+
+    def __create_button_list(self, 
                 TITLE_LIST:str):
         leng = len(TITLE_LIST)
         button = None

@@ -1,6 +1,5 @@
 
 
-
 def sort_text(text, limit_char_in_line):
     """
     Función que ajusta el texto 

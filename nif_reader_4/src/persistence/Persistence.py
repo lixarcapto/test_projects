@@ -6,6 +6,10 @@ from btpy.Btpy import Btpy
 
 class Persistence:
 
+    NEXT_KEY = "Next;"
+    END_KEY = "."
+    SEPARATOR = ","
+
     def __init__(self):
         nif_dict = self.load_nif_docx(
             "./res/docx/nif_test.docx")
@@ -55,15 +59,18 @@ class Persistence:
         scene_key_list = Btpy\
             .get_description(
                 TEXT, 
-                ",", 
-                ["NEXT", "END"]
+                self.SEPARATOR, 
+                [
+                    self.NEXT_KEY, 
+                    self.END_KEY
+                ]
             )
         scene_key_list = Btpy.mapp(
             scene_key_list, 
             lambda e:e.upper()
         )
         text_value = Btpy.cut_until(
-            TEXT, "NEXT")
+            TEXT, self.NEXT_KEY)
         return {
             "KEY": KEY,
             "SCENE_KEYS": scene_key_list,

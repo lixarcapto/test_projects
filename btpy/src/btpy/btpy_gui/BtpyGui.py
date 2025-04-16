@@ -75,6 +75,7 @@ class BtpyGui(BtpyDict):
     FrameSectioned = FrameSectioned
     Option = Option
     Questionary = Questionary
+    Article = Article
     # -----------------------------------
     # Input Text -------------------------
     TextField = TextField

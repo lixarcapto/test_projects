@@ -52,3 +52,4 @@ from .mod.label_box.LabelBox import LabelBox
 from .mod.frame_sectioned.FrameSectioned import FrameSectioned
 from .mod.option.Option import Option
 from .mod.questionary.Questionary import Questionary
+from .mod.article.Article import Article
