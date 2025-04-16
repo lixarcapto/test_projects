@@ -36,8 +36,9 @@ def main():
     article = Btpy.Article(window,
         "Articulo")
     article.set_title_article("Titulo")
-    article.set_content(text)
     article.set_subtitle("Subtitulo")
+    article.set_content(text)
+    #article.set_character_width(70)
     article.pack()
     window.start()
 

@@ -31,6 +31,11 @@ def main():
         txt = text.get_value()
         label.set_title(txt)
     btn.add_listener(fn)
+    text2 = Btpy.TextArea(
+        window, "write something")
+    text2.set_is_enabled(False)
+    text2.set_value("contenido escrito")
+    text2.pack()
     window.start()
 
 main()
