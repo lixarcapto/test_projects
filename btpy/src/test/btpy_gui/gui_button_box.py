@@ -18,20 +18,17 @@ from btpy.Btpy import Btpy
 def main():
     window = Btpy.Window("titulo")
     window.set_is_fullscreen(True)
-    box = Btpy.ButtonBox(window, "frutas",
+    box = Btpy.ButtonBox(window, False,
+     "frutas"
+    )
+    box.set_components(4, 1)
+    box.set_content(
         ["manzana", "pera", "uvas", "mora"]
     )
     box.pack()
     def fn(key):
         print(key)
     box.add_single_listener(fn)
-    box2 = Btpy.ButtonBox(window, "frutas",
-        ["manzana", "pera", "uvas", "mora"]
-    )
-    box2.pack()
-    def fn(e):
-        print("el boton es pera")
-    box2.add_listener_to("pera", fn)
     window.start()
 
 main()

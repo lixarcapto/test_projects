@@ -77,6 +77,7 @@ class BtpyGui(BtpyDict):
     Option = Option
     Questionary = Questionary
     Article = Article
+    Table = Table
     # -----------------------------------
     # Input Text -------------------------
     TextField = TextField

@@ -24,7 +24,9 @@ class Button(WidgetStandard):
         self.margin_color_2 = "yellow"
         self.widget.pack(
             padx=1, 
-            pady=(2, 1)
+            pady=(2, 1),
+            fill=tk.BOTH,
+            expand=True
         )
         self.__add_default_listener()
         self.set_title(TITLE)

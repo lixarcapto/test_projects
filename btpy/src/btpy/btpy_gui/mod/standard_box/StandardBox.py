@@ -10,23 +10,25 @@ from ..sort_in_grid.sort_in_grid import sort_in_grid
 class StandardBox(WidgetComposite):
 
     def __init__(self, window, 
+            CLASS_WIDGET,
             is_horizontal,
             title:str = ""):
         super().__init__(window, 
             is_horizontal)
+        self.class_widget = CLASS_WIDGET
         self.grid_size:int = 1
         self.component_list = []
         self.set_title(title)
 
     def set_components(self, SIZE:int, 
             COLUMNS:int):
-        self.format_button_list()
+        self.format_components()
         self.create_component_list(SIZE)
-        self.grid_size = COLUMNS
-        self.__sort_components_in_grid()
+        self.sort_components_in_grid(
+            COLUMNS)
 
     def create_component(self):
-        button = SwitchIcon(
+        button = self.class_widget(
                 self.widget, ""
             )
         self.component_list.append(button)
@@ -73,7 +75,7 @@ class StandardBox(WidgetComposite):
             button.grid_forget()
         self.component_list = []
 
-    def __sort_components_in_grid(self,
+    def sort_components_in_grid(self,
             COLUMNS:int):
         self.grid_size = COLUMNS
         sort_in_grid(self.component_list,
