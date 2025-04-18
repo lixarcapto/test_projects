@@ -4,6 +4,9 @@ from PIL import Image, ImageTk
 from ..button.Button import Button
 from ..tool_tip.ToolTip import ToolTip
 from ...mod.create_photo_image.create_photo_image import*
+from ..create_photo_image.create_photo_image import*
+from ....btpy_persistence.mod.get_root.get_root import*
+
 
 class ButtonIcon(Button):
 
@@ -83,15 +86,19 @@ class ButtonIcon(Button):
     def set_path_image(self, PATH:str)\
             ->None:
         self.__path_image = PATH
-        imagen_pil = Image.open(PATH)
         if(self.__has_defined_size):
-            imagen_pil = imagen_pil\
-                    .resize((
-                self.__width, 
-                self.__height
-            ))
-        imagen_tk = ImageTk.PhotoImage(
-            imagen_pil)
-        self.__buffer_image = imagen_tk
+            self.__buffer_image \
+                = create_photo_image(
+                    PATH,
+                    [
+                    self.__width, 
+                    self.__height
+                    ]
+                )
+        else:
+            self.__buffer_image \
+                = create_photo_image(
+                    PATH
+                )
         self.widget.config(
-            image=imagen_tk)
+            image=self.__buffer_image)

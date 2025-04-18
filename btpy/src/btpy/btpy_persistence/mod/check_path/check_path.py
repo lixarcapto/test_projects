@@ -6,15 +6,17 @@ import os
 
 # Check if the file exists using 
 # os.path.exists()
-def check_path(route:str, extension:str):
-    if(not type(route) == str):
+def check_path(PATH:str, 
+        FILE_EXTENSION:str = "")->bool:
+    if(not type(PATH) == str):
         raise Exception(
-            f"route is not string ({route})"
-        )
-    if(not extension in route):
-        raise Exception(
-            f"route is not format {extension} ({route})"
-        )
-    if os.path.exists(route): return True
+            f"route is not string ({PATH})"
+    )
+    if(FILE_EXTENSION != ""):
+        if(not FILE_EXTENSION in PATH):
+            raise Exception(
+                f"route is not format {FILE_EXTENSION} ({PATH})"
+            )
+    if os.path.exists(PATH): return True
     return False
         

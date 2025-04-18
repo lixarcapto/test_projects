@@ -5,12 +5,13 @@ import tkinter as tk
 from ..widget_composite.WidgetComposite import WidgetComposite
 from ..frame.Frame import Frame
 from ..create_photo_image.create_photo_image import*
+from ..sort_in_grid.sort_in_grid import*
 
 class ButtonBoxIcon(WidgetComposite):
 
     """
     Este componente sirve para crear
-    un grid de botones de tipo icono 
+    una caja de botones de tipo icono 
     de forma facil y rapida.
     """
 
@@ -20,16 +21,9 @@ class ButtonBoxIcon(WidgetComposite):
         self.__button_icon_dict:dict = {}
         self.set_title(title)
         self.buffer_image_list = []
-
-    def set_title(self, TEXT:str):
-        self.label_title.config(
-            text = TEXT)
         
-    def get_title(self)->str:
-        return self.label_title.cget("text")
-        
-    def set_grid_size(self, SIZE:int):
-        self.grid_size = SIZE
+    def set_grid_size(self, COLUMNS:int):
+        self.grid_size = COLUMNS
 
     def set_content(self, 
             KEY_LIST:list[str], 
@@ -102,17 +96,10 @@ class ButtonBoxIcon(WidgetComposite):
             )
 
     def __arrange_button_dict(self):
-        x:int = 0
-        y:int = 0
-        button = None
-        for k in self.__button_icon_dict:
-            button = self.__button_icon_dict[k] 
-            button.grid(
-                row=x, column=y,
-                sticky=tk.NSEW
+        dict_ = self.__button_icon_dict
+        list_ = list(dict_.values())
+        sort_in_grid(
+            list_,
+            self.grid_size
             )
-            x += 1
-            if(x == self.grid_size):
-                y += 1
-                x = 0
             

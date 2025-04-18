@@ -53,3 +53,5 @@ from .mod.frame_sectioned.FrameSectioned import FrameSectioned
 from .mod.option.Option import Option
 from .mod.questionary.Questionary import Questionary
 from .mod.article.Article import Article
+from .mod.sort_in_grid.sort_in_grid import*
+from .mod.switch_icon_box.SwitchIconBox import SwitchIconBox

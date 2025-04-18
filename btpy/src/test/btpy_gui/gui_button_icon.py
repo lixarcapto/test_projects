@@ -16,13 +16,15 @@ sys.path.append(directorio_abuelo)
 from btpy.Btpy import Btpy
 
 def main():
+    print("ruta de imagenes", os.getcwd())
+    root_path = Btpy.get_root()
     window = Btpy.Window("titulo")
     window.set_is_fullscreen(True)
     button = Btpy.ButtonIcon(window, 
         "girl_fishing",
-        "../btpy/res/image/capture/girl_fishing_kawaii.png")
+        "./res/cell.png"
+    )
     button.pack()
-    button.set_size_image(300, 300)
     def fn(e):
         print("funciona")
     button.add_listener(fn)

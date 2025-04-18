@@ -21,13 +21,14 @@ def main():
     box.set_content(
         ["manzana", "pera", "uvas", "mora"],
         [
-            "../btpy/res/image/cell.png",
-            "../btpy/res/image/cell.png",
-            "../btpy/res/image/cell.png",
-            "../btpy/res/image/cell.png"
+            "./res/cell.png",
+            "./res/cell.png",
+            "./res/cell.png",
+            "./res/cell.png"
         ]
         
     )
+    box.set_grid_size(1)
     box.pack()
     def fn(key):
         print(key)

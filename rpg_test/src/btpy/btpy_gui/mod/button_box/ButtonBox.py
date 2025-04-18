@@ -1,0 +1,96 @@
+
+
+
+import tkinter as tk
+from ..widget_composite.WidgetComposite \
+    import WidgetComposite
+from ..button.Button import Button
+from ..frame.Frame import Frame
+
+class ButtonBox(WidgetComposite):
+
+    """
+    Este componente es un grid de botones
+    que comparten una unica callback 
+    la cual recibe como argumento el
+    texto que identifica a cada boton; 
+    esto facilita añadir comportamientos
+    iguales a varios botones.
+    """
+
+    def __init__(self, window, 
+            is_horizontal, 
+            title:str,
+            key_list:list[str]):
+        super().__init__(window, 
+            is_horizontal)
+        self.grid_size:int = 1
+        self.__button_dict:dict = {}
+        self.set_components(key_list)
+        self.set_title(title)
+        
+    def set_grid_size(self, SIZE:int):
+        self.grid_size = SIZE
+
+    def set_components(self, KEY_LIST):
+        self.format_button_list()
+        self.create_button_dict(KEY_LIST)
+        self.__arrange_button_dict()
+
+    def create_button_dict(self, 
+            KEY_LIST:list[str])->None:
+        button = None
+        for k in KEY_LIST:
+            button = Button(
+                self.widget, k
+            )
+            self.__button_dict[k] = button
+            
+    def add_listener_to(self, 
+            KEY_BUTTON:str, 
+            CALLBACK:callable):
+        button = self.__button_dict\
+            [KEY_BUTTON]
+        button.add_listener(CALLBACK)
+            
+    def add_single_listener(self, 
+                CALLBACK:callable):
+        """
+        Esta funcion recibe una callback
+        que ejecutara el boton cada
+        vez que se presione enviando
+        el texto identificador del boton
+        como argumento. Sirve para
+        crear un listener unico para
+        todos los botones.
+        """
+        button = None
+        for k in self.__button_dict:
+            button = self.__button_dict[k]
+            def aux(key):
+                def fn(e):
+                    CALLBACK(key)
+                return fn
+            button.add_listener(
+                aux(k)
+            )
+
+    def format_button_list(self):
+        button = None
+        for k in self.__button_dict:
+            button = self.__button_dict[k] 
+            button.margin.grid_forget()
+        self.__button_dict = {}
+
+    def __arrange_button_dict(self):
+        x:int = 0
+        y:int = 0
+        button = None
+        for k in self.__button_dict:
+            button = self.__button_dict[k] 
+            button.grid(x, y)
+            x += 1
+            if(x == self.grid_size):
+                y += 1
+                x = 0
+            

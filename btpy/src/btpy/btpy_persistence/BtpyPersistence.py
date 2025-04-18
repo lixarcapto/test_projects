@@ -68,8 +68,12 @@ class BtpyPersistence(BtpyMaths):
 
     # Check if the file exists using 
     # os.path.exists()
-    def check_path(route:str, extension:str):
-        return check_path(route, extension)
+    def check_path(PATH:str, 
+        FILE_EXTENSION:str = "")->bool:
+        return check_path(
+            PATH, 
+            FILE_EXTENSION
+        )
     
     def image_size(image_route:str)->dict:
         return image_size(image_route)
