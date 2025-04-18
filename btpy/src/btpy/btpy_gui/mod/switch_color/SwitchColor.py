@@ -20,7 +20,9 @@ class SwitchColor(WidgetStandard):
         )
         self.widget.pack(
             padx=1, 
-            pady=(2, 1)
+            pady=(2, 1),
+            fill=tk.BOTH,
+            expand=True
         )
         self.press_background = "#0C0C0C"
         self.press_foreground = "white"

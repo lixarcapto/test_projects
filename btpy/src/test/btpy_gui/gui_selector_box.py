@@ -20,7 +20,12 @@ def main():
     window.set_is_fullscreen(True)
     selector_box = Btpy.SelectorBox(
         window, 
-            "animal favorito", [
+        False,
+            "animal favorito"
+    )
+    selector_box.set_components(5, 1)
+    selector_box.set_content(
+        [
                 "gato",
                 "tortuga",
                 "perro",
@@ -29,6 +34,15 @@ def main():
             ]
     )
     selector_box.pack()
+    button = Btpy.Button(window, 
+            "get value")
+    button.pack()
+    label = Btpy.Label(window)
+    label.pack()
+    def fn(e):
+        label.set_title(
+            selector_box.get_value())
+    button.add_listener(fn)
     window.start()
 
 main()

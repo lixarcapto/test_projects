@@ -3,17 +3,9 @@
 
 def create_matrix_rgb(filas, columnas):
   """
-  Crea una matriz RGB utilizando listas anidadas en Python puro.
-
-  Args:
-    filas: Número de filas de la matriz.
-    columnas: Número de columnas de la matriz.
-
-  Returns:
-    Una lista de listas que representa una matriz RGB, donde cada elemento
-    interno es una lista de 3 valores (R, G, B) entre 0 y 255.
+  Crea una matriz RGB utilizando listas 
+  anidadas en Python puro.
   """
-
   matriz_rgb = []
   for _ in range(filas):
     fila = []
@@ -24,5 +16,4 @@ def create_matrix_rgb(filas, columnas):
       # pixel = [random.randint(0, 255) for _ in range(3)]
       fila.append(pixel)
     matriz_rgb.append(fila)
-
   return matriz_rgb

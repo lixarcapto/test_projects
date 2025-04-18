@@ -17,8 +17,10 @@ def matriz_rgb_to_photoimage(matriz_rgb):
         Un objeto PhotoImage de Tkinter.
     """
 
-    # Convertir la matriz NumPy a una imagen PIL
-    img = Image.fromarray(np.uint8(matriz_rgb))
+    # Convertir la matriz NumPy a 
+    # una imagen PIL
+    img = Image.fromarray(
+        np.uint8(matriz_rgb))
 
     # Convertir la imagen PIL a PhotoImage
     photo = ImageTk.PhotoImage(img)
