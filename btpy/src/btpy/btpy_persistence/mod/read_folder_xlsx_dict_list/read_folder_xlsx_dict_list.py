@@ -1,7 +1,8 @@
 
 
+from ..read_xlsx_dict_list.read_xlsx_dict_list import*
 
-def read_excel_dict_list(path:str,
+def read_folder_xlsx_dict_list(path:str,
             name_list:list[str])\
                 ->dict[dict]:
         """
@@ -18,7 +19,8 @@ def read_excel_dict_list(path:str,
         for gg_key in name_list:
             final_path = path + "/" \
             + gg_key + format_file
-            gg_dict = Btpy.read_excel_dict(
+            gg_dict = read_xlsx_dict_list(
                 final_path)
-            gg_dict_nested[gg_key] = gg_dict
+            gg_dict_nested[gg_key] \
+                = gg_dict
         return gg_dict_nested

@@ -1,6 +1,6 @@
 
 
-from ....btpy_persistence.mod.read_nested_row_xlsx.read_nested_row_xlsx import*
+from ....btpy_persistence.mod.read_xlsx_nested_dict_row.read_xlsx_nested_dict_row import*
 from .Symbol import Symbol
 
 class EmotionTranslator:
@@ -35,7 +35,7 @@ class EmotionTranslator:
             .__symbol_object_dict
 
     def load_data_base_symbol(self, path):
-        nestdict = read_nested_row_xlsx(
+        nestdict = read_xlsx_nested_dict_row(
             path)
         self.load_symbol_nestdict(nestdict)
 

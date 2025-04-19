@@ -6,7 +6,8 @@
 import openpyxl
 
 
-def read_nested_row_xlsx(filename:str)\
+def read_xlsx_nested_dict_row(
+        PATH_XLSX:str)\
         ->dict[dict]:
     """
     Reads an Excel file into a dictionary 
@@ -19,11 +20,11 @@ def read_nested_row_xlsx(filename:str)\
     elements.
     """
     EXTENSION = ".xlsx"
-    if(not EXTENSION in filename):
-        filename += EXTENSION
+    if(not EXTENSION in PATH_XLSX):
+        PATH_XLSX += EXTENSION
     try:
         # Load the Excel workbook
-        wb = openpyxl.load_workbook(filename)
+        wb = openpyxl.load_workbook(PATH_XLSX)
         sheet = wb.active
         # Initialize the data dictionary
         data_dict = {}

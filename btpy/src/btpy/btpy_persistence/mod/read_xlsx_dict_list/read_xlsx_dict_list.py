@@ -4,7 +4,8 @@
 import openpyxl
 
 
-def read_excel_dict(ROUTE:str)->dict[list]:
+def read_xlsx_dict_list(PATH_XLSX:str)\
+        ->dict[list]:
     """
     Reads an Excel file into a dictionary 
     of arrays, using the first cell of 
@@ -16,10 +17,10 @@ def read_excel_dict(ROUTE:str)->dict[list]:
     those rows.
     """
     EXTENSION = ".xlsx"
-    if(not EXTENSION in ROUTE):
+    if(not EXTENSION in PATH_XLSX):
         filename += EXTENSION
     try:
-        return __read_excel_dict(ROUTE)
+        return __read_excel_dict(PATH_XLSX)
     except FileNotFoundError as e:
         print(f"Error: {e}")
         return {}
@@ -36,7 +37,7 @@ def __read_excel_dict(ROUTE):
     # sheet
     key = ""
     data_list = []
-    for row in SHEET.iter_rows(min_row=2):  # Skip header row (row 1)
+    for row in SHEET.iter_rows(min_row=1):  # Skip header row (row 1)
         key = row[0].value
         data_list = __get_celds(row)
         data_dict[key] = data_list

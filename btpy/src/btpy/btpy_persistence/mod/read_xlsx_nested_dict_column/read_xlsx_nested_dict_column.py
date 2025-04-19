@@ -2,16 +2,14 @@
 
 import openpyxl
 
-def read_nested_column_xlsx(
-        ROUTE:str)->dict:
+def read_xlsx_nested_dict_column(
+        PATH_XLSX:str)->dict[dict]:
     """
     función de persistencia que lee un 
     archivo Excel como un diccionario 
     anidado en horizontal
-    # no se porque funciona no entiendo
-    # openpyxl
     """
-    workbook = openpyxl.load_workbook(ROUTE)
+    workbook = openpyxl.load_workbook(PATH_XLSX)
     worksheet = workbook.active
     key_list = []
     for row in worksheet.iter_rows(min_row=2, min_col=1, max_col=1):

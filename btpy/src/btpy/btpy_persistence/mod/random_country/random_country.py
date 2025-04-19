@@ -2,7 +2,7 @@
 
 
 from ....btpy_random.mod.random_choice.random_choice import*
-from ..read_excel_dict.read_excel_dict import*
+from ..read_xlsx_dict_list.read_xlsx_dict_list import*
 
 COUNTRY_DICT = {}
 EXCEL_ROUTE = "btpy/res/country_data.xlsx"
@@ -27,7 +27,8 @@ def random_country(region_key:str = "")->str:
     global COUNTRY_DICT
     if(COUNTRY_DICT == {}):
         COUNTRY_DICT \
-            = read_excel_dict(EXCEL_ROUTE)
+            = read_xlsx_dict_list(
+                EXCEL_ROUTE)
     result = ""
     # si region no es definida
     if(region_key == ""):

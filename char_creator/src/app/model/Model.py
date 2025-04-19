@@ -9,9 +9,9 @@ class Model:
     TRANSLATE_ROUTE = "../res/tables/translate.xlsx"
 
     def __init__(self) -> None:
-        self.translate_dict = Btpy.read_nested_column_xlsx(
+        self.translate_dict = Btpy.read_xlsx_nested_dict_column(
             Model.TRANSLATE_ROUTE)
-        self.traits_dict = Btpy.read_excel_dict(
+        self.traits_dict = Btpy.read_xlsx_dict_list(
             Model.TRAITS_ROUTE
         )
         self.model_message = {}

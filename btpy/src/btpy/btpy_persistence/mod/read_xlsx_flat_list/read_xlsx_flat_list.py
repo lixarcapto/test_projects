@@ -4,7 +4,8 @@
 
 import openpyxl
 
-def read_excel_list(PATH:str)->list[str]:
+def read_xlsx_flat_list(PATH_XLSX:str)\
+        ->list[str]:
     """
     Lee un archivo Excel y retorna 
     una lista (array unidimensional) 
@@ -12,7 +13,7 @@ def read_excel_list(PATH:str)->list[str]:
     las columnas.
     """
 
-    workbook = openpyxl.load_workbook(PATH)
+    workbook = openpyxl.load_workbook(PATH_XLSX)
     sheet = workbook.active  # Seleccionamos la hoja activa por defecto
 
     array:list = []

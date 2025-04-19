@@ -31,7 +31,7 @@ class EmotionSim:
      predefinidas y su modificadores.
     """
     def __read_concept_dict(self):
-        concept_dict = Btpy.read_nested_row_xlsx(
+        concept_dict = Btpy.read_xlsx_nested_dict_row(
             ROUT_CONCEPT)
         concept_dict = Btpy.mapp(
             concept_dict, 

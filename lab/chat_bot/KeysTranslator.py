@@ -6,7 +6,7 @@ class KeysTranslator:
 
     def __init__(self) -> None:
         self.keys_dict = {}
-        self.keys_dict = Btpy.read_excel_dict(
+        self.keys_dict = Btpy.read_xlsx_dict_list(
             "./res/keys_words.xlsx")
         
     def translate_phrase(self, PHRASE):

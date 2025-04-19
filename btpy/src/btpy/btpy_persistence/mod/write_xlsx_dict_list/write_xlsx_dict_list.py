@@ -4,7 +4,7 @@
 
 from openpyxl import Workbook
 
-def create_dict_list_excel(
+def write_xlsx_dict_list(
         DICT_LIST:dict[list], PATH:str)\
         ->None:
     """
