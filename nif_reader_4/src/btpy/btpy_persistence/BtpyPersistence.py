@@ -30,6 +30,15 @@ class BtpyPersistence(BtpyMaths):
         BtpyPersistence.NAME_MALE_PATH \
             = PATH
         
+    
+    def get_files_into(PATH_FOLDER)\
+            ->list[str]:
+        """
+        Obtiene los nombres de todos los 
+        archivos dentro de una carpeta
+        """
+        return get_files_into(PATH_FOLDER)
+        
     def set_name_female_path(PATH):
         """
         Modifica la ruta a la tabla
@@ -68,8 +77,12 @@ class BtpyPersistence(BtpyMaths):
 
     # Check if the file exists using 
     # os.path.exists()
-    def check_path(route:str, extension:str):
-        return check_path(route, extension)
+    def check_path(PATH:str, 
+        FILE_EXTENSION:str = "")->bool:
+        return check_path(
+            PATH, 
+            FILE_EXTENSION
+        )
     
     def image_size(image_route:str)->dict:
         return image_size(image_route)
@@ -113,37 +126,7 @@ class BtpyPersistence(BtpyMaths):
         """
         return create_txt(filename, content)
     
-    def read_excel_dict(filename:str)\
-            ->dict[list]:
-        """
-        Reads an Excel file into a dictionary 
-        of arrays, using the first cell of 
-        each row as keys and subsequent 
-        elements as array elements.
-        ARGS:
-        filename (str): The path to the Excel 
-        file to be read.
-        RETURN:
-        dict: A dictionary where keys are the 
-        first cells of rows and values are 
-        lists of subsequent elements in 
-        those rows.
-        """
-        return read_excel_dict(filename)
     
-    def read_nested_row_xlsx(filename:str)\
-        ->dict[dict]:
-        """
-        Reads an Excel file into a dictionary 
-        of dictionaries, using the first 
-        element of each row as the key for 
-        each dictionary and subsequent 
-        elements as dictionary values 
-        with keys corresponding to row 
-        names and cell values as their 
-        elements.
-        """
-        return read_nested_row_xlsx(filename)
     
     def random_name(culture = "",
                     gender = "")->str:
@@ -154,7 +137,6 @@ class BtpyPersistence(BtpyMaths):
         Los generos son:
         * "female"
         * "male"
-
         Las culturas son:
         * "russian" 
         * "american" 
@@ -171,9 +153,10 @@ class BtpyPersistence(BtpyMaths):
         * "polinesian"
         * "italic"
         * "slavic"
+        * "hebrew"
         """
         return random_name(
-            read_excel_dict,
+            read_xlsx_dict_list,
             BtpyPersistence.NAME_MALE_PATH,
             BtpyPersistence.NAME_FEMALE_PATH,
             culture,
@@ -202,9 +185,10 @@ class BtpyPersistence(BtpyMaths):
         * "polinesian"
         * "italic"
         * "slavic"
+        * "hebrew"
         """
         return random_lastname(
-          read_excel_dict,
+          read_xlsx_dict_list,
           BtpyPersistence.LASTNAMES_PATH,
           CULTURE
         )
@@ -242,9 +226,10 @@ class BtpyPersistence(BtpyMaths):
         * "polinesian"
         * "italic"
         * "slavic"
+        * "hebrew"
         """
         return random_full_name(
-            read_excel_dict,
+            read_xlsx_dict_list,
             BtpyPersistence.NAME_MALE_PATH,
             BtpyPersistence.NAME_FEMALE_PATH,
             BtpyPersistence.LASTNAMES_PATH,
@@ -254,15 +239,6 @@ class BtpyPersistence(BtpyMaths):
             gender
         )
     
-    def create_dict_list_excel(data:dict[list], 
-        filename:str)->None:
-        """
-        Stores a dictionary of arrays in an 
-        Excel file.
-        """
-        return create_dict_list_excel(data, 
-            filename)
-    
     def create_docx(route:str, text:str)\
             ->None:
         """
@@ -271,6 +247,20 @@ class BtpyPersistence(BtpyMaths):
         enviado.
         """
         create_docx(route, text)
+
+    def read_animation_folder(PATH)\
+            ->list[str]:
+        """
+        Funcion que lee obtiene las 
+        rutas ordenadas en una lista de 
+        cada frame de un animation folder
+        formato; este formato consiste en
+        carpetas de imagenes para crear
+        una animacion que solo tienen de nombre
+        el orden de dibujado como un entero 
+        del 0 al 100
+        """
+        return read_animation_folder(PATH)
     
     def read_docx_full(ruta_archivo:str)->str:
         """
@@ -320,14 +310,7 @@ class BtpyPersistence(BtpyMaths):
             [continent]
         return random.choice(country_list)
     
-    def read_nested_column_xlsx(
-            ROUTE:str)->dict:
-        """
-        función de persistencia que lee un 
-        archivo Excel como un diccionario 
-        anidado en horizontal
-        """
-        return read_nested_column_xlsx(ROUTE)
+    
     
     def load_word(DOCX_ROUTE:str)->None:
         """
@@ -353,39 +336,7 @@ class BtpyPersistence(BtpyMaths):
         """
         return seek_folder_route(ROUTE)
     
-    def read_excel_as_key_value(PATH, 
-        sheet_name=None):
-        """
-        Función que lee todos los pares 
-        clave valor que se encuentren en un 
-        archivo Excel como un diccionario.   
-        leerá cada primera celda de la fila 
-        seguido de la segunda celda como un 
-        par clave valor y así sucesivamente 
-        con todas las celdas.
-        """
-        return read_excel_as_key_value(PATH)
     
-    def read_excel_dict_list(path:str,
-            name_list:list[str])\
-                ->dict[dict]:
-        """
-        Funcion que lee todos los archivos
-        XLSX con los nombres enviados y 
-        retorna un dict anidado con los 
-        datos.
-        """
-        return read_excel_dict_list(
-            path, name_list)
-    
-    def read_excel_list(PATH:str)->list[str]:
-        """
-        Lee un archivo Excel y retorna 
-        una lista (array unidimensional) 
-        con todos los elementos de todas 
-        las columnas.
-        """
-        return read_excel_list(PATH)
     
     def get_root()->str:
         """
@@ -434,7 +385,7 @@ class BtpyPersistence(BtpyMaths):
         * "digital"
         """
         return random_profession(
-            BtpyPersistence.read_excel_dict,
+            BtpyPersistence.read_xlsx_dict_list,
             BtpyPersistence.PROFESSION_PATH,
             development_level
         )
@@ -455,7 +406,7 @@ class BtpyPersistence(BtpyMaths):
         if(BtpyPersistence.REGIONS_DICT 
                 == {}):
             BtpyPersistence.REGIONS_DICT \
-                = read_excel_dict(
+                = read_xlsx_dict_list(
                     BtpyPersistence\
                     .REGIONS_DICT_PATH
             )
@@ -464,7 +415,7 @@ class BtpyPersistence(BtpyMaths):
         if(BtpyPersistence.COUNTRY_DICT 
                 == {}):
             BtpyPersistence.COUNTRY_DICT \
-                = read_excel_dict(
+                = read_xlsx_dict_list(
                     BtpyPersistence\
                     .COUNTRY_DICT_PATH
             )
@@ -504,3 +455,136 @@ class BtpyPersistence(BtpyMaths):
         profile.geo_adress = BtpyPersistence\
             .random_geo_adress(country)
         return profile
+    
+    # -----------------------------------
+
+    # XLSX ------------------------------
+
+    def read_xlsx_flat_dict(PATH_XLSX:str)\
+            ->dict:
+        """
+        Función que lee todos los pares 
+        clave valor que se encuentren en un 
+        archivo Excel como un diccionario.   
+        leerá cada primera celda de la fila 
+        seguido de la segunda celda como un 
+        par clave valor y así sucesivamente 
+        con todas las celdas.
+        """
+        return read_xlsx_flat_dict(
+            PATH_XLSX
+        )
+    
+    def write_xlsx_flat_dict(PATH_XLSX:str)\
+            ->None:
+        """
+        TODO
+        """
+        pass
+    
+    def read_folder_xlsx_dict_list(
+            path:str,
+            name_list:list[str])\
+                ->dict[dict]:
+        """
+        Funcion que lee todos los archivos
+        XLSX con los nombres enviados y 
+        retorna un dict anidado con los 
+        datos.
+        """
+        return read_folder_xlsx_dict_list(
+            path, name_list)
+    
+    def read_xlsx_flat_list(PATH_XLSX:str)\
+            ->list[str]:
+        """
+        Lee un archivo Excel y retorna 
+        una lista (array unidimensional) 
+        con todos los elementos de todas 
+        las columnas.
+        """
+        return read_xlsx_flat_list(
+            PATH_XLSX)
+    
+    def write_xlsx_flat_list(PATH_XLSX:str):
+        """
+        TODO
+        """
+        pass
+    
+    def read_xlsx_dict_list(PATH_XLSX:str)\
+            ->dict[list]:
+        """
+        Reads an Excel file into a dictionary 
+        of arrays, using the first cell of 
+        each row as keys and subsequent 
+        elements as array elements.
+        ARGS:
+        filename (str): The path to the Excel 
+        file to be read.
+        RETURN:
+        dict: A dictionary where keys are the 
+        first cells of rows and values are 
+        lists of subsequent elements in 
+        those rows.
+        """
+        return read_xlsx_dict_list(
+            PATH_XLSX)
+    
+    def write_xlsx_dict_list(
+            DICT_LIST:dict[list], 
+            PATH:str)->None:
+        """
+        Stores a dictionary of arrays 
+        in an Excel file.
+        """
+        return write_xlsx_dict_list(
+            DICT_LIST, 
+            PATH
+        )
+    
+    def read_xlsx_nested_dict_row(
+            PATH_XLSX:str)\
+            ->dict[dict]:
+        """
+        Reads an Excel file into a dictionary 
+        of dictionaries, using the first 
+        element of each row as the key for 
+        each dictionary and subsequent 
+        elements as dictionary values 
+        with keys corresponding to row 
+        names and cell values as their 
+        elements.
+        """
+        return read_xlsx_nested_dict_row(
+            PATH_XLSX
+        )
+    
+    def write_xlsx_nested_dict_row(
+            PATH_XLSX:str):
+        """
+        TODO
+        """
+        pass
+    
+    def read_xlsx_nested_dict_column(
+            PATH_XLSX:str)\
+            ->dict[dict]:
+        """
+        función de persistencia que lee un 
+        archivo Excel como un diccionario 
+        anidado en horizontal
+        """
+        return read_xlsx_nested_dict_column(
+            PATH_XLSX
+        )
+    
+    def write_xlsx_nested_dict_column(
+            PATH_XLSX:str):
+        """
+        TODO
+        """
+        pass
+
+
+    # -----------------------------------

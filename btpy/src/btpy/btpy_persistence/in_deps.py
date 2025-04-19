@@ -52,5 +52,7 @@ from .mod.random_region.random_region \
     import*
 from .mod.read_xlsx_flat_list\
     .read_xlsx_flat_list import*
-from .mod.character_profile\
-    .CharacterProfile import CharacterProfile
+from .mod.character_profile.CharacterProfile \
+    import CharacterProfile
+from .mod.get_files_into.get_files_into import*
+from .mod.read_animation_folder.read_animation_folder import*

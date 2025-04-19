@@ -21,6 +21,8 @@ def main():
     box = Btpy.ButtonBox(window, False,
      "frutas"
     )
+    box.set_icon_path("./res/cell.png")
+    box.set_title("mejor un titulo")
     box.set_components(4, 1)
     box.set_content(
         ["manzana", "pera", "uvas", "mora"]

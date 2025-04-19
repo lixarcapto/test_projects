@@ -20,6 +20,9 @@ def main():
     window.set_is_fullscreen(True)
     label = Btpy.Label(window, "texto")
     label.pack()
+    label.set_font_size(17)
+    label.set_is_bold(True)
+    label.set_font_family("Verdana")
     window.start()
 
 main()

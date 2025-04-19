@@ -2,18 +2,20 @@
 
 
 from PIL import Image
+import numpy as np
 
 def create_png(matriz_rgb, nombre_archivo):
     """
-    Guarda una matriz RGB como una imagen PNG.
-
+    Guarda una matriz RGB como una 
+    imagen PNG.
     Args:
         matriz_rgb: Una lista de listas que representa una matriz RGB.
         nombre_archivo: El nombre del archivo PNG a guardar.
     """
 
-    # Convertir la lista de listas a un array NumPy (opcional, pero mejora el rendimiento)
-    import numpy as np
+    # Convertir la lista de listas a un 
+    # array NumPy (opcional, pero mejora 
+    # el rendimiento)
     matriz_np = np.array(matriz_rgb)
 
     # Crear una imagen PIL a partir del array NumPy

@@ -82,26 +82,27 @@ class BtpyUtilitys(BtpyTransformers):
             size_celd, size_x, size_y)
     
     def repeat_each_async(
-        INTERVAL_TIME:int|float, 
-        FUNCTION)->None:
+        INTERVAL_SECONDS:int|float, 
+        FUNCTION_ARGS_X1:callable)\
+        ->FlagAsync:
         """
         Repite la función especificada cada 
-    cierto intervalo de forma asincrona. Si 
-    la funcion retorna True se terminaran
-    las repeticiones.
-    Tambien recibe un numero int que 
-    indica el numero de repeticiones.
-    Esta funcion repite la callback en 
-    un hilo propio asincrono al hilo
-    principal.
-    Retorna un objeto llamado FlagAsync 
-    que tiene un metodo stop para
-    detener el hilo, y un metodo get para
-        saber su estado.
+        cierto intervalo de forma asincrona. Si 
+        la funcion retorna True se terminaran
+        las repeticiones.
+        Tambien recibe un numero int que 
+        indica el numero de repeticiones.
+        Esta funcion repite la callback en 
+        un hilo propio asincrono al hilo
+        principal.
+        Retorna un objeto llamado FlagAsync 
+        que tiene un metodo stop para
+        detener el hilo, y un metodo 
+        get_is_active para saber su estado.
         """
         return repeat_each_async(
-            INTERVAL_TIME, 
-            FUNCTION
+            INTERVAL_SECONDS, 
+            FUNCTION_ARGS_X1
         )
     
     def route_in_dict(seek_string:str,

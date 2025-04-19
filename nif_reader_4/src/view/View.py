@@ -22,7 +22,8 @@ class View:
         self.title_nif.pack(False, 
             "left")
         self.input_file = Btpy.InputFile(
-            self.frame_head, "text", "NIF path"
+            self.frame_head, "text", 
+            "NIF path"
         )
         self.input_file.pack(False, 
             "left")
@@ -36,12 +37,10 @@ class View:
         self.button_reset.set_title("Reset")
         self.button_reset.pack(False, 
             "left")
-        self.article = Btpy.Article(
+        self.text_area = Btpy.TextArea(
             self.window, "Nif actual"
         )
-        self.article.pack(False, "left")
-        self.article.label_title_article\
-            .grid_forget()
+        self.text_area.pack(False, "left")
         self.radio_box = Btpy.RadioBox(
             self.window, "Elige una opcion:"
         )
@@ -61,22 +60,22 @@ class View:
         self.update()
         
     def update(self):
-        scene_dict = self.model\
-            .get_actual_scene_dict()
-        title:str = scene_dict["KEY"]
+        render_dict = self.model\
+            .get_render()
+        title = self.model.nif_name
         title = title.lower()
         title = title.title()
-        self.article.set_subtitle(
+        self.text_area.set_title(
             title
         )
-        self.article.set_content(
-            scene_dict["TEXT"]
+        self.text_area.set_value(
+            render_dict["TEXT"]
         )
         if(self.model.is_end): 
             self.hidde_radio_box()
             return None
         self.radio_box.set_content(
-            scene_dict["SCENE_KEYS"]
+            render_dict["SCENE_KEYS"]
         )
         value = self.radio_box\
                 .get_value()

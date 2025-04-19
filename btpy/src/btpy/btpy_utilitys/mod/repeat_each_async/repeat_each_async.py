@@ -34,8 +34,9 @@ class FlagAsync:
         self.__bool = False
 
 def repeat_each_async(
-        INTERVAL_TIME:int|float, 
-        FUNCTION)->FlagAsync:
+        INTERVAL_SECONDS:int|float, 
+        FUNCTION_ARGS_X1:callable)\
+        ->FlagAsync:
     """
     Repite la función especificada cada 
     cierto intervalo de forma asincrona. Si 
@@ -53,15 +54,15 @@ def repeat_each_async(
     """
     flag = FlagAsync()
     def run_repeatedly():
-        nonlocal INTERVAL_TIME
+        nonlocal INTERVAL_SECONDS
         nonlocal flag
         n = 0
         result = None
         while flag.get_is_active():
             # permite romper el bucle durante 
             # la ejecucion
-            time.sleep(INTERVAL_TIME)
-            result = FUNCTION(n)
+            time.sleep(INTERVAL_SECONDS)
+            result = FUNCTION_ARGS_X1(n)
             if(result == True):
                 flag.stop()
             n += 1

@@ -9,8 +9,8 @@ class TextField(WidgetComposite):
     def __init__(self, window, 
                 TEXT:str = ""):
         super().__init__(window, True)
-        self.label_title.config(
-            bg = "#EEEEEE")
+        self.label_title\
+            .set_background_color("#FFFFFF")
         self.entry = tk.Entry(
             self.widget
         )

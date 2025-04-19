@@ -20,8 +20,8 @@ def main():
     window.set_is_fullscreen(True)
     button = Btpy.Button(window, "click")
     button.pack()
-    button.set_background_color("red")
-    button.set_foreground_color("white")
+    button.set_background_color("#FF0000")
+    button.set_foreground_color("#FFFFFF")
     n = 0
     def fn(e):
         nonlocal n

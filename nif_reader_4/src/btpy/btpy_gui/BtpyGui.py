@@ -36,6 +36,7 @@ class BtpyGui(BtpyDict):
     RadioBox = RadioBox
     SwitchDouble = SwitchDouble
     AccordionFrame = AccordionFrame
+    SwitchIconBox = SwitchIconBox
     # -----------------------------------
     # Labels ---------------------------
     LabelLabel = LabelLabel
@@ -76,6 +77,7 @@ class BtpyGui(BtpyDict):
     Option = Option
     Questionary = Questionary
     Article = Article
+    Table = Table
     # -----------------------------------
     # Input Text -------------------------
     TextField = TextField
@@ -118,3 +120,16 @@ class BtpyGui(BtpyDict):
         the int width and height.
         """
         return get_image_size(PATH)
+    
+    def sort_in_grid(self, TK_WIDGET_LIST,
+        COLUMNS:int)->list:
+        """
+        Funcion que inserta en la ventana
+        los widgets enviados con grid 
+        definiendo la cantidad de columnas
+        del grid.
+        """
+        return sort_in_grid(
+            TK_WIDGET_LIST,
+            COLUMNS
+        )

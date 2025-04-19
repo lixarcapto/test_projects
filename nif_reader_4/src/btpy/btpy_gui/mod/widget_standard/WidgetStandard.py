@@ -49,31 +49,34 @@ class WidgetStandard:
         self.is_overstrike = False
 
     def get_font(self):
-        return self.widget.cget("font")
+        return self.__default_font
 
     def set_is_bold(self, BOOL):
         weight_ = "normal"
         if(BOOL):
             weight_ = "bold"
-        font_ = self.widget.cget("font")
-        font_.config(weight = weight_)
-        self.widget.config(font = font_)
-        
+        self.__default_font.config(
+            weight = weight_)
+        self.widget.config(
+            font = self.__default_font
+        )
 
     def get_is_bold(self)->bool:
-        result = self.widget.cget("font")\
-            .actual()["weight"]
+        result = self.__default_font\
+            .cget("font")
         if("bold" == result): return True
         return False
 
     def set_is_underline(self, BOOL):
-        font_ = self.widget.cget("font")
-        font_.config(underline = BOOL)
-        self.widget.config(font = font_)
+        self.__default_font.config(
+            underline = BOOL)
+        self.widget.config(
+            font = self.__default_font
+        )
 
     def get_is_underline(self)->bool:
-        return self.widget.cget("font")\
-            .actual()["underline"]
+        return self.__default_font\
+            .cget("underline")
     
     def place_forget(self):
         self.margin.place_forget()
@@ -85,9 +88,11 @@ class WidgetStandard:
         self.margin.grid_forget()
 
     def set_is_overstrike(self, BOOL):
-        font_ = self.widget.cget("font")
-        font_.config(overstrike = BOOL)
-        self.widget.config(font = font_)
+        self.__default_font.config(
+            overstrike = BOOL)
+        self.widget.config(
+            font = self.__default_font
+        )
 
     def get_is_overstrike(self)->bool:
         return self.widget.cget("font")\
@@ -126,12 +131,12 @@ class WidgetStandard:
                 column=COLUMN,
                 sticky=STICKY
             )
-
-    def get_font(self):
-        return self.widget.cget("font")
     
     def set_font(self,  FONT):
-        self.widget.config(font =FONT)
+        self.__default_font(font = FONT)
+        self.widget.config(
+            font = self.__default_font
+        )
 
     def set_title(self, TITLE:str)->None:
         pass
@@ -189,37 +194,34 @@ class WidgetStandard:
             justify_key:str):
         self.widget.config(
             justify=justify_key)
-
-    def __update_font(self):
-        """
-        XXX: No funciona
-        """
-        new_weight = "normal"
-        new_font = font.Font(
-            family=self.get_font_type(),
-            size=self.get_font_size(),
-            weight=new_weight,
-            slant=self.get_font_family(),
-            underline=self.is_underline,
-            overstrike=self.is_overstrike,
-        )
-        self.widget.config(font=new_font)
     
     def get_font_size(self):
-        return self.widget.cget("font")\
-            .actual()["size"]
+        return self.__default_font\
+            .cget("size")
     
     def set_font_size(self, SIZE:int):
-        font_ = self.widget.cget("font")
-        font_.config(size = SIZE)
-        self.widget.config(font = font_)
+        self.__default_font.config(
+            size = SIZE)
+        self.widget.config(
+            font = self.__default_font
+        )
     
     def get_font_family(self):
-        return self.widget.cget("font")\
-            .actual()["family"]
+        return self.__default_font\
+            .cget("family")
     
     def set_font_family(self, FAMILY:str):
-        font_ = self.widget.cget("font")
-        font_.config(family = FAMILY)
-        self.widget.config(font = font_)
+        """
+        Font family keys:
+        * "Arial"
+        * "Times New Roman"
+        * "Calibri" 
+        * "Cambria"
+        * "Verdana"
+        """
+        self.__default_font.config(
+            family = FAMILY)
+        self.widget.config(
+            font = self.__default_font
+        )
     

@@ -150,6 +150,7 @@ class SwitchIcon(Button):
                 [self.get_width(),
                 self.get_height()]
             )
+        self.__update_image()
     
     def set_path_image_false(self, 
             PATH:str)->None:
@@ -160,3 +161,4 @@ class SwitchIcon(Button):
                 [self.get_width(),
                 self.get_height()]
             )
+        self.__update_image()

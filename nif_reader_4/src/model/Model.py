@@ -10,19 +10,31 @@ class Model:
         self.persistence = Persistence()
         self.graph:Btpy.Graph = Btpy.Graph()
         self.__start_key:str = ""
+        self.text_history:str = ""
+        self.nif_name = ""
         self.key_index:str = ""
         self.key_used_list = []
         self.is_end = False
 
+    def get_nif_name(self, path):
+        t_string = path.replace(
+            ".docx", "")
+        split_list = t_string\
+            .split("/")
+        return split_list[
+            len(split_list) -1]
+        
+
     def start_nif(self):
-        self.key_index = self.__start_key
-        print("start key", self.__start_key)
-        self.key_used_list = [
-            self.__start_key
-        ]
+        self.text_history = ""
+        self.key_used_list = []
+        self.set_key(self.__start_key)
 
     def load_nif_file(self, PATH:str):
         self.path_nif = PATH
+        self.nif_name = self.get_nif_name(
+            PATH
+        )
         self.load_nif_graph()
     
     def load_nif_graph(self):
@@ -50,12 +62,10 @@ class Model:
             ["KEY"]
         self.key_index = nif_list[0]["KEY"]
 
-    def get_actual_scene_dict(self):
-        value = self.graph.get_value(
-            self.key_index)
+    def get_render(self):
         option = self.get_key_options()
         return {
-            "TEXT":value,
+            "TEXT":self.text_history,
             "KEY":self.key_index,
             "SCENE_KEYS":option
         }
@@ -65,7 +75,9 @@ class Model:
         print("key sleect", KEY)
         self.key_used_list.append(
             self.key_index)
-        print("self.key_used_list", self.key_used_list)
+        value = self.graph.get_value(
+            self.key_index)
+        self.text_history += value + " "
             
 
     def get_key_options(self)->list:

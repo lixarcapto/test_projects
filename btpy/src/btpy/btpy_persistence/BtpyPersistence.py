@@ -30,6 +30,15 @@ class BtpyPersistence(BtpyMaths):
         BtpyPersistence.NAME_MALE_PATH \
             = PATH
         
+    
+    def get_files_into(PATH_FOLDER)\
+            ->list[str]:
+        """
+        Obtiene los nombres de todos los 
+        archivos dentro de una carpeta
+        """
+        return get_files_into(PATH_FOLDER)
+        
     def set_name_female_path(PATH):
         """
         Modifica la ruta a la tabla
@@ -128,7 +137,6 @@ class BtpyPersistence(BtpyMaths):
         Los generos son:
         * "female"
         * "male"
-
         Las culturas son:
         * "russian" 
         * "american" 
@@ -145,6 +153,7 @@ class BtpyPersistence(BtpyMaths):
         * "polinesian"
         * "italic"
         * "slavic"
+        * "hebrew"
         """
         return random_name(
             read_xlsx_dict_list,
@@ -176,6 +185,7 @@ class BtpyPersistence(BtpyMaths):
         * "polinesian"
         * "italic"
         * "slavic"
+        * "hebrew"
         """
         return random_lastname(
           read_xlsx_dict_list,
@@ -216,6 +226,7 @@ class BtpyPersistence(BtpyMaths):
         * "polinesian"
         * "italic"
         * "slavic"
+        * "hebrew"
         """
         return random_full_name(
             read_xlsx_dict_list,
@@ -236,6 +247,20 @@ class BtpyPersistence(BtpyMaths):
         enviado.
         """
         create_docx(route, text)
+
+    def read_animation_folder(PATH)\
+            ->list[str]:
+        """
+        Funcion que lee obtiene las 
+        rutas ordenadas en una lista de 
+        cada frame de un animation folder
+        formato; este formato consiste en
+        carpetas de imagenes para crear
+        una animacion que solo tienen de nombre
+        el orden de dibujado como un entero 
+        del 0 al 100
+        """
+        return read_animation_folder(PATH)
     
     def read_docx_full(ruta_archivo:str)->str:
         """

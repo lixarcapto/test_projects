@@ -4,6 +4,8 @@ import tkinter as tk
 from ..widget_standard.WidgetStandard import WidgetStandard
 from ...mod.create_photo_image.create_photo_image import*
 from ..get_image_size.get_image_size import get_image_size
+import io
+from PIL import Image, ImageDraw
 
 class Canvas(WidgetStandard):
 
@@ -16,9 +18,9 @@ class Canvas(WidgetStandard):
     def __init__(self, window, text = ""):
         super().__init__(window)
         # Crear el Canvas
+        self.image_back = None
         self.widget = tk.Canvas(
             self.margin, 
-            width=400, height=300, 
             bg="white")
         self.widget.pack(
             fill = tk.BOTH,
@@ -26,6 +28,7 @@ class Canvas(WidgetStandard):
             padx=1, 
             pady=(2, 1)
         )
+        self.set_size(300, 300)
         self.__buffer_image_list:list = []
         self.__brush_color = "black"
         self.__fill_color = "red"
@@ -58,19 +61,22 @@ class Canvas(WidgetStandard):
     def set_background_color(self, COLOR)\
             ->None:
         super().set_background_color(COLOR)
-        self.__background_color = COLOR
+        self.__background_color = self\
+            .convert_to_tk_color(COLOR)
 
     def get_background_color(self):
         return self.__background_color
 
     def set_fill_color(self, COLOR)->None:
-        self.__fill_color = COLOR
+        self.__fill_color = self\
+            .convert_to_tk_color(COLOR)
 
     def get_fill_color(self):
         return self.__fill_color
     
     def set_guide_color(self, COLOR)->None:
-        self.__guide_color = COLOR
+        self.__guide_color = self\
+            .convert_to_tk_color(COLOR)
 
     def get_guide_color(self):
         return self.__guide_color
@@ -88,7 +94,8 @@ class Canvas(WidgetStandard):
         return self.__guide_thickness
 
     def set_brush_color(self, COLOR)->None:
-        self.__brush_color = COLOR
+        self.__brush_color = self\
+            .convert_to_tk_color(COLOR)
 
     def get_brush_color(self):
         return self.__brush_color
@@ -101,12 +108,27 @@ class Canvas(WidgetStandard):
             width=self.widget.winfo_reqwidth(), 
             height=self.widget.winfo_reqwidth()
         )
+        self.image_back = Image.new(
+            "RGB", 
+            (WIDTH, HEIGHT), 
+            None
+        )
 
     def draw_line(self, POINT_1:list[int], 
                 POINT_2:list[int]):
         self.widget.create_line(
             POINT_1[0], POINT_1[1], 
             POINT_2[0], POINT_2[1], 
+            fill=self.__brush_color, 
+            width=self.__brush_thickness
+        )
+        dibujo = ImageDraw.Draw(
+            self.image_back
+        )
+        # Dibuja la línea
+        dibujo.line(
+            [tuple(POINT_1), 
+             tuple(POINT_2)], 
             fill=self.__brush_color, 
             width=self.__brush_thickness
         )
@@ -207,9 +229,41 @@ class Canvas(WidgetStandard):
     def draw_image(self, POINT:list[int], 
             PATH:str, SIZE_LIST:list[int]
                 = [0, 0]):
-        photo_image = create_photo_image(
-            PATH, SIZE_LIST
+        imagen_pil = Image.open(PATH)
+        if(SIZE_LIST != [0, 0]):
+            imagen_pil = imagen_pil.resize((
+                SIZE_LIST[0], 
+                SIZE_LIST[1]
+            ))
+        photo_image = ImageTk.PhotoImage(
+            imagen_pil)
+        self.__buffer_image_list.append(
+            photo_image)
+        # crea un nuevo origen para 
+        # dibujar la imagen en la esquina
+        # superior izquierda
+        new_origen = [0, 0]
+        new_origen[0] = round(POINT[0] \
+            + (photo_image.width() / 2)
         )
+        new_origen[1] = round(
+            POINT[1] \
+            + (photo_image.height() / 2)
+        )
+        self.image_back\
+            .paste(
+                imagen_pil, 
+                POINT
+            )
+        self.widget.create_image(
+            new_origen[0], 
+            new_origen[1], 
+            image=photo_image
+        )
+
+    def draw_photo_image(self, 
+            photo_image:tk.PhotoImage,
+            POINT:list[int]):
         self.__buffer_image_list.append(
             photo_image)
         # crea un nuevo origen para 
@@ -289,3 +343,6 @@ class Canvas(WidgetStandard):
             CALLBACK):
         self.callback_left_click \
             = CALLBACK
+
+    def take_screenshot(self)->Image:
+        return self.image_back

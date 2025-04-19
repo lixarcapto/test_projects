@@ -2,5 +2,8 @@
 * añadir que pueda configurarse
 margenes externos para los widgets.
 
+* hacer que pueda el focus efect del 
+button pueda recibir color M11(por nombre)
+
 * add funcion set_value None al checkbox
 y radiobutton.

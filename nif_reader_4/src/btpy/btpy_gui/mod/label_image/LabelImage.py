@@ -6,23 +6,36 @@ from ..widget_standard.WidgetStandard import WidgetStandard
 
 class LabelImage(WidgetStandard):
 
+    """
+    This widget is used to write text 
+    or draw a single image; it can't 
+    contain both. It takes up slightly 
+    more memory than label.
+    """
+
     def __init__(self, window, 
-            PATH:str = ""):
+            TITLE:str = ""):
         super().__init__(window)
         self.widget = tk.Label(
                 self.margin)
         self.widget.pack(
             padx=1, 
-            pady=(2, 1)
+            pady=1,
+            fill=tk.BOTH,
+            expand = True
         )
         self.__buffer_image:ImageTk = None
         self.__has_defined_size:bool = False
         self.__has_image:bool = False
         self.__width:int = 0
         self.__height:int = 0
-        self.__path_image:str = PATH
-        if(PATH != ""):
-            self.set_path_image(PATH)
+        self.__path_image:str = ""
+        self.set_title(TITLE)
+
+    def set_title(self, TEXT:str)->None:
+        self.widget.config(text = TEXT)
+        self.widget.config(image = "")
+        self.__buffer_image = None
 
     def get_path_image(self)->str:
         return self.__path_image
@@ -50,6 +63,7 @@ class LabelImage(WidgetStandard):
 
     def set_path_image(self, PATH:str)\
             ->None:
+        self.widget.config(text = "")
         self.__has_image = True
         self.__path_image = PATH
         self.__update_image()

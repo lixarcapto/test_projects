@@ -7,3 +7,4 @@ from .mod.matrix_rgb_to_photoimage.matrix_rgb_to_photoimage import*
 from .mod.matrix_RGB_to_Image.matrix_RGB_to_Image import*
 from .mod.image_to_matrix_RGB.image_to_matrix_RGB import*
 from .mod.lightens_rgb.lightens_rgb import*
+from .mod.blacken_rgb.blacken_rgb import*
