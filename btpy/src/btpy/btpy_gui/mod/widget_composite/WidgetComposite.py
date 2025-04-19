@@ -34,8 +34,13 @@ class WidgetComposite(WidgetStandard):
             font = font_,
             bg = "#EEEEEE"
         )
-        self.set_title_background("#BABABA")
+        self.set_title_background(
+            "#BABABA")
         
+    def set_font(self, FONT):
+        super().set_font(FONT)
+        self.label_title.set_font(FONT)
+
     def hide_title(self):
         self.label_title.widget\
             .grid_forget()
@@ -60,10 +65,6 @@ class WidgetComposite(WidgetStandard):
             sticky="nsew",
             padx=1, pady=(1, 1)
         )
-
-    def get_font(self)->font.Font:
-        self.label_title.widget.cget(
-            "font")
 
     def set_in_vertical(self):
         self.widget.grid(

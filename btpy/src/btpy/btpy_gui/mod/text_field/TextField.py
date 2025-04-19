@@ -10,18 +10,14 @@ class TextField(WidgetComposite):
                 TEXT:str = ""):
         super().__init__(window, True)
         self.label_title\
-            .set_background_color("#FFFFFF")
+            .set_background_color(
+                "#FFFFFF")
         self.entry = tk.Entry(
             self.widget
         )
-        font_ = font.Font(
-                family="Arial", 
-                size=12, 
-                weight="bold"
-                )
+        print(self.get_font())
         self.label_symbol = tk.Label(
             self.widget,
-            font = font_,
             bg = "gray",
             fg = "white"
         )
@@ -31,7 +27,13 @@ class TextField(WidgetComposite):
         self.is_shadow_text = False
         self.symbol_is_added = False 
         self.add_default_listener()
+        self.set_font(self.get_font())
         self.set_title(TEXT)
+
+    def set_font(self, FONT):
+        super().set_font(FONT)
+        self.entry.config(
+            font = FONT)
 
     def add_default_listener(self):
         def fn(e):

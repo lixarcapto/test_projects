@@ -33,7 +33,7 @@ class WidgetStandard:
         self.widget = None
         self.__default_font = font.Font(
             family="Arial", 
-            size=12
+            size=11
         )
         # permite recibir objetos
         # widget wrappers y widgets TK
@@ -149,10 +149,7 @@ class WidgetStandard:
             )
     
     def set_font(self,  FONT):
-        self.__default_font(font = FONT)
-        self.widget.config(
-            font = self.__default_font
-        )
+        self.__default_font = FONT
 
     def set_title(self, TITLE:str)->None:
         self.widget.config(text = TITLE)
