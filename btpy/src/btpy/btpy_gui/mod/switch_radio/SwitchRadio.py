@@ -1,8 +1,9 @@
 
 import tkinter as tk
 from ..widget_standard.WidgetStandard import WidgetStandard
+from ..on_focus_widget.OnFocusWidget import OnFocusWidget
 
-class SwitchRadio(WidgetStandard):
+class SwitchRadio(OnFocusWidget):
 
     def __init__(self, window, 
             variable_, 
@@ -19,15 +20,7 @@ class SwitchRadio(WidgetStandard):
             relief= "solid",
             anchor="w"
         )
-        self.back_color_1\
-            = self.margin.cget("bg")
-        self.back_color_2 = "yellow"
-        self.widget.pack(
-            padx=1, 
-            pady=1,
-            fill=tk.BOTH, 
-            expand=True
-        )
+        self.add_widget(self.widget)
         self.add_default_listener()
 
     def add_on_change_listener(self, 
@@ -37,30 +30,3 @@ class SwitchRadio(WidgetStandard):
         """
         self.widget.config(
             command = CALLBACK)
-        
-    
-    def add_default_listener(self):
-        def enter_fn(e):
-            self.set_margin_color(
-                self.back_color_2)
-        self.widget.bind("<Enter>", 
-                enter_fn)
-        def leave_fn(e):
-            self.set_margin_color(
-                self.back_color_1)
-        self.widget.bind("<Leave>", 
-                leave_fn)
-        
-    def set_background_color(self, COLOR):
-        return super()\
-            .set_background_color(COLOR)
-        self.back_color_1 = COLOR
-
-    def set_focus_color(self, COLOR):
-        self.back_color_2 = COLOR
-
-    def set_title(self, TEXT:str):
-        self.widget.config(text = TEXT)
-
-    def get_title(self):
-        return self.widget.cget("text")

@@ -20,22 +20,22 @@ def main():
     window.set_is_fullscreen(True)
     button = Btpy.ButtonIconText(window, 
         "click aqui")
-    button.paint_image("../btpy/res/image/cell.png")
+    button.paint_image("./res/cell.png")
     button.pack()
     button.set_text_position("LEFT")
     button2 = Btpy.ButtonIconText(window, 
         "click aqui")
-    button2.paint_image("../btpy/res/image/cell.png")
+    button2.paint_image("./res/cell.png")
     button2.pack()
     button2.set_text_position("TOP")
     button3 = Btpy.ButtonIconText(window, 
         "click aqui")
-    button3.paint_image("../btpy/res/image/cell.png")
+    button3.paint_image("./res/cell.png")
     button3.pack()
     button3.set_text_position("BOTTOM")
     button4 = Btpy.ButtonIconText(window, 
         "click aqui")
-    button4.paint_image("../btpy/res/image/cell.png")
+    button4.paint_image("./res/cell.png")
     button4.pack()
     button4.set_text_position("RIGHT")
     window.start()

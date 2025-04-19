@@ -30,6 +30,7 @@ def main():
     radio.pack()
     def fn():
         print(radio.get_value())
+        radio.set_value(None)
     radio.add_on_change_listener(fn)
     window.start()
 

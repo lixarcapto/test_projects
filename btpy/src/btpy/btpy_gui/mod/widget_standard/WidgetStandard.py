@@ -30,6 +30,7 @@ class WidgetStandard:
 
     def __init__(self, widget):
         self.margin = None
+        self.widget = None
         self.__default_font = font.Font(
             family="Arial", 
             size=12
@@ -44,9 +45,24 @@ class WidgetStandard:
             self.margin = tk.Frame(
                 widget)
         self.margin.config(bg = "black")
-        self.widget = None
-        self.is_underline = False
-        self.is_overstrike = False
+
+    def add_widget(self, widget):
+        """
+        Permite agregar un widget
+        principal al componente de 
+        forma automatica.
+        """
+        self.widget = widget
+        self.widget.config(
+            font = self.__default_font,
+            bg = "#F0F0F0"
+        )
+        self.widget.pack(
+            padx=1, 
+            pady=1,
+            fill=tk.BOTH,
+            expand=True
+        )
 
     def get_font(self):
         return self.__default_font
@@ -139,10 +155,10 @@ class WidgetStandard:
         )
 
     def set_title(self, TITLE:str)->None:
-        pass
+        self.widget.config(text = TITLE)
         
     def get_title(self)->str:
-        pass
+        return self.widget.cget("text")
 
     def convert_to_tk_color(self, COLOR):
         f_color = COLOR

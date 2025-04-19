@@ -7,3 +7,7 @@ button pueda recibir color M11(por nombre)
 
 * add funcion set_value None al checkbox
 y radiobutton.
+
+* Unir el button text icon 
+y el button icon pero no el button text
+ya que este tiene muchas diferencias.

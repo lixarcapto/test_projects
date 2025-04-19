@@ -17,6 +17,8 @@ class RadioBox(WidgetComposite):
         if(key_list != []):
             self.__create_button_list(
                 key_list)
+        self.set_background_color(
+            "#808080")
         self.set_title(title)
 
     def add_on_change_listener(self, 
@@ -27,6 +29,15 @@ class RadioBox(WidgetComposite):
                     CALLBACK)
 
     def set_value(self, KEY:str):
+        """
+        Si la clave enviada es "" o
+        None no se selecciona ningun
+        switch button.
+        """
+        if(KEY == "" 
+        or KEY == None):
+            self.__value.set(-1)
+            return None
         n = 0
         for button in self.__button_list:
             if(button.get_title() == KEY):
