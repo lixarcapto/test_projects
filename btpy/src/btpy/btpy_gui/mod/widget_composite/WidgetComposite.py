@@ -14,9 +14,10 @@ class WidgetComposite(WidgetStandard):
         self.label_title = LabelImage(
             self.margin
         )
-        self.widget = tk.Frame(
+        widget = tk.Frame(
             self.margin
         )
+        self.add_widget(widget)
         self.widget.config(bg = "yellow")
         self.title_is_displayed\
             :bool = False

@@ -83,7 +83,7 @@ class InputDate(WidgetComposite):
 
     def set_recomended_years(self, 
                 YEARS_LIST:list[str]):
-        self.combobox_year.set_values_list(
+        self.combobox_year.set_content(
             YEARS_LIST
         )
 
@@ -92,9 +92,9 @@ class InputDate(WidgetComposite):
         days_list = []
         for i in range(1, 31):
             days_list.append(str(i))
-        self.combobox_day.set_values_list(
+        self.combobox_day.set_content(
             days_list)
-        self.combobox_month.set_values_list(
+        self.combobox_month.set_content(
             self.date\
                 .get_months_names()
         )

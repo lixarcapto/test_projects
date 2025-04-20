@@ -84,7 +84,7 @@ class InputTime(WidgetComposite):
 
     def set_recomended_years(self, 
                 YEARS_LIST:list[str]):
-        self.combobox_second.set_values_list(
+        self.combobox_second.set_content(
             YEARS_LIST
         )
 
@@ -93,12 +93,12 @@ class InputTime(WidgetComposite):
         list_60_numbers = []
         for i in range(0, 60):
             list_60_numbers.append(str(i))
-        self.combobox_minute.set_values_list(
+        self.combobox_minute.set_content(
             list_60_numbers)
-        self.combobox_second.set_values_list(
+        self.combobox_second.set_content(
             list_60_numbers)
         list_24_numbers = []
         for i in range(0, 24):
             list_24_numbers.append(str(i))
-        self.combobox_hour.set_values_list(
+        self.combobox_hour.set_content(
             list_24_numbers)

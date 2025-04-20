@@ -5,37 +5,65 @@ import tkinter as tk
 from ..frame.Frame import Frame
 from ..widget_composite.WidgetComposite import WidgetComposite
 from ..switch_check.SwitchCheck import SwitchCheck
+from ....btpy_checkers.mod.is_index.is_index import*
 
 class CheckBox(WidgetComposite):
 
-    def __init__(self, window, 
-            TITLE:str,
-            KEY_LIST:list[str] = []):
-        super().__init__(window)
-        self.__button_list:SwitchCheck = []
-        if(KEY_LIST != []):
-            self.__create_button_list(
-                KEY_LIST)
-        self.set_title(TITLE)
+    """
+    Checkbox type graphic component 
+    that is used to ask the user to 
+    enter multiple options from a list 
+    by pressing click buttons.
+    """
 
-    def get_value(self)->list[str]:
+    def __init__(self, window, 
+            is_horizontal:bool,
+            TITLE:str = ""):
+        super().__init__(
+            window,
+            is_horizontal
+        )
+        self.__button_list:SwitchCheck = []
+        self.set_title(TITLE)
+    
+    # PUBLIC -----------------------------
+
+    def get_value(self)->list[int]:
+        """
+        Function that gets a list 
+        of the indices of the currently 
+        checked buttons.
+        """
         key_list = []
+        n = 0
         for button in self.__button_list:
             if(button.get_value()):
-                key_list.append(
-                    button.get_text())
+                key_list.append(n)
+            n += 1
         return key_list
     
-    def set_value(self, KEY_LIST:list[str]):
+    def set_value(self, INDEX:int)->None:
+        if(not is_index(INDEX, 
+                self.__button_list)):
+            raise Exception(
+            "The INDEX parameter is " \
+            + f"not a valid index.({INDEX})"
+            )
+        """
+        function that marks the button 
+        with the index indicated in 
+        the INDEX parameter.
+        """
+        n = 0
         for button in self.__button_list:
-            for k in KEY_LIST:
-                if(button.get_text() == k):
-                    button.set_value(True)
-                else:
-                    button.set_value(False)
+            if(INDEX == n):
+                button.set_value(True)
+            else:
+                button.set_value(False)
+            n += 1
     
     def add_on_change_listener(self, 
-            CALLBACK_X0:callable)->None:
+            CALLBACK_ARGSX0:callable)->None:
         """
         Funcion que activa la callback
         cuando el listener detecta 
@@ -48,13 +76,23 @@ class CheckBox(WidgetComposite):
         for i in self.__button_list:
             self.__button_list[i]\
                 .add_on_change_listener(
-                    CALLBACK_X0
+                    CALLBACK_ARGSX0
                 )
             
-    def set_content(self, KEY_LIST:str):
+    def set_content(self, 
+            TEXT_LIST:list[str])->None:
+        """
+        Function that draws a list of 
+        texts on each button according 
+        to the order of their indices.
+        """
         self.__format_button()
-        self.__create_button_list(KEY_LIST)
+        self.__create_button_list(TEXT_LIST)
             
+    # ------------------------------------
+
+    # PRIVATE ----------------------------
+
     def __format_button(self):
         button:SwitchCheck = None
         for button in self.__button_list:

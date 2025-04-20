@@ -54,7 +54,6 @@ class WidgetStandard:
         """
         self.widget = widget
         self.widget.config(
-            font = self.__default_font,
             bg = "#F0F0F0"
         )
         self.widget.pack(

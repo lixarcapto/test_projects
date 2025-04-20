@@ -22,22 +22,22 @@ def main():
     canvas = Btpy.Canvas(window, "title")
     canvas.pack()
     canvas.set_size(600, 600)
-    canvas.draw_image([0, 0],
+    canvas.draw_path_image([0, 0],
         "./res/cell.png")
     point_1 = [0, 0]
     point_2 = [300 ,0]
-    color = [0, 0, 0]
-    for i in range(100):
-        canvas.set_brush_color(color)
+    canvas_2 = Btpy.Canvas(
+        window, "copy")
+    canvas_2.pack()
+    for i in range(5):
+        canvas.set_brush_color("green")
         canvas.draw_line(point_1, point_2)
-        """
-        color = Btpy.lightens_rgb(
-            color,
-            0.08
-        )
-        """
+        canvas.set_brush_color("blue")
+        canvas.draw_circle([40, 40], 150)
         point_1[1] += 2
         point_2[1] += 2
+    image = canvas.get_image_reflection()
+    canvas_2.draw_image([0, 0], image)
     window.start()
 
 main()

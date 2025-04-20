@@ -5,6 +5,7 @@ from ..widget_standard.WidgetStandard import WidgetStandard
 from ...mod.create_photo_image.create_photo_image import*
 from ..get_image_size.get_image_size import get_image_size
 import io
+from ....btpy_images.mod.create_image_pil.create_image_pil import*
 from PIL import Image, ImageDraw
 
 class Canvas(WidgetStandard):
@@ -18,7 +19,7 @@ class Canvas(WidgetStandard):
     def __init__(self, window, text = ""):
         super().__init__(window)
         # Crear el Canvas
-        self.image_back = None
+        self.image_reflection = None
         self.widget = tk.Canvas(
             self.margin, 
             bg="white")
@@ -29,6 +30,7 @@ class Canvas(WidgetStandard):
             pady=(2, 1)
         )
         self.set_size(300, 300)
+        self.draw_reflection:bool = True
         self.__buffer_image_list:list = []
         self.__brush_color = "black"
         self.__fill_color = "red"
@@ -42,6 +44,13 @@ class Canvas(WidgetStandard):
         self.callback_left_click \
             = (lambda e:e)
         self.add_default_listener()
+
+    def set_draw_reflection(self, 
+            BOOL:bool):
+        self.draw_reflection = BOOL
+
+    def get_draw_reflection(self)->bool:
+        return self.draw_reflection
 
     def get_point_cursor(self)->list[int]:
         return self.point_cursor
@@ -108,11 +117,11 @@ class Canvas(WidgetStandard):
             width=self.widget.winfo_reqwidth(), 
             height=self.widget.winfo_reqwidth()
         )
-        self.image_back = Image.new(
-            "RGB", 
-            (WIDTH, HEIGHT), 
-            None
-        )
+        self.image_reflection \
+            = create_rgba_image_pil(
+                self.get_width(),
+                self.get_height()
+            )
 
     def draw_line(self, POINT_1:list[int], 
                 POINT_2:list[int]):
@@ -122,8 +131,10 @@ class Canvas(WidgetStandard):
             fill=self.__brush_color, 
             width=self.__brush_thickness
         )
+        if(not self.draw_reflection):
+            return None
         dibujo = ImageDraw.Draw(
-            self.image_back
+            self.image_reflection
         )
         # Dibuja la línea
         dibujo.line(
@@ -203,6 +214,25 @@ class Canvas(WidgetStandard):
             outline=self.__brush_color, 
             width=self.__brush_thickness
         )
+        if(not self.draw_reflection):
+            return None
+        # Crea un objeto ImageDraw
+        dibujo = ImageDraw.Draw(
+            self.image_reflection
+        )
+        coordenadas = (
+            POINT[0] + self.__brush_thickness, 
+            POINT[1] + self.__brush_thickness, 
+            DIAMETER, 
+            DIAMETER
+        )
+        # Dibuja la elipse (círculo)
+        dibujo.ellipse(
+            coordenadas, 
+            fill=self.__fill_color,
+            outline=self.__brush_color, 
+            width=self.__brush_thickness
+        )
 
     def draw_point(self, POINT:list[int]):
         self.widget.create_oval(
@@ -211,6 +241,25 @@ class Canvas(WidgetStandard):
             POINT[0] + self.__brush_thickness, 
             POINT[1] + self.__brush_thickness, 
             fill=self.__brush_color, 
+            outline=self.__brush_color, 
+            width=self.__brush_thickness
+        )
+        if(not self.draw_reflection):
+            return None
+        # Crea un objeto ImageDraw
+        dibujo = ImageDraw.Draw(
+            self.image_reflection
+        )
+        coordenadas = (
+            POINT[0], 
+            POINT[1], 
+            POINT[0] + self.__brush_thickness, 
+            POINT[1] + self.__brush_thickness, 
+        )
+        # Dibuja la elipse (círculo)
+        dibujo.ellipse(
+            coordenadas, 
+            fill=self.__fill_color,
             outline=self.__brush_color, 
             width=self.__brush_thickness
         )
@@ -225,18 +274,41 @@ class Canvas(WidgetStandard):
             outline=self.__brush_color, 
             width=self.__brush_thickness
         )
+        if(not self.draw_reflection):
+            return None
+        dibujo = ImageDraw.Draw(
+            self.image_reflection)
+        dibujo.rectangle(
+            tuple(POINT), 
+            fill=self.__fill_color,
+            outline=self.__brush_color, 
+            width=self.__brush_thickness
+        )
 
-    def draw_image(self, POINT:list[int], 
-            PATH:str, SIZE_LIST:list[int]
-                = [0, 0]):
+    def draw_path_image(self, 
+            POINT:list[int], 
+            PATH:str, 
+            SIZE_LIST:list[int]= [0, 0]
+            ):
         imagen_pil = Image.open(PATH)
+        self.draw_image(
+            POINT,
+            imagen_pil,
+            SIZE_LIST
+        )
+        
+    def draw_image(self, 
+            POINT:list[int], 
+            IMAGE_PIL:str, 
+            SIZE_LIST:list[int] = [0, 0]
+            ):
         if(SIZE_LIST != [0, 0]):
-            imagen_pil = imagen_pil.resize((
+            IMAGE_PIL = IMAGE_PIL.resize((
                 SIZE_LIST[0], 
                 SIZE_LIST[1]
             ))
         photo_image = ImageTk.PhotoImage(
-            imagen_pil)
+            IMAGE_PIL)
         self.__buffer_image_list.append(
             photo_image)
         # crea un nuevo origen para 
@@ -250,16 +322,19 @@ class Canvas(WidgetStandard):
             POINT[1] \
             + (photo_image.height() / 2)
         )
-        self.image_back\
-            .paste(
-                imagen_pil, 
-                POINT
-            )
         self.widget.create_image(
             new_origen[0], 
             new_origen[1], 
             image=photo_image
         )
+        if(not self.draw_reflection):
+            return None
+        self.image_reflection\
+            .paste(
+                IMAGE_PIL, 
+                tuple(POINT)
+            )
+        
 
     def draw_photo_image(self, 
             photo_image:tk.PhotoImage,
@@ -288,7 +363,7 @@ class Canvas(WidgetStandard):
             PATH_LIST:list[str],
             SIZE_LIST:list[int] = [0, 0]):
         for path in PATH_LIST:
-            self.draw_image(
+            self.draw_path_image(
                 POINT, 
                 path,
                 SIZE_LIST
@@ -344,5 +419,5 @@ class Canvas(WidgetStandard):
         self.callback_left_click \
             = CALLBACK
 
-    def take_screenshot(self)->Image:
-        return self.image_back
+    def get_image_reflection(self)->Image:
+        return self.image_reflection

@@ -16,9 +16,10 @@ class View:
         self.frame_head.set_background_color(
             "yellow")
         self.title_nif = Btpy.LabelImage(
-            self.frame_head,
-            "./res/image/nif_icon.png"
+            self.frame_head
         )
+        self.title_nif.set_path_image(
+            "./res/image/nif_icon.png")
         self.title_nif.pack(False, 
             "left")
         self.input_file = Btpy.InputFile(

@@ -19,15 +19,19 @@ def main():
     window = Btpy.Window("titulo")
     window.set_is_fullscreen(True)
     combobox = Btpy.Combobox(window, 
-            "animal favorito", [
+            True,
+            "animal favorito"
+    )
+    combobox.set_content(
+        [
                 "gato",
                 "tortuga",
                 "perro",
                 "oso",
                 "lagartija"
-            ]
+        ]
     )
-    combobox.pack(5)
+    combobox.pack()
     def fn(e):
         print(combobox.get_value())
     combobox.add_change_listener(fn)

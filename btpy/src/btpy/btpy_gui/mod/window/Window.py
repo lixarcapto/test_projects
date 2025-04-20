@@ -17,6 +17,8 @@ class Window:
         self.buffer_image = None
         self.width = 0
         self.height = 0
+        self.key_callback_dict\
+            :dict[str, callable] = {}
         self.is_fullscreen = False
         self.__init_basic_listeners()
 
@@ -73,6 +75,7 @@ class Window:
             self.set_is_fullscreen(True)
         self.window.bind("<F11>", 
             open_full_screen)
+        self.add_default_key_listener()
 
     def set_is_fullscreen(self, bool):
         self.is_fullscreen = bool
@@ -137,3 +140,19 @@ class Window:
 
     def start(self):
         self.window.mainloop()
+
+    def add_default_key_listener(self):
+        def fn(event):
+            key = event.keysym 
+            print("key", key)
+            key_dict = self.key_callback_dict
+            if(key in key_dict):
+                key_dict[key](event)
+        self.window.bind("<Key>", fn)
+
+    def add_key_listener(self, 
+            KEY:str,
+            CALLBACK_ARGS_X1:callable):
+        self.key_callback_dict[KEY]\
+            = CALLBACK_ARGS_X1
+        
