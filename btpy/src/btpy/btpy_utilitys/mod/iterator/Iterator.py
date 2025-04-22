@@ -14,7 +14,7 @@ class Iterator:
     sus elementos con get.
     """
 
-    def __init__(self, array, /,
+    def __init__(self, array = [],
                  IS_CYCLE = False):
         self.__is_cycle:bool = IS_CYCLE
         self.__is_reverse:bool = False
@@ -71,10 +71,6 @@ class Iterator:
         and not type(LIST) == type(())):
             raise Exception(
                 "LIST is not an array"
-            )
-        if(len(LIST) <= 1):
-            raise Exception(
-                "LIST it's very small"
             )
         self.__index = 0
         self.__list = LIST

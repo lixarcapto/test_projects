@@ -31,32 +31,41 @@ class GameObject:
             :list[int] = [0, 0]
         self.pose_key:str = ""
         self.group_key:str = ""
-        self.__image_key_list:list[str] = []
-        self.index_image:int = 0
+        self.__image_list_dict = {}
+        self.__image_list_key:str = ""
+        self.__iterator_image = Iterator()
+        self.__iterator_image\
+            .set_is_cycle(True)
         self.box_size_list\
             :list[int] = [0, 0]
         
-    def add_image_key(self, IMAGE_KEY:str)\
-            ->None:
-        """
-        Funcion que agrega una imagen a
-        la lista de imagenes.
-        """
-        # validators
-        if(not isinstance(IMAGE_KEY, str)):
-            raise Exception(
-                "IMAGE_KEY is not a string type")
-        self.__image_key_list.append(
-            IMAGE_KEY)
+    def get_render(self)->dict:
+        return {
+            "image_key": self\
+                .__iterator_image.get(),
+            "point": self.point_location
+        }
         
-    def clean_image_key_list(self)->None:
-        self.__image_key_list = []
-        
-    def set_image_key_list(self, 
-                IMAGE_KEY_LIST:list[str])\
+    def set_image_list(self, 
+                KEY:str, 
+                IMAGE_LIST:list[str])\
                 ->None:
-        self.__image_key_list \
-            = IMAGE_KEY_LIST
+        self.__image_list_dict[KEY]\
+            = IMAGE_LIST
+        self.set_image_list_key(KEY)
+        
+    def next_image(self):
+        if(self.__image_list_key == ""):
+            return None
+        self.__iterator_image.next()
+        
+    def set_image_list_key(self, KEY:str)\
+                ->None:
+        self.__image_list_key = KEY
+        image_list = self\
+            .__image_list_dict[KEY]
+        self.__iterator_image\
+            .set_list(image_list)
 
     def get_rect_box(self)->dict:
         return { 
@@ -90,6 +99,7 @@ class GameObject:
             self.point_motion, vector_list)
         
     def update(self):
+        self.next_image()
         self.point_location[0] \
             = sum_in_range(
                 self.point_location[0],

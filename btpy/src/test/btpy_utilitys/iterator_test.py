@@ -28,5 +28,12 @@ def main():
     while(it.has_next()):
         print(it.get())
         it.next()
+    it = Btpy.Iterator(
+        [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    )
+    it.set_is_cycle(True)
+    for i in range(14):
+        print("value", it.get())
+        it.next()
 
 main()
