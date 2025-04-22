@@ -14,7 +14,7 @@ def iterator_test(test_arr):
     test_arr.append([3, 2, 1, 0] == array)
     # test de ciclico
     iterator2 = Iterator([3, 2, 1, 0], 
-            is_cycle=True)
+            IS_CYCLE=True)
     array = []
     n = 0
     while(iterator2.next()):

@@ -1,8 +1,6 @@
 
 
-def is_range(RANGE_ARRAY_X2
-        :list[int|float])\
-        -> bool:
+def is_range(ANY_DATA:any)-> bool:
     """
     Function that returns true if the 
     data sent is a range in array 
@@ -11,23 +9,24 @@ def is_range(RANGE_ARRAY_X2
     is min and index 1 is max; if the 
     data is not a range, it will return 
     false.
+    FINAL
     """
     # Si no es un array de longitud 2
-    if (not isinstance(RANGE_ARRAY_X2, list)) \
-    or (len(RANGE_ARRAY_X2) != 2):
+    if (not isinstance(ANY_DATA, list)) \
+    or (len(ANY_DATA) != 2):
         return False
     # Si no es un número
     if ((not isinstance(
-            RANGE_ARRAY_X2[0], 
+            ANY_DATA[0], 
             (int, float)
         )) 
     and (isinstance(
-            RANGE_ARRAY_X2[1], 
+            ANY_DATA[1], 
             (int, float)
         ))):
         return False
     # Si no es min y max
-    if (not RANGE_ARRAY_X2[0] 
-            < RANGE_ARRAY_X2[1]):
+    if (not ANY_DATA[0] 
+            < ANY_DATA[1]):
         return False
     return True

@@ -16,13 +16,18 @@ sys.path.append(directorio_abuelo)
 from btpy.Btpy import Btpy
 
 def main():
-    array = []
-    print("-> is_number_test")
-    r = Btpy.is_number(5)
+    r = Btpy.are_equal_strings(
+        "lizard", "LiZard")
     print(r == True)
-    r = Btpy.is_number(0.4)
-    print(r == True)
-    r = Btpy.is_number("5")
-    print(r == False)
+    try:
+        r = Btpy.are_equal_strings(
+            5, "LiZard")
+    except Exception as e:
+        print(e)
+    try:
+        r = Btpy.are_equal_strings(
+            "lizard", 5)
+    except Exception as e:
+        print(e)
 
 main()

@@ -7,6 +7,7 @@ from ....btpy_maths.mod.vector_sum\
 from ....btpy_checkers.mod\
     .is_colliding_rect.is_colliding_rect import*
 from ....btpy_const.mod.sense.Sense import Sense
+from ....btpy_utilitys.mod.iterator.Iterator import Iterator
 
 class GameObject:
 
@@ -30,10 +31,33 @@ class GameObject:
             :list[int] = [0, 0]
         self.pose_key:str = ""
         self.group_key:str = ""
-        self.image_key:str = ""
+        self.__image_key_list:list[str] = []
+        self.index_image:int = 0
         self.box_size_list\
             :list[int] = [0, 0]
         
+    def add_image_key(self, IMAGE_KEY:str)\
+            ->None:
+        """
+        Funcion que agrega una imagen a
+        la lista de imagenes.
+        """
+        # validators
+        if(not isinstance(IMAGE_KEY, str)):
+            raise Exception(
+                "IMAGE_KEY is not a string type")
+        self.__image_key_list.append(
+            IMAGE_KEY)
+        
+    def clean_image_key_list(self)->None:
+        self.__image_key_list = []
+        
+    def set_image_key_list(self, 
+                IMAGE_KEY_LIST:list[str])\
+                ->None:
+        self.__image_key_list \
+            = IMAGE_KEY_LIST
+
     def get_rect_box(self)->dict:
         return { 
             "x":self.point_location[0],

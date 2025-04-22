@@ -11,6 +11,51 @@ class BtpyCheckers:
     data type checking.
     """
 
+    def are_equal_strings(STRING_1:str, 
+            STRING_2:str)-> bool:
+        """
+        Function that checks if two 
+        strings are equal, ignoring case.
+        FINAL
+        """
+        return are_equal_strings(STRING_1,
+                STRING_2)
+    
+    def in_range(NUMBER: int|float, 
+            RANGE_LIST_X2: list[int|float])\
+            -> bool:
+        """
+        Function to identify if the input 
+        number is contained within the 
+        sending range. The range sent is 
+        an integer array where index 0 
+        is min and 1 is max.
+        FINAL
+        """
+        return in_range(NUMBER, RANGE_LIST_X2)
+    
+    def is_number(ANY_DATA:any) -> bool:
+        """
+        Function that returns true if 
+        the data sent is float or 
+        integer type.
+        FINAL
+        """
+        return is_number(ANY_DATA)
+    
+    def is_range(ANY_DATA:any)-> bool:
+        """
+        Function that returns true if the 
+        data sent is a range in array 
+        format, that is, an array of int 
+        or float of size x2 where index 0 
+        is min and index 1 is max; if the 
+        data is not a range, it will return 
+        false.
+        FINAL
+        """
+        return is_range(ANY_DATA)
+
     def are_all_the_same(ARRAY:list)->bool:
         """
         TESTED

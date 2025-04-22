@@ -16,7 +16,7 @@ from btpy.Btpy import Btpy
 def main(): 
     window = Btpy.Window("game object")
     gog = Btpy.GameObject()
-    gog.image_key = "./ship_70x70.png"
+    gog.__image_key_list = "./ship_70x70.png"
     gog.point_location = [130, 300]
     gog.box_size_list = [70, 70]
     Btpy.GameObject.set_scenario_size(
@@ -38,7 +38,7 @@ def main():
         lambda e:gog.move_right(speed)
     )
     bullet = Btpy.GameObject()
-    bullet.image_key = "./bullet_70x70.png"
+    bullet.__image_key_list = "./bullet_70x70.png"
     bullet.point_location = [
              Btpy.rand_range([0, 350]), 
             0
@@ -56,11 +56,11 @@ def main():
         canvas.repaint()
         canvas.draw_path_image(
             gog.point_location,
-            gog.image_key
+            gog.__image_key_list
         )
         canvas.draw_path_image(
             bullet.point_location,
-            bullet.image_key
+            bullet.__image_key_list
         )
         gog.update()
         bullet.update()
