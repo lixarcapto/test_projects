@@ -15,14 +15,6 @@ from btpy.Btpy import Btpy
 
 def main(): 
     window = Btpy.Window("game object")
-    gog = Btpy.GameObject()
-    gog.set_image_list("ship",
-        ["./ship_70x70.png"])
-    gog.point_location = [130, 300]
-    gog.box_size_list = [70, 70]
-    Btpy.GameObject.set_scenario_size(
-        [400, 400]
-    )
     canvas = Btpy.Canvas(window, "canvas")
     canvas.set_size(400, 400)
     canvas.set_background_color(
@@ -30,6 +22,12 @@ def main():
     canvas.pack()
     canvas.set_draw_reflection(False)
     speed = 10
+    scenario = Btpy.Scenario()
+    scenario.set_size(400, 400)
+    gog = Btpy.GameObject("ship")
+    gog.set_box_size(70, 70)
+    gog.set_image_list("ship", 
+        "./ship_70x70.png")
     window.add_key_listener(
         "Left", 
         lambda e:gog.move_left(speed)
@@ -38,48 +36,44 @@ def main():
         "Right", 
         lambda e:gog.move_right(speed)
     )
-    bullet = Btpy.GameObject()
-    bullet.point_location = [
-             Btpy.rand_range([0, 350]), 
-            0
-            ]
-    bullet.set_image_list("cat", [
-        "./cat_1.png",
-        "./cat_2.png"
-    ])
-    bullet.box_size_list = [70, 70]
-    bullet.move_down(10)
-    life_number = 3
-    label = Btpy.Label(window, 
-        f"life:{life_number}")
-    label.pack(False, "top")
+    window.add_key_listener(
+        "Up", 
+        lambda e:gog.move_up(speed)
+    )
+    window.add_key_listener(
+        "Down", 
+        lambda e:gog.move_down(speed)
+    )
+    gog.point_location = [100, 100]
+    bullet = Btpy.GameObject("bullet")
+    bullet.point_location = [260, 100]
+    bullet.set_box_size(70, 70)
+    def fn(gog:Btpy.GameObject):
+        if(gog.is_colliding):
+            print("bullet is colliding")
+            bullet.set_image_list_key("cat")
+    bullet.add_behavior("nn", fn)
+    bullet.set_image_list("bullet", 
+        "./bullet_70x70.png")
+    bullet.set_image_list("cat", 
+        "./cat_1.png")
+    scenario.set_gobject(gog)
+    scenario.set_gobject(bullet)
+    n = 0
     def fn(e):
-        nonlocal life_number
-        label.set_title(
-            f"life:{life_number}")
+        nonlocal n
         canvas.repaint()
-        canvas.draw_path_image(
-            gog.point_location,
-            gog.get_render()\
-                ["image_key"]
-        )
-        canvas.draw_path_image(
-            bullet.point_location,
-            bullet.get_render()\
-                ["image_key"]
-        )
-        print("bullet image", bullet.get_render()\
-                ["image_key"])
-        gog.update()
-        bullet.update()
-        if(bullet.point_location[1] >= 400):
-            bullet.point_location = [
-             Btpy.rand_range([0, 350]), 
-            0
-            ]
-        if(gog.is_colliding(bullet)):
-            print("is_colliding")
-            life_number -= 1
+        scenario.update()
+        print(f"update {n}")
+        n += 1
+        render_list = scenario\
+            .get_render_list()
+        for render in render_list:
+            canvas.draw_path_image(
+                render["point"],
+                render["image_key"]
+            )
+
     Btpy.repeat_each_async(0.60, fn)
     window.start()
 

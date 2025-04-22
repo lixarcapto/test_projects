@@ -19,4 +19,5 @@ class BtpyDataTypes(BtpyConst):
     MultikeyDict = MultikeyDict
     CountingDict = CountingDict
     GameObject = GameObject
+    Scenario = Scenario
 
