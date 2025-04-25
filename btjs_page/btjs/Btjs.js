@@ -40,10 +40,6 @@ export class Btjs extends UtilBtjs {
   //----------------------------------------
 
     body = null
-
-    static {
-        Btjs.body = Btjs.StyleHead()
-    }
   
     //traspasando de BTPY.
     // SEGUIR EN MATH Y RANDOM DESDE

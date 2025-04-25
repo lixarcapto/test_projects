@@ -1,316 +1,188 @@
 
 
-import { DataTypes } 
-    from "../data_types/DataTypes.js";
-// GUI -----------------------------------
+import { BtjsConverters } from "../converters/BtjsConverters.js";
 
-import { ListOl } from "./ListOl.js";
-import { ListUl } from "./ListUl.js";
-import { Selector } from "./Selector.js";
-import { TextArea } from "./TextArea.js";
-import { Button } from "./Button.js";
-import { ColorSelector } from "./ColorSelector.js";
-import { Body } from "./Body.js";
-import { LabelArea } from "./LabelArea.js";
-import { Link } from "./Link.js";
-import { Quote } from "./Quote.js";
-import { Article } from "./Article.js";
-import { TitleBar } from "./TitleBar.js";
-import { Card } from "./Card.js";
-import { PageStructure } from "./PageStructure.js";
-import { References } from "./References.js";
-import { VideoFigure } from "./VideoFigure.js";
-import {Image} from "./Image.js";
-import { CheckBoxTicket } from "./CheckBoxTicket.js";
-import { InputList } from "./InputList.js";
-import { ClickIconBox } from "./ClickIconBox.js";
-import { ClickTextBox } from "./ClickTextBox.js";
-import { InputSlider } from "./InputSlider.js";
-import { DataBar } from "./DataBar.js";
-import { RadioButtonList } from "./RadioButtonList.js";
-import { CommentBox } from "./CommentBox.js";
-import { ButtonList } from "./ButtonList.js";
-import { SwipperNumber } from "./SwipperNumber.js";
-import { CheckButton } from "./CheckButton.js";
-import { Canvas } from "./Canvas.js";
-import { ScrollList } from "./ScrollList.js";
-import { ChangeColorButton } from "./ChangeColorButton.js";
-import {Book } from "./Book.js";
-import { Gauge } from "./Gauge.js";
-import { BookMenu } from "./BookMenu.js";
-import { ButtonChest } from "./ButtonChest.js";
-import { ClickIconText } from "./ClickIconText.js";
-import { ClickIconTextOverlay } from "./ClickIconTextOverlay.js";
-import { ClickIconOnly} from "./ClickIconOnly.js";
-import { IconChart } from "./IconChart.js";
-import { InputTxt } from "./InputTxt.js";
-import {BarChart} from "./BarChart.js";
-import { TextField } from "./TextField.js"; 
-import { Table } from "./Table.js";
-import { Sign } from "./Sign.js";
-import { InnerStyle } from "./InnerStyle.js";
-import {Label} from "./Label.js";
-import { Frame } from "./Frame.js";
-import { Dice } from "./Dice.js";
-import { SwipperText } from "./SwipperText.js";
-import { InputImage } 
-  from "./InputImage.js";
-import { dowload_with_blop } 
-  from "./dowload_with_blop.js";
-import { LabelLabel } 
-  from "./LabelLabel.js";
+// Labels -------------------------------
+import { Label } from "./mod/Label.js";
+import { Image } from "./mod/Image.js";
+import { LabelArea } from "./mod/LabelArea.js";
+import { LabelLabel } from "./mod/LabelLabel.js";
 
-export class BtjsGui extends DataTypes {
+// Containers ----------------------------
+import { Frame } from "./mod/Frame.js";
 
-    static ClickIconText(title, url) {
-        return new ClickIconText(title, url);
+// Cards --------------------------------
+import { Card } from "./mod/Card.js";
+
+// Input Text
+import { TextField } from "./mod/TextField.js";
+import { TextArea } from "./mod/TextArea.js";
+
+// Click Buttons ------------------------
+import { ButtonIcon } from "./mod/ButtonIcon.js";
+import {ButtonIconText} from "./mod/ButtonIconText.js";
+import {ButtonIconTextOverlay} from "./mod/ButtonIconTextOverlay.js";
+import { Button } from "./mod/Button.js";
+import { Link } from "./mod/Link.js";
+
+// Switch Buttons ------------------------
+import { SwitchColor } from "./mod/SwitchColor.js";
+import { SwitchCheck } from "./mod/SwitchCheck.js";
+
+// Others -------------------------------
+import { ColorSelector } from "./mod/ColorSelector.js";
+
+// Swipers ------------------------------
+import { SwiperRange } from "./mod/SwiperRange.js";
+import { SwiperText } from "./mod/SwiperText.js";
+
+// Boxes --------------------------------
+import {RadioBoxClasic} from "./mod/RadioBoxClasic.js";
+import { CheckBoxClasic } from "./mod/CheckBoxClasic.js";
+
+export class BtjsGui extends BtjsConverters {
+
+    // Labels ----------------------------
+
+    static Label(TITLE_STR = "") {
+      return new Label(TITLE_STR)
     }
 
-    static ClickIconTextOverlay(title, url) {
-        return new ClickIconTextOverlay(title, 
-          url);
+    static LabelArea(TITLE_STR = "") {
+      return new LabelArea(TITLE_STR)
     }
 
+    static Image(IMAGE_URL_STR = "") {
+      return new Image(IMAGE_URL_STR)
+    }
 
-    
+    static LabelLabel(TITLE_STR,
+        CONTENT_STR) {
+      return new LabelLabel(TITLE_STR,
+          CONTENT_STR)
+    }
 
+    //-----------------------------------
+
+    // Click Buttons --------------------
+
+    static Button(TITLE_STR = "") {
+      return new Button(TITLE_STR)
+    }
   
-    static Button(text = "") {
-      return new Button(text)
+    static Link(TITLE_STR, URL_STR) {
+      return new Link(TITLE_STR, URL_STR)
     }
 
-    static Sign(text, width, height) {
-      return new Sign(text, width, height)
+    static ButtonIcon(TITLE_STR,
+        IMAGE_URL_STR) {
+      return new ButtonIcon(
+        TITLE_STR,
+        IMAGE_URL_STR
+      )
     }
 
-    static Table(title) {
-      return new Table(title)
+    static ButtonIconText(TITLE_STR,
+        IMAGE_URL_STR) {
+      return new ButtonIconText(
+        TITLE_STR,
+        IMAGE_URL_STR
+      )
     }
 
-    static InputImage(title) {
-      return new InputImage(title);
+    static ButtonIconTextOverlay(
+        TITLE_STR,
+        IMAGE_URL_STR) {
+      return new ButtonIconTextOverlay(
+        TITLE_STR,
+        IMAGE_URL_STR
+      )
     }
 
-    static IconChart(title) {
-      return new IconChart(title)
+    // -----------------------------------
+
+    // Input Text ------------------------
+
+    static TextField(TITLE) {
+      return new TextField(TITLE)
     }
 
-    static InnerStyle(class_code, 
-        pseudoclass = "") {
-      return new InnerStyle(class_code, 
-          pseudoclass)
+    static TextArea(TITLE_STR, 
+         TEXT_STR = "") {
+      return new TextArea(TITLE_STR, 
+        TEXT_STR)
     }
 
-    static InputTxt(title) {
-      return new InputTxt(title)
+    // -----------------------------------
+
+    // Containers ------------------------
+
+    static Frame(TITLE_STR) {
+      return new Frame(TITLE_STR)
     }
 
-    static Dice(size_x, size_y) {
-      return new Dice(size_x, size_y)
+    // ---------------------------------
+
+    // Cards ---------------------------
+
+    static Card(TITLE_STR) {
+      return new Card(TITLE_STR)
     }
 
-    static TextField(title) {
-      return new TextField(title)
+    // ----------------------------------
+
+    // Switch ---------------------------
+
+    static SwitchCheck(TITLE_STR) {
+      return new SwitchCheck(TITLE_STR)
     }
 
-    static BarChart(title) {
-      return new BarChart(title)
+    static SwitchColor(TITLE_STR) {
+      return new SwitchColor(TITLE_STR)
     }
 
-    static ClickIconOnly(title, url) {
-      return new ClickIconOnly(title, url)
-    }
+    // ----------------------------------
 
-    static BookMenu(text = "") {
-      return new BookMenu(text)
-    }
+    // Others ---------------------------
 
-    static jump(number = 1) {
-      let e = null
-      for(let i=0;i< number; i++) {
-        e = document.createElement("br")
-        document.body.append(e)
-      }
-    }
-
-    static to_body(widget_btjs) {
-      document.body.append(widget_btjs.node)
-    }
-
-    static ListOl(text, ARRAY) {
-      return new ListOl(text, ARRAY)
-  }
-
-  static ListUl(text, ARRAY) {
-    return new ListUl(text, ARRAY)
-}
-
-    static LabelArea(text = "") {
-      return new LabelArea(text)
-    }
-
-    static Gauge(text = "") {
-      return new Gauge(text)
-    }
-
-    static Selector(text, ARRAY = []) {
-      return new Selector(text, 
-        ARRAY)
-    }
-    
-    static Frame() {
-      return new Frame()
-    }
-    
-    static ButtonChest(title) {
-      return new ButtonChest(title)
-    }
-
-    static Book() {
-      return new Book()
-    }
-
-    static TextArea(key, text) {
-      return new TextArea(key, text)
-    }
-
-    static color_selector() {
+    static ColorSelector() {
       return new ColorSelector()
     }
 
-    static ChangeColorButton(text) {
-      return new ChangeColorButton(text)
+    // ----------------------------------
+
+    // Swipers --------------------------
+
+    static SwiperRange(TITLE_STR,
+        RANGE_LIST_X2) {
+      return new SwiperRange(
+        TITLE_STR,
+        RANGE_LIST_X2
+      )
     }
 
-    static StyleHead() {
-      return new Body()
+    static SwiperText(TITLE_STR, 
+        CONTENT_LIST_STR) {
+      return new SwiperText(TITLE_STR, 
+        CONTENT_LIST_STR)
     }
 
-    static Link(text, url) {
-      return new Link(text, url)
+    // ----------------------------------
+
+    // Boxes ----------------------------
+
+    static RadioBoxClasic(title, list) {
+        return new RadioBoxClasic(
+          title, list
+        )
     }
 
-    static Quote() {
-      return new Quote()
+    static CheckBoxClasic(title, list) {
+        return new CheckBoxClasic(
+            title, list
+        )
     }
 
-    static Article(title, text = "", 
-        level = 0) {
-      return new Article(title, 
-        text, level)
-    }
-
-    static Card(title, src, 
-      description = "") {
-        return new Card(title,
-          src, description)
-    }
-
-    static TitleBar(title) {
-      return new TitleBar(title)
-    }
-
-    static PageStructure() {
-      return new PageStructure()
-    }
-
-    static References() {
-      return new References()
-    }
-
-    static VideoFigure() {
-      return new VideoFigure()
-    }
-
-    static Label(text = "") {
-      return new Label(text)
-    }
-
-    static Image(url) {
-      return new Image(url)
-    }
-
-    static CheckBoxTicket(title, text_arr) {
-      return new CheckBoxTicket(title, text_arr)
-    }
-
-    static InputList(text_arr) {
-      return new InputList(text_arr)
-    }
-
-    static ClickTextBox(title, key_arr) {
-      return new ClickTextBox(title,
-         key_arr)
-    }
-
-    static ClickIconBox(title, key_arr) {
-      return new ClickIconBox(title,
-         key_arr)
-    }
-
-    static InputSlider(title, range_arr, 
-          value) {
-      return new InputSlider(title, 
-          range_arr, value)
-    }
-
-    static DataBar(title) {
-      return new DataBar(title)
-    }
-
-    
-
-    static RadioButtonList(title, text_arr) {
-      return new RadioButtonList(title, 
-          text_arr)
-    }
-
-    static CommentBox(json_arr = []) {
-      return new CommentBox(json_arr)
-    }
-
-    static ButtonList(title, text_arr) {
-      return new ButtonList(title, text_arr)
-    }
-
-    static IconButton(image_url, text) {
-      return new IconButton(image_url, text)
-    }
-
-    static SwipperNumber(name, range_arr) {
-      return new SwipperNumber(name, 
-        range_arr)
-    }
-
-    static SwipperText(name, content_array) {
-      return new SwipperText(
-        name, content_array)
-    }
-
-    static CircleButton(title) {
-      return new CheckButton(title, 
-        "radio")
-    }
-
-    static LabelLabel(title, text = "") {
-      return new LabelLabel(title, text)
-    }
-
-    static CheckButton(title) {
-      return new CheckButton(title, 
-        "checkbox")
-    }
-
-    static Canvas(size_x, size_y) {
-      return new Canvas(size_x, size_y)
-    }
-
-    static ScrollList(text_arr, height) {
-      return new ScrollList(text_arr, height)
-    }
-
-    static dowload_with_blop(content) {
-      return dowload_with_blop(content)
-    }
+    // ----------------------------------
 
 }

@@ -1,10 +1,12 @@
 
 
-import { ConstBtjs } from "../const/ConstBtjs.js";
+import { ConstBtjs } 
+    from "../const/ConstBtjs.js";
+//
 import { array_to_jsobject } 
-    from "./array_to_jsobject.js";
+    from "./mod/array_to_jsobject.js";
 import { base64_to_image } 
-    from "./base64_to_image.js";
+    from "./mod/base64_to_image.js";
 
 export class BtjsConverters extends ConstBtjs {
 

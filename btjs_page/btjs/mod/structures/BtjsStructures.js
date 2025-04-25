@@ -1,40 +1,38 @@
 
 
-import { BtjsString } 
-    from "../string/BtjsString.js";
 
 // STRUCTURES -------------------------------
 
 import { clean_voids } 
-  from "./clean_voids.js";
-import { count } from "./count.js";
+  from "./mod/clean_voids.js";
+import { count } from "./mod/count.js";
 import { create_array } 
-  from "./create_array.js";
+  from "./mod/create_array.js";
 import { find_value } 
-  from "./find_value.js";
+  from "./mod/find_value.js";
 import { fit_list } 
-  from "./fit_list.js";
+  from "./mod/fit_list.js";
 import { join_jsobject } 
-  from "./join_jsobject.js";
-import { map2 } from "./map2.js";
+  from "./mod/join_jsobject.js";
+import { map2 } from "./mod/map2.js";
 import { repeat_each as repeat_each } 
-  from "./repeat_reach.js";
+  from "./mod/repeat_reach.js";
 import { min_in_dict } 
-  from "./min_in_dict.js";
+  from "./mod/min_in_dict.js";
 import { max_in_dict } 
-  from "./max_in_dict.js";
+  from "./mod/max_in_dict.js";
 import { find_closest_lower_array } 
-  from "./find_closest_lower.js";
+  from "./mod/find_closest_lower.js";
 import { find_closest_highest_array } 
-  from "./find_closest_lower.js";
+  from "./mod/find_closest_lower.js";
 import { has_all } 
-  from "./has_all.js";
+  from "./mod/has_all.js";
 import { has_some } 
-  from "./has_some.js";
-import { Iterator1d } 
-  from "./Iterator1d.js";
+  from "./mod/has_some.js";
 
-export class BtjsStructures extends BtjsString {
+import { BtjsGui } from "../gui/BtjsGui.js";
+
+export class BtjsStructures extends BtjsGui {
 
     //------------------------------------
     // Array bucles ------------------------
@@ -120,10 +118,6 @@ export class BtjsStructures extends BtjsString {
         return find_value(jsobject)
       }
   
-      static true_percentage(BOOL_ARRAY) {
-        return true_percentage(BOOL_ARRAY)
-      }
-  
       static fit_list(ARRAY, SIZE, 
         DEFAULT_VALUE = null) {
           return fit_list(ARRAY, SIZE, 
@@ -181,9 +175,7 @@ export class BtjsStructures extends BtjsString {
             ARRAY, NUMBER)
       }
 
-      static Iterator1d(ARRAY = []) {
-          return new Iterator1d(ARRAY)
-      }
+      
   
 
 }

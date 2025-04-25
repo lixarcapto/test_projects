@@ -3,12 +3,9 @@
 import { Btjs } from "../../../btjs/Btjs.js";
 
 function main() {
-    let text_field = Btjs.TextField("text")
-    text_field.to_document()
-
-
-
-
+    let field = Btjs.TextField("name")
+    field.to_document()
+    field.set_placeholder("write a name")
 
 }
 
