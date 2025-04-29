@@ -31,3 +31,4 @@ from .mod.create_console_loop\
 from .mod.time.Time import Time
 from .mod.date.Date import Date
 from .mod.turn_off.turn_off import*
+from .mod.open_browser_in_time.open_browser_in_time import*

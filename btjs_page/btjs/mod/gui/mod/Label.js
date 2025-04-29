@@ -14,10 +14,11 @@ export class Label extends StandartText {
         super("label");
         this.node.setAttribute("style",
             `
-            border: 1px solid gray;
-            padding: 3px;
-            background: white;
             border-radius: 3px;
+            padding: 5px;
+            border: 1px solid gray;
+            border-radius: 3px;
+            margin: 2px;
             `
         )
         this.set_text(TITLE_STR)

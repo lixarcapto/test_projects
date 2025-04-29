@@ -1,12 +1,11 @@
 
 
 
-import { WidgetListStandard } 
-    from "./WidgetListStandard.js";
+import {CompositeWidget} from "./CompositeWidget.js";
 import { SwitchCheck } from "./SwitchCheck.js";
 
 export class CheckBoxClasic extends 
-        WidgetListStandard {
+        CompositeWidget {
 
     constructor(TITLE_STR, 
                 CONTENT_LIST_STR) {

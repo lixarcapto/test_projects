@@ -31,6 +31,10 @@ import { SwitchCheck } from "./mod/SwitchCheck.js";
 
 // Others -------------------------------
 import { ColorSelector } from "./mod/ColorSelector.js";
+import { Selector } from "./mod/Selector.js";
+import { DataBar } from "./mod/DataBar.js";
+import { InputSlider } from "./mod/InputSlider.js";
+import { Table } from "./mod/Table.js";
 
 // Swipers ------------------------------
 import { SwiperRange } from "./mod/SwiperRange.js";
@@ -147,6 +151,25 @@ export class BtjsGui extends BtjsConverters {
 
     static ColorSelector() {
       return new ColorSelector()
+    }
+
+    static Selector(text, array = []) {
+      return new Selector(text, array)
+    }
+
+    static DataBar(title, 
+            range_arr =[0, 100]) {
+        return new DataBar(title, range_arr)
+    }
+
+    static InputSlider(TITLE_STR, 
+            RANGE_LIST) {
+        return new InputSlider(TITLE_STR, 
+            RANGE_LIST)
+    }
+
+    static Table(TITLE_STR) {
+        return new Table(TITLE_STR)
     }
 
     // ----------------------------------

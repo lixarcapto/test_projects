@@ -2,7 +2,8 @@
 
 import { BaseElement } from "./BaseElement.js"
 
-export class StandardElement extends BaseElement {
+export class StandardElement extends 
+        BaseElement {
 
     /*
     Esta clase sirve para crear componentes

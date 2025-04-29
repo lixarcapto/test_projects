@@ -167,25 +167,6 @@ class BtpyMaths(BtpyLoops):
         """
         return Probability()
     
-    def translade_points(
-      lista_puntos, 
-      origen_x, 
-      origen_y, 
-      ancho, 
-      alto
-    ):
-        """
-        Traslada una lista de puntos a un 
-        nuevo espacio rectangular.
-        """
-        return translade_points(
-            lista_puntos, 
-            origen_x, 
-            origen_y, 
-            ancho, 
-            alto
-        )
-    
     def origin_by_center(point:list[int], 
       size_x:int, size_y:int)->list[int]:
         """
@@ -218,4 +199,17 @@ class BtpyMaths(BtpyLoops):
             POINT, 
             size_x, 
             size_y
+        )
+    
+    def translade_point( 
+            POINT_TO_MOVE:list[int|float], 
+            POINT_AREA:list[int|float])\
+            ->list[int|float]:
+        """
+        Funcion que translada un punto 
+        hacia un area determinada.
+        """
+        return translade_point(
+            POINT_TO_MOVE,
+            POINT_AREA
         )

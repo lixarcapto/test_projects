@@ -1,7 +1,7 @@
 
 
 
-from ....btpy_persistence.mod.txt.read_txt import read_txt
+from ....btpy_persistence.mod.read_txt.read_txt import read_txt
 from ....btpy_list.mod.clean_voids.clean_voids import *
 from ....btpy_string.mod.normalize.normalize import*
 

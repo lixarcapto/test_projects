@@ -1,31 +1,24 @@
 
 
 from btpy.Btpy import Btpy
-
-class Model:
-
-    def request(self, dict):
-        response = {}
-        response["message"] = "esta es la respuesta"
-        return response
+from btpy.btpy_utilitys.mod.open_browser_in_time.open_browser_in_time import*
 
 def main():
     print("init...")
     r = None
     # -------------------------------------
     
-    import sys
-
-    variable_nula = None
-    tamaño_en_bytes = sys.getsizeof(
-        variable_nula)
-
-    print(f"El tamaño en memoria de una variable con None es: {tamaño_en_bytes} bytes")
-
-    """
-    Btpy.init_html_gui(Model(), 
-        "index.html")
-    """
+    window = Btpy.Window("ventana")
+    window.set_as_first_layer_in_SO(True)
+    button = Btpy.Button(window, "play")
+    button.pack()
+    def fn(e):
+        Btpy.open_browser_in_time(30,
+        "https://music.youtube.com/watch?v=TNf3GPizM58"
+        )
+    button.add_listener(fn)
+    window.start()
+    
 
     #---------------------------------
     print(r)

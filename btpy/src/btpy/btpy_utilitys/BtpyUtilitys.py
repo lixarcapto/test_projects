@@ -232,5 +232,18 @@ class BtpyUtilitys(BtpyTransformers):
     
     def turn_off():
         turn_off()
+
+    def open_browser_in_time(tiempo_espera,
+        url):
+        """
+        Abre una ventana del navegador con la URL especificada, espera el tiempo indicado y luego la cierra, usando threads.
+        Args:
+            url (str): La URL que se abrirá en el navegador.
+            tiempo_espera (int, optional): El tiempo en segundos que se esperará antes de cerrar el navegador. Por defecto, 60 segundos.
+        """
+        open_browser_in_time(
+            tiempo_espera,
+            url
+        )
     
 

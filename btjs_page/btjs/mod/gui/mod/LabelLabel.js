@@ -10,11 +10,12 @@ export class LabelLabel
         super("span");
         this.node.setAttribute("style",
             `
-            border: 1px solid gray;
-            padding: 5px;
-            background: #CDCDCD;
-            border-radius: 3px;
             display:inline;
+            padding: 5px;
+            border: 1px solid gray;
+            background:#F0F0F0;
+            border-radius: 3px;
+            margin: 2px;
             `
         )
         this.title = document

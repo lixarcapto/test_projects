@@ -8,6 +8,13 @@ export class Link extends StandardElement {
         super("a");
         this.node = document
             .createElement("a")
+        this.node.style = `
+            padding: 5px;
+            border: 1px solid gray;
+            background:white;
+            border-radius: 3px;
+            margin: 2px;
+        `
         this.node.innerHTML = TITLE_STR
         this.set_url(URL_STR)
     }

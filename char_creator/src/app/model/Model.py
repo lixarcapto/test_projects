@@ -34,7 +34,7 @@ class Model:
             = self.translate_keys(keys_list)
         final_text = "Personality Description:\n\n"
         final_text += personality_description
-        Btpy.create_docx("character_data",
+        Btpy.write_docx("character_data",
             final_text)
         Btpy.load_word("character_data.docx")
         return final_text

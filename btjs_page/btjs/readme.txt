@@ -15,6 +15,7 @@ REGLAS
 * Esta libreria solo debe contener
 funciones relacionadas a las tareas
 de la vista, es decir componentes graficos,
-convertidores del frontend y validaciones; 
+convertidores del frontend y validaciones;
+tipos de datos utiles en el frontend; 
 dejando el trabajo de modificacion 
-de datos.
+de datos al backend.

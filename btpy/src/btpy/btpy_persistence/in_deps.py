@@ -6,10 +6,9 @@ from .mod.check_path.check_path import*
 from .mod.image_size.image_size import*
 from .mod.execute.execute import*
 from .mod.play_sound.play_sound import*
-from .mod.txt.create_txt import*
-from .mod.txt.read_txt import*
-from .mod.txt.delete_txt import*
-from .mod.txt.write_txt import*
+from .mod.read_txt.read_txt import*
+from .mod.delete_txt.delete_txt import*
+from .mod.write_txt.write_txt import*
 from .mod.read_xlsx_nested_dict_row\
     .read_xlsx_nested_dict_row import*
 from .mod.random_name\
@@ -20,8 +19,10 @@ from .mod.random_full_name\
     .random_full_name import*
 from .mod.write_xlsx_dict_list\
     .write_xlsx_dict_list import*
-from .mod.docx.create_docx import*
-from .mod.docx.read_docx_full import*
+# DOCX ------------------------------------
+from .mod.write_docx.write_docx import*
+from .mod.read_docx.read_docx import*
+# -----------------------------------------
 from .mod.read_photoimage.read_photoimage import*
 from .mod.random_country.random_country import*
 from .mod.read_xlsx_nested_dict_column\

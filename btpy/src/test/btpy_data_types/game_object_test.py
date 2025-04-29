@@ -25,8 +25,8 @@ def main():
     scenario = Btpy.Scenario()
     scenario.set_size(400, 400)
     gog = Btpy.GameObject("ship")
-    gog.set_box_size(70, 70)
-    gog.set_image_list("ship", 
+    gog.set_hitbox_size(70, 70)
+    gog.set_animation_list("ship", 
         "./ship_70x70.png")
     window.add_key_listener(
         "Left", 
@@ -47,23 +47,29 @@ def main():
     gog.point_location = [100, 100]
     bullet = Btpy.GameObject("bullet")
     bullet.point_location = [260, 100]
-    bullet.set_box_size(70, 70)
+    bullet.set_hitbox_size(70, 70)
     def fn(gog:Btpy.GameObject):
         if(gog.is_colliding):
             print("bullet is colliding")
-            bullet.set_image_list_key("cat")
+            bullet.select_actual_animation("cat")
     bullet.add_behavior("nn", fn)
-    bullet.set_image_list("bullet", 
+    bullet.set_animation_list("bullet", 
         "./bullet_70x70.png")
-    bullet.set_image_list("cat", 
+    bullet.set_animation_list("cat", 
         "./cat_1.png")
     scenario.set_gobject(gog)
     scenario.set_gobject(bullet)
     n = 0
+    ship = None
+    pt_ship = None 
+    pt_cam = None
     def fn(e):
         nonlocal n
         canvas.repaint()
         scenario.update()
+        ship = scenario.get_gobject("ship")
+        scenario.center_cam_in(
+            ship.get_location())
         print(f"update {n}")
         n += 1
         render_list = scenario\

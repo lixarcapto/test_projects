@@ -16,8 +16,13 @@ export class Button
         this.node.innerHTML = TITLE_STR
         this.node.setAttribute("style",
             `
-            padding: 3px;
-            font-size: 16px;
+            font-size: 14px;
+            
+            padding: 5px;
+            border: 1px solid gray;
+            background:#F0F0F0;
+            border-radius: 3px;
+            margin: 2px;
             `
         )
     }

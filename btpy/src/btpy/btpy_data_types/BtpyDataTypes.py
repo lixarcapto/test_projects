@@ -18,6 +18,4 @@ class BtpyDataTypes(BtpyConst):
     Switch = Switch
     MultikeyDict = MultikeyDict
     CountingDict = CountingDict
-    GameObject = GameObject
-    Scenario = Scenario
 
