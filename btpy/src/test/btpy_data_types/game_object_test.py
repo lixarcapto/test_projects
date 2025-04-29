@@ -26,6 +26,8 @@ def main():
     scenario.set_size(400, 400)
     gog = Btpy.GameObject("ship")
     gog.set_hitbox_size(70, 70)
+    gog.set_layer(1)
+    gog.set_is_collidable(False)
     gog.set_animation_list("ship", 
         "./ship_70x70.png")
     window.add_key_listener(

@@ -5,6 +5,7 @@
 from ..game_object.GameObject import GameObject
 from ....btpy_checkers.mod.is_colliding_rect.is_colliding_rect import*
 from ....btpy_maths.mod.translade_point.translade_point import*
+from .sort_numbers_dict_descending import*
 
 class Scenario:
 
@@ -83,7 +84,7 @@ class Scenario:
         self.__execute_all_behaviors()
         self.free_gobject()
 
-    def get_cam_rect(self):
+    def __get_cam_rect(self):
         return { 
             "x":self.cam_point_location[0],
             "y":self.cam_point_location[1],
@@ -91,10 +92,10 @@ class Scenario:
             "height":self.cam_size_list[1]
         }
 
-    def capture_object_render(self)->list:
+    def __detect_objects_on_cam(self)->list:
         gobject:GameObject = None
-        render_list:list[dict] = []
-        cam_rect = self.get_cam_rect()
+        objects_list:list[GameObject] = []
+        cam_rect = self.__get_cam_rect()
         is_colliding = False
         for k in self.__game_object_dict:
             gobject = self\
@@ -104,12 +105,35 @@ class Scenario:
                 cam_rect
             )
             if(is_colliding):
-                render_list.append(
-                    gobject.get_render()
+                objects_list.append(
+                    gobject
                 )
+        return objects_list
+    
+    def __capture_render_objects(self,
+            gobject_list):
+        # obtener un diccionario con las 
+        # capas de los objetos.
+        layer_dict = {}
+        render_list:list[dict] = []
+        i = 0
+        for gobject in gobject_list:
+            layer_dict[str(i)]\
+                = gobject.get_layer()
+            i += 1
+        key_list = sort_numbers_dict_descending(
+            layer_dict
+        )
+        # renderiza los objetos en el
+        # orden determinado por sus capas.
+        render:dict = {}
+        for key in key_list:
+            render = gobject_list[int(key)]\
+                .get_render()
+            render_list.append(render)
         return render_list
     
-    def translate_renders(self, render_list):
+    def __translate_renders(self, render_list):
         for render in render_list:
             render["point"] \
                 = translade_point(
@@ -120,9 +144,13 @@ class Scenario:
             
     def get_render_list(self)\
             ->list[dict]:
+        gobject_list = self\
+            .__detect_objects_on_cam()
         render_list = self\
-            .capture_object_render()
-        return self.translate_renders(
+            .__capture_render_objects(
+                gobject_list
+            )
+        return self.__translate_renders(
             render_list
         )
     
@@ -138,23 +166,40 @@ class Scenario:
         gog_dict = self.__game_object_dict
         gog_actual:GameObject = None
         gog_review:GameObject = None
-        is_colliding = False
+        is_colliding:bool = False
+        is_collidable:bool = False
         for k1 in gog_dict:
             gog_actual = gog_dict[k1]
+            is_collidable = gog_actual\
+                .get_is_collidable()
+            # ignora los objetos con
+            # la propiedad is_collidable
+            # en False
+            if(not is_collidable):
+                continue
             for k2 in gog_dict:
                 if(k2 == k1): continue
                 gog_review = gog_dict[k2]
-                is_colliding = gog_review\
-                    .detect_collision(
-                        gog_actual
-                    )
-                if(is_colliding):
-                    gog_review.add_collision(
-                        gog_actual)
-                    gog_actual.add_collision(
-                        gog_review)
+                self.__activate_collisions(
+                    gog_actual,
+                    gog_review
+                )
                 
         
+    def __activate_collisions(self, 
+            gobject_1, gobject_2):
+        is_colliding = gobject_1\
+            .detect_collision(
+                gobject_2
+            )
+        if(is_colliding):
+            gobject_1.add_collision(
+                    gobject_2
+            )
+            gobject_2.add_collision(
+                gobject_1
+            )
+
     def free_gobject(self):
         """
         Funcion que libera los datos

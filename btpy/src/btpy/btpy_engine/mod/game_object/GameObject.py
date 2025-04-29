@@ -11,6 +11,14 @@ from ....btpy_utilitys.mod.iterator.Iterator import Iterator
 
 class GameObject:
 
+    """
+    Esta clase sirve para crear un 
+    gameobject; un gameboject es un 
+    objeto con volumen que puede
+    desplazarse y ocupar espacio en un
+    escenario de simulacion(Scenario).
+    """
+
     scenario_width:int = 0
     scenario_height:int = 0
     last_number_id:int = 0
@@ -23,6 +31,12 @@ class GameObject:
             :list[int] = [0, 0]
         self.pose_key:str = ""
         self.group_key:str = ""
+        # TODO: indica un eje Z para
+        # colisiones.
+        self.__z_axis = 0
+        # layer indica la capa de
+        # renderizado del objeto.
+        self.__layer:int = 0
         self.__animation_list_dict = {}
         self.__image_list_key:str = ""
         self.__iterator_image = Iterator()
@@ -33,12 +47,57 @@ class GameObject:
         self.behavior_dict:dict = {}
         self.colliding_id_set:set = set()
         self.is_colliding = False
+        # is_solid indica si el objeto
+        # se detendra ante las colisiones.
+        self.__is_solid:bool = True
+        # is_collidable indica si el
+        # objeto detectara las colisiones.
+        self.__is_collidable:bool = True
         # CALLS -------------------------
         self.set_id(ID)
 
     # -----------------------------------
 
     # PUBLIC -----------------------------
+
+    def set_layer(self, LAYER_NUMBER:int):
+        """
+        Funcion que asigna una capa de 
+        dibujado al objeto para designar
+        un orden de renderizado.
+        """
+        self.__layer = LAYER_NUMBER
+
+    def get_layer(self)->int:
+        return self.__layer
+
+    def set_is_collidable(self, BOOL:bool)\
+            ->None:
+        """
+        Funcion que asigna un estado
+        is_collidable al objeto. Si este
+        estado es verdadero el objeto
+        podra colisionar con otros objetos
+        y almacenar las colisiones; pero
+        no sera detenido por la colision.
+        """
+        self.__is_collidable = BOOL
+
+    def get_is_collidable(self)->bool:
+        return self.__is_collidable
+
+    def set_is_solid(self, BOOL:bool)\
+            ->None:
+        """
+        Funcion que asigna un estado 
+        de solido al objeto; esto 
+        hace que el objeto se detenga
+        ante las colisiones.
+        """
+        self.__is_solid = BOOL
+
+    def get_is_solid(self)->bool:
+        return self.__is_solid
 
     def set_location(self, POINT_LIST):
         self.point_location = POINT_LIST
@@ -237,7 +296,8 @@ class GameObject:
 
     def update(self):
         self.next_animation_frame()
-        if(self.is_colliding):
+        if(self.is_colliding
+        and self.__is_collidable):
             self.point_motion = [0, 0]
         else:
             self.__move_object()
