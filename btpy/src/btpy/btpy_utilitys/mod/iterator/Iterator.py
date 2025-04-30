@@ -23,6 +23,9 @@ class Iterator:
         self.set_list(array)
         self.set_is_cycle(IS_CYCLE)
 
+    def get_size(self)->int:
+        return len(self.__list)
+
     def set_is_reverse(self, 
             IS_REVERSE:bool)->None:
         """

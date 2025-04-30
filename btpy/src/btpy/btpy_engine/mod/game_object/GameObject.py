@@ -19,16 +19,18 @@ class GameObject:
     escenario de simulacion(Scenario).
     """
 
+    default_image_path:str = ""
     scenario_width:int = 0
     scenario_height:int = 0
     last_number_id:int = 0
 
     def __init__(self, ID:str = ""):
-        self.last_number_id += 1
+        self.__id:str = ""
         self.point_location\
             :list[int] = [0, 0]
         self.point_motion\
             :list[int] = [0, 0]
+        self.key_class:str = ""
         self.pose_key:str = ""
         self.group_key:str = ""
         # TODO: indica un eje Z para
@@ -39,6 +41,8 @@ class GameObject:
         self.__layer:int = 0
         self.__animation_list_dict = {}
         self.__image_list_key:str = ""
+        # este iterador sirve para 
+        # crear el sistema de animaciones
         self.__iterator_image = Iterator()
         self.__iterator_image\
             .set_is_cycle(True)
@@ -46,6 +50,10 @@ class GameObject:
             :list[int] = [50, 50]
         self.behavior_dict:dict = {}
         self.colliding_id_set:set = set()
+        self.__is_alive = True
+        self.__is_mortal = False
+        self.__maximum_lifespan:int = 0
+        self.__life_time:int = 0
         self.is_colliding = False
         # is_solid indica si el objeto
         # se detendra ante las colisiones.
@@ -59,6 +67,44 @@ class GameObject:
     # -----------------------------------
 
     # PUBLIC -----------------------------
+
+    def get_is_alive(self)->bool:
+        """
+        Indica si el objeto se encuentra
+        vivo actualmente; si es false
+        sera destruido por el motor
+        al terminar el ciclo.
+        """
+        return self.__is_alive
+
+    def set_is_mortal(self, BOOL:bool,
+            MAXIMUM_LIFESPAN:int = 0):
+        """
+        Esta funcion asigna la propiedad
+        is_mortal al objeto; esta propiedad
+        indica que el objeto morira al 
+        llegar a su tiempo de vida maximo.
+        El tiempo inicial de vida es cero.
+        """
+        self.__is_mortal = BOOL
+        self.__life_time = 0
+        self.set_maximum_lifespan(
+            MAXIMUM_LIFESPAN
+        )
+        
+
+    def get_is_mortal(self)->bool:
+        return self.__is_mortal
+
+    def set_maximum_lifespan(self, 
+            LIFESPAN:int):
+        self.__maximum_lifespan = LIFESPAN
+
+    def get_maximum_lifespan(self)->int:
+        return self.__maximum_lifespan
+    
+    def get_life_time(self)->int:
+        return self.__life_time
 
     def set_layer(self, LAYER_NUMBER:int):
         """
@@ -92,9 +138,14 @@ class GameObject:
         Funcion que asigna un estado 
         de solido al objeto; esto 
         hace que el objeto se detenga
-        ante las colisiones.
+        ante las colisiones. Si se asigna
+        como solido obligatoriamente sera
+        asignado como is_collidable para 
+        que funcione la propiedad.
         """
         self.__is_solid = BOOL
+        if(self.__is_solid):
+            self.set_is_collidable = True
 
     def get_is_solid(self)->bool:
         return self.__is_solid
@@ -142,8 +193,9 @@ class GameObject:
         mente.
         """
         if(ID == ""):
-            self.__id = str(self\
+            self.__id = str(GameObject\
                 .last_number_id)
+            GameObject.last_number_id += 1
         else:
             self.__id = ID
 
@@ -176,9 +228,17 @@ class GameObject:
             = FUNCTION_ARGS_X1
         
     def get_render(self)->dict:
+        leng = self.__iterator_image\
+            .get_size()
+        image_key:str = ""
+        if(leng != 0):
+            image_key = self\
+                .__iterator_image.get()
+        else:
+            image_key = self\
+                .default_image_path
         return {
-            "image_key": self\
-                .__iterator_image.get(),
+            "image_key": image_key,
             "point": self.point_location
         }
         
@@ -294,8 +354,20 @@ class GameObject:
         self.point_motion = vector_sum(
             self.point_motion, vector_list)
 
+    def advance_lifespan(self):
+        self.__life_time = sum_in_range(
+            self.__life_time,
+            +1,
+            [0, self.__maximum_lifespan]
+        )
+        if(self.__life_time \
+                == self.__maximum_lifespan):
+            self.__is_alive = False
+
     def update(self):
         self.next_animation_frame()
+        if(self.__is_mortal):
+            self.advance_lifespan()
         if(self.is_colliding
         and self.__is_collidable):
             self.point_motion = [0, 0]

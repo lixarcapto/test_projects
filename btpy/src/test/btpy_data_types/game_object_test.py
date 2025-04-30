@@ -12,24 +12,28 @@ directorio_abuelo = os.path.dirname(directorio_padre)
 sys.path.append(directorio_abuelo)
 
 from btpy.Btpy import Btpy
+from BulletGo import BulletGo
 
 def main(): 
     window = Btpy.Window("game object")
     canvas = Btpy.Canvas(window, "canvas")
     canvas.set_size(400, 400)
     canvas.set_background_color(
-            "white")
+            "black")
     canvas.pack()
     canvas.set_draw_reflection(False)
     speed = 10
     scenario = Btpy.Scenario()
-    scenario.set_size(400, 400)
+    scenario.set_default_image_path(
+        "./bullet_70x70.png"
+    )
+    scenario.set_size(1000, 1000)
     gog = Btpy.GameObject("ship")
     gog.set_hitbox_size(70, 70)
     gog.set_layer(1)
-    gog.set_is_collidable(False)
+    gog.set_is_solid(True)
     gog.set_animation_list("ship", 
-        "./ship_70x70.png")
+        "ship_70x70.png")
     window.add_key_listener(
         "Left", 
         lambda e:gog.move_left(speed)
@@ -47,24 +51,17 @@ def main():
         lambda e:gog.move_down(speed)
     )
     gog.point_location = [100, 100]
-    bullet = Btpy.GameObject("bullet")
-    bullet.point_location = [260, 100]
-    bullet.set_hitbox_size(70, 70)
-    def fn(gog:Btpy.GameObject):
-        if(gog.is_colliding):
-            print("bullet is colliding")
-            bullet.select_actual_animation("cat")
-    bullet.add_behavior("nn", fn)
-    bullet.set_animation_list("bullet", 
-        "./bullet_70x70.png")
-    bullet.set_animation_list("cat", 
-        "./cat_1.png")
+    scenario.set_gobject_class(
+        "BULLET", BulletGo)
     scenario.set_gobject(gog)
-    scenario.set_gobject(bullet)
+    scenario.create_gobject("", "BULLET",
+        [200, 200]
+    )
     n = 0
     ship = None
     pt_ship = None 
     pt_cam = None
+    path_res = "./"
     def fn(e):
         nonlocal n
         canvas.repaint()
@@ -79,7 +76,7 @@ def main():
         for render in render_list:
             canvas.draw_path_image(
                 render["point"],
-                render["image_key"]
+                path_res + render["image_key"]
             )
 
     Btpy.repeat_each_async(0.60, fn)

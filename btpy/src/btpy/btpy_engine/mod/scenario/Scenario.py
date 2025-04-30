@@ -16,16 +16,50 @@ class Scenario:
     game objects que contienen.
     """
 
+    gobject_class_dict = {
+        "STANDARD":GameObject
+    }
+
     def __init__(self):
         self.__game_object_dict:dict = {}
         self.__width:int = 0
         self.__height:int = 0
+        self.id_to_remove_list:list = []
         self.cam_size_list = [300, 300]
         self.cam_point_location = [0, 0]
 
     # ------------------------------------
 
     # PUBLIC ------------------------------
+
+    def set_default_image_path(self, 
+            PATH:str):
+        GameObject.default_image_path \
+            = PATH
+
+    def set_gobject_class(self, KEY:str,
+                class_reference):
+        self.gobject_class_dict[KEY] \
+            = class_reference
+        
+    def create_gobject(self, ID:str,
+            KEY_CLASS:str, POINT_LIST)->None:
+        """
+        Crea un objeto directamente en 
+        el interior del motor a partir
+        de una clase de gameobject ya
+        almacenada en el diccionario
+        de clases de gameobject del 
+        scenario.
+        """
+        gobject:GameObject = None
+        ref_class = self.gobject_class_dict\
+            [KEY_CLASS]
+        gobject = ref_class(ID)
+        gobject.set_location(POINT_LIST)
+        gobject.key_class = KEY_CLASS
+        print("id", gobject.get_id())
+        self.set_gobject(gobject)
 
     def set_cam_location(self, POINT):
         self.cam_point_location = POINT
@@ -76,11 +110,7 @@ class Scenario:
     
     def update(self)->None:
         gobject:GameObject = None
-        self.detect_all_collisions()
-        for k in self.__game_object_dict:
-            gobject = self  \
-                .__game_object_dict[k]
-            gobject.update()
+        self.__detect_all_collisions()
         self.__execute_all_behaviors()
         self.free_gobject()
 
@@ -154,7 +184,7 @@ class Scenario:
             render_list
         )
     
-    def detect_all_collisions(self):
+    def __detect_all_collisions(self):
         """
         Funcion que realiza una busqueda
         por todos los gameobject en el 
@@ -212,20 +242,57 @@ class Scenario:
             gobject = self\
                 .__game_object_dict[k]
             gobject.free()
+        self.__collect_garbage()
     
     # -------------------------------------
     
     # PRIVATE -----------------------------
     
+    def __execute_default_behaviors(self,
+            gobject:GameObject):
+        self.__react_to_is_not_alive(
+            gobject)
+
+    def __collect_garbage(self):
+        for k in self.id_to_remove_list:
+            self.remove_gobject(k)
+        self.id_to_remove_list = []
+
+    def __react_to_is_not_alive(self,
+            gobject:GameObject):
+        """
+        Funcion que verifica y reacciona
+        si la variable is_alive del 
+        gameobject es falsa.
+        """
+        if(gobject.get_is_mortal()
+            and not gobject.get_is_alive()):
+                self.id_to_remove_list\
+                    .append(gobject.get_id())
+
     def __execute_all_behaviors(self):
+        """
+        Funcion que realiza una busqueda
+        por todos los gobject del scenario
+        ejecutando los comportamientos
+        de cada objeto en orden segun
+        su categoria. Los comportamientos
+        se dividen en internos default,
+        globales default y custom.
+        """
         gobject:GameObject = None
         for k in self.__game_object_dict:
             gobject = self\
                 .__game_object_dict[k]
-            self.__execute_behaviors(
-                    gobject)
+            gobject.update()
+            self.__execute_default_behaviors(
+                gobject
+            )
+            self.__execute_custom_behaviors(
+                gobject
+            )
 
-    def __execute_behaviors(self, 
+    def __execute_custom_behaviors(self, 
             game_object:callable):
         fn = None
         for k in game_object.behavior_dict:
