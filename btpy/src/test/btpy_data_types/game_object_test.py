@@ -16,70 +16,53 @@ from BulletGo import BulletGo
 
 def main(): 
     window = Btpy.Window("game object")
-    canvas = Btpy.Canvas(window, "canvas")
-    canvas.set_size(400, 400)
-    canvas.set_background_color(
-            "black")
-    canvas.pack()
-    canvas.set_draw_reflection(False)
-    speed = 10
-    scenario = Btpy.Scenario()
-    scenario.set_default_image_path(
-        "./bullet_70x70.png"
-    )
-    scenario.set_size(1000, 1000)
-    gog = Btpy.GameObject("ship")
-    gog.set_hitbox_size(70, 70)
-    gog.set_layer(1)
-    gog.set_is_solid(True)
-    gog.set_animation_list("ship", 
+    engine = Btpy.GameEngine(window, 
+        "Engine")
+    engine.pack()
+    engine.scenario.set_default_image_path(
+        "bullet_70x70.png")
+    gog = None
+    id_ = ""
+    for i in range(10):
+        id_ = "star_" + str(i)
+        engine.scenario.create_gobject(
+            id_,
+            "STANDARD", 
+            Btpy.randint_list(2, [0, 300])
+        )
+        gog = engine.scenario\
+            .get_gobject(id_)
+        gog.set_is_collidable(False)
+        gog.set_is_solid(False)
+        engine.scenario.set_gobject(gog)
+        gog = engine.scenario\
+            .get_gobject(id_)
+        print(
+            gog.get_is_solid(),
+            gog.get_is_collidable()
+        )
+        print("quantity", engine.scenario\
+              .get_gobject_quantity())
+    engine.scenario.create_gobject("ship",
+        "STANDARD", [100, 100])
+    ship = engine.scenario\
+        .get_gobject("ship")
+    ship.set_animation_list("ship", 
         "ship_70x70.png")
-    window.add_key_listener(
-        "Left", 
-        lambda e:gog.move_left(speed)
-    )
-    window.add_key_listener(
-        "Right", 
-        lambda e:gog.move_right(speed)
-    )
-    window.add_key_listener(
-        "Up", 
-        lambda e:gog.move_up(speed)
-    )
-    window.add_key_listener(
-        "Down", 
-        lambda e:gog.move_down(speed)
-    )
-    gog.point_location = [100, 100]
-    scenario.set_gobject_class(
-        "BULLET", BulletGo)
-    scenario.set_gobject(gog)
-    scenario.create_gobject("", "BULLET",
-        [200, 200]
-    )
-    n = 0
-    ship = None
-    pt_ship = None 
-    pt_cam = None
-    path_res = "./"
+    ship.set_has_cam_focus(True)
+    ship.set_is_collidable(False)
+    ship.set_is_solid(False)
     def fn(e):
-        nonlocal n
-        canvas.repaint()
-        scenario.update()
-        ship = scenario.get_gobject("ship")
-        scenario.center_cam_in(
-            ship.get_location())
-        print(f"update {n}")
-        n += 1
-        render_list = scenario\
-            .get_render_list()
-        for render in render_list:
-            canvas.draw_path_image(
-                render["point"],
-                path_res + render["image_key"]
-            )
-
-    Btpy.repeat_each_async(0.60, fn)
+        nonlocal ship
+        ship.move_up(30)
+        print(ship.point_motion)
+    window.add_key_listener("Up", fn)
+    def fn(e):
+        nonlocal ship
+        ship.move_down(30)
+        print(ship.point_motion)
+    window.add_key_listener("Down", fn)
+    engine.start()
     window.start()
 
 main()

@@ -1,0 +1,6 @@
+
+
+* Corregir el error de que los objetos
+no solidos y no colidables siguen 
+colisionando con los que si son solidos;
+eso no deberia suseder.

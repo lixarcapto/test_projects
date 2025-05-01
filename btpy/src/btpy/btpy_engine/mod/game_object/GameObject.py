@@ -25,48 +25,84 @@ class GameObject:
     last_number_id:int = 0
 
     def __init__(self, ID:str = ""):
+        # IDENTITY ------------------------
         self.__id:str = ""
+        self.key_class:str = ""
+        self.__group_key:str = ""
+        # ---------------------------------
+        # SPACE PROPERTIES ----------------
         self.point_location\
             :list[int] = [0, 0]
         self.point_motion\
             :list[int] = [0, 0]
-        self.key_class:str = ""
-        self.pose_key:str = ""
-        self.group_key:str = ""
         # TODO: indica un eje Z para
         # colisiones.
-        self.__z_axis = 0
-        # layer indica la capa de
-        # renderizado del objeto.
-        self.__layer:int = 0
-        self.__animation_list_dict = {}
-        self.__image_list_key:str = ""
-        # este iterador sirve para 
-        # crear el sistema de animaciones
-        self.__iterator_image = Iterator()
-        self.__iterator_image\
-            .set_is_cycle(True)
+        self.__z_axis:int = 0
         self.__hitbox_size_list\
             :list[int] = [50, 50]
-        self.behavior_dict:dict = {}
-        self.colliding_id_set:set = set()
-        self.__is_alive = True
-        self.__is_mortal = False
-        self.__maximum_lifespan:int = 0
-        self.__life_time:int = 0
-        self.is_colliding = False
+        # ---------------------------------
+        # BEHAVIOR FLAGS ------------------
+        self.pose_key:str = ""
+        self.__is_alive:bool = True
+        self.__is_mortal:bool = False
+        self.__has_cam_focus:bool \
+            = False 
         # is_solid indica si el objeto
         # se detendra ante las colisiones.
         self.__is_solid:bool = True
         # is_collidable indica si el
         # objeto detectara las colisiones.
         self.__is_collidable:bool = True
+        # ---------------------------------
+        # BEHAVIOR VALUES -----------------
+        self.__life_time:int = 0
+        self.__maximum_lifespan:int = 0
+        # ---------------------------------
+        # INNER ENGINE PROPERTIES ----------
+        self.is_colliding:bool = False
+        self.behavior_dict:dict = {}
+        # ---------------------------------
+        # GRAPHIC PROPERTIES --------------
+        # layer indica la capa de
+        # renderizado del objeto.
+        self.__layer:int = 0
+        self.__animation_list_dict:dict = {}
+        self.__image_list_key:str = ""
+        # este iterador sirve para 
+        # crear el sistema de animaciones
+        self.__iterator_image = Iterator()
+        self.__iterator_image\
+            .set_is_cycle(True)
+        # ---------------------------------
+        # I don't know what this is
+        self.colliding_id_set:set = set()
         # CALLS -------------------------
         self.set_id(ID)
+        # --------------------------------
 
     # -----------------------------------
 
     # PUBLIC -----------------------------
+
+    def set_has_cam_focus(self,
+            BOOL:bool)->None:
+        self.__has_cam_focus = BOOL
+
+    def get_has_cam_focus(self)->bool:
+        return self.__has_cam_focus
+
+    def set_group_key(self, GROUP_KEY:str)\
+            ->None:
+        """
+        Funcion que asigna una clave de 
+        grupo que sirve para clasificar
+        los gameobject en grupos.
+        """
+        self.__group_key = GROUP_KEY\
+            .upper()
+    
+    def get_group_key(self)->str:
+        return self.__group_key
 
     def get_is_alive(self)->bool:
         """
@@ -332,6 +368,12 @@ class GameObject:
                 game_object.get_rect_hitbox()
             )
     
+    def add_border_collision(self, 
+            BORDER_KEY):
+        self.is_colliding = True
+        self.colliding_id_set.add(
+            BORDER_KEY)
+    
     def add_collision(self, game_object):
         self.is_colliding = True
         self.colliding_id_set.add(
@@ -370,13 +412,50 @@ class GameObject:
             self.advance_lifespan()
         if(self.is_colliding
         and self.__is_collidable):
-            self.point_motion = [0, 0]
+            self.stop_movement()
         else:
             self.__move_object()
 
     def __move_object(self):
-        self.point_location = self\
+        future_point = self\
             .get_next_move_point()
+        collides_with_border = self\
+            .collides_width_border(
+                future_point)
+        if(not collides_with_border):
+            self.point_location \
+                = future_point
+        else:
+            self.stop_movement()
+
+    def collides_width_border(self,
+                future_point:list[int]):
+        if(self.scenario_width 
+           == future_point[0]):
+            self.add_border_collision(
+                "BORDER_RIGHT"
+            )
+            return True
+        elif(0 == future_point[0]):
+            self.add_border_collision(
+                "BORDER_LEFT"
+            )
+            return True
+        elif(self.scenario_height
+                == future_point[1]):
+            self.add_border_collision(
+                "BORDER_DOWN"
+            )
+            return True
+        elif(0 == future_point[1]):
+            self.add_border_collision(
+                "BORDER_TOP"
+            )
+            return True
+        return False
+        
+    def stop_movement(self):
+        self.point_motion = [0, 0]
 
     def get_next_move_point(self)\
             ->list[int]:

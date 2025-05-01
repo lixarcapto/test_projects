@@ -8,3 +8,4 @@ class BtpyEngine(BtpyDict):
 
     Scenario = Scenario
     GameObject = GameObject
+    GameEngine = GameEngine
