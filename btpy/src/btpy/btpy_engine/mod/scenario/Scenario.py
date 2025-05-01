@@ -329,6 +329,10 @@ class Scenario:
             for k2 in gog_dict:
                 if(k2 == k1): continue
                 gog_review = gog_dict[k2]
+                is_collidable = gog_review\
+                    .get_is_collidable()
+                if(not is_collidable):
+                    continue
                 self.__activate_collisions(
                     gog_actual,
                     gog_review

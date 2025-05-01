@@ -31,9 +31,9 @@ class GameObject:
         self.__group_key:str = ""
         # ---------------------------------
         # SPACE PROPERTIES ----------------
-        self.point_location\
+        self.__location_point\
             :list[int] = [0, 0]
-        self.point_motion\
+        self.__speed_point\
             :list[int] = [0, 0]
         # TODO: indica un eje Z para
         # colisiones.
@@ -83,6 +83,10 @@ class GameObject:
     # -----------------------------------
 
     # PUBLIC -----------------------------
+
+    def get_speed_point(self)\
+            ->list[int]:
+        return self.__speed_point
 
     def set_has_cam_focus(self,
             BOOL:bool)->None:
@@ -187,10 +191,10 @@ class GameObject:
         return self.__is_solid
 
     def set_location(self, POINT_LIST):
-        self.point_location = POINT_LIST
+        self.__location_point = POINT_LIST
 
     def get_location(self)->list[int]:
-        return self.point_location.copy()
+        return self.__location_point.copy()
 
     def set_hitbox_size(self, WIDTH:int, 
             HEIGHT:int)->None:
@@ -275,7 +279,7 @@ class GameObject:
                 .default_image_path
         return {
             "image_key": image_key,
-            "point": self.point_location
+            "point": self.__location_point
         }
         
     def set_animation_list(self, 
@@ -338,8 +342,8 @@ class GameObject:
         del hitbox del objeto.
         """
         return { 
-            "x":self.point_location[0],
-            "y":self.point_location[1],
+            "x":self.__location_point[0],
+            "y":self.__location_point[1],
             "width":self.__hitbox_size_list[0],
             "height":self.__hitbox_size_list[1]
         }
@@ -393,8 +397,8 @@ class GameObject:
         self.sum_force([0, speed])
         
     def sum_force(self, vector_list:list[int]):
-        self.point_motion = vector_sum(
-            self.point_motion, vector_list)
+        self.__speed_point = vector_sum(
+            self.__speed_point, vector_list)
 
     def advance_lifespan(self):
         self.__life_time = sum_in_range(
@@ -423,7 +427,7 @@ class GameObject:
             .collides_width_border(
                 future_point)
         if(not collides_with_border):
-            self.point_location \
+            self.__location_point \
                 = future_point
         else:
             self.stop_movement()
@@ -455,20 +459,20 @@ class GameObject:
         return False
         
     def stop_movement(self):
-        self.point_motion = [0, 0]
+        self.__speed_point = [0, 0]
 
     def get_next_move_point(self)\
             ->list[int]:
         point = [0, 0]
         point[0] \
             = sum_in_range(
-                self.point_location[0],
-                self.point_motion[0],
+                self.__location_point[0],
+                self.__speed_point[0],
                 [0, self.scenario_width]
             )
         point[1] = sum_in_range(
-            self.point_location[1],
-            self.point_motion[1],
+            self.__location_point[1],
+            self.__speed_point[1],
             [0, self.scenario_height]
         )
         return point

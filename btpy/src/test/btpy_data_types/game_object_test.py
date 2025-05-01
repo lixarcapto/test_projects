@@ -34,15 +34,6 @@ def main():
             .get_gobject(id_)
         gog.set_is_collidable(False)
         gog.set_is_solid(False)
-        engine.scenario.set_gobject(gog)
-        gog = engine.scenario\
-            .get_gobject(id_)
-        print(
-            gog.get_is_solid(),
-            gog.get_is_collidable()
-        )
-        print("quantity", engine.scenario\
-              .get_gobject_quantity())
     engine.scenario.create_gobject("ship",
         "STANDARD", [100, 100])
     ship = engine.scenario\
@@ -50,18 +41,22 @@ def main():
     ship.set_animation_list("ship", 
         "ship_70x70.png")
     ship.set_has_cam_focus(True)
-    ship.set_is_collidable(False)
-    ship.set_is_solid(False)
     def fn(e):
         nonlocal ship
         ship.move_up(30)
-        print(ship.point_motion)
     window.add_key_listener("Up", fn)
     def fn(e):
         nonlocal ship
         ship.move_down(30)
-        print(ship.point_motion)
     window.add_key_listener("Down", fn)
+    def fn(e):
+        nonlocal ship
+        ship.move_left(30)
+    window.add_key_listener("Left", fn)
+    def fn(e):
+        nonlocal ship
+        ship.move_right(30)
+    window.add_key_listener("Right", fn)
     engine.start()
     window.start()
 
