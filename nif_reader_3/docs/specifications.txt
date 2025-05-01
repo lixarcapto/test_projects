@@ -1,3 +1,0 @@
-REQUERIMENTS:
-* Windows 10 o superior.
-* Minimo 2 GB de RAM.

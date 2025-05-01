@@ -18,7 +18,11 @@ def main():
     window = Btpy.Window("game object")
     engine = Btpy.GameEngine(window, 
         "Engine")
+    engine.canvas.set_background_color(
+        "black")
     engine.pack()
+    engine.scenario.set_size(500, 500)
+    engine.canvas.set_size(500, 500)
     engine.scenario.set_default_image_path(
         "bullet_70x70.png")
     gog = None
@@ -28,19 +32,32 @@ def main():
         engine.scenario.create_gobject(
             id_,
             "STANDARD", 
-            Btpy.randint_list(2, [0, 300])
+            [Btpy.rand_range([1, 499]), 1]
         )
         gog = engine.scenario\
             .get_gobject(id_)
         gog.set_is_collidable(False)
         gog.set_is_solid(False)
+        gog.set_has_gravity(True)
+        #gog.set_has_acceleration(True)
     engine.scenario.create_gobject("ship",
         "STANDARD", [100, 100])
     ship = engine.scenario\
         .get_gobject("ship")
     ship.set_animation_list("ship", 
         "ship_70x70.png")
+    ship.set_has_acceleration(True)
     ship.set_has_cam_focus(True)
+    def fn(gobject):
+        print(
+            "acceleration",
+            gobject.get_acceleration_point()
+        )
+        print(
+            "speed point",
+            gobject.get_speed_point()
+        )
+    ship.add_behavior("report", fn)
     def fn(e):
         nonlocal ship
         ship.move_up(30)
@@ -52,10 +69,12 @@ def main():
     def fn(e):
         nonlocal ship
         ship.move_left(30)
+        print(ship.get_acceleration_point())
     window.add_key_listener("Left", fn)
     def fn(e):
         nonlocal ship
         ship.move_right(30)
+        print(ship.get_acceleration_point())
     window.add_key_listener("Right", fn)
     engine.start()
     window.start()

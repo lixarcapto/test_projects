@@ -8,6 +8,7 @@ from ....btpy_checkers.mod\
     .is_colliding_rect.is_colliding_rect import*
 from ....btpy_const.mod.sense.Sense import Sense
 from ....btpy_utilitys.mod.iterator.Iterator import Iterator
+from ....btpy_maths.mod.vector_sum.vector_sum import*
 
 class GameObject:
 
@@ -23,6 +24,7 @@ class GameObject:
     scenario_width:int = 0
     scenario_height:int = 0
     last_number_id:int = 0
+    acceleration_factor:float = 0.2
 
     def __init__(self, ID:str = ""):
         # IDENTITY ------------------------
@@ -33,6 +35,7 @@ class GameObject:
         # SPACE PROPERTIES ----------------
         self.__location_point\
             :list[int] = [0, 0]
+        self.mass:int = 4
         self.__speed_point\
             :list[int] = [0, 0]
         # TODO: indica un eje Z para
@@ -47,6 +50,9 @@ class GameObject:
         self.__is_mortal:bool = False
         self.__has_cam_focus:bool \
             = False 
+        self.__has_acceleration:bool \
+            = False
+        self.__has_gravity:bool = False
         # is_solid indica si el objeto
         # se detendra ante las colisiones.
         self.__is_solid:bool = True
@@ -57,6 +63,9 @@ class GameObject:
         # BEHAVIOR VALUES -----------------
         self.__life_time:int = 0
         self.__maximum_lifespan:int = 0
+        self.__pixel_weight:int = 5
+        self.__acceleration_point\
+            :list[int] = [0, 0]
         # ---------------------------------
         # INNER ENGINE PROPERTIES ----------
         self.is_colliding:bool = False
@@ -83,6 +92,35 @@ class GameObject:
     # -----------------------------------
 
     # PUBLIC -----------------------------
+
+    def get_speed_point(self)->list[int]:
+        return self.__speed_point
+
+    def set_has_acceleration(self,
+            BOOL:bool)  \
+            ->None:
+        self.__has_acceleration = BOOL
+
+    def get_has_acceleration(self)->bool:
+        return self.__has_acceleration
+    
+    def get_acceleration_point(self)\
+            ->list[int]:
+        return self.__acceleration_point
+
+    def set_has_gravity(self, BOOL:bool)\
+            ->None:
+        self.__has_gravity = BOOL
+
+    def get_has_gravity(self)->bool:
+        return self.__has_gravity
+
+    def set_pixel_weight(self, 
+            PIXEL_SIZE:int)->None:
+        self.__pixel_weight = PIXEL_SIZE
+
+    def get_pixel_weight(self)->int:
+        return self.__pixel_weight
 
     def get_speed_point(self)\
             ->list[int]:
@@ -281,6 +319,11 @@ class GameObject:
             "image_key": image_key,
             "point": self.__location_point
         }
+    
+    def simulate_gravity(self):
+        force = [0, self.__pixel_weight]
+        print("simulate gravity", force)
+        self.sum_force(force)
         
     def set_animation_list(self, 
                 KEY:str, 
@@ -396,9 +439,19 @@ class GameObject:
     def move_down(self, speed:int):
         self.sum_force([0, speed])
         
-    def sum_force(self, vector_list:list[int]):
+    def sum_force(self, 
+            vector_list:list[int]):
         self.__speed_point = vector_sum(
             self.__speed_point, vector_list)
+        # calcula la aceleracion
+        accel_p:list[int] = [0, 0]
+        accel_p[0] = round(
+            self.__speed_point[0] 
+            / self.mass)
+        accel_p[1] = round(
+            self.__speed_point[1] 
+            / self.mass)
+        self.__acceleration_point = accel_p
 
     def advance_lifespan(self):
         self.__life_time = sum_in_range(
@@ -414,6 +467,10 @@ class GameObject:
         self.next_animation_frame()
         if(self.__is_mortal):
             self.advance_lifespan()
+        if(self.__has_gravity):
+            self.simulate_gravity()
+        if(self.__has_acceleration):
+            self.simulate_acceleration()
         if(self.is_colliding
         and self.__is_collidable):
             self.stop_movement()
@@ -460,6 +517,24 @@ class GameObject:
         
     def stop_movement(self):
         self.__speed_point = [0, 0]
+        self.__acceleration_point = [0, 0]
+
+    def simulate_acceleration(self):
+        self.__speed_point\
+            = vector_sum(
+                self.__speed_point,
+                self.__acceleration_point
+            )
+        accel_p = self.__acceleration_point
+        accel_p[0] += round(
+            accel_p[0] \
+            * self.acceleration_factor
+        )
+        accel_p[1] += round(
+            accel_p[1] \
+            * self.acceleration_factor
+        )
+        self.__acceleration_point = accel_p
 
     def get_next_move_point(self)\
             ->list[int]:
