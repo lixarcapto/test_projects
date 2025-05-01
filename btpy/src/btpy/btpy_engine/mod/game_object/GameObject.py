@@ -29,13 +29,13 @@ class GameObject:
     def __init__(self, ID:str = ""):
         # IDENTITY ------------------------
         self.__id:str = ""
-        self.key_class:str = ""
+        self.__key_class:str = ""
         self.__group_key:str = ""
         # ---------------------------------
         # SPACE PROPERTIES ----------------
         self.__location_point\
             :list[int] = [0, 0]
-        self.mass:int = 4
+        self.__mass:int = 4
         self.__speed_point\
             :list[int] = [0, 0]
         # TODO: indica un eje Z para
@@ -45,13 +45,14 @@ class GameObject:
             :list[int] = [50, 50]
         # ---------------------------------
         # BEHAVIOR FLAGS ------------------
-        self.pose_key:str = ""
+        self.__stance_key:str = ""
         self.__is_alive:bool = True
         self.__is_mortal:bool = False
         self.__has_cam_focus:bool \
             = False 
         self.__has_acceleration:bool \
             = False
+        self.__is_destructible:bool = False
         self.__has_gravity:bool = False
         # is_solid indica si el objeto
         # se detendra ante las colisiones.
@@ -62,6 +63,7 @@ class GameObject:
         # ---------------------------------
         # BEHAVIOR VALUES -----------------
         self.__life_time:int = 0
+        self.__health:int = 0
         self.__maximum_lifespan:int = 0
         self.__pixel_weight:int = 5
         self.__acceleration_point\
@@ -70,6 +72,11 @@ class GameObject:
         # INNER ENGINE PROPERTIES ----------
         self.is_colliding:bool = False
         self.behavior_dict:dict = {}
+        self.__event_list = []
+        # los event del event list son
+        # dict con la clave name y 
+        # las demas son claves para 
+        # el evento asociadas.
         # ---------------------------------
         # GRAPHIC PROPERTIES --------------
         # layer indica la capa de
@@ -92,6 +99,64 @@ class GameObject:
     # -----------------------------------
 
     # PUBLIC -----------------------------
+
+    def extract_event_list(self):
+        event_list = self.__event_list
+        self.__event_list = []
+        return event_list
+    
+    def launch_spawn(self, KEY_CLASS):
+        event = {
+            "TYPE":"SPAWN",
+            "ID":self.get_id(),
+            "KEY_CLASS":KEY_CLASS
+        }
+        self.__event_list.append(event)
+
+    def set_mass(self, PIXEL_MASS:int)\
+            ->None:
+        self.__mass = PIXEL_MASS
+
+    def get_mass(self)->int:
+        return self.__mass
+
+    def set_is_destructible(self, 
+            BOOL_VALUE:bool)->bool:
+        self.__is_destructible = BOOL_VALUE
+    
+    def get_is_destructible(self)->bool:
+        return self.__is_destructible
+    
+    def set_health(self, 
+            HEALTH_POINTS:int)->None:
+        self.__health = HEALTH_POINTS
+
+    def get_health(self)->int:
+        return self.__health
+
+    def set_stance_key(self,
+            STANCE_KEY:str):
+        """
+        Funcion que asigna una clave de 
+        estado de tipo stance o postura;
+        esta clave sirve para manejar
+        estados del objeto.
+        """
+        self.__stance_key = STANCE_KEY
+
+    def get_stance_key(self)->str:
+        return self.__stance_key
+
+    def set_key_class(self, KEY:str)->None:
+        """
+        Funcion que asigna una clave que
+        identifica a la clase de gameobject
+        a la que pertenece.
+        """
+        self.__key_class = KEY
+
+    def get_key_class(self)->str:
+        return self.__key_class
 
     def get_speed_point(self)->list[int]:
         return self.__speed_point
@@ -319,11 +384,6 @@ class GameObject:
             "image_key": image_key,
             "point": self.__location_point
         }
-    
-    def simulate_gravity(self):
-        force = [0, self.__pixel_weight]
-        print("simulate gravity", force)
-        self.sum_force(force)
         
     def set_animation_list(self, 
                 KEY:str, 
@@ -348,17 +408,6 @@ class GameObject:
                 = [IMAGE_LIST]
         if(self.__image_list_key == ""):
             self.select_actual_animation(KEY)
-        
-    def next_animation_frame(self)->None:
-        """
-        Funcion que avansa a la siguiente
-        imagen(Frame) de la lista de 
-        imagenes de la animacion 
-        seleccionada actualmente.
-        """
-        if(self.__image_list_key == ""):
-            return None
-        self.__iterator_image.next()
         
     def select_actual_animation(self, 
             KEY:str)\
@@ -390,28 +439,11 @@ class GameObject:
             "width":self.__hitbox_size_list[0],
             "height":self.__hitbox_size_list[1]
         }
-    
-    def get_future_rect_hitbox(self)->dict:
-        """
-        Crea un rect box del hitbox del
-        objeto que predice el movimiento
-        futuro del objeto para detectar
-        la colision antes de que se mueva.
-        Esto evita que se atasque con
-        el otro objeto colisionable.
-        """
-        point = self.get_next_move_point()
-        return { 
-            "x":point[0],
-            "y":point[1],
-            "width":self.__hitbox_size_list[0],
-            "height":self.__hitbox_size_list[1]
-        }
-        
+
     def detect_collision(self,
             game_object)->bool:
         return is_colliding_rect(
-                self.get_future_rect_hitbox(),
+                self.__get_future_rect_hitbox(),
                 game_object.get_rect_hitbox()
             )
     
@@ -420,7 +452,7 @@ class GameObject:
         self.is_colliding = True
         self.colliding_id_set.add(
             BORDER_KEY)
-    
+        
     def add_collision(self, game_object):
         self.is_colliding = True
         self.colliding_id_set.add(
@@ -447,13 +479,74 @@ class GameObject:
         accel_p:list[int] = [0, 0]
         accel_p[0] = round(
             self.__speed_point[0] 
-            / self.mass)
+            / self.__mass)
         accel_p[1] = round(
             self.__speed_point[1] 
-            / self.mass)
+            / self.__mass)
         self.__acceleration_point = accel_p
 
-    def advance_lifespan(self):
+    def update(self):
+        self.__next_animation_frame()
+        if(self.__is_mortal):
+            self.__simulate_lifespan()
+        if(self.__has_gravity):
+            self.__simulate_gravity()
+        if(self.__has_acceleration):
+            self.__simulate_acceleration()
+        if(self.__is_destructible):
+            self.__simulate_destruction()
+        if(self.is_colliding
+        and self.__is_collidable):
+            self.__stop_movement()
+        else:
+            self.__move_object()
+
+    def free(self)->None:
+        self.is_colliding = False
+        self.colliding_id_set = set()
+
+    # ------------------------------------
+
+    # PRIVATE ----------------------------
+
+    def __next_animation_frame(self)->None:
+        """
+        Funcion que avansa a la siguiente
+        imagen(Frame) de la lista de 
+        imagenes de la animacion 
+        seleccionada actualmente.
+        """
+        if(self.__image_list_key == ""):
+            return None
+        self.__iterator_image.next()
+
+    def __simulate_gravity(self):
+        force = [0, self.__pixel_weight]
+        self.sum_force(force)
+
+    def __simulate_destruction(self):
+        if(self.__health <= 0):
+            self.__is_alive = False
+        
+    def __get_future_rect_hitbox(self)\
+            ->dict:
+        """
+        Crea un rect box del hitbox del
+        objeto que predice el movimiento
+        futuro del objeto para detectar
+        la colision antes de que se mueva.
+        Esto evita que se atasque con
+        el otro objeto colisionable.
+        """
+        point = self.__get_next_move_point()
+        return { 
+            "x":point[0],
+            "y":point[1],
+            "width":self.__hitbox_size_list[0],
+            "height":self.__hitbox_size_list[1]
+        }
+
+    def __simulate_lifespan(self):
         self.__life_time = sum_in_range(
             self.__life_time,
             +1,
@@ -463,33 +556,19 @@ class GameObject:
                 == self.__maximum_lifespan):
             self.__is_alive = False
 
-    def update(self):
-        self.next_animation_frame()
-        if(self.__is_mortal):
-            self.advance_lifespan()
-        if(self.__has_gravity):
-            self.simulate_gravity()
-        if(self.__has_acceleration):
-            self.simulate_acceleration()
-        if(self.is_colliding
-        and self.__is_collidable):
-            self.stop_movement()
-        else:
-            self.__move_object()
-
     def __move_object(self):
         future_point = self\
-            .get_next_move_point()
+            .__get_next_move_point()
         collides_with_border = self\
-            .collides_width_border(
+            .__collides_width_border(
                 future_point)
         if(not collides_with_border):
             self.__location_point \
                 = future_point
         else:
-            self.stop_movement()
+            self.__stop_movement()
 
-    def collides_width_border(self,
+    def __collides_width_border(self,
                 future_point:list[int]):
         if(self.scenario_width 
            == future_point[0]):
@@ -515,11 +594,11 @@ class GameObject:
             return True
         return False
         
-    def stop_movement(self):
+    def __stop_movement(self):
         self.__speed_point = [0, 0]
         self.__acceleration_point = [0, 0]
 
-    def simulate_acceleration(self):
+    def __simulate_acceleration(self):
         self.__speed_point\
             = vector_sum(
                 self.__speed_point,
@@ -536,7 +615,7 @@ class GameObject:
         )
         self.__acceleration_point = accel_p
 
-    def get_next_move_point(self)\
+    def __get_next_move_point(self)\
             ->list[int]:
         point = [0, 0]
         point[0] \
@@ -551,10 +630,6 @@ class GameObject:
             [0, self.scenario_height]
         )
         return point
-
-    def free(self)->None:
-        self.is_colliding = False
-        self.colliding_id_set = set()
 
     # ----------------------------------------
 

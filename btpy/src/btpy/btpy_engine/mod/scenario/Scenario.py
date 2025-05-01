@@ -6,6 +6,7 @@ from ..game_object.GameObject import GameObject
 from ....btpy_checkers.mod.is_colliding_rect.is_colliding_rect import*
 from ....btpy_maths.mod.translade_point.translade_point import*
 from .sort_numbers_dict_descending import*
+from ...mod.game_object.Player import Player
 
 class Scenario:
 
@@ -17,13 +18,15 @@ class Scenario:
     """
 
     gobject_class_dict = {
-        "STANDARD":GameObject
+        "STANDARD":GameObject,
+        "PLAYER":Player
     }
 
     def __init__(self):
         self.__game_object_dict:dict = {}
         self.__width:int = 0
         self.__height:int = 0
+        self.__event_list:list[dict] = []
         self.id_to_remove_list:list = []
         self.cam_size_list = [300, 300]
         self.cam_point_location = [0, 0]
@@ -89,7 +92,7 @@ class Scenario:
             [KEY_CLASS]
         gobject = ref_class(ID)
         gobject.set_location(POINT_LIST)
-        gobject.key_class = KEY_CLASS
+        gobject.set_key_class(KEY_CLASS)
         self.set_gobject(gobject)
 
     def set_cam_location(self, POINT):
@@ -150,6 +153,8 @@ class Scenario:
         self.__detect_all_collisions()
         self.__execute_all_behaviors()
         self.update_camera_focus()
+        self.__collect_event_list()
+        self.__execute_event_list()
         self.free_gobject()
 
     def update_camera_focus(self)->None:
@@ -188,11 +193,48 @@ class Scenario:
                 .__game_object_dict[k]
             gobject.free()
         self.__collect_garbage()
+        self.__event_list = []
     
     # -------------------------------------
     
     # PRIVATE -----------------------------
     
+    def __execute_event_list(self):
+        for event in self.__event_list:
+            if(event["TYPE"] == "SPAWN"):
+                self.__react_to_spawn(event)
+
+    def __react_to_spawn(self, EVENT:dict):
+        """
+        {
+            "TYPE":"SPAWN",
+            "ID":"",
+            "KEY_CLASS":""
+        }
+        """
+        gobject:GameObject = None
+        new_gog:GameObject = None
+        gobject = self\
+            .__game_object_dict[EVENT["ID"]]
+        p_location = gobject.get_location()
+        new_gog = self.gobject_class_dict\
+            [EVENT["KEY_CLASS"]]()
+        size_box = new_gog.get_hitbox_size()
+        p_spawn = [0, 0]
+        p_spawn[1] = p_location[1] \
+            + size_box[1]
+        p_spawn[0] = p_location[0]
+        new_gog.set_location(p_spawn)
+        self.set_gobject(new_gog)
+
+    def __collect_event_list(self):
+        gobject:GameObject = None
+        for k in self.__game_object_dict:
+            gobject = self\
+                .__game_object_dict[k]
+            self.__event_list += gobject\
+                .extract_event_list()
+
     def __execute_default_behaviors(self,
             gobject:GameObject):
         self.__react_to_is_not_alive(

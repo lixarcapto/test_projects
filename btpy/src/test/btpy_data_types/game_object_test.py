@@ -27,6 +27,7 @@ def main():
         "bullet_70x70.png")
     gog = None
     id_ = ""
+    """
     for i in range(10):
         id_ = "star_" + str(i)
         engine.scenario.create_gobject(
@@ -40,14 +41,13 @@ def main():
         gog.set_is_solid(False)
         gog.set_has_gravity(True)
         #gog.set_has_acceleration(True)
+    """
     engine.scenario.create_gobject("ship",
-        "STANDARD", [100, 100])
+        "PLAYER", [100, 100])
     ship = engine.scenario\
         .get_gobject("ship")
-    ship.set_animation_list("ship", 
-        "ship_70x70.png")
-    ship.set_has_acceleration(True)
-    ship.set_has_cam_focus(True)
+    ship.set_animation_list(
+        "ship", "ship_70x70.png")
     def fn(gobject):
         print(
             "acceleration",
@@ -58,22 +58,27 @@ def main():
             gobject.get_speed_point()
         )
     ship.add_behavior("report", fn)
+    speed = 5
     def fn(e):
-        nonlocal ship
-        ship.move_up(30)
+        nonlocal ship, speed
+        ship.move_up(speed)
     window.add_key_listener("Up", fn)
     def fn(e):
         nonlocal ship
-        ship.move_down(30)
+        ship.launch_spawn("STANDARD")
+    window.add_key_listener("a", fn)
+    def fn(e):
+        nonlocal ship, speed
+        ship.move_down(speed)
     window.add_key_listener("Down", fn)
     def fn(e):
-        nonlocal ship
-        ship.move_left(30)
+        nonlocal ship, speed
+        ship.move_left(speed)
         print(ship.get_acceleration_point())
     window.add_key_listener("Left", fn)
     def fn(e):
-        nonlocal ship
-        ship.move_right(30)
+        nonlocal ship, speed
+        ship.move_right(speed)
         print(ship.get_acceleration_point())
     window.add_key_listener("Right", fn)
     engine.start()
