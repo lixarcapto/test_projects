@@ -213,3 +213,22 @@ class BtpyMaths(BtpyLoops):
             POINT_TO_MOVE,
             POINT_AREA
         )
+    
+    def adjusts_to_threshold(
+        NUMBER_TO_ADJUST: int | float,
+        ADJUSTMENT: int | float,
+        THRESHOLD: int | float
+        ) -> int | float:
+        """
+        Ajusta un número sumando o restando 
+        otro número, dependiendo de si el 
+        primero es mayor o menor que
+        un umbral, asegurando que el 
+        resultado no supere
+        el umbral.
+        """
+        return adjusts_to_threshold(
+            NUMBER_TO_ADJUST,
+            ADJUSTMENT,
+            THRESHOLD
+        )

@@ -7,6 +7,7 @@ from ....btpy_checkers.mod.is_colliding_rect.is_colliding_rect import*
 from ....btpy_maths.mod.translade_point.translade_point import*
 from .sort_numbers_dict_descending import*
 from ...mod.game_object.Player import Player
+from ..game_object.Animal import Animal
 
 class Scenario:
 
@@ -19,7 +20,8 @@ class Scenario:
 
     gobject_class_dict = {
         "STANDARD":GameObject,
-        "PLAYER":Player
+        "PLAYER":Player,
+        "ANIMAL":Animal
     }
 
     def __init__(self):

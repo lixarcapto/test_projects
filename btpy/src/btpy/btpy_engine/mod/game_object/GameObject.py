@@ -9,6 +9,9 @@ from ....btpy_checkers.mod\
 from ....btpy_const.mod.sense.Sense import Sense
 from ....btpy_utilitys.mod.iterator.Iterator import Iterator
 from ....btpy_maths.mod.vector_sum.vector_sum import*
+from ....btpy_maths.mod.adjusts_to_threshold.adjusts_to_threshold import*
+from ....btpy_const.mod.sense.Sense import Sense
+import random
 
 class GameObject:
 
@@ -52,8 +55,11 @@ class GameObject:
             = False 
         self.__has_acceleration:bool \
             = False
+        self.__has_air_resistance\
+            :bool = False
         self.__is_destructible:bool = False
         self.__has_gravity:bool = False
+        self.__is_a_walker:bool = False
         # is_solid indica si el objeto
         # se detendra ante las colisiones.
         self.__is_solid:bool = True
@@ -68,6 +74,7 @@ class GameObject:
         self.__pixel_weight:int = 5
         self.__acceleration_point\
             :list[int] = [0, 0]
+        self.air_resistance = 1
         # ---------------------------------
         # INNER ENGINE PROPERTIES ----------
         self.is_colliding:bool = False
@@ -99,6 +106,28 @@ class GameObject:
     # -----------------------------------
 
     # PUBLIC -----------------------------
+
+    def set_is_a_walker(self, BOOL:bool)\
+            ->None:
+        """
+        Funcion que asigna un 
+        comportamiento de caminante tonto
+        al objeto. Esto significa que el
+        objeto se movera en una direccion
+        aleatoria siempre que este
+        detenido o por detenerse.
+        """
+        self.__is_a_walker = BOOL
+
+    def get_is_a_walker(self)->bool:
+        return self.__is_a_walker
+
+    def get_has_air_resistance(self):
+        return self.__has_air_resistance
+    
+    def set_has_air_resistance(self, 
+                BOOL:bool):
+        self.__has_air_resistance = BOOL
 
     def extract_event_list(self):
         event_list = self.__event_list
@@ -256,6 +285,30 @@ class GameObject:
         un orden de renderizado.
         """
         self.__layer = LAYER_NUMBER
+
+    def is_stopped(self)->bool:
+        STOPPING_SPEED = 3
+        speed_p = self.__speed_point
+        if(speed_p[0] <= STOPPING_SPEED
+        and speed_p[1] <= STOPPING_SPEED):
+            return True
+        return False  
+
+    def simulate_random_walk(self, speed):
+        if(not self.is_stopped()):
+            return None
+        sense_key_list = list(Sense\
+            .CARDINAL_DICT.keys())
+        sense_k = random.choice(
+            sense_key_list
+        )
+        p_sense = Sense.CARDINAL_DICT\
+            [sense_k]
+        p_result = list(map(
+            lambda e:e*speed, 
+            p_sense
+        ))
+        self.sum_force(p_result)
 
     def get_layer(self)->int:
         return self.__layer
@@ -493,8 +546,12 @@ class GameObject:
             self.__simulate_gravity()
         if(self.__has_acceleration):
             self.__simulate_acceleration()
+        if(self.__has_air_resistance):
+            self.__simulate_air_resistance()
         if(self.__is_destructible):
             self.__simulate_destruction()
+        if(self.__is_a_walker):
+            self.simulate_random_walk(3)
         if(self.is_colliding
         and self.__is_collidable):
             self.__stop_movement()
@@ -567,6 +624,32 @@ class GameObject:
                 = future_point
         else:
             self.__stop_movement()
+
+    def __simulate_air_resistance(self):
+        self.__speed_point = self\
+            .__apply_air_resistence_in_point(
+                self.__speed_point
+            )
+        self.__acceleration_point = self\
+            .__apply_air_resistence_in_point(
+                self.__acceleration_point
+            )
+
+    def __apply_air_resistence_in_point(self,
+                POINT):
+        new_point = [0, 0]
+        new_point[0] = adjusts_to_threshold(
+            POINT[0],
+            self.air_resistance,
+            0
+        )
+        new_point[1] = adjusts_to_threshold(
+            POINT[1],
+            self.air_resistance,
+            0
+        )
+        return new_point
+
 
     def __collides_width_border(self,
                 future_point:list[int]):
