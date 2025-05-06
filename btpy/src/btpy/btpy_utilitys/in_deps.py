@@ -32,3 +32,4 @@ from .mod.time.Time import Time
 from .mod.date.Date import Date
 from .mod.turn_off.turn_off import*
 from .mod.open_browser_in_time.open_browser_in_time import*
+from .mod.iterator_2d.Iterator2D import Iterator2D

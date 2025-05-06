@@ -11,6 +11,7 @@ class BtpyUtilitys(BtpyTransformers):
     Crono = Crono
     Time = Time
     Date = Date
+    Iterator2D = Iterator2D
     
     def deep(array:list) -> int:
         """
