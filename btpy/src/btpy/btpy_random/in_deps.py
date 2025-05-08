@@ -14,3 +14,4 @@ from .mod.random_uniques.random_uniques import*
 from .mod.random_str.random_str import*
 from .mod.around.around import*
 from .mod.rand_range.rand_range import*
+from .mod.random_probability.random_probability import*

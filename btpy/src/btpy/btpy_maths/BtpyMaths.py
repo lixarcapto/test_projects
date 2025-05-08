@@ -232,3 +232,16 @@ class BtpyMaths(BtpyLoops):
             ADJUSTMENT,
             THRESHOLD
         )
+    
+    def get_similarity(
+            LIST_1: list, 
+            LIST_2: list) -> float:
+        """
+        Calcula el porcentaje de elementos 
+        que se repiten entre dos listas,
+        considerando las repeticiones 
+        dentro de cada lista.
+        """
+        return get_similarity(
+            LIST_1, LIST_2
+        )
