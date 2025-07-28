@@ -16,8 +16,53 @@ class Model:
         self.key_used_list = []
         self.is_end = False
 
-    def get_nif_name(self, path):
-        t_string = path.replace(
+    def __get_is_end(self)->bool:
+        return self.is_end
+    
+    def __set_is_end(self, BOOL):
+        self.is_end = BOOL
+
+    def request(self, KEY:str, 
+            ARG_DICT:dict):
+        """
+        Esta funcion request sirve para
+        separar el modelo de la vista,
+        de esta forma se puede añadir 
+        un controlador en medio para 
+        comunicar ambos componentes
+        como cliente-servidor.
+        """
+        response = None
+        if(KEY == "get_nif_name"):
+            response = self.__get_nif_name()
+        if(KEY == "get_render"):
+            response = self.__get_render()
+        if(KEY == "set_key"):
+            response = self.__set_key(
+                ARG_DICT["key"]
+            )
+        if(KEY == "start_nif"):
+            self.__start_nif()
+        if(KEY == "get_is_end"):
+            response = self.__get_is_end()
+        if(KEY == "set_is_end"):
+            self.__set_is_end(
+                ARG_DICT["bool"]
+            )
+        if(KEY == "load_nif_file"):
+            self.__load_nif_file(
+                ARG_DICT["path"]
+            )
+        return response
+
+    def __get_nif_name(self):
+        title = self.nif_name
+        title = title.lower()
+        return title.title()
+
+    def __find_nif_name_from_path(self, 
+            PATH:str):
+        t_string = PATH.replace(
             ".docx", "")
         split_list = t_string\
             .split("/")
@@ -25,14 +70,14 @@ class Model:
             len(split_list) -1]
         
 
-    def start_nif(self):
+    def __start_nif(self):
         self.text_history = ""
         self.key_used_list = []
-        self.set_key(self.__start_key)
+        self.__set_key(self.__start_key)
 
-    def load_nif_file(self, PATH:str):
+    def __load_nif_file(self, PATH:str):
         self.path_nif = PATH
-        self.nif_name = self.get_nif_name(
+        self.nif_name = self.__find_nif_name_from_path(
             PATH
         )
         self.load_nif_graph()
@@ -62,15 +107,19 @@ class Model:
             ["KEY"]
         self.key_index = nif_list[0]["KEY"]
 
-    def get_render(self):
-        option = self.get_key_options()
+    def __get_render(self):
+        option = self.__get_key_options()
         return {
             "TEXT":self.text_history,
             "KEY":self.key_index,
             "SCENE_KEYS":option
         }
 
-    def set_key(self, KEY:str):
+    def __set_key(self, KEY:str):
+        """
+        Funcion que selecciona una clave
+        del grafo para cargar.
+        """
         self.key_index = KEY
         print("key sleect", KEY)
         self.key_used_list.append(
@@ -80,7 +129,7 @@ class Model:
         self.text_history += value + " "
             
 
-    def get_key_options(self)->list:
+    def __get_key_options(self)->list:
         key_neighbors = self.graph\
             .get_neighbors_keys(
                 self.key_index

@@ -1,7 +1,5 @@
 
 
-from ....btpy_list.mod.flatten.flatten import*
-
 class Three:
 
     def __init__(self):

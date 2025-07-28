@@ -1,8 +1,20 @@
 
 
-* el article se autoajusta con cada 
-asignacion de texto desordenando todo,
-es mejor quitarlo. Mejor borrarlo todo.
-
 * el input file tiene un error en el titulo.
 
+* el text area se expande forma 
+incorrecta.
+
+* AL parecer el text area no permite el 
+scroll por alguna razon.
+
+* crear un conversor de colores con nombre
+de tkinter a colores HEX o RGB.
+
+* swiper range tiene un error desconocido.
+
+* Los widgets actualizan su tamaño despues
+del evento mouse over por alguna razon.
+
+* el detector del cursor del canvas
+tiene invertido los botones del raton.

@@ -19,11 +19,9 @@ def main():
     window = Btpy.Window("titulo")
     window.set_is_fullscreen(True)
     swiper = Btpy.SwiperRange(window,
-        "day")
+            "age")
     swiper.pack()
-    swiper.add_listener(
-        lambda e:print("funciona"))
-    swiper.set_content([0, 7])
+    swiper.set_content([16, 70])
     window.start()
 
 main()

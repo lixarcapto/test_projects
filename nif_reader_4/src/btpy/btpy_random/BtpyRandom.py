@@ -107,3 +107,19 @@ class BtpyRandom(BtpyPersistence):
     
     def rand_range(RANGE_ARR:list[int])->int:
         return rand_range(RANGE_ARR)
+    
+    import random
+
+    def random_multi_probabilities(
+            PROBABILITY_LIST: list) -> str:
+        """
+        Elige una clave de una lista de pares 
+        [clave, valor] aleatoriamente,
+        basado en los porcentajes de 
+        probabilidad proporcionados en 
+        los valores.
+        Las probabilidades deben sumar 100.
+        """
+        return random_multi_probabilities(
+            PROBABILITY_LIST
+        )

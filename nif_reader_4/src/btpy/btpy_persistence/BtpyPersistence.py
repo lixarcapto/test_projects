@@ -8,93 +8,10 @@ class BtpyPersistence(BtpyMaths):
     NAME_FEMALE_PATH = "./btpy/res/name_female_data.xlsx"
     NAME_MALE_PATH = "./btpy/res/name_male_data.xlsx"
     LASTNAMES_PATH = "./btpy/res/lastname_data.xlsx"
-    WORLD_MAP_PATH = "./btpy/res/map_world.json"
-    PROFESSION_PATH = "./btpy/res/profession_data.xlsx"
-    GeoAdress = GeoAdress
-    CharacterProfile = CharacterProfile
-    REGIONS_DICT_PATH:str \
-        = "./btpy/res/regions_by_country.xlsx"
-    REGIONS_DICT:dict = {}
-    COUNTRY_DICT_PATH:str \
-        = "./btpy/res/country_dict.xlsx"
-    COUNTRY_DICT:dict = {}
-    COUNTRY_PROPERTIES_PATH \
-        = "./btpy/res/culture_properties.json"
-    COUNTRY_PROPERTIES:dict = {}
 
-    def set_name_male_path(PATH):
-        """
-        Modifica la ruta a la tabla
-        XLSX de nombres masculinos.
-        """
-        BtpyPersistence.NAME_MALE_PATH \
-            = PATH
-        
-    
-    def get_files_into(PATH_FOLDER)\
-            ->list[str]:
-        """
-        Obtiene los nombres de todos los 
-        archivos dentro de una carpeta
-        """
-        return get_files_into(PATH_FOLDER)
-        
-    def set_name_female_path(PATH):
-        """
-        Modifica la ruta a la tabla
-        XLSX de nombres femeninos.
-        """
-        BtpyPersistence.NAME_FEMALE_PATH \
-            = PATH
-        
-    def set_lastname_path(PATH):
-        """
-        Modifica la ruta a la tabla
-        XLSX de apellidos.
-        """
-        BtpyPersistence.LASTNAMES_PATH \
-            = PATH
-        
-    def set_world_map_path(PATH):
-        """
-        Modifica la ruta a la tabla
-        XLSX de apellidos.
-        """
-        BtpyPersistence.WORLD_MAP_PATH \
-            = PATH
-        
-    def set_region_dict_path(PATH:str):
-        BtpyPersistence.REGIONS_DICT_PATH \
-            = PATH
-        
-    def set_country_dict_path(PATH:str):
-        BtpyPersistence.COUNTRY_DICT_PATH \
-            = PATH
-        
-    def set_profession_path(PATH):
-        BtpyPersistence.PROFESSION_PATH \
-            = PATH
+    # -----------------------------------
 
-    # Check if the file exists using 
-    # os.path.exists()
-    def check_path(PATH:str, 
-        FILE_EXTENSION:str = "")->bool:
-        return check_path(
-            PATH, 
-            FILE_EXTENSION
-        )
-    
-    def image_size(image_route:str)->dict:
-        return image_size(image_route)
-    
-    def execute(script_path:str)->None:
-        """
-        Executes the given Python script.
-        """
-        return execute(script_path)
-    
-    def play_sound(route:str)->None:
-        return play_sound(route)
+    # TXT --------------------------------
     
     def delete_txt(filename:str)->None:
         """
@@ -103,12 +20,19 @@ class BtpyPersistence(BtpyMaths):
         """
         delete_txt(filename)
 
-    def write_txt(file_path:str, text:str)->None:
+    def write_txt(PATH:str, TEXT:str = "")\
+            ->bool:
         """
-        Assigns the given text to the 
-        specified text file.
+        Escribe el texto proporcionado en 
+        un archivo de texto en la ruta 
+        especificada.
+        Si el archivo ya existe, lo 
+        sobreescribe.
+        Returns:bool: True si el archivo se 
+        escribió correctamente, False si 
+        hubo un error.
         """
-        write_txt(file_path, text)
+        write_txt(PATH, TEXT)
 
     def read_txt(file_path:str)->str:
         """
@@ -117,16 +41,9 @@ class BtpyPersistence(BtpyMaths):
         """
         return read_txt(file_path)
     
-    def create_txt(filename:str, 
-        content:str="")->None:
-        """
-        Creates a new text file with 
-        the specified filename and 
-        optional content.
-        """
-        return create_txt(filename, content)
-    
-    
+    # -------------------------------------
+
+    # RANDOM DATA -------------------------
     
     def random_name(culture = "",
                     gender = "")->str:
@@ -192,10 +109,6 @@ class BtpyPersistence(BtpyMaths):
           BtpyPersistence.LASTNAMES_PATH,
           CULTURE
         )
-
-    def get_region_dict()->dict:
-        return BtpyPersistence\
-            .REGIONS_DICT
     
     def random_full_name(
                 names_number:int,
@@ -239,14 +152,37 @@ class BtpyPersistence(BtpyMaths):
             gender
         )
     
-    def create_docx(route:str, text:str)\
+    # ------------------------------------
+    
+    # SOUND -----------------------------
+
+    def play_sound(route:str)->None:
+        return play_sound(route)
+    
+    # ------------------------------------
+
+    # DOCX -------------------------------
+    
+    def write_docx(route:str, text:str)\
             ->None:
         """
         Funcion que almacena en un archivo 
         docx el texto
         enviado.
         """
-        create_docx(route, text)
+        write_docx(route, text)
+
+    def read_docx(ruta_archivo:str)->str:
+        """
+        Funcion que carga un archivo 
+        ".docx" como texto almacenando
+        sus saltos de linea y espacios.
+        """
+        return read_docx(ruta_archivo)
+
+    # ------------------------------------
+
+    # IMAGES -----------------------------
 
     def read_animation_folder(PATH)\
             ->list[str]:
@@ -262,14 +198,6 @@ class BtpyPersistence(BtpyMaths):
         """
         return read_animation_folder(PATH)
     
-    def read_docx_full(ruta_archivo:str)->str:
-        """
-        Funcion que carga un archivo 
-        ".docx" como texto almacenando
-        sus saltos de linea y espacios.
-        """
-        return read_docx_full(ruta_archivo)
-    
     def read_photoimage(route:str, size_x, 
         size_y)->PhotoImage:
         """
@@ -280,37 +208,19 @@ class BtpyPersistence(BtpyMaths):
         return read_photoimage(route, size_x, 
             size_y)
     
-    def random_country(continent:str = "")\
-            ->str:
-        """
-        Función que generan nombres de 
-     países aleatorios en ingles según 
-     el continente indicado; las claves de
-     continente son:
-    north_america,
-    europe,
-    africa,
-    south_america,
-    central_asia,
-    middle_east,
-    south_asia,
-    far_asia,
-    oceania.
-        """
-        BtpyPersistence\
-            .__load_country_dict()
-        country_dict = BtpyPersistence\
-            .COUNTRY_DICT
-        import random
-        country_list = []
-        if(continent == ""):
-            continent = random.choice(
-                list(country_dict.keys()))
-        country_list = country_dict\
-            [continent]
-        return random.choice(country_list)
+    def image_size(image_route:str)->dict:
+        return image_size(image_route)
     
+    # -------------------------------------
     
+    # JSON --------------------------------
+
+    def read_json_object(PATH:str)->dict:
+        return read_json_object(PATH)
+    
+    # --------------------------------------
+    
+    # OPEN --------------------------------
     
     def load_word(DOCX_ROUTE:str)->None:
         """
@@ -320,6 +230,8 @@ class BtpyPersistence(BtpyMaths):
         en windows.
         """
         return load_word(DOCX_ROUTE)
+    
+    # SYSTEM ----------------------------
     
     def seek_docx_file(ROUTE = "/")->str:
         """
@@ -336,8 +248,6 @@ class BtpyPersistence(BtpyMaths):
         """
         return seek_folder_route(ROUTE)
     
-    
-    
     def get_root()->str:
         """
         Funcion que obtiene la ruta 
@@ -347,55 +257,38 @@ class BtpyPersistence(BtpyMaths):
         """
         return get_root()
     
-    def read_json_object(PATH:str)->dict:
-        return read_json_object(PATH)
-    
-    def random_geo_adress(
-            country_key:str = ""):
-        geo_adress = GeoAdress()
-        geo_adress.country = country_key
-        if(country_key == ""):
-            geo_adress.country \
-            = BtpyPersistence\
-                .random_country()
-        geo_adress.region = BtpyPersistence\
-            .random_region(
-                geo_adress.country)
-        return geo_adress
-    
-    def what_continent_from(continent = "")\
-                ->str:
-        pass
-    
-    def what_region_from(region)->str:
-        for k in BtpyPersistence\
-                    .REGIONS_DICT:
-            if(region in BtpyPersistence\
-                    .REGIONS_DICT[k]):
-                return k
-        return ""
-    
-    def random_profession(
-            development_level:str)->str:
+    def get_files_into(PATH_FOLDER:str,
+            EXTENSION:str = "")\
+            ->list[str]:
         """
-        development level must be:
-        * "primitive"
-        * "medieval" 
-        * "victorian" 
-        * "digital"
+        Funcion que obtiene los nombres 
+        completos de todos los archivos 
+        dentro de una carpeta con su 
+        extension. Si envia una extension
+        entonces filtrara los nombres 
+        que tengan esa extension
+        automaticamente.
+        By Gemini
         """
-        return random_profession(
-            BtpyPersistence.read_xlsx_dict_list,
-            BtpyPersistence.PROFESSION_PATH,
-            development_level
+        return get_files_into(
+            PATH_FOLDER, EXTENSION)
+    
+    def execute(script_path:str)->None:
+        """
+        Executes the given Python script.
+        """
+        return execute(script_path)
+    
+    # Check if the file exists using 
+    # os.path.exists()
+    def check_path(PATH:str, 
+        FILE_EXTENSION:str = "")->bool:
+        return check_path(
+            PATH, 
+            FILE_EXTENSION
         )
-    
-    def random_region(country_key:str = ""):
-        BtpyPersistence.__load_regions_dict()
-        region_dict = BtpyPersistence\
-            .get_region_dict()
-        return random_region(
-            region_dict, country_key)
+
+    # PATHS ----------------------------
     
     """
     Funcion que carga un cache de una 
@@ -429,32 +322,30 @@ class BtpyPersistence(BtpyMaths):
                     .COUNTRY_PROPERTIES_PATH
             )
 
-    def random_country_by_culture(culture):
-        BtpyPersistence\
-            .__load_culture_properties()
-        country_prop = BtpyPersistence\
-            .COUNTRY_PROPERTIES
-        country_arr = country_prop[culture]\
-            ["country_array"]
-        return random.choice(country_arr)
-
-    def random_profile(culture):
-        profile = CharacterProfile(
-            culture)
-        profile.name = BtpyPersistence\
-            .random_name(
-                culture, 
-                profile.gender
-            )
-        profile.lastname = BtpyPersistence\
-            .random_lastname(culture)
-        profile.profession = BtpyPersistence\
-            .random_profession("digital")
-        country = BtpyPersistence\
-            .random_country_by_culture(culture)
-        profile.geo_adress = BtpyPersistence\
-            .random_geo_adress(country)
-        return profile
+    def set_name_male_path(PATH):
+        """
+        Modifica la ruta a la tabla
+        XLSX de nombres masculinos.
+        """
+        BtpyPersistence.NAME_MALE_PATH \
+            = PATH
+        
+        
+    def set_name_female_path(PATH):
+        """
+        Modifica la ruta a la tabla
+        XLSX de nombres femeninos.
+        """
+        BtpyPersistence.NAME_FEMALE_PATH \
+            = PATH
+        
+    def set_lastname_path(PATH):
+        """
+        Modifica la ruta a la tabla
+        XLSX de apellidos.
+        """
+        BtpyPersistence.LASTNAMES_PATH \
+            = PATH
     
     # -----------------------------------
 

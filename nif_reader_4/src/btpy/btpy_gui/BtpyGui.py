@@ -1,9 +1,9 @@
 
 
-
+from ..btpy_engine.BtpyEngine import BtpyEngine
 from .in_deps import*
 
-class BtpyGui(BtpyDict):
+class BtpyGui(BtpyEngine):
 
     """
     Esta clase estatica es una parte 
@@ -76,7 +76,6 @@ class BtpyGui(BtpyDict):
     FrameSectioned = FrameSectioned
     Option = Option
     Questionary = Questionary
-    Article = Article
     Table = Table
     # -----------------------------------
     # Input Text -------------------------

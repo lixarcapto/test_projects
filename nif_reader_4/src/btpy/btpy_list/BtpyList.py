@@ -76,7 +76,3 @@ class BtpyList(BtpyInternet):
         to the indicated size.
         """
         return fit(ORDERDER_ITERABLE, SIZE)
-    
-    def flatten(matrix:list[list])\
-            ->list[any]:
-        return flatten(matrix)

@@ -8,4 +8,3 @@ from .mod.matrix_iterator.MatrixIterator import MatrixIterator
 from .mod.filter.filter import*
 from .mod.clean_voids.clean_voids import*
 from .mod.fit.fit import*
-from .mod.flatten.flatten import*   

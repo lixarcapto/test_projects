@@ -33,8 +33,11 @@ def main():
     btn.add_listener(fn)
     text2 = Btpy.TextArea(
         window, "write something")
-    text2.set_is_enabled(False)
-    text2.set_value("contenido escrito")
+    text2.set_is_enabled(True)
+    txt = ""
+    for i in range(100 *400):
+        txt += "a"
+    text2.set_value(txt)
     text2.pack()
     window.start()
 

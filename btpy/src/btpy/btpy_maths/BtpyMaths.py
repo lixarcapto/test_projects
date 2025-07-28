@@ -245,3 +245,71 @@ class BtpyMaths(BtpyLoops):
         return get_similarity(
             LIST_1, LIST_2
         )
+
+    def multiply_in_range(
+            MULTIPLYING:int|float,
+            MULTIPLIER:int|float,
+            RANGE_LIST:list[int|float])\
+            ->int|float:
+        """
+        function that multiplies two 
+        numbers keeping the result of the 
+        multiplication in the given range.
+        """
+        return multiply_in_range(
+            MULTIPLYING,
+            MULTIPLIER,
+            RANGE_LIST
+        )
+
+    def divide_in_range(
+            DIVIDEND:list[int|float], 
+            DIVIDER:list[int|float],
+            RANGE_LIST:list[int|float])\
+            ->int|float:
+        """
+        function that divides two 
+        numbers keeping the result in 
+        the given range.
+        """
+        return divide_in_range(
+            DIVIDEND,
+            DIVIDER,
+            RANGE_LIST
+        )
+
+    def percentage_increment(
+            NUMBER:int|float, 
+            INCREMENT:int|float)->float:
+        """
+        function that increases a number 
+        by a given percentage.
+        """
+        return percentage_increment(
+            NUMBER,
+            INCREMENT
+        )
+
+    def percentage_decrement(
+            NUMBER:int|float,
+            DECREMENT:int|float)\
+            ->int|float:
+        """
+        function that decreases a number 
+        by a given percentage.
+        """
+        return percentage_decrement(
+            NUMBER,
+            DECREMENT
+        )
+    
+    def roll_dice(DICE_NUMER:int, 
+            FACES:int)->int:
+        """
+        function that simulates the 
+        rolling of multiple dice.
+        """
+        return roll_dice(
+            DICE_NUMER,
+            FACES
+        )

@@ -23,7 +23,10 @@ def main():
     for i in range(6):
         label = Btpy.LabelLabel(window, 
         "nombre")
+        label.set_font_size(16)
         label.set_content("Juan")
+        label.set_content_foreground_color("white")
+        label.set_content_background_color("blue")
         label.pack()
         label_list.append(label)
     window.start()

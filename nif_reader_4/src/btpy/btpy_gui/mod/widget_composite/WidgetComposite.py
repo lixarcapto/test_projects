@@ -14,9 +14,10 @@ class WidgetComposite(WidgetStandard):
         self.label_title = LabelImage(
             self.margin
         )
-        self.widget = tk.Frame(
+        widget = tk.Frame(
             self.margin
         )
+        self.add_widget(widget)
         self.widget.config(bg = "yellow")
         self.title_is_displayed\
             :bool = False
@@ -26,12 +27,8 @@ class WidgetComposite(WidgetStandard):
         else:
             self.set_in_vertical()
         super().set_background_color("#EEEEEE")
-        font_ = font.Font(
-            family="Arial", 
-            size=12
-        )
         self.label_title.widget.config(
-            font = font_,
+            font = self.default_font,
             bg = "#EEEEEE"
         )
         self.set_title_background(

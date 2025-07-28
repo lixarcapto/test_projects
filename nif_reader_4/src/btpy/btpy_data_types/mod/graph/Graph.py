@@ -10,11 +10,26 @@ class Graph:
     """
 
     def __init__(self)-> None:
+        # Este es un contador del
+        # ultimo codigo usado como
+        # clave optimizada de los
+        # nodos.
         self.__last_code:int = 0
+        # Este dict almacena 
+        # cada clave del nodo con
+        # sus nodos asociados como una
+        # lista.
         self.__adj_list:dict[str, list] \
             = {}  
+        # Este dict almacena los 
+        # datos almacenados en cada
+        # nodo.
         self.__dict_values:dict[str, any] \
             = {}
+        # Este dict almacena las claves
+        # internas optimizadas de cada
+        # nodo asociadas a la clave
+        # externa del nodo.
         self.__translation_table\
             :dict[str, str] = {}
         
@@ -34,13 +49,15 @@ class Graph:
         self.__dict_values = {}
         self.__translation_table = {}
 
-    def get_value(self, KEY_VERTEX:str)->any:
+    def get_value(self, KEY_VERTEX:str)\
+            ->any:
         """
         Funcion que obtiene el valor
         de un nodo del grafo identificado
         con la clave enviada.
         """
-        self.__valid_long_vertex(KEY_VERTEX)
+        self.__valid_long_vertex(
+            KEY_VERTEX)
         short_vertex:str = self\
             .__translate_key(KEY_VERTEX)
         return self.__dict_values\
@@ -53,7 +70,8 @@ class Graph:
         de un nodo al grafo identificado
         con la clave enviada.
         """
-        self.__valid_long_vertex(KEY_VERTEX)
+        self.__valid_long_vertex(
+            KEY_VERTEX)
         short_vertex:str = self\
             .__translate_key(KEY_VERTEX)
         self.__dict_values[short_vertex] \
@@ -88,7 +106,8 @@ class Graph:
         identificado con la clave enviada.
         """
         self.__valid_long_vertex(KEY)
-        vertex = self.__translate_key(KEY)
+        vertex = self.__translate_key(
+            KEY)
         # elimina los valores de cada
         # vertice
         del(self.__dict_values[vertex])
@@ -102,12 +121,25 @@ class Graph:
 
     def has_node(self, KEY:str)\
             -> bool:
+        """
+        Function that returns true 
+        if the node associated with 
+        the sent key exists and returns 
+        false if not.
+        """
         return KEY in self\
             .__translation_table
     
     def get_neighbors_values(self, 
             KEY:str)-> list[str]:
-        vertex = self.__translate_key(KEY)
+        """
+        Function that obtains the 
+        values ​​of the nodes neighboring 
+        the node associated with the 
+        sent key.
+        """
+        vertex = self.__translate_key(
+            KEY)
         vertex_list = self\
             .__get_neighbors_short_vertex(vertex)
         values_list = []
@@ -118,9 +150,17 @@ class Graph:
     
     def get_neighbors_keys(self, 
             KEY:str)-> list[str]:
-        vertex = self.__translate_key(KEY)
+        """
+        Function that obtains the 
+        keys of the nodes neighboring 
+        the node associated with the 
+        sent key.
+        """
+        vertex = self.__translate_key(
+            KEY)
         vertex_list = self\
-            .__get_neighbors_short_vertex(vertex)
+            .__get_neighbors_short_vertex(
+                vertex)
         key_list = self\
             .__translate_short_vertex_list(
                 vertex_list)
@@ -147,6 +187,11 @@ class Graph:
             KEY:str, 
             NEIGHBORS_LIST:list[str])\
             -> None:
+        """
+        Function that adds a list 
+        of neighbors connected to the 
+        node with the associated key.
+        """
         self.__valid_long_vertex(KEY)
         vertex = self.__translate_key(KEY)
         vertex_list = self.__translate_long_vertex_list(

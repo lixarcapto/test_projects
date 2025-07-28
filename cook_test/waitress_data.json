@@ -1,0 +1,31 @@
+
+{
+    "fernanda":{
+        "give_order":[
+            "Quick, I don't have all day",
+            "why are you taking so long?",
+            "I want to go home, don't screw it up, rookie."
+        ],
+        "receive_order":[
+
+        ]
+    },
+    "martina":{
+        "give_order":[
+            "thank you so much",
+            "If you need help, tell me and I'll see what I can do."
+        ],
+        "receive_order":[
+            
+        ]
+    },
+    "pablo":{
+        "give_order":[
+            "there are a lot of people today",
+            "until what time are you staying today?"
+        ],
+        "receive_order":[
+            
+        ]
+    }
+}

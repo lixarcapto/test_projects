@@ -8,9 +8,9 @@ from .mod.random_polygon.random_polygon import*
 from .mod.random_polyline.random_polyline import*
 from .mod.random_ip.random_ip import*
 from .mod.random_mac.random_mac import*
-from .mod.random_phone.random_phone import*
 from .mod.random_color.random_color import*
 from .mod.random_uniques.random_uniques import*
 from .mod.random_str.random_str import*
 from .mod.around.around import*
 from .mod.rand_range.rand_range import*
+from .mod.random_multi_probabilities.random_multi_probabilities import*

@@ -31,7 +31,7 @@ class WidgetStandard:
     def __init__(self, widget):
         self.margin = None
         self.widget = None
-        self.__default_font = font.Font(
+        self.default_font = font.Font(
             family="Arial", 
             size=11
         )
@@ -44,7 +44,9 @@ class WidgetStandard:
         else:
             self.margin = tk.Frame(
                 widget)
-        self.margin.config(bg = "black")
+        self.margin.config(
+            bg = "black"
+        )
 
     def add_widget(self, widget):
         """
@@ -54,7 +56,6 @@ class WidgetStandard:
         """
         self.widget = widget
         self.widget.config(
-            font = self.__default_font,
             bg = "#F0F0F0"
         )
         self.widget.pack(
@@ -65,33 +66,33 @@ class WidgetStandard:
         )
 
     def get_font(self):
-        return self.__default_font
+        return self.default_font
 
     def set_is_bold(self, BOOL):
         weight_ = "normal"
         if(BOOL):
             weight_ = "bold"
-        self.__default_font.config(
+        self.default_font.config(
             weight = weight_)
         self.widget.config(
-            font = self.__default_font
+            font = self.default_font
         )
 
     def get_is_bold(self)->bool:
-        result = self.__default_font\
+        result = self.default_font\
             .cget("font")
         if("bold" == result): return True
         return False
 
     def set_is_underline(self, BOOL):
-        self.__default_font.config(
+        self.default_font.config(
             underline = BOOL)
         self.widget.config(
-            font = self.__default_font
+            font = self.default_font
         )
 
     def get_is_underline(self)->bool:
-        return self.__default_font\
+        return self.default_font\
             .cget("underline")
     
     def place_forget(self):
@@ -104,10 +105,10 @@ class WidgetStandard:
         self.margin.grid_forget()
 
     def set_is_overstrike(self, BOOL):
-        self.__default_font.config(
+        self.default_font.config(
             overstrike = BOOL)
         self.widget.config(
-            font = self.__default_font
+            font = self.default_font
         )
 
     def get_is_overstrike(self)->bool:
@@ -139,17 +140,17 @@ class WidgetStandard:
     def grid(self, ROW:int, COLUMN:int,
             STICKY:str = ""):
         if(STICKY == ""):
-            self.margin.grid(row = ROW,
-                column=COLUMN)
+            self.margin.grid(row = COLUMN,
+                column=ROW)
         else:
             self.margin.grid(
-                row = ROW,
-                column=COLUMN,
+                row = COLUMN,
+                column=ROW,
                 sticky=STICKY
             )
     
     def set_font(self,  FONT):
-        self.__default_font = FONT
+        self.default_font = FONT
 
     def set_title(self, TITLE:str)->None:
         self.widget.config(text = TITLE)
@@ -209,18 +210,18 @@ class WidgetStandard:
             justify=justify_key)
     
     def get_font_size(self):
-        return self.__default_font\
+        return self.default_font\
             .cget("size")
     
     def set_font_size(self, SIZE:int):
-        self.__default_font.config(
+        self.default_font.config(
             size = SIZE)
         self.widget.config(
-            font = self.__default_font
+            font = self.default_font
         )
     
     def get_font_family(self):
-        return self.__default_font\
+        return self.default_font\
             .cget("family")
     
     def set_font_family(self, FAMILY:str):
@@ -232,9 +233,9 @@ class WidgetStandard:
         * "Cambria"
         * "Verdana"
         """
-        self.__default_font.config(
+        self.default_font.config(
             family = FAMILY)
         self.widget.config(
-            font = self.__default_font
+            font = self.default_font
         )
     

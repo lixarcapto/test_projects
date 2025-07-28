@@ -28,10 +28,18 @@ class ButtonBox(StandardBox):
             title
         )
 
-    def set_content(self, TEXT_LIST):
+    def set_content(self, 
+            TEXT_LIST:list[str])->None:
+        """
+        Funcion que asigna una lista
+        de textos para los botones 
+        previamente creados.
+        """
         n = 0
         for button in self.component_list:
             button.set_title(
                 TEXT_LIST[n])
+            if(n > len(TEXT_LIST)):
+                break
             n += 1
             

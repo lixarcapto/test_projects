@@ -100,10 +100,13 @@ class SwiperRange(WidgetComposite):
             " < "
         )
         self.__button_back\
-            .set_background_color("gray")
+            .set_background_color(
+                "#9b9b9b")
         self.__button_back\
-            .set_foreground_color("white")
-        self.__button_back.set_font(font_)
+            .set_foreground_color(
+                "#FFFFFF")
+        self.__button_back.set_font(
+            font_)
         self.__label_number = tk.Label(
             self.widget)
         self.__label_number.config(
@@ -116,17 +119,19 @@ class SwiperRange(WidgetComposite):
             " > "
         )
         self.__button_next\
-            .set_background_color("gray")
+            .set_background_color(
+                "#9b9b9b")
         self.__button_next\
-            .set_foreground_color("white")
+            .set_foreground_color(
+                "#FFFFFF")
         self.__button_next.set_font(font_)
         # dibujar -------------------------
-        self.__button_back.grid(0, 2)
+        self.__button_back.grid(2, 0)
         self.__label_number.grid(
             row=0, column=3, 
             sticky="nsew", 
         )
-        self.__button_next.grid(0, 4)
+        self.__button_next.grid(4, 0)
         
     def __add_increment_listener(self):
         self.__button_next.add_listener(

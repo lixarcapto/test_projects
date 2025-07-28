@@ -15,7 +15,7 @@ from btpy.Btpy import Btpy
 
 def main():
     result = Btpy.get_files_into(
-        "./res/folder_test/"
+        "./res/folder_test", "txt"
     )
     print(result)
 

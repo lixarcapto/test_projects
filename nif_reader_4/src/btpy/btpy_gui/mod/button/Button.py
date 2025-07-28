@@ -22,4 +22,6 @@ class Button(OnFocusWidget):
         self.set_background_color(
             [205, 205, 205]
         )
+        self.widget.config(
+            font = self.default_font)
         

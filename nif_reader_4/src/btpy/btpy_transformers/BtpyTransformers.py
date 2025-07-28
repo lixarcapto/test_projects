@@ -30,3 +30,7 @@ class BtpyTransformers(BtpyString):
         a una lista RGB.
         """
         return hex_to_RGB(HEX_COLOR)
+
+    def string_number_list_to_list(STRING:str)\
+            ->list[int]:
+        return string_number_list_to_list(STRING)

@@ -6,6 +6,7 @@ from ....btpy_images.mod.blacken_rgb.blacken_rgb import*
 from ....btpy_images.mod.lightens_rgb.lightens_rgb import*
 from ....btpy_checkers.mod.is_RGB.is_RGB import*
 from ....btpy_transformers.mod.hex_to_RGB.hex_to_RGB import*
+from ....btpy_checkers.mod.is_hex_color.is_hex_color import is_hex_color
 
 class OnFocusWidget(WidgetStandard):
     
@@ -52,14 +53,13 @@ class OnFocusWidget(WidgetStandard):
     def create_background_color_2(self,
             COLOR):
         color = COLOR
-        if(not is_RGB(color)):
+        if(is_hex_color(color)):
             color = hex_to_RGB(color)
         color = lightens_rgb(color, 0.5)
         tk_color = self\
             .convert_to_tk_color(color)
         self.__background_color_2 \
             = tk_color
-        print(tk_color)
 
     def set_focus_color(self, COLOR):
         self.margin_color_2 = self\

@@ -1,0 +1,15 @@
+
+
+{
+    "DISH_LIST":[
+        "latte"	,
+        "lungo"	,
+        "machiato"	,
+        "milk_coffee"	,
+        "mocca"	,
+        "american"	,
+        "hot_milk"	,
+        "chocolate_milk",
+        "water_glass"
+    ]
+}
