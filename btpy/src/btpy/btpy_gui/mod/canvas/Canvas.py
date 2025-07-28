@@ -288,18 +288,27 @@ class Canvas(WidgetStandard):
     def draw_path_image(self, 
             POINT:list[int], 
             PATH:str, 
+            DEGREES = 0,
             SIZE_LIST:list[int]= [0, 0]
             ):
         imagen_pil = Image.open(PATH)
+        if(DEGREES != 0):
+            imagen_pil = imagen_pil.rotate(
+                DEGREES, 
+                expand=True, 
+                resample=Image.BICUBIC
+            )
         self.draw_image(
             POINT,
             imagen_pil,
+            DEGREES,
             SIZE_LIST
         )
         
     def draw_image(self, 
             POINT:list[int], 
             IMAGE_PIL:str, 
+            DEGREES = 0,
             SIZE_LIST:list[int] = [0, 0]
             ):
         if(SIZE_LIST != [0, 0]):
