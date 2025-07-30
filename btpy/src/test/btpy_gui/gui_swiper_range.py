@@ -22,6 +22,7 @@ def main():
             "age")
     swiper.pack()
     swiper.set_content([16, 70])
+    swiper.set_value(30)
     window.start()
 
 main()

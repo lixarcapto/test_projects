@@ -1,0 +1,30 @@
+[
+    {
+        "IMAGE": "horse_girl_1",
+        "TEXT_BUBLE_LIST": [
+            {
+                "TEXT": "hola\n",
+                "POINT_LIST": [
+                    283,
+                    141
+                ]
+            }
+        ]
+    },
+    {
+        "IMAGE": "IMAGE#cb4eb96d-a0fa-4f4a-8553-0f07f8451144",
+        "TEXT_BUBLE_LIST": [
+            {
+                "TEXT": "hola\n",
+                "POINT_LIST": [
+                    174,
+                    275
+                ]
+            }
+        ]
+    },
+    {
+        "IMAGE": "",
+        "TEXT_BUBLE_LIST": []
+    }
+]

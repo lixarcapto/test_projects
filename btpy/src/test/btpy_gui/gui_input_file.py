@@ -22,6 +22,9 @@ def main():
             "image", 
             "busca image")
     file.pack(False, "top")
+    def fn(e):
+        print("postselection event")
+    file.add_listener_onchange(fn)
     file2 = Btpy.InputFile(window,
             "folder", 
             "busca folder")

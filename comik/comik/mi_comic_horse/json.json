@@ -1,0 +1,21 @@
+[
+    {
+        "IMAGE": "horse_girl_1",
+        "TEXT_BUBLE_LIST": [
+            {
+                "TEXT": "hola\n",
+                "POINT_LIST": [
+                    309,
+                    152
+                ]
+            },
+            {
+                "TEXT": "adios\n",
+                "POINT_LIST": [
+                    149,
+                    374
+                ]
+            }
+        ]
+    }
+]

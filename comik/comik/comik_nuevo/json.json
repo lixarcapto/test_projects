@@ -1,0 +1,19 @@
+{
+    "IMAGE": "C:/Users/luisd/Downloads/IMAGE#cb4eb96d-a0fa-4f4a-8553-0f07f8451144.png",
+    "TEXT_BUBLE_LIST": [
+        {
+            "TEXT": "hola\n",
+            "POINT_LIST": [
+                285,
+                234
+            ]
+        },
+        {
+            "TEXT": "adios\n",
+            "POINT_LIST": [
+                125,
+                436
+            ]
+        }
+    ]
+}

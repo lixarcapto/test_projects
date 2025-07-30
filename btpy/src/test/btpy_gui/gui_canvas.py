@@ -24,20 +24,9 @@ def main():
     canvas.set_size(600, 600)
     point_1 = [0, 0]
     point_2 = [300 ,0]
-    degree = 0
-    def fn(n):
-        nonlocal degree, point_1
-        canvas.repaint()
-        canvas.draw_path_image(
-            point_1,
-            "./res/solar.png",
-            degree
-        )
-        point_1[1] += 2
-        degree += 5
-        if(n >= 100):
-            return True
-    Btpy.repeat_each_async(0.16, fn)
+    canvas.set_brush_color("black")
+    canvas.draw_text([0, 0], 
+                     "hola mundo")
     window.start()
 
 main()
