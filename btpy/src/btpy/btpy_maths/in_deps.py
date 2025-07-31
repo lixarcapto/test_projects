@@ -29,3 +29,4 @@ from .mod.percentage_increment.percentage_increment import*
 from .mod.percentage_decrement.percentage_decrement import*
 from .mod.roll_dice.roll_dice import*
 from .mod.set_point_in_range.set_point_in_range import*
+from .mod.create_thunder_shape.create_thunder_shape import*

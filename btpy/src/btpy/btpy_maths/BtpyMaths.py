@@ -324,3 +324,20 @@ class BtpyMaths(BtpyLoops):
             RANGE_X,
             RANGE_Y
         )
+    
+    def create_thunder_shape(
+        x_origen: int,
+        y_origen: int,
+        longitud_max_segmento: int,
+        num_segmentos: int,
+        desviacion_max_grados: float,
+        direccion_base_grados: float = 270.0 # Por defecto, apunta hacia abajo
+        ) -> list[tuple[tuple[int, int], tuple[int, int]]]:
+        return create_thunder_shape(
+            x_origen,
+            y_origen,
+            longitud_max_segmento,
+            num_segmentos,
+            desviacion_max_grados,
+            direccion_base_grados= 270.0 # Por defecto, apunta hacia abajo
+        )

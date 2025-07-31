@@ -26,7 +26,7 @@ def main():
     point_2 = [300 ,0]
     canvas.set_brush_color("black")
     canvas.draw_text([0, 0], 
-                     "hola mundo")
+                     "hola mundo"
     window.start()
 
 main()

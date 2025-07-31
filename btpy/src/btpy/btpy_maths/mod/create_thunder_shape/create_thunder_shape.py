@@ -4,7 +4,7 @@
 import random
 import math
 
-def shader_relampago(
+def create_thunder_shape(
     x_origen: int,
     y_origen: int,
     longitud_max_segmento: int,
