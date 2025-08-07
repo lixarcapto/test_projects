@@ -46,3 +46,4 @@ from .mod.get_files_into.get_files_into import*
 from .mod.read_animation_folder.read_animation_folder import*
 from .mod.write_json_object.write_json_object import*
 from .mod.create_folder.create_folder import*
+from .mod.write_xlsx_flat_dict.write_xlsx_flat_dict import*

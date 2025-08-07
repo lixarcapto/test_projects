@@ -37,7 +37,7 @@ def main():
     img_canvas.set_brush_color(
         "red"
     )
-    p_list = Btpy.random_polygon(
+    p_list = Btpy.random_point_list(
         20,
         [0, 500]
     )

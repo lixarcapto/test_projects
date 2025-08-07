@@ -366,12 +366,6 @@ class BtpyPersistence(BtpyMaths):
             PATH_XLSX
         )
     
-    def write_xlsx_flat_dict(PATH_XLSX:str)\
-            ->None:
-        """
-        TODO
-        """
-        pass
     
     def read_folder_xlsx_dict_list(
             path:str,
@@ -396,12 +390,6 @@ class BtpyPersistence(BtpyMaths):
         """
         return read_xlsx_flat_list(
             PATH_XLSX)
-    
-    def write_xlsx_flat_list(PATH_XLSX:str):
-        """
-        TODO
-        """
-        pass
     
     def read_xlsx_dict_list(PATH_XLSX:str)\
             ->dict[list]:
@@ -502,6 +490,14 @@ class BtpyPersistence(BtpyMaths):
         hubo un error.
         """
         return create_folder(PATH)
+    
+    def write_xlsx_flat_dict(
+            DICT: Dict[Any, Any], 
+            PATH: str):
+        return write_xlsx_flat_dict(
+            DICT,
+            PATH
+        )
 
 
     # -----------------------------------

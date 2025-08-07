@@ -10,37 +10,9 @@ def main():
     # -------------------------------------
     
 
-    window = Btpy.Window("title")
-    canvas = Btpy.Canvas(window, "canvas")
-    canvas.set_size(650, 650)
-    canvas.set_background_color("white")
-    canvas.pack()
-    img_pil = Btpy.create_rgb_image_pil(
-        600, 600
-    )
-    img_canvas = ImagePilCanvas(img_pil)
-    img_canvas.set_brush_width(2)
-    img_canvas.set_brush_color(
-        [0, 255, 255]
-    )
-    line_list = [[0, 0], [0, 0]]
-    for i in range(12):
-        line_list = shader_relampago(
-            300,
-            300,
-            100,
-            100,
-            30
-        )
-        img_canvas.draw_line_list(
-            line_list)
-    canvas.draw_image(
-        [0, 0],
-        img_canvas.image_pil,
-        0
-    )
-    window.start()
-
+    for i in range(16):
+        r = Btpy.random_probability(90)
+        print(r)
 
     #---------------------------------
     print(r)

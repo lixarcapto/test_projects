@@ -1,0 +1,10 @@
+
+Continuar arreglando desde 
+Swiper image. Ademas hacer 
+que el widget button icon box use 
+iconos con margin para añadir un focus
+effect.
+Añadir a la guia los componentes 
+que falten.
+Arreglar el margen para que tenga 
+el mismo color del label.

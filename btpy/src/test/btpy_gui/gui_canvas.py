@@ -23,10 +23,36 @@ def main():
     canvas.pack()
     canvas.set_size(600, 600)
     point_1 = [0, 0]
-    point_2 = [300 ,0]
+    point_2 = [600 ,0]
     canvas.set_brush_color("black")
-    canvas.draw_text([0, 0], 
-                     "hola mundo"
+    rgb = Btpy.random_color()
+    print(rgb)
+    def fn(n):
+        nonlocal point_2, point_1,\
+            rgb
+        rgb[0] = Btpy.sum_in_range(
+            rgb[0],
+            1,
+            [0, 255]
+        )
+        rgb[1] = Btpy.sum_in_range(
+            rgb[1],
+            1,
+            [0, 255]
+        )
+        rgb[2] = Btpy.sum_in_range(
+            rgb[2],
+            1,
+            [0, 255]
+        )
+        if(rgb == [255, 255, 255]):
+            rgb = Btpy.random_color()
+        point_1[1] += 1
+        point_2[1] += 1
+        print(rgb)
+        canvas.set_brush_color(rgb)
+        canvas.draw_line(point_1, point_2)
+    Btpy.repeat_each_async(0.03, fn)
     window.start()
 
 main()
