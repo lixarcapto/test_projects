@@ -20,17 +20,28 @@ def main():
     window.set_is_fullscreen(True)
     radio = Btpy.RadioBox(window, 
             "animal favorito", 
-            [
+            )
+    radio.pack()
+    radio.set_components(
+        [
             "Jirafa",
             "Cocodrilo",
             "Raton",
             "Perro",
             "Gato"
-             ])
-    radio.pack()
+             ]
+    )
+    radio.set_content(
+        [
+            "Jirafa**",
+            "Cocodrilo**",
+            "Raton**",
+            "Perro**",
+            "Gato**"
+             ]
+    )
     def fn():
         print(radio.get_value())
-        radio.set_value(None)
     radio.add_on_change_listener(fn)
     window.start()
 

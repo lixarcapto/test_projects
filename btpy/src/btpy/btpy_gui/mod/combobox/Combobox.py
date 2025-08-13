@@ -20,6 +20,7 @@ class Combobox(WidgetComposite):
             TITLE:str = ""):
         super().__init__(window, True)
         self.combobox = None  # public
+        self.__key_list:list[str] = []
         self.__text_list:list[str] = []
         self.__init_components(window)
         self.set_title(TITLE)
@@ -49,6 +50,10 @@ class Combobox(WidgetComposite):
         self.combobox.config(
             width=CHAR_SIZE)
         
+    def set_components(self, 
+            KEY_LIST:list[str]):
+        self.__key_list = KEY_LIST
+        
     def set_content(self, 
             TEXT_LIST:list[str])->None:
         """
@@ -62,26 +67,18 @@ class Combobox(WidgetComposite):
         self.__text_list = TEXT_LIST
         self.combobox.config(
             values = TEXT_LIST)
-        self.set_value(0)
+        self.set_value(
+            self.__key_list[0]
+        )
 
-    def get_value(self)->int:
-        """
-        Function that obtains the index 
-        of the list text selected by 
-        the user.
-        """
+    def get_value(self)->str:
         text = self.combobox.get()
-        return self.__text_list.index(text)
+        idx = self.__text_list.index(text)
+        return self.__key_list[idx]
     
-    def set_value(self, INDEX:int)\
+    def set_value(self, TEXT:str)\
             ->None:
-        """
-        Function that assigns a 
-        selected element by its index. 
-        The index is the index of the 
-        text list assigned with 
-        set_content.
-        """
-        text = self.__text_list[INDEX]
+        idx = self.__key_list.index(TEXT)
+        text = self.__text_list[idx]
         self.combobox.set(text)
         

@@ -19,7 +19,7 @@ class View:
         self.label_label = Btpy\
             .LabelLabel(
                 self.window,
-                "captures"
+                " points "
             )
         self.label_label.set_font_size(14)
         self.label_label.pack()
@@ -70,7 +70,7 @@ class View:
             RENDER_DICT["TEXT"]
         )
         self.label_label.set_content(
-            RENDER_DICT["CAPTURES"]
+            RENDER_DICT["VALUE"]
         )
 
     def update(self):

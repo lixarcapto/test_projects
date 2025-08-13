@@ -12,18 +12,22 @@ class InputSlider(WidgetComposite):
         self.slider = None
         self.__int_var_value:tk.IntVar \
             = tk.IntVar()
+        self.value = 0
         self.is_in_horizontal \
             = is_horizontal
         self.__init_components()
         self.set_title(text)
     
     def __init_components(self):
+        def fn(e):
+            self.value = e
         self.slider = tk.Scale(
             self.widget,
             tickinterval = 0,
             showvalue=True,
             highlightthickness=0,
-            font = super().get_font()
+            font = super().get_font(),
+            command= fn
         )
         if(self.is_in_horizontal):
             self.slider.config(
@@ -71,10 +75,10 @@ class InputSlider(WidgetComposite):
                 orient=tk.VERTICAL)
             
     def get_value(self)->bool:
-        return self.__int_var_value.get()
+        return self.value
     
     def set_value(self, VALUE:bool):
-        self.__int_var_value.get(VALUE)
+        self.slider.set(VALUE)
 
     def set_marker_width(self, 
             SIZE_PIXEL:int):

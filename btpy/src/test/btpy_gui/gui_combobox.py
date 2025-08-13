@@ -22,13 +22,22 @@ def main():
             True,
             "animal favorito"
     )
-    combobox.set_content(
+    combobox.set_components(
         [
                 "gato",
                 "tortuga",
                 "perro",
                 "oso",
                 "lagartija"
+        ]
+    )
+    combobox.set_content(
+        [
+                "gato**",
+                "tortuga**",
+                "perro**",
+                "oso**",
+                "lagartija**"
         ]
     )
     combobox.pack()

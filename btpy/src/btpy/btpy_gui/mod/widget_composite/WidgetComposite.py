@@ -26,7 +26,9 @@ class WidgetComposite(WidgetStandard):
             self.set_in_horizontal()
         else:
             self.set_in_vertical()
-        super().set_background_color("#EEEEEE")
+        super().set_background_color(
+            "#EEEEEE"
+        )
         self.label_title.widget.config(
             font = self.default_font,
             bg = "#EEEEEE"

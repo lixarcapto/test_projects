@@ -18,6 +18,8 @@ from btpy.Btpy import Btpy
 def main():
     window = Btpy.Window("titulo")
     window.set_is_fullscreen(True)
+    button = Btpy.Button(window, "save")
+    button.pack()
     slider = Btpy.InputSlider(window, 
         True, "volumen")
     slider.set_range([0, 40])
@@ -28,6 +30,9 @@ def main():
     slider.set_mark_interval(5)
     slider.set_marker_width(50)
     slider.pack()
+    def fn(e):
+        print(slider.get_value())
+    button.add_listener(fn)
     window.start()
 
 main()

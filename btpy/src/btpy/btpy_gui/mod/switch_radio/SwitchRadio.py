@@ -21,7 +21,13 @@ class SwitchRadio(OnFocusWidget):
             anchor="w"
         )
         self.add_widget(self.widget)
+        self.widget.config(
+            font = self.default_font
+        )
         self.add_default_listener()
+
+    def set_content(self, TEXT:str):
+        self.widget.config(text = TEXT)
 
     def add_on_change_listener(self, 
             CALLBACK):

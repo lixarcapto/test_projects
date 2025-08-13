@@ -2,44 +2,37 @@
 
 from btpy.Btpy import Btpy
 import random
+from CaptureStore import CaptureStore
 
 class Model:
 
-    SEA_DICT = {
-        "LAKE":{
-            "SHRIMP":20,
-            "TROUT":20,
-            "TENT":55,
-            "CRAB":5
-        },
-        "RIVER":{
-            "SHRIMP":25,
-            "CRAB":5,
-            "TROUT":60,
-            "TENT":10
-        }
-    }
-    FISH_DICT = {
-        "SHRIMP":"SHRIMP",
-        "TROUT":"TROUT",
-        "TENT":"TENT",
-        "CRAB":"CRAB"
-    }
+    SEA_DICT = {}
+    CaptureStore = CaptureStore()
+
+    def load_sea_dict(self):
+        nested_dict = Btpy.read_xlsx_nested_dict_column(
+            "./res/sea.xlsx"
+        )
+        print(nested_dict)
+        Model.SEA_DICT = nested_dict
 
     def get_sea_keys(self):
         return list(Model.SEA_DICT.keys())
 
     def __init__(self):
-        self.scenario_key = "LAKE"
+        self.scenario_key = "lake"
         self.bait_prob = 90
         self.population_list = []
-        self.capture_key = "TENT"
-        self.randomize_population()
+        self.points = 0
+        self.capture_key = "sardine"
         self.loop_time = 15
+        self.capture_code = 0
         self.is_launched = False
         self.is_pulling = False
         self.bag_list = []
         self.flag = None
+        self.load_sea_dict()
+        self.randomize_population()
 
     def change_sea(self, sea_key):
         self.scenario_key = sea_key
@@ -53,6 +46,8 @@ class Model:
 
     def launch(self):
         self.is_launched = True
+        capture = self.get_actual_capture()
+        self.points += capture.value
         self.bag_list.append(
             self.capture_key
         )
@@ -64,8 +59,13 @@ class Model:
         population = len(self.population_list)
         if(population == 0):
             return None
+        capture_k = self.population_list[0]
+        capture = Model.CaptureStore.get(
+            capture_k
+        )
         has_capture = Btpy.random_probability(
-            self.bait_prob)
+            int(capture.capture_prob)
+        )
         print("launch")
         print("population ", self.population_list)
         if(has_capture):
@@ -75,6 +75,12 @@ class Model:
             del(self.population_list[0])
             self.capture_key = key
             print(key)
+            self.capture_code = Btpy.rand_range(
+                [0, 4]
+            )
+        random.shuffle(
+            self.population_list
+        )
 
     def throw(self):
         self.is_launched = False
@@ -85,7 +91,8 @@ class Model:
                 "SCENARIO":self.scenario_key,
                 "FISH":"",
                 "TEXT":"",
-                "CAPTURES":str(len(self.bag_list))
+                "CAPTURES":str(len(self.bag_list)),
+                "VALUE":self.points
             }
         if(self.is_launched):
             if(self.is_pulling):
@@ -93,10 +100,16 @@ class Model:
             else:
                  dict_["FISH"] = "cane"
         else:
-            dict_["FISH"] = self.capture_key
-            dict_["TEXT"] = Model.FISH_DICT\
-                [self.capture_key]
+            capture = self\
+                .get_actual_capture()
+            dict_["FISH"] = self.capture_key + "_" + str(self.capture_code)
+            dict_["TEXT"] = capture.description
         return dict_
+    
+    def get_actual_capture(self):
+        return Model.CaptureStore.get(
+            self.capture_key
+        )
 
     def randomize_population(self):
         list_ = Model.SEA_DICT\

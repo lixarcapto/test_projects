@@ -21,17 +21,20 @@ def main():
     text_list = [
             "axxx", "bxxx", "cxxx", "dxxx"
         ]
+    key_list = [
+            "a", "b", "c", "d"
+        ]
     checkbox = Btpy.CheckBox(window,
         True, 
         "elige")
+    checkbox.set_components(key_list)
     checkbox.set_content(text_list)
     checkbox.pack()
     button = Btpy.Button(window, "send")
     button.pack()
     def fn(e):
-        i_list = checkbox.get_value()
-        for i in i_list:
-            print(text_list[i])
+        print(checkbox.get_value())
+        checkbox.set_columns(1)
     button.add_listener(fn)
     window.start()
 
