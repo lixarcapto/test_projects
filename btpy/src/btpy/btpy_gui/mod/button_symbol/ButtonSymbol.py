@@ -51,17 +51,17 @@ class ButtonSymbol(WidgetComposite):
         if(EVENT_KEY == "default"):
             self.label.bind("<Button-1>", 
                 CALLBACK)
-            self.add_listener("<Button-1>", 
+            self.label_title.widget.bind("<Button-1>", 
                 CALLBACK)
         elif(EVENT_KEY == "mouse_enter"):
             self.label.bind("<Enter>", 
                 CALLBACK)
-            self.add_listener("<Enter>", 
+            self.label_title.widget.bind("<Enter>", 
                 CALLBACK)
         elif(EVENT_KEY == "mouse_leave"):
             self.label.bind("<Leave>", 
                 CALLBACK)
-            self.add_listener("<Leave>", 
+            self.label_title.widget.bind("<Leave>", 
                 CALLBACK)
         
     def add_default_listener(self):

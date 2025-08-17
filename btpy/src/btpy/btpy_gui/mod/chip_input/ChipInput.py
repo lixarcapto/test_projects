@@ -15,6 +15,8 @@ class ChipInput(WidgetComposite):
         self.__label = None
         self.__frame_inventory = None
         self.__button_list = []
+        self.__key_list = []
+        self.__key_selected = []
         self.__button_inventory = []
         self.__init_components(window)
         self.set_title(title)
@@ -48,11 +50,7 @@ class ChipInput(WidgetComposite):
         return False
     
     def get_value(self):
-        key_list = []
-        for button in self.__button_inventory:
-            key_list.append(
-                button.cget("text"))
-        return key_list
+        return self.__key_selected
     
     def __format_button_list(self):
         for button in self.__button_list:
@@ -64,6 +62,7 @@ class ChipInput(WidgetComposite):
 
     def set_content(self, 
             KEY_LIST:list[str]):
+        self.__key_list = KEY_LIST
         self.__format_button_list()
         self.__create_button_list(KEY_LIST)
 
@@ -74,7 +73,8 @@ class ChipInput(WidgetComposite):
                 self.__frame_selector, 
                 text = key,
                 bg = self.__label.cget("bg"),
-                fg = self.__label.cget("fg")
+                fg = self.__label.cget("fg"),
+                font = self.default_font
             )
             button.pack(side=tk.LEFT)
             def aux(key):
@@ -82,6 +82,7 @@ class ChipInput(WidgetComposite):
                     if(self.is_selected(
                             key)):
                         return None
+                    self.__key_selected.append(key)
                     self.__create_button(key)
                 return fn
             button.config(
@@ -92,10 +93,14 @@ class ChipInput(WidgetComposite):
     def __create_button(self, key):
         button = ButtonSymbol(
             self.__frame_inventory,
-            key
+            key,
+            "x"
         )
         def fn(e):
             self.__destroy_button(key)
+            idx = self.__key_selected\
+                .index(key)
+            del(self.__key_selected[idx])
         button.add_listener(fn)
         button.margin.pack(anchor="w")
         self.__button_inventory.append(
@@ -121,7 +126,8 @@ class ChipInput(WidgetComposite):
             self.widget, 
             text = "Inventory",
             borderwidth = 1,
-            relief = "solid"
+            relief = "solid",
+            font = self.default_font
         )
         self.__frame_inventory = tk.Frame(
             self.widget

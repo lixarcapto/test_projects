@@ -18,25 +18,25 @@ from btpy.Btpy import Btpy
 def main():
     window = Btpy.Window("titulo")
     window.set_is_fullscreen(True)
-    button = Btpy.Button(window, "end")
+    button = Btpy.Button(window, "click")
     button.pack()
-    inventory = Btpy.ChipInput(
-        window, "inventario", [
-            "Manzana",
-            "Espada",
-            "Abrigo",
-            "Monedas"
-        ])
-    inventory.pack()
-    inventory.set_content([
-            "Manzana",
-            "Martillo",
-            "Pan",
-            "Pañuelo"
-        ])
+    slider = Btpy.SliderBox(
+        window, True, "titulo"
+    )
+    slider.pack()
+    slider.set_components(
+        ["a", "b", "c", "d"],
+        [0, 5]
+    )
+    slider.set_columns(3)
     def fn(e):
-        r = inventory.get_value()
-        print(r)
+        print(slider.get_value())
+        slider.set_value({
+            "a":1, 
+            "b":1, 
+            "c":1, 
+            "d":1
+        })
     button.add_listener(fn)
     window.start()
 
