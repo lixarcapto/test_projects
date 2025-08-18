@@ -22,6 +22,7 @@ class BtpyGui(BtpyEngine):
     # -----------------------------------
     # Boxes ----------------------------
     ChipInput = ChipInput
+    LabelList = LabelList
     # -----------------------------------
     # Dropdown ---------------------------
     Combobox = Combobox
@@ -34,6 +35,7 @@ class BtpyGui(BtpyEngine):
     SwitchCheck = SwitchCheck
     CheckBox = CheckBox
     RadioBox = RadioBox
+    SliderBox = SliderBox
     SwitchDouble = SwitchDouble
     AccordionFrame = AccordionFrame
     SwitchIconBox = SwitchIconBox

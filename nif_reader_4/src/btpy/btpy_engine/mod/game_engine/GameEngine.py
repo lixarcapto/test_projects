@@ -12,7 +12,7 @@ class GameEngine(WidgetComposite):
         self.resources_path:str = "./"
         self.canvas = Canvas(self.widget)
         self.canvas.pack()
-        self.scenario = Scenario()
+        self.scenario:Scenario = Scenario()
         self.set_title(TITLE)
         self.__flag_repeater = None
 

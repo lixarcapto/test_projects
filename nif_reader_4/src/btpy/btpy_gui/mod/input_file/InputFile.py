@@ -30,8 +30,14 @@ class InputFile(WidgetComposite):
         self.auto_fit_text:bool = False
         self.text_button = "search"
         self.__init_components()
+        self.onchange_callback = None
         self.set_type_search(file_type)
         self.set_title(title)
+
+    def add_listener_onchange(self, 
+            CALLBACK:any):
+        self.onchange_callback\
+            = CALLBACK
 
     def set_type_search(self, FILE_TYPE:str):
         """
@@ -70,9 +76,9 @@ class InputFile(WidgetComposite):
             self.widget, ""
         )
         # dibujar ------------------------
-        self.button_load.grid(0, 0)
+        self.button_load.grid(0, 0,  "we")
         self.text_field.grid(
-            0, 1, "we"
+            1, 0, "we"
         )
 
     def search_folder(self):
@@ -86,6 +92,7 @@ class InputFile(WidgetComposite):
                     len(path))
             self.text_field.set_value(
                 path)
+            self.__call_onchange_callback()
         self.button_load.add_listener(fn)
         
     def search_file_image(self):
@@ -105,6 +112,7 @@ class InputFile(WidgetComposite):
                     len(path))
             self.text_field.set_value(
                 path)
+            self.__call_onchange_callback()
         self.button_load.add_listener(fn)
         
     def search_file_text(self):
@@ -124,6 +132,7 @@ class InputFile(WidgetComposite):
                     len(path))
             self.text_field.set_value(
                 path)
+            self.__call_onchange_callback()
         self.button_load.add_listener(fn)
         
     def search_file(self):
@@ -138,7 +147,15 @@ class InputFile(WidgetComposite):
                     len(path))
             self.text_field.set_value(
                 path)
+            self.__call_onchange_callback()
         self.button_load.add_listener(fn)
+
+    def __call_onchange_callback(self):
+        if(self.onchange_callback\
+                == None):
+            return None
+        e = None
+        self.onchange_callback(e)
 
     def get_value(self)->str:
         return self.text_field.get_value()

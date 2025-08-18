@@ -67,6 +67,7 @@ class View:
         def fn(e):
             self.start_nif()
         self.button_reset.add_listener(fn)
+        self.add_window_listener()
 
     def load_and_start(self):
         v = self.input_file.get_value()
@@ -76,6 +77,52 @@ class View:
         )
         self.start_nif()
         self.update()
+
+    def write_as_list(self, LIST, 
+            SYMBOL = "). "):
+        txt = ""
+        n = 1
+        for e in LIST:
+            txt += f"{n}{SYMBOL}{e}\n"
+            n += 1
+        return txt
+    
+    def add_options_text(self, text, 
+            LIST):
+        list_txt = self.write_as_list(
+            LIST
+        )
+        result = text + "\n\nelige:\n"\
+            + list_txt
+        return result
+
+    def add_window_listener(self):
+        def fn(idx):
+            render_dict = self.model.request(
+                "get_render", {})
+            k = render_dict\
+                ["SCENE_KEYS"][idx]
+            self.model.request(
+                "set_key",
+                {"key": k}
+            )
+            self.update()
+        
+        self.window.add_key_listener(
+            "1", lambda e:fn(0)
+        )
+        self.window.add_key_listener(
+            "2", lambda e:fn(1)
+        )
+        self.window.add_key_listener(
+            "3", lambda e:fn(2)
+        )
+        self.window.add_key_listener(
+            "4", lambda e:fn(3)
+        )
+        self.window.add_key_listener(
+            "5", lambda e:fn(4)
+        )
         
     def update(self):
         render_dict = self.model.request(
@@ -85,13 +132,24 @@ class View:
         self.text_area.set_title(
             title
         )
+        paragraph = Btpy.sort_text(
+            render_dict["TEXT"],
+            90
+        )
+        text = self.add_options_text(
+            paragraph,
+            render_dict["SCENE_KEYS"]
+        )
         self.text_area.set_value(
-            render_dict["TEXT"]
+            text
         )
         if(self.model.request(
                     "get_is_end", {})): 
             self.hidde_radio_box()
             return None
+        self.radio_box.set_components(
+            render_dict["SCENE_KEYS"]
+        )
         self.radio_box.set_content(
             render_dict["SCENE_KEYS"]
         )

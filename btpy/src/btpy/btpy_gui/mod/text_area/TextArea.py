@@ -1,6 +1,7 @@
 
 import tkinter as tk
 from ..widget_composite.WidgetComposite import WidgetComposite
+from ....btpy_string.mod.remove_char.remove_char import*
 
 class TextArea(WidgetComposite):
 
@@ -15,7 +16,9 @@ class TextArea(WidgetComposite):
         
     def __init_components(self):
         self.text_area = tk.Text(
-            self.widget)
+            self.widget,
+            font= self.default_font
+        )
         self.scroll_bar =  tk.Scrollbar(
             self.widget)
         # dibujar -------------------------
@@ -48,6 +51,12 @@ class TextArea(WidgetComposite):
         # Borra todo el texto
         self.text_area.insert(
                 "1.0", TEXT)
+        
+    def set_font_size(self, SIZE:int):
+        super().set_font_size(SIZE)
+        self.text_area.config(
+            font=self.default_font
+        )
 
     def set_value(self, TEXT:str):
         if(self.is_enabled):
@@ -60,8 +69,12 @@ class TextArea(WidgetComposite):
                 state = tk.DISABLED)
 
     def get_value(self)->str:
-        return  self.text_area.get(
+        text = self.text_area.get(
             "1.0", tk.END)
+        return remove_char(
+            text, 
+            len(text) -1
+        )
     
     def set_size(self, CHAR_WIDTH:int, 
             CHAR_HEIGHT:int):

@@ -24,10 +24,10 @@ class BtpyRandom(BtpyPersistence):
         """
         return random_bool()
     
-    def randint_list(size: int, 
+    def random_int_list(size: int, 
             range_array: list[int]) \
             -> list[int]:
-        return randint_list(size, 
+        return random_int_list(size, 
             range_array)
     
     def random_without(range_arr: int, 
@@ -46,7 +46,7 @@ class BtpyRandom(BtpyPersistence):
             repeated_int_ar, 
             is_exclusive)
     
-    def random_polygon(quantity:int, 
+    def random_point_list(quantity:int, 
             range_ar:list[int])\
             ->list[list[int]]:
         """
@@ -55,10 +55,10 @@ class BtpyRandom(BtpyPersistence):
         cantidad indicada dentro del 
         Rango enviado
         """
-        return random_polygon(quantity, 
+        return random_point_list(quantity, 
             range_ar)
     
-    def random_polyline(quantity:int, 
+    def random_line_list(quantity:int, 
             range_ar:list[int]|list[float])\
             -> list[list[int] \
             |list[list[float]]]:
@@ -67,7 +67,7 @@ class BtpyRandom(BtpyPersistence):
         líneas aleatorio en el rango enviado 
         con el número de líneas indicado.
         """
-        return random_polyline(quantity, 
+        return random_line_list(quantity, 
             range_ar)
     
     def random_ip()->str:
@@ -75,9 +75,6 @@ class BtpyRandom(BtpyPersistence):
     
     def random_mac():
         return random_mac()
-    
-    def random_phone(country:str)->str:
-        return random_phone(country)
     
     def random_color():
         return random_color()

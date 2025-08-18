@@ -22,6 +22,7 @@ class BtpyGui(BtpyEngine):
     # -----------------------------------
     # Boxes ----------------------------
     ChipInput = ChipInput
+    LabelList = LabelList
     # -----------------------------------
     # Dropdown ---------------------------
     Combobox = Combobox

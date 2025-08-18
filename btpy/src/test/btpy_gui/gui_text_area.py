@@ -21,24 +21,15 @@ def main():
     text = Btpy.TextArea(
         window, "write something")
     text.pack()
-    text.set_size(10, 5)
-    label = Btpy.Label(window)
-    label.pack()
-    btn = Btpy.Button(window, 
-        "is it ready")
-    btn.pack()
+    text.set_is_enabled(False)
+    button = Btpy.Button(window, "add A")
+    button.pack()
     def fn(e):
-        txt = text.get_value()
-        label.set_title(txt)
-    btn.add_listener(fn)
-    text2 = Btpy.TextArea(
-        window, "write something")
-    text2.set_is_enabled(True)
-    txt = ""
-    for i in range(100 *400):
-        txt += "a"
-    text2.set_value(txt)
-    text2.pack()
+        v = text.get_value()
+        print(v)
+        v += "A"
+        text.set_value(v)
+    button.add_listener(fn)
     window.start()
 
 main()

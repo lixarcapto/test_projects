@@ -5,14 +5,9 @@ from PIL import Image
 def create_rgb_image_pil(WIDTH, HEIGHT)\
         ->Image:
     """
-    Crea una nueva imagen PIL con fondo blanco y el tamaño especificado.
-
-    Args:
-        ancho: El ancho de la imagen en píxeles.
-        alto: El alto de la imagen en píxeles.
-
-    Returns:
-        Un objeto Image de PIL en modo RGB (Rojo, Verde, Azul).
+    Crea una nueva imagen PIL 
+    con fondo blanco y el tamaño 
+    especificado.
     """
     # El modo "RGB" se utiliza para imágenes a color.
     modo = "RGB"

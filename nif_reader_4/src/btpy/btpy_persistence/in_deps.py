@@ -44,3 +44,7 @@ from .mod.read_xlsx_flat_list\
     .read_xlsx_flat_list import*
 from .mod.get_files_into.get_files_into import*
 from .mod.read_animation_folder.read_animation_folder import*
+from .mod.write_json_object.write_json_object import*
+from .mod.create_folder.create_folder import*
+from .mod.write_xlsx_flat_dict.write_xlsx_flat_dict import*
+from .mod.read_json_folder_as_dict.read_json_folder_as_dict import*

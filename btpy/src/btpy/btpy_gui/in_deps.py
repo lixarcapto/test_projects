@@ -56,3 +56,4 @@ from .mod.sort_in_grid.sort_in_grid import*
 from .mod.switch_icon_box.SwitchIconBox import SwitchIconBox
 from .mod.table.Table import Table
 from .mod.slider_box.SliderBox import SliderBox
+from .mod.label_list.LabelList import LabelList

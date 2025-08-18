@@ -366,12 +366,6 @@ class BtpyPersistence(BtpyMaths):
             PATH_XLSX
         )
     
-    def write_xlsx_flat_dict(PATH_XLSX:str)\
-            ->None:
-        """
-        TODO
-        """
-        pass
     
     def read_folder_xlsx_dict_list(
             path:str,
@@ -396,12 +390,6 @@ class BtpyPersistence(BtpyMaths):
         """
         return read_xlsx_flat_list(
             PATH_XLSX)
-    
-    def write_xlsx_flat_list(PATH_XLSX:str):
-        """
-        TODO
-        """
-        pass
     
     def read_xlsx_dict_list(PATH_XLSX:str)\
             ->dict[list]:
@@ -476,6 +464,54 @@ class BtpyPersistence(BtpyMaths):
         TODO
         """
         pass
+
+    def write_json_object(
+            PATH: str, 
+            DICT: dict)-> bool:
+        """
+        Crea un archivo JSON y escribe en 
+        él un diccionario de Python.
+        Returns:
+            bool: Retorna True si el archivo 
+            se creó y escribió con éxito, 
+            False en caso contrario.
+        """
+        return write_json_object(
+            PATH,
+            DICT
+        )
+    
+    def create_folder(PATH: str) -> bool:
+        """
+        Crea una carpeta en la ruta 
+        especificada.
+        bool: True si la carpeta fue 
+        creada (o ya existía), False si 
+        hubo un error.
+        """
+        return create_folder(PATH)
+    
+    def write_xlsx_flat_dict(
+            DICT: Dict[Any, Any], 
+            PATH: str):
+        return write_xlsx_flat_dict(
+            DICT,
+            PATH
+        )
+    
+    def read_json_folder_as_dict(PATH:str)\
+        ->dict[str, dict]:
+        """
+        Funcion que carga una lista de 
+        archivos json en la misma carpeta 
+        como un diccionario
+        de objetos json donde las claves
+        de cada par son los nombres de
+        los archivos.
+        """
+        return read_json_folder_as_dict(
+            PATH
+        )
 
 
     # -----------------------------------

@@ -33,3 +33,9 @@ from .mod.date.Date import Date
 from .mod.turn_off.turn_off import*
 from .mod.open_browser_in_time.open_browser_in_time import*
 from .mod.iterator_2d.Iterator2D import Iterator2D
+from .mod.input_choose.input_choose import*
+from .mod.find_file_name.find_file_name import*
+from .mod.copy_file.copy_file import*
+from .mod.find_main_path.find_main_path import*
+from .mod.write_as_description.write_as_description import*
+from .mod.open_docx.open_docx import*

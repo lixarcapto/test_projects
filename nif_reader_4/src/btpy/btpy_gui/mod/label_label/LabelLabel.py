@@ -73,3 +73,25 @@ class LabelLabel(WidgetStandard):
     def get_content(self)->str:
         return self.label_content.cget(
             "text")
+    
+    def set_font_size(self, SIZE:int):
+        super().set_font_size(SIZE)
+        self.default_font.config(
+            size = SIZE)
+        self.label_content.config(
+            font = self.default_font
+        )
+
+    def set_content_foreground_color(self, 
+            COLOR):
+        f_color = self\
+            .convert_to_tk_color(COLOR)
+        self.label_content.config(
+            fg = f_color)
+        
+    def set_content_background_color(self, 
+            COLOR):
+        f_color = self\
+            .convert_to_tk_color(COLOR)
+        self.label_content.config(
+            bg = f_color)

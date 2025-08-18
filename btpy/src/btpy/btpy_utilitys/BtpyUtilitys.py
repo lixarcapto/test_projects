@@ -301,4 +301,33 @@ class BtpyUtilitys(BtpyTransformers):
             destination_path
         )
     
+    def find_main_path() -> str:
+        """
+        Retorna la ruta completa del 
+        directorio donde se está 
+        ejecutando el script.
+        """
+        return find_main_path()
+    
+    def write_as_description(DATA, 
+            CONJUNCTION)->str:
+        """
+        function that writes a list 
+        as if it were a literary 
+        description separated by commas 
+        and the final conjunction sent.
+        """
+        return write_as_description(
+            DATA, 
+            CONJUNCTION
+        )
+    
+    def open_docx(PATH: str) -> None:
+        """
+        Abre un archivo .docx con la 
+        aplicación predeterminada 
+        del sistema.
+        """
+        return open_docx(PATH)
+    
 

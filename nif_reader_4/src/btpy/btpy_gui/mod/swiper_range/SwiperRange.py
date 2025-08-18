@@ -60,6 +60,7 @@ class SwiperRange(WidgetComposite):
             self.__range_list)
         self.__value = r
         self.__identify_enabled_buttons()
+        self.__update_label_number()
 
     def add_listener(self, CALLBACK):
         self.__change_callback = CALLBACK

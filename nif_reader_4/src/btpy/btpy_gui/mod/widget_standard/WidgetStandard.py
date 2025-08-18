@@ -31,6 +31,9 @@ class WidgetStandard:
     def __init__(self, widget):
         self.margin = None
         self.widget = None
+        # la default font contiene
+        # la informacion sobre la 
+        # fuente que utiliza el widget
         self.default_font = font.Font(
             family="Arial", 
             size=11
@@ -44,6 +47,8 @@ class WidgetStandard:
         else:
             self.margin = tk.Frame(
                 widget)
+        # configura el color negro
+        # para el margin
         self.margin.config(
             bg = "black"
         )

@@ -28,15 +28,22 @@ def main():
             "Monedas"
         ])
     inventory.pack()
-    inventory.set_content([
+    inventory.set_components([
             "Manzana",
             "Martillo",
             "Pan",
             "Pañuelo"
         ])
+    inventory.set_content([
+            "a",
+            "b",
+            "c",
+            "d"
+        ])
     def fn(e):
         r = inventory.get_value()
         print(r)
+        inventory.set_value(["Martillo"])
     button.add_listener(fn)
     window.start()
 

@@ -67,6 +67,12 @@ class BtpyUtilitys(BtpyTransformers):
         solicita una serie de datos 
         utilizando un bucle indefinido 
         con un input para retornar un dict
+        {
+            "": "str",
+            "": "int",
+            "": "list",
+            "": "float"
+        }
         """
         return request_input(request_dict)
     
@@ -246,5 +252,82 @@ class BtpyUtilitys(BtpyTransformers):
             tiempo_espera,
             url
         )
+
+    def input_choose(QUESTION:str, 
+            LIST:list[str])->str:
+        """
+        Funcion que hace al usuario una 
+        pregunta de seleccion multiple;
+        el usuario debe responder con 
+        un numero en un rango de 1 a 
+        indeterminado segun el tamaño de 
+        la lista enviada. La funcion
+        retorna el elemento string de la 
+        lista elegido. 
+        La funcion corrige al 
+        usuario si ingresa una opcion
+        incorrecta y repite la pregunta.
+        *  QUESTION: Es la pregunta a 
+            realizar.
+        *  LIST: Es la lista de opciones 
+            a elegir.
+        """
+        return input_choose(
+            QUESTION, 
+            LIST
+        )
+    
+    def find_file_name(PATH:str)->str:
+        """
+        Function that gets the name of 
+        a file or folder by removing 
+        extra paths and extensions.
+        """
+        return find_file_name(PATH)
+    
+    def copy_file(
+            source_path: str, 
+            destination_path: str)\
+            -> bool:
+        """
+        Copies a file from the source_path 
+        to the destination_path.
+        Returns:
+        bool: True if the file was copied 
+        successfully, False otherwise.
+        """
+        return copy_file(
+            source_path,
+            destination_path
+        )
+    
+    def find_main_path() -> str:
+        """
+        Retorna la ruta completa del 
+        directorio donde se está 
+        ejecutando el script.
+        """
+        return find_main_path()
+    
+    def write_as_description(DATA, 
+            CONJUNCTION)->str:
+        """
+        function that writes a list 
+        as if it were a literary 
+        description separated by commas 
+        and the final conjunction sent.
+        """
+        return write_as_description(
+            DATA, 
+            CONJUNCTION
+        )
+    
+    def open_docx(PATH: str) -> None:
+        """
+        Abre un archivo .docx con la 
+        aplicación predeterminada 
+        del sistema.
+        """
+        return open_docx(PATH)
     
 

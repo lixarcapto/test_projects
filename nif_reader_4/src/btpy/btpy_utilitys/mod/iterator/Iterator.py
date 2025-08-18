@@ -24,6 +24,10 @@ class Iterator:
         self.set_is_cycle(IS_CYCLE)
 
     def get_size(self)->int:
+        """
+        Gets the size of the list 
+        stored in the iterator.
+        """
         return len(self.__list)
 
     def set_is_reverse(self, 
@@ -55,7 +59,7 @@ class Iterator:
         """
         leng = len(self.__list)
         if(self.__is_reverse):
-            if(self.__index >= 0):
+            if(self.__index != 0):
                 return True
             return False
         else:
@@ -107,7 +111,6 @@ class Iterator:
                     self.__index = leng
 
     def get(self):
-        print("index", self.__index)
         return self.__list[self.__index]
     
     def reset(self):
@@ -116,9 +119,10 @@ class Iterator:
         de la lista.
         """
         if(self.__is_reverse):
-            self.__index = 0
+            self.__index = len(self.__list) -1
         else:
-            self.__index = len(self.__list)
+            self.__index = 0
+            
 
     def set_index(self, INDEX:int)->bool:
         is_index:bool = is_index(INDEX, 

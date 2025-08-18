@@ -7,6 +7,7 @@ from ..get_image_size.get_image_size import get_image_size
 import io
 from ....btpy_images.mod.create_image_pil.create_image_pil import*
 from PIL import Image, ImageDraw
+from ....btpy_images.mod.read_image_as_image_pil.read_image_as_image_pil import*
 
 class Canvas(WidgetStandard):
 
@@ -33,6 +34,8 @@ class Canvas(WidgetStandard):
         self.draw_reflection:bool = True
         self.__buffer_image_list:list = []
         self.__brush_color = "black"
+        self.__brush_font = "Arial"
+        self.__brush_size_font = 20
         self.__fill_color = "red"
         self.__guide_color = "red"
         self.__background_color = "white"
@@ -75,6 +78,13 @@ class Canvas(WidgetStandard):
 
     def get_background_color(self):
         return self.__background_color
+    
+    def set_brush_size_font(self, 
+            SIZE:int):
+        self.__brush_size_font = SIZE
+
+    def set_brush_font(self, FONT_KEY:str):
+        self.__brush_font = FONT_KEY
 
     def set_fill_color(self, COLOR)->None:
         self.__fill_color = self\
@@ -279,7 +289,12 @@ class Canvas(WidgetStandard):
         dibujo = ImageDraw.Draw(
             self.image_reflection)
         dibujo.rectangle(
-            tuple(POINT), 
+            (
+                POINT[0], 
+                POINT[1], 
+                POINT[0] + WIDTH, 
+                POINT[1] + HEIGHT, 
+            ), 
             fill=self.__fill_color,
             outline=self.__brush_color, 
             width=self.__brush_thickness
@@ -288,18 +303,27 @@ class Canvas(WidgetStandard):
     def draw_path_image(self, 
             POINT:list[int], 
             PATH:str, 
+            DEGREES = 0,
             SIZE_LIST:list[int]= [0, 0]
             ):
         imagen_pil = Image.open(PATH)
+        if(DEGREES != 0):
+            imagen_pil = imagen_pil.rotate(
+                DEGREES, 
+                expand=True, 
+                resample=Image.BICUBIC
+            )
         self.draw_image(
             POINT,
             imagen_pil,
+            DEGREES,
             SIZE_LIST
         )
         
     def draw_image(self, 
             POINT:list[int], 
             IMAGE_PIL:str, 
+            DEGREES = 0,
             SIZE_LIST:list[int] = [0, 0]
             ):
         if(SIZE_LIST != [0, 0]):
@@ -361,12 +385,14 @@ class Canvas(WidgetStandard):
     def draw_image_layers(self, 
             POINT:list[int],
             PATH_LIST:list[str],
+            DEGREES:int = 0,
             SIZE_LIST:list[int] = [0, 0]):
         for path in PATH_LIST:
             self.draw_path_image(
                 POINT, 
                 path,
-                SIZE_LIST
+                DEGREES = 0,
+                SIZE_LIST = [0, 0]
             )
 
     def draw_figure_line(self, 
@@ -377,11 +403,41 @@ class Canvas(WidgetStandard):
                 line[1]
             )
 
+    def draw_text(self, 
+            POINT_LIST:list[int],
+            TEXT:str):
+        self.widget.create_text(
+            POINT_LIST[0], 
+            POINT_LIST[1], 
+            text=TEXT, 
+            anchor= tk.NW,
+            fill=self.__brush_color,
+            font=(
+                self.__brush_font, 
+                self.__brush_size_font
+            )
+        )
+
     def draw_cloud_point(self,
             POINT_LIST:list[list[int]]):
         for point in POINT_LIST:
             self.draw_point(point)
 
+    def draw_cloud_texture(self, 
+            POINT_LIST, IMAGE_TEXTURE):
+        image = None
+        if(isinstance(IMAGE_TEXTURE, str)):
+            image = read_image_as_image_pil(
+                IMAGE_TEXTURE
+            )
+        else:
+            image = IMAGE_TEXTURE
+        for point in POINT_LIST:
+            self.canvas.draw_image(
+                image,
+                point,
+                True
+            )
 
     def draw_figure_point(self,
             POINT_LIST:list[list[int]]):

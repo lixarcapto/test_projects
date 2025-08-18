@@ -37,15 +37,7 @@ class BtpyImages(BtpyGui):
         return ImageTk.PhotoImage(
             image_pil)
     
-    def create_image(self, SIZE_LIST)\
-            ->Image:
-        return Image.new(
-            "RGB", 
-            SIZE_LIST, 
-            (0, 0, 0, 0)
-        )
-    
-    def matrix_RGB_to_image(
+    def matrix_rgb_to_image_pil(
             MATRIX_RGB:list[list])->Image:
         """
         Funcion que convierte una matriz
@@ -53,13 +45,13 @@ class BtpyImages(BtpyGui):
         formato Image de la libreria
         PIL
         """
-        return matrix_RGB_to_Image(
+        return matrix_rgb_to_image_pil(
             MATRIX_RGB)
     
-    def image_to_matrix_RGB(
+    def image_pil_to_matrix_RGB(
             image_pil:Image)\
             ->list[list]:
-        return image_to_matrix_RGB(
+        return image_pil_to_matrix_RGB(
             image_pil)
     
     def lightens_rgb(RGB_LIST, 
@@ -100,4 +92,61 @@ class BtpyImages(BtpyGui):
         """
         return blacken_rgb(
             RGB_LIST, FACTOR)
+    
+    def image_pil_to_binary(
+            imagen_pil: Image.Image, 
+            formato: str = "PNG")\
+            -> bytes | None:
+        """
+        Convierte un objeto de imagen PIL 
+        (Pillow) a una secuencia de bytes 
+        binarios.
+        imagen_pil (Image.Image): El objeto 
+        de imagen de Pillow.
+        formato (str): 
+            * "PNG" 
+            * "JPEG"
+            * "BMP"
+        Debe ser un formato soportado 
+        por Pillow. Por defecto es "PNG".
+        """
+        return image_pil_to_binary(
+            imagen_pil,
+            formato
+        )
+    
+    def binary_to_image_pil(
+            contenido_binario: bytes)\
+            -> Image.Image | None:
+        """
+        Convierte una secuencia de bytes 
+        binarios a un objeto de imagen PIL.
+        """
+        return binary_to_image_pil(
+            contenido_binario
+        )
+    
+    def write_image_pil_as_png(
+            IMAGE_PIL: Image.Image, 
+            PATH: str) -> bool:
+        """
+        Guarda un objeto de imagen PIL 
+        (Pillow) como un archivo PNG.
+        """
+        return write_image_pil_as_png(
+            IMAGE_PIL,
+            PATH
+        )
+    
+    def read_image_as_image_pil(
+            PATH: str)\
+            -> Image.Image | None:
+        """
+        Lee un archivo de imagen (
+        JPG, PNG, BMP, etc.) y lo 
+        convierte en un objeto PIL.Image.
+        """
+        return read_image_as_image_pil(
+            PATH
+        )
     

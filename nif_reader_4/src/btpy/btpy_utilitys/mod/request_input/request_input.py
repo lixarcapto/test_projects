@@ -2,13 +2,19 @@
 
 
 
-def request_input(request_dict:list[str])\
+def request_input(request_dict:dict[str])\
         -> dict:
     """
     iterador con un dict que 
     solicita una serie de datos 
     utilizando un bucle indefinido 
     con un input para retornar un dict
+    {
+        "": "str",
+        "": "int",
+        "": "list",
+        "": "float"
+    }
     """
     dict = {}
     user_input = ""
