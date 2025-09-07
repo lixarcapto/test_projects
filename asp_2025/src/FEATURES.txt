@@ -1,0 +1,63 @@
+
+* Añadir una tab de menu principal
+con crear nuevo mapa.
+
+* Añadir modelos de casas.
+
+* Añadir una vista nueva para datos
+globales tecnicos como poblacion mundial.
+
+* Añadir las mesclas geneticas de color
+de piel, de ojos y cabello.
+
+* Añadir que el icono de town cambie 
+segun la clave de asentamiento.
+
+* Añadir los marcos al dibujo de personaje.
+
+* Añadir una vista de region sin 
+el personaje.
+
+* Añadir los tatuajes.
+
+* Añadir las orejas.
+
+* Añadir la doble prenda camiseta 
+y chaqueta.
+
+* Definir bien cada receta, recurso y
+structure en el libro de simulacion.
+
+* Añadir un metodo write a las structure
+y los depot.
+
+* Añadir el random_probability_float a BTPY
+
+* Probar si las recipe funcionan cuando
+no hay productos o fuentes.
+
+* Añadir una vista para el Territory que 
+muestre las structures.
+
+* Añadir las biografias que llevan
+registros de los hechos.
+
+* Centralizar los datos en una carpeta
+mods.
+
+* Externalizar las constantes en archivos
+de mods.
+
+* Cambiar a que todo el avanse del tiempo
+sea mensual para reducir la cantidad de 
+tiempo del avanse de cada año.
+
+* Añadir que los estilos de cabello
+se elijan primero al azar un cabello 
+favorito.
+
+* Mover la lista de culturas a un 
+archivo de constantes del citizen.
+
+* Actualizar que ahora todo funcione 
+en cantidad de meses.

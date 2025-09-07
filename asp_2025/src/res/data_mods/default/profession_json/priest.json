@@ -1,0 +1,14 @@
+
+
+{
+    "CARRIED_OBJECT": "incense burner",
+    "CAUSE_DEATH_LIST": [
+        "fire in the church",
+        "collapse in the church",
+        "crushed by a statue"
+    ],
+    "ACTIVITIES_LIST": [
+        
+    ],
+    "DEATH_PROBABILITY": 0.001
+}

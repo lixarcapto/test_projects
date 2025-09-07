@@ -1,0 +1,14 @@
+
+
+{
+    "CARRIED_OBJECT": "brush",
+    "CAUSE_DEATH_LIST": [
+        "suffocated with aerosols",
+        "due to depression",
+        "poisoned by lead paint"
+    ],
+    "ACTIVITIES_LIST": [
+        
+    ],
+    "DEATH_PROBABILITY": 0.001
+}

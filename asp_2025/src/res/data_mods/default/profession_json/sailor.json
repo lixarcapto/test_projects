@@ -1,0 +1,15 @@
+
+
+{
+    "CARRIED_OBJECT": "spyglass",
+    "CAUSE_DEATH_LIST": [
+        "lost in the ocean",
+        "injured by a marlin",
+        "devoured by sharks",
+        "crushed by the mast"
+    ],
+    "ACTIVITIES_LIST": [
+        
+    ],
+    "DEATH_PROBABILITY": 0.1
+}

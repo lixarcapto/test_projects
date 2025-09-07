@@ -1,0 +1,12 @@
+
+
+{
+    "CARRIED_OBJECT": "old horn",
+    "CAUSE_DEATH_LIST": [
+        "car accident"
+    ],
+    "ACTIVITIES_LIST": [
+        
+    ],
+    "DEATH_PROBABILITY": 0.1
+}

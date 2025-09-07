@@ -1,0 +1,14 @@
+
+
+{
+    "CARRIED_OBJECT": "thread and needle",
+    "CAUSE_DEATH_LIST": [
+        "crushed by rolls of cloth",
+        "trapped by textile machine",
+        "poisoned by fumes from the dye"
+    ],
+    "ACTIVITIES_LIST": [
+        
+    ],
+    "DEATH_PROBABILITY": 0.03
+}

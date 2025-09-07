@@ -1,0 +1,12 @@
+
+
+* Los child no asignan su grupo genetico.
+* Las pecas no estan implementadas
+* Heterocromia y albinismo ni implementado.
+* Los apellidos no se estan heredando
+* Se debe corregir el widget text area por
+ el error del scroll.
+* Arreglar el swiper tiene muchos bugs.
+* Hay un bug con los herederos o hijos
+y es que tienen grupo genetico
+norte europeo por alguna razon.

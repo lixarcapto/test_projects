@@ -1,0 +1,14 @@
+
+
+{
+    "CARRIED_OBJECT": "wooden spoon",
+    "CAUSE_DEATH_LIST": [
+        "gas_barrel_explosion",
+        "accidentally_stabbed",
+        "burning grease fire"
+    ],
+    "ACTIVITIES_LIST": [
+        
+    ],
+    "DEATH_PROBABILITY": 0.03
+}

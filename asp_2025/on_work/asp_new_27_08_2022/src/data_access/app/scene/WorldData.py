@@ -1,0 +1,10 @@
+
+
+
+
+class WorldData:
+
+    DAYS_BY_WEEK_LIMIT = 3
+    WEEK_BY_MONTHS_LIMIT = 1
+    MONTHS_BY_YEAR_LIMIT = 3
+    YEARS_BY_ERA_LIMIT = 10

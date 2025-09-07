@@ -1,0 +1,9 @@
+
+basic things 3.5.0 alpha 05/05/2024
+
+* añadido porcentajes
+* añadido buscador de similitudes entre string
+* añadido buscador de claves en diccionarios de arrays string
+* arreglado fechas del date_manager
+* añadido compare_string que permite comparar strings
+de forma mas precisa

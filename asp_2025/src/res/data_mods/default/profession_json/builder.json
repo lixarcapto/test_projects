@@ -1,0 +1,14 @@
+
+
+{
+    "CARRIED_OBJECT": "hammer",
+    "CAUSE_DEATH_LIST": [
+        "a brick falling from the roof",
+        "collapse of a wall",
+        "fall from scaffolding"
+    ],
+    "ACTIVITIES_LIST": [
+        
+    ],
+    "DEATH_PROBABILITY": 0.05
+}

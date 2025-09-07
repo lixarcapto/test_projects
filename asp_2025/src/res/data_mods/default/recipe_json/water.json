@@ -1,0 +1,12 @@
+
+
+{
+    "INGREDIENT":{
+    },
+    "PRODUCT":{
+        "WATER":10
+    },
+    "SOURCES":{
+        "aquifer":1
+    }
+}

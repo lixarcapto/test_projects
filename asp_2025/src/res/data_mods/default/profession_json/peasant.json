@@ -1,0 +1,14 @@
+
+
+{
+    "CARRIED_OBJECT": "",
+    "CAUSE_DEATH_LIST": [
+        "kick_from_a_horse",
+        "crushed_by_a_tractor",
+        "suffocated_in_the_silo"
+    ],
+    "ACTIVITIES_LIST": [
+        
+    ],
+    "DEATH_PROBABILITY": 0.05
+}

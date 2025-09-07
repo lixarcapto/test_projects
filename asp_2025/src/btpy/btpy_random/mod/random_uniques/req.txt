@@ -1,0 +1,22 @@
+
+
+
+Objetivos
+
+ función que genera una lista de 
+ números aleatorios en un rango sin repetir.
+
+ ALG
+
+ * si el rango es menor a la cantidad 
+ lanzar error
+
+* while repita randomizar numeros
+
+* registrar numeros elegidos
+
+* si n resultados estan en n registrados 
+repetir otra ves
+
+* si alcanza la cantidad indicada romper el 
+bucle

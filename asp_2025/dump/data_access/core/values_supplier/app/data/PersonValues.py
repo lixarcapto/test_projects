@@ -1,0 +1,10 @@
+
+
+
+
+class PersonValues:
+
+    BLOOD_MINIMUM_TO_LIVE = 50
+    BLOOD_TO_COMA = 60
+    BLOOD_LIMIT = 100
+    LIMIT_RELATION = 100

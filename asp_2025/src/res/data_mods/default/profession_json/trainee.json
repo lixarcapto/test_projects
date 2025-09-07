@@ -1,0 +1,14 @@
+
+
+{
+    "CARRIED_OBJECT": "beggar hat",
+    "CAUSE_DEATH_LIST": [
+        "fire in the classroom",
+        "accident in sports class",
+        "school fight with a bully"
+    ],
+    "ACTIVITIES_LIST": [
+        
+    ],
+    "DEATH_PROBABILITY": 0.001
+}

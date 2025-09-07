@@ -1,0 +1,14 @@
+
+
+
+
+class PersonEyeTypeData:
+
+    LIMIT = 5
+    
+    ASIAN = 0 #ASIATICO
+    ROUND = 1 #EUROPEO
+    NUTTY = 2 #INDIGENA
+    SEPARATED = 3 #MONGOLOIDES Y AFRICANOS
+    TOGETHER = 4 #JUNTOS
+    DROOPY = 5

@@ -1,0 +1,13 @@
+
+
+{
+    "INGREDIENT":{
+
+    },
+    "PRODUCT":{
+        "WOOD":10
+    },
+    "SOURCES":{
+        "forest":1
+    }
+}

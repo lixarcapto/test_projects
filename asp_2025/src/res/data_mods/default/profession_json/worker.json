@@ -1,0 +1,14 @@
+
+
+{
+    "CARRIED_OBJECT": "shovel",
+    "CAUSE_DEATH_LIST": [
+        "trapped in industrial machinery",
+        "fire at the factory",
+        "hit by a truck"
+    ],
+    "ACTIVITIES_LIST": [
+        
+    ],
+    "DEATH_PROBABILITY": 0.05
+}

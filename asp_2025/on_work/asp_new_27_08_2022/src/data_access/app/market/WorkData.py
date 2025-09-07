@@ -1,0 +1,44 @@
+
+
+
+class WorkData:
+
+    #PRIMARY
+    NONE = 0
+    CATTLE_RAISING = 1
+    FARMING = 2
+    FORESTRY = 3
+    MINING = 4
+    HUNTGATHERING = 5
+    FISHING = 6
+
+    #SECONDARY
+    SAWMILL = 7
+    CHEMISTRY = 8
+    FOUNDRY = 9
+    PETROCHEMISTRY = 10
+    BUTCHERY = 11
+    CRAFT = 12
+    FOOD_PROCESSING = 13
+    DRINK_INDUSTRY = 14
+    SOFTWARE = 15
+    ELECTRONICS = 16
+    HIGH_TECHNOLOGY = 17
+    ARTS = 18
+    WEAPONS = 19
+
+    #TERCIARY
+    DRIVER = 21
+    PILOT = 22
+    SAILOR = 23
+    POLITIK = 24
+    OFFICE = 25
+    BUSINESS = 26
+    SALES = 27
+    GROCER = 28
+    KITCHEN = 29
+    TRANSLATOR = 30
+    PRIEST = 31
+    BARBER = 32
+    MEDIC = 33
+    DENTIST = 34
