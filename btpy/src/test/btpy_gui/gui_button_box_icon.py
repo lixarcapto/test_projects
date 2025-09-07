@@ -29,7 +29,7 @@ def main():
         ]
         
     )
-    box.pack()
+    box.draw_in_direction()
     def fn(key):
         print(key)
     box.add_single_listener(fn)

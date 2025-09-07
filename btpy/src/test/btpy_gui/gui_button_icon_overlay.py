@@ -28,7 +28,7 @@ def main():
         n += 1
         button.set_title(f"clicks {n}")
     button.add_listener(fn)
-    button.pack()
+    button.draw_in_direction()
     window.start()
 
 main()

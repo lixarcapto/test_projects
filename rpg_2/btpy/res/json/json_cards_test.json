@@ -1,0 +1,15 @@
+
+
+
+[
+    {   
+        "title": "Antonia",
+        "description": "Antonia es una vieja amiga de Monica",
+        "path": "../btpy/res/image/face/face_girl_1.png"
+    },
+    { 
+        "title": "Monica",
+        "description": "Monica es una famosa cantante",
+        "path": "../btpy/res/image/face/face_girl_2.png"
+    }
+]

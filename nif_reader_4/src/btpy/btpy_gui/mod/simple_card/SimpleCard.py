@@ -76,7 +76,7 @@ class SimpleCard(WidgetStandard):
         self.button_click\
             .set_background_color("green")
         self.button_click\
-            .set_foreground_color("white")
+            .set_font_color("white")
 
     def __draw_horizontal(self, TITLE):
         font_ = font.Font(
@@ -105,7 +105,7 @@ class SimpleCard(WidgetStandard):
         if(self.has_button):
             self.__init_button(
                 self.frame_title)
-            self.button_click.grid(
+            self.button_click.draw_in_grid(
                 2, 0
             )
         # dibujado ----------------------
@@ -155,7 +155,7 @@ class SimpleCard(WidgetStandard):
         if(self.has_button):
             self.__init_button(
                 self.widget)
-            self.button_click.grid(
+            self.button_click.draw_in_grid(
                 3, 0
             )
 
@@ -173,7 +173,7 @@ class SimpleCard(WidgetStandard):
         if(self.has_button):
             self.__init_button(
                 self.widget)
-            self.button_click.grid(
+            self.button_click.draw_in_grid(
                 3, 0
             )
 

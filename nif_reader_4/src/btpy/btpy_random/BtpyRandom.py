@@ -120,3 +120,16 @@ class BtpyRandom(BtpyPersistence):
         return random_multi_probabilities(
             PROBABILITY_LIST
         )
+    
+    def random_unique_choice(
+            LIST:list,
+            RESULTS_QUANTITY:int)->list:
+        """
+        Function that selects a list 
+        of elements from a sent list 
+        in the indicated quantity.
+        """
+        return random_unique_choice(
+            LIST,
+            RESULTS_QUANTITY
+        )

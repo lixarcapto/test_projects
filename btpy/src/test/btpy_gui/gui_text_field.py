@@ -21,15 +21,15 @@ def main():
     field = Btpy.TextField(window,
         "campo")
     field.set_shadow_text("nombre")
-    field.pack()
+    field.draw_in_direction()
     field2 = Btpy.TextField(window,
         "campo")
     field2.set_right_input()
-    field2.pack()
+    field2.draw_in_direction()
     field3 = Btpy.TextField(window,
         "campo")
     field3.set_wrong_input()
-    field3.pack()
+    field3.draw_in_direction()
     window.start()
 
 main()

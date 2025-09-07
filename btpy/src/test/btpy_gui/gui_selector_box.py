@@ -33,12 +33,12 @@ def main():
                 "lagartija"
             ]
     )
-    selector_box.pack()
+    selector_box.draw_in_direction()
     button = Btpy.Button(window, 
             "get value")
-    button.pack()
+    button.draw_in_direction()
     label = Btpy.Label(window)
-    label.pack()
+    label.draw_in_direction()
     def fn(e):
         label.set_title(
             selector_box.get_value())

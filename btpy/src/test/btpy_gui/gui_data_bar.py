@@ -23,10 +23,10 @@ def main():
     bar.set_is_horizontal(False)
     bar.set_size(30, 100)
     bar.set_value([30, 100])
-    bar.pack()
+    bar.draw_in_direction()
     bar2 = Btpy.DataBar(window, "data")
     bar2.set_value([30, 100])
-    bar2.pack()
+    bar2.draw_in_direction()
     window.start()
 
 main()

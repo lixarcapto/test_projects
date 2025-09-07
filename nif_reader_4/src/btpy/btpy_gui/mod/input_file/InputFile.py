@@ -76,8 +76,8 @@ class InputFile(WidgetComposite):
             self.widget, ""
         )
         # dibujar ------------------------
-        self.button_load.grid(0, 0,  "we")
-        self.text_field.grid(
+        self.button_load.draw_in_grid(0, 0,  "we")
+        self.text_field.draw_in_grid(
             1, 0, "we"
         )
 

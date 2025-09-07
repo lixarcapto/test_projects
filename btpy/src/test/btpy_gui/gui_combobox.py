@@ -40,7 +40,7 @@ def main():
                 "lagartija**"
         ]
     )
-    combobox.pack()
+    combobox.draw_in_direction()
     def fn(e):
         print(combobox.get_value())
     combobox.add_change_listener(fn)

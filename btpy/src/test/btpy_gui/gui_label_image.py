@@ -19,13 +19,13 @@ def main():
     window = Btpy.Window("titulo")
     window.set_is_fullscreen(True)
     label = Btpy.LabelImage(window)
-    label.pack()
+    label.draw_in_direction()
     label.set_path_image(
         "./res/cell.png"
     )
     label.set_size(300, 300)
     label2 = Btpy.LabelImage(window)
-    label2.pack()
+    label2.draw_in_direction()
     label2.set_path_image(
         "./res/cell.png"
     )

@@ -20,10 +20,10 @@ def main():
     window.set_is_fullscreen(True)
     lcolor = Btpy.LabelColor(window,
         "personas", "red")
-    lcolor.pack()
+    lcolor.draw_in_direction()
     lcolor2 = Btpy.LabelColor(window,
         "animales", "blue")
-    lcolor2.pack()
+    lcolor2.draw_in_direction()
     window.start()
 
 main()

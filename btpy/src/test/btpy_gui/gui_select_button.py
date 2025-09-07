@@ -20,7 +20,7 @@ def main():
     window.set_is_fullscreen(True)
     select = Btpy.SwitchColor(window,
         "select")
-    select.pack()
+    select.draw_in_direction()
     window.start()
 
 main()

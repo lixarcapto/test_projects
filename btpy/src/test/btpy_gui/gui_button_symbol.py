@@ -22,7 +22,7 @@ def main():
         window, "click", "$")
     button.set_color_symbol(
         "green", "white")
-    button.pack()
+    button.draw_in_direction()
     def fn(e):
         button.margin.pack_forget()
     button.add_listener(fn)

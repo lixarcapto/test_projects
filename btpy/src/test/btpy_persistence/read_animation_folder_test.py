@@ -21,7 +21,7 @@ def main():
     window = Btpy.Window("animation")
     window.set_size(1000, 700)
     label = Btpy.LabelImage(window)
-    label.pack()
+    label.draw_in_direction()
     iterator = Btpy.Iterator(
         result,
         True

@@ -25,7 +25,7 @@ def main():
     )
     frame.set_description(
         "ella es una experta en el tema")
-    frame.pack()
+    frame.draw_in_direction()
     window.start()
 
 main()

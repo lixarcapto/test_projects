@@ -20,7 +20,7 @@ def main():
     window.set_is_fullscreen(True)
     check = Btpy.SwitchCheck(window, 
         "check")
-    check.pack()
+    check.draw_in_direction()
     window.start()
 
 main()

@@ -10,9 +10,10 @@ def main():
     # -------------------------------------
     
 
-    for i in range(16):
-        r = Btpy.random_probability(90)
-        print(r)
+    r = Btpy.write_as_list(
+        ["perro", "gato", "jirafa"],
+        "animals"
+    )
 
     #---------------------------------
     print(r)

@@ -20,7 +20,7 @@ def main():
     window.set_is_fullscreen(True)
     label = Btpy.LabelList(
         window, "list")
-    label.pack()
+    label.draw_in_direction()
     label.set_content([
         "hola",
         "adios"

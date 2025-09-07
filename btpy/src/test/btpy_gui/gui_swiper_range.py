@@ -20,7 +20,7 @@ def main():
     window.set_is_fullscreen(True)
     swiper = Btpy.SwiperRange(window,
             "age")
-    swiper.pack()
+    swiper.draw_in_direction()
     swiper.set_content([16, 70])
     swiper.set_value(30)
     window.start()

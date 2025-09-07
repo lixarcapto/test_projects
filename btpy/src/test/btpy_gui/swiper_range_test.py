@@ -20,7 +20,7 @@ def main():
     window.set_is_fullscreen(True)
     swiper = Btpy.SwiperRange(window,
         "day")
-    swiper.pack()
+    swiper.draw_in_direction()
     swiper.add_listener(
         lambda e:print("funciona"))
     swiper.set_content([0, 7])

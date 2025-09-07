@@ -19,7 +19,7 @@ def main():
     window = Btpy.Window("titulo")
     window.set_is_fullscreen(True)
     button = Btpy.Button(window, "save")
-    button.pack()
+    button.draw_in_direction()
     slider = Btpy.InputSlider(window, 
         True, "volumen")
     slider.set_range([0, 40])
@@ -29,7 +29,7 @@ def main():
     slider.set_bar_size(300, 20)
     slider.set_mark_interval(5)
     slider.set_marker_width(50)
-    slider.pack()
+    slider.draw_in_direction()
     def fn(e):
         print(slider.get_value())
     button.add_listener(fn)

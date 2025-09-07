@@ -23,7 +23,7 @@ def main():
         "../btpy/res/image/capture/girl_fishing_kawaii.png",
         "../btpy/res/image/capture/octopus.png"
     )
-    button.pack()
+    button.draw_in_direction()
     button.set_size(300, 300)
     def fn(e):
         print("valor " + str(button.get_value()))

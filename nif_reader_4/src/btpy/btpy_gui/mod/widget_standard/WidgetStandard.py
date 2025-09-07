@@ -3,10 +3,11 @@
 import tkinter as tk
 from PIL import Image, ImageTk
 import tkinter.font as font
+from ...WidgetGuide import WidgetGuide
 from ....btpy_transformers.mod.RGB_to_hex.RGB_to_hex import*
 from ....btpy_checkers.mod.is_RGB.is_RGB import*
 
-class WidgetStandard:
+class WidgetStandard(WidgetGuide):
 
     """
     TODO: ahora los widgets se 
@@ -31,6 +32,7 @@ class WidgetStandard:
     def __init__(self, widget):
         self.margin = None
         self.widget = None
+        self.__drawing_format_k:str = ""
         # la default font contiene
         # la informacion sobre la 
         # fuente que utiliza el widget
@@ -72,6 +74,12 @@ class WidgetStandard:
 
     def get_font(self):
         return self.default_font
+    
+    def set_font(self, FONT):
+        self.default_font = FONT 
+        self.widget.config(
+            font = self.default_font
+        )
 
     def set_is_bold(self, BOOL):
         weight_ = "normal"
@@ -100,6 +108,15 @@ class WidgetStandard:
         return self.default_font\
             .cget("underline")
     
+    def delete(self)->None:
+        k = self.__drawing_format_k
+        if(k == "pack"):
+            self.margin.pack_forget()
+        elif(k == "place"):
+            self.margin.place_forget()
+        elif(k == "grid"):
+            self.margin.grid_forget()
+    
     def place_forget(self):
         self.margin.place_forget()
     
@@ -120,9 +137,10 @@ class WidgetStandard:
         return self.widget.cget("font")\
             .actual()["overstrike"]
 
-    def pack(self, 
+    def draw_in_direction(self, 
             IS_EXPANDABLE:bool = False,
             SIDE_KEY:str = "left"):
+        self.__drawing_format_k = "pack"
         """
         SIDE_KEY:
         * left
@@ -141,18 +159,36 @@ class WidgetStandard:
                 side = SIDE_KEY
             )
 
-
-    def grid(self, ROW:int, COLUMN:int,
-            STICKY:str = ""):
-        if(STICKY == ""):
-            self.margin.grid(row = COLUMN,
-                column=ROW)
+    def draw_in_grid(self, 
+            ROW:int, COLUMN:int,
+            GROWTH_DIRECTION:str = ""):
+        """
+        Growth direction is the 
+        direction in which the widget 
+        should grow within its 
+        container; the directions 
+        are north(n), south(s), east(e), 
+        and west(w).
+        """
+        self.__drawing_format_k = "grid"
+        if(GROWTH_DIRECTION == ""):
+            self.margin.grid(row = ROW,
+                column=COLUMN)
         else:
             self.margin.grid(
-                row = COLUMN,
-                column=ROW,
-                sticky=STICKY
+                row = ROW,
+                column=COLUMN,
+                sticky=GROWTH_DIRECTION
             )
+
+    def draw_in_place(self, 
+            X, Y, WIDTH, HEIGHT):
+        self.__drawing_format_k = "place"
+        self.margin.place(
+            x=X, y=Y, 
+            width=WIDTH, 
+            height=HEIGHT
+        )
     
     def set_font(self,  FONT):
         self.default_font = FONT
@@ -169,7 +205,7 @@ class WidgetStandard:
             f_color = RGB_to_hex(COLOR)
         return f_color
 
-    def set_foreground_color(self, COLOR):
+    def set_font_color(self, COLOR):
         f_color = COLOR
         if(is_RGB(COLOR)):
             f_color = RGB_to_hex(COLOR)
@@ -200,13 +236,6 @@ class WidgetStandard:
         self.widget.config(
             borderwidth = PIXEL_WIDTH,
             relief = "solid"
-        )
-
-    def place(self, X, Y, WIDTH, HEIGHT):
-        self.margin.place(
-            x=X, y=Y, 
-            width=WIDTH, 
-            height=HEIGHT
         )
 
     def justify_text(self, 

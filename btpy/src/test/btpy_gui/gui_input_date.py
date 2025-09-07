@@ -23,11 +23,11 @@ def main():
         "2000",
         "2001"
     ])
-    date.pack()
+    date.draw_in_direction()
     btn = Btpy.Button(window, "get date")
-    btn.pack()
+    btn.draw_in_direction()
     label = Btpy.Label(window, "")
-    label.pack()
+    label.draw_in_direction()
     def fn(e):
         label.set_title(date.get_value())
         print("button event")

@@ -44,7 +44,7 @@ class SwitchIcon(Button):
                 PATH_1)
             self.set_path_image_false(
                 PATH_2)
-        self.__add_default_listener()
+        self.add_default_listener()
         self.__paint_image_false()
 
     def add_listener(self, 
@@ -68,7 +68,7 @@ class SwitchIcon(Button):
         else:
             self.__paint_image_true()
 
-    def __add_default_listener(self):
+    def add_default_listener(self):
         def fn(e):
             if(self.__value):
                 self.__value = False

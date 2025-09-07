@@ -46,8 +46,8 @@ class ChipInput(WidgetComposite):
             expand=True, fill=tk.BOTH)
         self.__frame_inventory.pack()
 
-    def set_foreground_color(self, COLOR):
-        super().set_foreground_color(COLOR)
+    def set_font_color(self, COLOR):
+        super().set_font_color(COLOR)
         self.__label.config(fg = COLOR)
         for button in self.__button_inventory:
             button.config(fg = COLOR)

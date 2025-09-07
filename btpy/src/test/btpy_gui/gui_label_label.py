@@ -27,7 +27,7 @@ def main():
         label.set_content("Juan")
         label.set_content_foreground_color("white")
         label.set_content_background_color("blue")
-        label.pack()
+        label.draw_in_direction()
         label_list.append(label)
     window.start()
 

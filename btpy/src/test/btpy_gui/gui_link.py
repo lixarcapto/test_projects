@@ -20,7 +20,7 @@ def main():
     window.set_is_fullscreen(True)
     link = Btpy.Link(window, "perros",
         "https://es.wikipedia.org/wiki/Canis_familiaris")
-    link.pack()
+    link.draw_in_direction()
     window.start()
 
 main()

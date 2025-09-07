@@ -20,9 +20,9 @@ def main():
     window.set_is_fullscreen(True)
     frame = Btpy.Frame(window)
     frame.set_background_color("red")
-    frame.place(10, 10, 300, 300)
+    frame.draw_in_place(10, 10, 300, 300)
     button = Btpy.Button(frame, "click")
-    button.pack()
+    button.draw_in_direction()
     window.start()
 
 main()

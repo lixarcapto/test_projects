@@ -1,9 +1,9 @@
 
 
 from .in_deps import*
-from ..btpy_gui.BtpyGui import BtpyGui
+from ..btpy_gui_2.BtpyGui2 import BtpyGui2
 
-class BtpyImages(BtpyGui):
+class BtpyImages(BtpyGui2):
 
     """
     Modulo statico de herramientas 

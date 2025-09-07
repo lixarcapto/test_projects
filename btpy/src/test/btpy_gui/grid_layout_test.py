@@ -23,7 +23,7 @@ def main():
     button = None
     for i in range(10):
         button = Btpy.Button(window, str(i))
-        button.grid(0, i)
+        button.draw_in_grid(0, i)
         button_list.append(button)
     window.start()
 

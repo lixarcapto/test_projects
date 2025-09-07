@@ -25,3 +25,16 @@ class Button(OnFocusWidget):
         self.widget.config(
             font = self.default_font)
         
+    def set_title(self, TEXT):
+        self.widget.config(text = TEXT)
+
+    def get_title(self):
+        return self.widget.cget("text")
+        
+    def add_listener(self, 
+            CALLBACK_ARGS_X1)\
+            ->None:
+        self.widget.bind(
+            "<Button-1>", 
+            CALLBACK_ARGS_X1
+        )

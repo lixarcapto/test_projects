@@ -19,10 +19,13 @@ def main():
     window = Btpy.Window("titulo")
     window.set_is_fullscreen(True)
     label = Btpy.Label(window, "texto")
-    label.pack()
+    label.draw_in_direction()
     label.set_font_size(17)
     label.set_is_bold(True)
     label.set_font_family("Verdana")
+    label.add_mouse_leave_listener(
+        lambda e:print("leave")
+    )
     window.start()
 
 main()

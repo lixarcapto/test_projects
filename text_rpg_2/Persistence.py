@@ -1,5 +1,0 @@
-
-
-class Persistence:
-
-    pass

@@ -20,7 +20,7 @@ def main():
     window.set_is_fullscreen(True)
     table = Btpy.Table(window, False,
         "tabla")
-    table.pack()
+    table.draw_in_direction()
     table.set_components(2)
     table.set_row_dict({
         "nombres":["juan", "alvaro", "pedro"],

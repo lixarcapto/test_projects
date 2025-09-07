@@ -62,7 +62,7 @@ class ButtonIconOverlay(WidgetStandard):
     def get_font_size(self)->int:
         return self.__size_font
     
-    def set_foreground_color(self, COLOR):
+    def set_font_color(self, COLOR):
         self.__foreground_color = COLOR
 
     def get_foreground_color(self):

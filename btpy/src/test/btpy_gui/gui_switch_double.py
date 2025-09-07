@@ -22,7 +22,7 @@ def main():
         window, "opciones", 
         ["si", "no"]
     )
-    button.pack()
+    button.draw_in_direction()
     def fn(e):
         print(button.get_value())
     button.add_listener(fn)
@@ -30,7 +30,7 @@ def main():
         window, "Activar efectos", 
         ["si", "no"]
     )
-    button2.pack()
+    button2.draw_in_direction()
     window.start()
 
 main()

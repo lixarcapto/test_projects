@@ -19,7 +19,7 @@ def main():
     window = Btpy.Window("titulo")
     window.set_is_fullscreen(True)
     button = Btpy.Button(window, "end")
-    button.pack()
+    button.draw_in_direction()
     inventory = Btpy.ChipInput(
         window, "inventario", [
             "Manzana",
@@ -27,7 +27,7 @@ def main():
             "Abrigo",
             "Monedas"
         ])
-    inventory.pack()
+    inventory.draw_in_direction()
     inventory.set_components([
             "Manzana",
             "Martillo",

@@ -24,19 +24,19 @@ def main():
     frame.set_margin_color("blue")
     button = Btpy.Button(frame.head, 
                          "button")
-    button.pack()
+    button.draw_in_direction()
     button2 = Btpy.Button(frame.side_left, 
                          "button")
-    button2.pack()
+    button2.draw_in_direction()
     button3 = Btpy.Button(frame.side_right, 
                          "button")
-    button3.pack()
+    button3.draw_in_direction()
     button4 = Btpy.Button(frame.center, 
                          "button")
-    button4.pack()
+    button4.draw_in_direction()
     button5 = Btpy.Button(frame.feet, 
                          "button")
-    button5.pack()
+    button5.draw_in_direction()
     window.start()
 
 main()

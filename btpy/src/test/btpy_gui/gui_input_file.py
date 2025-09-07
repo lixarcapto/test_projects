@@ -21,22 +21,22 @@ def main():
     file = Btpy.InputFile(window,
             "image", 
             "busca image")
-    file.pack(False, "top")
+    file.draw_in_direction(False, "top")
     def fn(e):
         print("postselection event")
     file.add_listener_onchange(fn)
     file2 = Btpy.InputFile(window,
             "folder", 
             "busca folder")
-    file2.pack(False, "top")
+    file2.draw_in_direction(False, "top")
     file3 = Btpy.InputFile(window,
             "text", 
             "busca text")
-    file3.pack(False, "top")
+    file3.draw_in_direction(False, "top")
     file4 = Btpy.InputFile(window,
             "any_file", 
             "busca any file")
-    file4.pack(False, "top")
+    file4.draw_in_direction(False, "top")
     window.start()
 
 main()

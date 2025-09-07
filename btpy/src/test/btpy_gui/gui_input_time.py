@@ -19,7 +19,7 @@ def main():
     window = Btpy.Window("titulo")
     window.set_is_fullscreen(True)
     time = Btpy.InputTime(window, "alarma")
-    time.pack()
+    time.draw_in_direction()
     window.start()
 
 main()

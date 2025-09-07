@@ -19,9 +19,9 @@ def main():
     window = Btpy.Window("titulo")
     window.set_is_fullscreen(True)
     button = Btpy.Button(window, "click")
-    button.pack()
+    button.draw_in_direction()
     button.set_background_color("#FF0000")
-    button.set_foreground_color("#FFFFFF")
+    button.set_font_color("#FFFFFF")
     n = 0
     def fn(e):
         nonlocal n
@@ -30,13 +30,13 @@ def main():
     button.add_listener(fn)
     btn_enable = Btpy.Button(
         window, "enable")
-    btn_enable.pack()
+    btn_enable.draw_in_direction()
     def fn(e):
         button.enable()
     btn_enable.add_listener(fn)
     btn_disable = Btpy.Button(
         window, "disable")
-    btn_disable.pack()
+    btn_disable.draw_in_direction()
     def fn(e):
         button.disable()
     btn_disable.add_listener(fn)

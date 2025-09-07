@@ -35,7 +35,7 @@ def main():
             4
         ]
     )
-    box.pack()
+    box.draw_in_direction()
     window.start()
 
 main()

@@ -7,6 +7,7 @@ from ....btpy_images.mod.lightens_rgb.lightens_rgb import*
 from ....btpy_checkers.mod.is_RGB.is_RGB import*
 from ....btpy_transformers.mod.hex_to_RGB.hex_to_RGB import*
 from ....btpy_checkers.mod.is_hex_color.is_hex_color import is_hex_color
+from ....btpy_transformers.mod.adapt_rgb.adapt_rgb import*
 
 class OnFocusWidget(WidgetStandard):
     
@@ -33,31 +34,29 @@ class OnFocusWidget(WidgetStandard):
         )
         self.add_default_listener()
         
-    def set_foreground_color(self, COLOR):
+    def set_font_color(self, COLOR):
         color_tk = self\
             .convert_to_tk_color(COLOR)
         self.widget.config(fg = color_tk)
 
     def set_background_color(self, COLOR):
+        hex_color = self\
+            .convert_to_tk_color(COLOR)
         self.__background_color = self\
-            .convert_to_tk_color(COLOR)
-        color_tk = self\
-            .convert_to_tk_color(COLOR)
+            .convert_to_tk_color(hex_color)
         self.create_background_color_2(
-            COLOR
+            hex_color
         )
         if(self.widget != None):
             self.widget.config(
-                bg = color_tk)
+                bg = hex_color)
         
     def create_background_color_2(self,
-            COLOR):
-        color = COLOR
-        if(is_hex_color(color)):
-            color = hex_to_RGB(color)
-        color = lightens_rgb(color, 0.5)
+            color):
+        rgb = adapt_rgb(color)
+        r_rgb = lightens_rgb(rgb, 0.5)
         tk_color = self\
-            .convert_to_tk_color(color)
+            .convert_to_tk_color(r_rgb)
         self.__background_color_2 \
             = tk_color
 
@@ -110,3 +109,43 @@ class OnFocusWidget(WidgetStandard):
             and self.is_enabled):
                 self.__callback(e)
         self.widget.bind("<Button-1>", fn)
+
+    def add_right_click_listener(self, 
+            CALLBACK_ARGS_X1)\
+            ->None:
+        self.__callback = CALLBACK_ARGS_X1
+        def fn(e):
+            if(self.__callback != None
+            and self.is_enabled):
+                self.__callback(e)
+        self.widget.bind("<Button-1>", fn)
+
+    def add_left_click_listener(self, 
+            CALLBACK_ARGS_X1)\
+            ->None:
+        self.__callback = CALLBACK_ARGS_X1
+        def fn(e):
+            if(self.__callback != None
+            and self.is_enabled):
+                self.__callback(e)
+        self.widget.bind("<Button-3>", fn)
+
+    def add_mouse_over_listener(self, 
+            CALLBACK_ARGS_X1)\
+            ->None:
+        self.__callback = CALLBACK_ARGS_X1
+        def fn(e):
+            if(self.__callback != None
+            and self.is_enabled):
+                self.__callback(e)
+        self.widget.bind("<Enter>", fn)
+
+    def add_mouse_leave_listener(self, 
+            CALLBACK_ARGS_X1)\
+            ->None:
+        self.__callback = CALLBACK_ARGS_X1
+        def fn(e):
+            if(self.__callback != None
+            and self.is_enabled):
+                self.__callback(e)
+        self.widget.bind("<Leave>", fn)

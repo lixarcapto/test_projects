@@ -20,10 +20,10 @@ def main():
     window.set_is_fullscreen(True)
     text = Btpy.TextArea(
         window, "write something")
-    text.pack()
+    text.draw_in_direction()
     text.set_is_enabled(False)
     button = Btpy.Button(window, "add A")
-    button.pack()
+    button.draw_in_direction()
     def fn(e):
         v = text.get_value()
         print(v)

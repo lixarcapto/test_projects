@@ -19,11 +19,11 @@ def main():
     window = Btpy.Window("titulo")
     window.set_is_fullscreen(True)
     button = Btpy.Button(window, "click")
-    button.pack()
+    button.draw_in_direction()
     slider = Btpy.SliderBox(
         window, True, "titulo"
     )
-    slider.pack()
+    slider.draw_in_direction()
     slider.set_components(
         ["a", "b", "c", "d"],
         [0, 5]

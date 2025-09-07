@@ -21,7 +21,7 @@ def main():
     radio = Btpy.RadioBox(window, 
             "animal favorito", 
             )
-    radio.pack()
+    radio.draw_in_direction()
     radio.set_components(
         [
             "Jirafa",

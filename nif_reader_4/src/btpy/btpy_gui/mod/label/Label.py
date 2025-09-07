@@ -20,17 +20,18 @@ class Label(WidgetStandard):
             bg = "white",
             borderwidth = 1,
             relief= "solid",
-            font = super().get_font()
+            font = self.default_font
         )
         self.widget.pack(
             padx=1, 
             pady=1,
+            ipadx=5, 
+            ipady=5,
             fill=tk.BOTH,
             expand = True
         )
+        self.__inner_border = 3
         self.set_title(TITLE)
 
     def set_title(self, TEXT:str)->None:
         self.widget.config(text = TEXT)
-
-    

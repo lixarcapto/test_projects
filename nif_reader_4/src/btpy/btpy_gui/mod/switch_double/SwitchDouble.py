@@ -67,8 +67,8 @@ class SwitchDouble(WidgetComposite):
         super().set_background_color(COLOR)
         self.background_color = COLOR
 
-    def set_foreground_color(self, COLOR):
-        super().set_foreground_color(COLOR)
+    def set_font_color(self, COLOR):
+        super().set_font_color(COLOR)
         self.foreground_color = COLOR
         
     def get_value(self)->bool:

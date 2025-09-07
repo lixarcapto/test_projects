@@ -22,7 +22,7 @@ def main():
         "../btpy/res/image/chica_en_la_puerta.png"
     )
     button = Btpy.Button(window, "click")
-    button.pack()
+    button.draw_in_direction()
     window.start()
     
 

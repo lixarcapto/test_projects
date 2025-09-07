@@ -20,7 +20,7 @@ def main():
     window.set_is_fullscreen(True)
     swiper = Btpy.SwiperText(window, 
         "animales")
-    swiper.pack()
+    swiper.draw_in_direction()
     swiper.set_is_cyclical(True)
     swiper.set_content([
         "perro", "gato", "elefante", 

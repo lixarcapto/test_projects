@@ -24,7 +24,7 @@ def main():
         "girl_fishing",
         "./res/cell.png"
     )
-    button.pack()
+    button.draw_in_direction()
     def fn(e):
         print("funciona")
     button.add_listener(fn)

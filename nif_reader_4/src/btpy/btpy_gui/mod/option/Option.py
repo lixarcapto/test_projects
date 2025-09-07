@@ -25,14 +25,14 @@ class Option(WidgetComposite):
         self.button_true\
             .set_background_color("green")
         self.button_true\
-            .set_foreground_color("white")
+            .set_font_color("white")
         self.button_false = Button(
             self.frame_button, "yes"
         )
         self.button_false\
             .set_background_color("red")
         self.button_false\
-            .set_foreground_color("white")
+            .set_font_color("white")
         self.__value:bool = False
         self.label_content.grid(
             row = 0, column = 0
@@ -40,8 +40,8 @@ class Option(WidgetComposite):
         self.frame_button.grid(
             row = 1, column = 0
         )
-        self.button_true.grid(0, 0)
-        self.button_false.grid(0, 1)
+        self.button_true.draw_in_grid(0, 0)
+        self.button_false.draw_in_grid(0, 1)
         self.callback = None
         self.__add_default_listener()
 

@@ -21,22 +21,22 @@ def main():
     button = Btpy.ButtonIconText(window, 
         "click aqui")
     button.paint_image("./res/cell.png")
-    button.pack()
+    button.draw_in_direction()
     button.set_text_position("LEFT")
     button2 = Btpy.ButtonIconText(window, 
         "click aqui")
     button2.paint_image("./res/cell.png")
-    button2.pack()
+    button2.draw_in_direction()
     button2.set_text_position("TOP")
     button3 = Btpy.ButtonIconText(window, 
         "click aqui")
     button3.paint_image("./res/cell.png")
-    button3.pack()
+    button3.draw_in_direction()
     button3.set_text_position("BOTTOM")
     button4 = Btpy.ButtonIconText(window, 
         "click aqui")
     button4.paint_image("./res/cell.png")
-    button4.pack()
+    button4.draw_in_direction()
     button4.set_text_position("RIGHT")
     window.start()
 

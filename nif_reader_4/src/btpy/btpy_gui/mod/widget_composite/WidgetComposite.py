@@ -77,7 +77,7 @@ class WidgetComposite(WidgetStandard):
         self.label_title.widget\
             .config(bg = COLOR)
     
-    def set_foreground_color(self, COLOR):
+    def set_font_color(self, COLOR):
         self.label_title.widget\
             .config(fg = COLOR)
 
@@ -118,8 +118,10 @@ class WidgetComposite(WidgetStandard):
     
     def add_listener(self, EVENT_KEY, 
             CALLBACK):
-        self.label_title.bind(EVENT_KEY, 
-                CALLBACK)
+        self.label_title.widget.bind(
+            EVENT_KEY, 
+            CALLBACK
+        )
         self.margin.bind(EVENT_KEY, 
                 CALLBACK)
         self.widget.bind(EVENT_KEY, 

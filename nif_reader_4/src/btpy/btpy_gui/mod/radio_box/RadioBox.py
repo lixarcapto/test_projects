@@ -84,7 +84,7 @@ class RadioBox(WidgetComposite):
         y = 0
         for i in range(leng):
             self.__button_list[i]\
-                .grid(x, y, "EW")
+                .grid(y, x, "EW")
             x += 1
             if(x >= COLUMNS):
                 x = 0

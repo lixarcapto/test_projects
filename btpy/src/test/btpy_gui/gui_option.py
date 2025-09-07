@@ -19,7 +19,7 @@ def main():
     window = Btpy.Window("titulo")
     window.set_is_fullscreen(True)
     label = Btpy.Label(window, "")
-    label.pack()
+    label.draw_in_direction()
     option = Btpy.Option(window, "option")
     option.set_content(
         "Te gusta esta aplicacion?",
@@ -32,7 +32,7 @@ def main():
         else:
             label.set_title("no te gusta :q")
     option.add_listener(fn)
-    option.pack()
+    option.draw_in_direction()
     window.start()
 
 main()

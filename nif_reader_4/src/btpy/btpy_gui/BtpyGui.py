@@ -1,9 +1,9 @@
 
 
-from ..btpy_engine.BtpyEngine import BtpyEngine
+from ..btpy_dict.BtpyDict import BtpyDict
 from .in_deps import*
 
-class BtpyGui(BtpyEngine):
+class BtpyGui(BtpyDict):
 
     """
     Esta clase estatica es una parte 
@@ -37,7 +37,6 @@ class BtpyGui(BtpyEngine):
     RadioBox = RadioBox
     SliderBox = SliderBox
     SwitchDouble = SwitchDouble
-    AccordionFrame = AccordionFrame
     SwitchIconBox = SwitchIconBox
     # -----------------------------------
     # Labels ---------------------------
@@ -73,11 +72,7 @@ class BtpyGui(BtpyEngine):
     Window = Window
     ItemFrame = ItemFrame
     SimpleCard = SimpleCard
-    Dialogue = Dialogue
-    SideNotificacion = SideNotificacion
-    FrameSectioned = FrameSectioned
     Option = Option
-    Questionary = Questionary
     Table = Table
     # -----------------------------------
     # Input Text -------------------------

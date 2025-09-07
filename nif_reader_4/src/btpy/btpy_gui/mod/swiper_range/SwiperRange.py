@@ -104,7 +104,7 @@ class SwiperRange(WidgetComposite):
             .set_background_color(
                 "#9b9b9b")
         self.__button_back\
-            .set_foreground_color(
+            .set_font_color(
                 "#FFFFFF")
         self.__button_back.set_font(
             font_)
@@ -123,16 +123,16 @@ class SwiperRange(WidgetComposite):
             .set_background_color(
                 "#9b9b9b")
         self.__button_next\
-            .set_foreground_color(
+            .set_font_color(
                 "#FFFFFF")
         self.__button_next.set_font(font_)
         # dibujar -------------------------
-        self.__button_back.grid(2, 0)
+        self.__button_back.draw_in_grid(0, 2)
         self.__label_number.grid(
             row=0, column=3, 
             sticky="nsew", 
         )
-        self.__button_next.grid(4, 0)
+        self.__button_next.draw_in_grid(0, 4)
         
     def __add_increment_listener(self):
         self.__button_next.add_listener(

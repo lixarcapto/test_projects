@@ -27,7 +27,7 @@ def main():
     canvas = Btpy.Canvas(window, "canvas")
     canvas.set_size(650, 650)
     canvas.set_background_color("white")
-    canvas.pack()
+    canvas.draw_in_direction()
     img_pil = Btpy.create_rgb_image_pil(
         600, 600
     )

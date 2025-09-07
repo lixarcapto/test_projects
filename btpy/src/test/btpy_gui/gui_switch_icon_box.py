@@ -36,7 +36,7 @@ def main():
         ]
         
     )
-    box.pack()
+    box.draw_in_direction()
     print("box iniciado")
     def fn(key):
         print(key)

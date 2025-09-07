@@ -20,7 +20,7 @@ def main():
     window.set_is_fullscreen(True)
     color = [255, 255, 255]
     canvas = Btpy.Canvas(window, "canvas")
-    canvas.pack()
+    canvas.draw_in_direction()
     canvas.set_size(300, 300)
     point = [300, 0]
     for i in range(100):

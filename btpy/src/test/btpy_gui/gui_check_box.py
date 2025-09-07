@@ -29,9 +29,9 @@ def main():
         "elige")
     checkbox.set_components(key_list)
     checkbox.set_content(text_list)
-    checkbox.pack()
+    checkbox.draw_in_direction()
     button = Btpy.Button(window, "send")
-    button.pack()
+    button.draw_in_direction()
     def fn(e):
         print(checkbox.get_value())
         checkbox.set_columns(1)
