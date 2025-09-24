@@ -37,6 +37,15 @@ class Persistence:
                 f_name
             )
     
+    def load_orientation_translate():
+        f_name = Persistence.get_xlsx_path() \
+            + "orientation"\
+            + ".xlsx"
+        return \
+            Btpy.read_xlsx_nested_dict_row(
+                f_name
+            )
+    
     def load_back_story_translate():
         f_name = Persistence.get_xlsx_path() \
             + "back_story"\
@@ -197,11 +206,5 @@ class Persistence:
             + "end_story_description.xlsx"
         )
         return dict_
-    
-    def load_romantic_experience_dict():
-        dict_ = Btpy.read_xlsx_nested_dict_row(
-            Persistence.get_xlsx_path()\
-            + "romantic_experience.xlsx"
-        )
-        return dict_
+
     

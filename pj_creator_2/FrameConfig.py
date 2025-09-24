@@ -38,5 +38,5 @@ class FrameConfig:
 
     def change_lenguage_key(self):
         key = self.lenguage_cbox.get_value()
-        self.model.save_lenguage_key()
         self.model.set_lenguage_key(key)
+        self.model.save_lenguage_key()

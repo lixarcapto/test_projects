@@ -62,7 +62,7 @@ class Model:
     hair_color_translator = {}
     hair_style_translator = {}
     traits_desc_translator = {}
-    romantic_experience_translator = {}
+    orientation_translator = {}
 
     def __init__(self):
         self.experiences_selected = ""
@@ -137,6 +137,22 @@ class Model:
             .end_story_key = e
         return e
     
+    def randomize_profession(self):
+        list_ = self\
+            .get_profession_keys()
+        e = Btpy.random_choice(list_)
+        self.character\
+            .profession_key = e
+        return e
+    
+    def randomize_philosophy(self):
+        list_ = self\
+            .get_philosophy_keys()
+        e = Btpy.random_choice(list_)
+        self.character\
+            .philosophy_key = e
+        return e
+    
     # ---------------------------------
 
     def init_default_character(self):
@@ -165,6 +181,8 @@ class Model:
             .races_key = self.races_translate.get_keys()[0]
         self.character\
             .profession_key = self.profession_translate.get_keys()[0]
+        self.character\
+            .rejections_key = self.rejections_translator.get_keys()[0]
         self.culture_key = self.get_culture_name_keys()[0]
 
     def load_data(self):
@@ -191,7 +209,7 @@ class Model:
         self.load_skin_translator()
         self.load_end_story_desc_tt()
         self.load_traits_desc_translator()
-        self.load_romantic_experience_translator()
+        self.load_orientation_translator()
 
     def save_lenguage_key(self):
         dict_ = {
@@ -225,12 +243,6 @@ class Model:
         dict_ = Persistence\
             .load_traits_desc_dict()
         Model.traits_desc_translator \
-            = Translator(dict_)
-        
-    def load_romantic_experience_translator(self):
-        dict_ = Persistence\
-            .load_romantic_experience_dict()
-        Model.romantic_experience_translator \
             = Translator(dict_)
 
     def load_weapon_translate(self):
@@ -267,6 +279,12 @@ class Model:
         dict_ = Persistence\
             .load_skin_dict()
         Model.skin_translator \
+            = Translator(dict_)
+        
+    def load_orientation_translator(self):
+        dict_ = Persistence\
+            .load_orientation_translate()
+        Model.orientation_translator \
             = Translator(dict_)
         
     def load_profession_translate(self):
@@ -393,8 +411,8 @@ class Model:
     
     def get_profession_keys(self):
         return list(
-                Model.philosophy_translate\
-                    .keys()
+                Model.profession_translate\
+                    .get_keys()
             )
     
     def get_weapon_keys(self):
@@ -460,12 +478,12 @@ class Model:
     def translate_weapon_key(self, 
             KEY:str):
         return Model.weapon_translator\
-            [KEY][self.lenguage_key]
+            .translate_key(KEY)
     
     def translate_races_key(self, 
             KEY:str):
         return Model.races_translate\
-            [KEY][self.lenguage_key]
+            .translate_key(KEY)
     
     def translate_phrases_key(self, 
             KEY:str):
@@ -475,7 +493,7 @@ class Model:
     def translate_profession_key(self, 
             KEY:str):
         return Model.profession_translate\
-            [KEY][self.lenguage_key]
+            .translate_key(KEY)
     
     def get_origin_country_desc_text(self):
         k = self.character\
@@ -496,7 +514,7 @@ class Model:
             .end_story_key
         return self\
             .end_story_translate\
-                .translate_key(k)
+            [k][self.lenguage_key]
     
     def get_young_story_desc_text(self):
         k = self.character\

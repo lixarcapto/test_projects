@@ -23,6 +23,7 @@ class FrameIdentity:
         self.__init_column_1()
         self.__init_column_2()
         self.__init_column_3()
+        self.__init_column_4()
         # ------------------------------
         # UPDATE DATA
         self.create_components()
@@ -78,6 +79,14 @@ class FrameIdentity:
         self.years_old_textf.grid(
             6, 2, "ew")
         # -----------------------------
+        # -----------------------------
+        # ORIENTATION
+        self.orientation_cbox = Btpy.ComboBox(
+            self.subframe, "Orientation"
+        )
+        self.orientation_cbox.grid(
+            7, 2, "ew"
+        )
 
     def __init_column_2(self):
         self.btn_random_name = Btpy.Button(
@@ -118,6 +127,22 @@ class FrameIdentity:
         )
         self.btn_end_story.grid(
             7, 1, "ew")
+        # -------------------------------
+        # PROFESSION RANDOM
+        self.btn_profession = Btpy.Button(
+            self.subframe, "randomize"
+        )
+        self.btn_profession.grid(
+            8, 1, "ew")
+        
+    def __init_column_4(self):
+        # --------------------------------
+        self.btn_philosophy = Btpy.Button(
+            self.subframe, "randomize"
+        )
+        self.btn_philosophy.grid(
+            0, 4, "ew")
+        # ------------------------------
 
     def __init_column_1(self):
         # ----------------------------
@@ -191,6 +216,7 @@ class FrameIdentity:
         self.profession_cbox.grid(
             8, 0, "ew"
         )
+        
 
     def pack(self):
         self.frame.pack()
@@ -244,6 +270,9 @@ class FrameIdentity:
         self.age_range_cbox.add_change_listener(
             self.update_age_range
         )
+        self.orientation_cbox.add_change_listener(
+            self.update_orientation
+        )
         self.btn_origin_country.add_listener(
             self.randomize_origin_country
         )
@@ -255,6 +284,12 @@ class FrameIdentity:
         )
         self.btn_end_story.add_listener(
             self.randomize_end_story
+        )
+        self.btn_profession.add_listener(
+            self.randomize_profession
+        )
+        self.btn_philosophy.add_listener(
+            self.randomize_philosophy
         )
         
     def randomize_origin_country(self):
@@ -270,6 +305,18 @@ class FrameIdentity:
         self.back_story_cbox\
             .set_value(k)
         self.update_back_story_desc()
+
+    def randomize_profession(self):
+        k = self.model\
+            .randomize_profession()
+        self.profession_cbox\
+            .set_value(k)
+        
+    def randomize_philosophy(self):
+        k = self.model\
+            .randomize_philosophy()
+        self.philosophy_cbox\
+            .set_value(k)
 
     def randomize_young_story(self):
         k = self.model\
@@ -336,6 +383,12 @@ class FrameIdentity:
         k = self.races_cbox.get_value()
         self.model.character\
             .races_key = k
+        
+    def update_orientation(self):
+        k = self.orientation_cbox\
+            .get_value()
+        self.model.character\
+            .orientation_key = k
         
     def update_hobby(self):
         k = self.hobby_cbox.get_value()
@@ -485,6 +538,12 @@ class FrameIdentity:
         self.rejections_cbox.set_components(
             list_
         )
+        list_ = self.model\
+            .orientation_translator\
+                .get_keys()
+        self.orientation_cbox.set_components(
+            list_
+        )
 
 
     def update_all_texts(self):
@@ -547,6 +606,11 @@ class FrameIdentity:
         list_ = self.model\
             .rejections_translator.get_text_list()
         self.rejections_cbox.set_content(
+            list_
+        )
+        list_ = self.model\
+            .orientation_translator.get_text_list()
+        self.orientation_cbox.set_content(
             list_
         )
 

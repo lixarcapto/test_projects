@@ -17,6 +17,7 @@ class Character:
         self.races_key:str = ""
         self.years_old:int = 0
         self.profession_key:str = ""
+        self.orientation_key:str = ""
         self.traits_dict:dict = {}
         self.skills_list:list = []
         self.hobby_key:str = ""
@@ -52,6 +53,8 @@ class Character:
              = DICT["YEARS_OLD"]
         self.profession_key\
              = DICT["PROFESSION_KEY"]
+        self.orientation_key\
+             = DICT["ORIENTATION_KEY"]
 
     def create_character_dict(self):
         return {
@@ -68,5 +71,6 @@ class Character:
             "PHRASE_KEY":self.phrase_key,
             "RACES_KEY":self.races_key,
             "YEARS_OLD":self.years_old,
-            "PROFESSION_KEY":self.profession_key
+            "PROFESSION_KEY":self.profession_key,
+            "ORIENTATION_KEY":self.orientation_key
         }

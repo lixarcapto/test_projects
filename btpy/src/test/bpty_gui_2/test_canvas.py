@@ -21,6 +21,7 @@ def main():
         window.widget, "title"
     )
     canvas.grid(0, 0)
+    canvas.set_brush_color("red")
     window.start()
 
 main()
