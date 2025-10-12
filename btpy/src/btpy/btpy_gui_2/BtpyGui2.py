@@ -28,6 +28,7 @@ from .Canvas import Canvas
 from .SwiperImage import SwiperImage
 from .Link import Link
 from .SwitchImageBox import SwitchImageBox
+from .Card import Card
 
 class BtpyGui2(BtpyDict):
 
@@ -57,3 +58,4 @@ class BtpyGui2(BtpyDict):
     SwiperImage = SwiperImage
     Link = Link
     SwitchImageBox = SwitchImageBox
+    Card = Card

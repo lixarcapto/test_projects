@@ -31,17 +31,6 @@ class Model:
             and demon_dict[k]["candle_list"]
                == self.candle_list):
                 self.demon_key = k
-        self.active_behavior()
-
-    def active_behavior(self):
-        behavior_k = demon_dict\
-            [self.demon_key]["behavior_key"]
-        if(behavior_k == "youtube"):
-            abrir_url_en_navegador(
-                "https://www.youtube.com/watch?v=lJyFWfin3iY"
-            )
-        elif(behavior_k == "open_image"):
-            buscar_y_abrir_primera_imagen()
 
     def render_dict(self)->dict:
         return {
