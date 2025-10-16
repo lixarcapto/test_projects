@@ -383,6 +383,7 @@ class FrameIdentity:
         k = self.races_cbox.get_value()
         self.model.character\
             .races_key = k
+        self.update_races_desc()
         
     def update_orientation(self):
         k = self.orientation_cbox\
@@ -451,6 +452,16 @@ class FrameIdentity:
             .end_story_key
         desc = self.model\
             .end_story_desc_ttr\
+                .translate_key(k)
+        self.print_label_description(
+            desc
+        )
+
+    def update_races_desc(self):
+        k = self.model.character\
+            .races_key
+        desc = self.model\
+            .races_desc_translator\
                 .translate_key(k)
         self.print_label_description(
             desc

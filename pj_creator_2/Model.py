@@ -48,6 +48,7 @@ class Model:
     hobby_translate = {}
     races_translate = {}
     profession_translate = {}
+    races_desc_translator = None
     origin_country_desc_ttr = {}
     end_story_desc_ttr = {}
     age_range_dict = {}
@@ -210,6 +211,7 @@ class Model:
         self.load_end_story_desc_tt()
         self.load_traits_desc_translator()
         self.load_orientation_translator()
+        self.load_races_desc_translator()
 
     def save_lenguage_key(self):
         dict_ = {
@@ -243,6 +245,12 @@ class Model:
         dict_ = Persistence\
             .load_traits_desc_dict()
         Model.traits_desc_translator \
+            = Translator(dict_)
+        
+    def load_races_desc_translator(self):
+        dict_ = Persistence\
+            .load_races_description()
+        Model.races_desc_translator \
             = Translator(dict_)
 
     def load_weapon_translate(self):

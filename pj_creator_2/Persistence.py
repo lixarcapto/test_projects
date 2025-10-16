@@ -207,4 +207,12 @@ class Persistence:
         )
         return dict_
 
+    def load_races_description():
+        dict_ = Btpy.read_xlsx_nested_dict_row(
+            Persistence.get_xlsx_path()\
+            + "races_description.xlsx"
+        )
+        return dict_
+
+
     
