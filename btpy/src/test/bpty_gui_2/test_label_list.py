@@ -27,7 +27,7 @@ def main():
          "raton"]
     )
     label.grid(0, 0)
-    label.set_columns(3)
+    label.set_columns(0)
     window.start()
 
 main()

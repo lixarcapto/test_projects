@@ -193,6 +193,20 @@ class Persistence:
         )
         return dict_
     
+    def load_hair_color_dict():
+        dict_ = Btpy.read_xlsx_nested_dict_row(
+            Persistence.get_xlsx_path()\
+            + "hair_color_translate.xlsx"
+        )
+        return dict_
+    
+    def load_hair_style_dict():
+        dict_ = Btpy.read_xlsx_nested_dict_row(
+            Persistence.get_xlsx_path()\
+            + "hair_style_translate.xlsx"
+        )
+        return dict_
+    
     def load_traits_desc_dict():
         dict_ = Btpy.read_xlsx_nested_dict_row(
             Persistence.get_xlsx_path()\

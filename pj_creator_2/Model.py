@@ -212,6 +212,8 @@ class Model:
         self.load_traits_desc_translator()
         self.load_orientation_translator()
         self.load_races_desc_translator()
+        self.load_hair_color_translator()
+        self.load_hair_style_translator()
 
     def save_lenguage_key(self):
         dict_ = {
@@ -287,6 +289,18 @@ class Model:
         dict_ = Persistence\
             .load_skin_dict()
         Model.skin_translator \
+            = Translator(dict_)
+        
+    def load_hair_color_translator(self):
+        dict_ = Persistence\
+            .load_hair_color_dict()
+        Model.hair_color_translator \
+            = Translator(dict_)
+        
+    def load_hair_style_translator(self):
+        dict_ = Persistence\
+            .load_hair_style_dict()
+        Model.hair_style_translator \
             = Translator(dict_)
         
     def load_orientation_translator(self):
@@ -691,6 +705,29 @@ class Model:
             .get_end_story_desc_text()
         return f"{country_story} ; "\
             + country_story_desc
+    
+    def write_races(self):
+        char = self.character
+        races_k = char.races_key
+        races_text = self\
+            .translate_races_key(races_k)
+        description = self.races_desc_translator\
+            .translate_key(races_k)
+        return f"{races_text} ; "\
+            + description
+    
+    def write_appearance_desc(self):
+        txt = ""
+        txt += self.character.races_key + " "
+        txt += self.character.gender_key + " "
+        txt += "with "
+        txt += self.character.skin_color + " " 
+        txt += "skin, "
+        txt += self.character.hair_color + " " 
+        txt += "hair, "
+        txt += self.character.hair_style + " "
+        txt += "cut hair "
+        return txt
 
     def write_character(self):
         char = self.character
@@ -724,7 +761,7 @@ class Model:
         txt += f"Young story : {self.write_young_story()}\n"
         txt += f"End story : {self.write_end_story()}\n"
         txt += f"Weapon : {weapon_tt}\n"
-        txt += f"Races : {race_tt}\n"
+        txt += f"Races : {self.write_races()}\n"
         txt += f"Hobby : {hobby_tt}\n"
         txt += f"Rejections : {rejections_key}\n"
         txt += f"Profession : {profession_key}\n"
@@ -732,6 +769,7 @@ class Model:
         txt += f"Traits : {self.write_traits()}\n"
         txt += f"Skills : {self.write_skills()}\n"
         txt += f"Traits definition: {self.write_traits_descriptions()}\n"
+        txt += f"Appearance : {self.write_appearance_desc()}"
         return txt
     
     def get_pronoun(self):

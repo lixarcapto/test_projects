@@ -24,6 +24,9 @@ class Character:
         self.rejections_key:str = ""
         self.romantic_experience_k:str = ""
         self.experiences_list:list = []
+        self.skin_color = ""
+        self.hair_color = ""
+        self.hair_style = ""
 
     def load_character_dict(self, 
             DICT:dict):
