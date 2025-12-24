@@ -26,60 +26,146 @@ class InputDate:
     def __init__(self, widget, 
             TEXT = ""):
         self.widget = tk.Frame(
-            widget
+            widget,
+            borderwidth=1,
+            relief="solid",
         )
-        self.widget.pack()
+        self.default_font = tkFont\
+            .Font(
+                family="Arial", 
+                size=12
+            )
         self.year_range_arr__:list = [0, 1]
         self.combo_day = ttk.Combobox(
             self.widget, 
             values=[], 
             state="readonly",
-            width=4
+            width=4,
+            font = self.default_font
+        )
+        self.label_title = tk.Label(
+            self.widget,
+            text=TEXT,
+            font = self.default_font,
+            padx=5,
+            pady=5
         )
         self.combo_month = ttk.Combobox(
             self.widget, 
             values=[], 
             state="readonly",
-            width=10
+            width=10,
+            font = self.default_font
         )
         self.combo_year = ttk.Combobox(
             self.widget, 
             values=[], 
             state="readonly",
-            width=5
+            width=5,
+            font = self.default_font
+        )
+        self.label_title.grid(
+            row = 0,
+            column= 0
         )
         self.combo_day.grid(
-            row=0, column=0)
-        self.combo_month.grid(
             row=0, column=1)
-        self.combo_year.grid(
+        self.combo_month.grid(
             row=0, column=2)
+        self.combo_year.grid(
+            row=0, column=3)
         # listener
         def fn(e):
-            self.update_day()
+            self.__update_day()
         self.combo_month.bind(
             "<<ComboboxSelected>>",
             fn
         )
-        self.update_month()
-        self.update_day()
-        self.update_year()
+        self.__update_month()
+        self.__update_day()
+        self.__update_year()
 
+    def get_value(self):
+        date = Date(1, 1, 1)
+        date.set_day(int(self.__get_day()))
+        date.set_month(int(self.__get_month()))
+        date.set_year(int(self.__get_year()))
+        return date
+    
     def set_range_year(self, RANGE_LIST):
         self.year_range_arr__ = RANGE_LIST
-        self.update_year()
+        self.__update_year()
 
-    def update_year(self):
+    def grid(self, ROW, COLUMN, 
+             STICKY = ""):
+        self.widget.grid(
+            row = ROW, column= COLUMN,
+            sticky= STICKY,
+            ipadx=5, ipady=5
+        )
+
+    def set_title(self, TEXT:str):
+        self.label_title.config(
+            text = TEXT
+        )
+
+    def place(self, 
+            LOCATION_X:int, 
+            LOCATION_Y:int):
+        self.widget.place(
+            x=LOCATION_X,
+            y=LOCATION_Y
+        )
+
+    def pack(self, 
+            IS_EXPANDABLE:bool = False,
+            SIDE_KEY:str = "left"):
+        """
+        SIDE_KEY:
+        * left
+        * top
+        * right
+        * bottom
+        """
+        if(IS_EXPANDABLE):
+            self.widget.pack(
+                fill=tk.BOTH, 
+                expand=True,
+                side = SIDE_KEY
+            )
+        else:
+            self.widget.pack(
+                side = SIDE_KEY
+            )
+
+
+    # PRIVATE --------------------------
+    
+    def __get_day(self):
+        return self.combo_day.get()
+
+    def __get_month(self):
+        list_ = list(
+            self.DAYS_BY_MONTH.keys()
+        )
+        month = self.combo_month.get()
+        idx = list_.index(month)
+        return idx + 1
+    
+    def __get_year(self):
+        return self.combo_year.get()
+
+    def __update_year(self):
         list_ = []
         range_ = self.year_range_arr__
-        for i in range(range_[0], range_[1]):
+        for i in range(range_[0], range_[1] +1):
             list_.append(str(i))
         self.combo_year.config(
             values=list_
         )
         self.combo_year.set(list_[0])
         
-    def update_month(self):
+    def __update_month(self):
         month_key_arr = list(
             InputDate.DAYS_BY_MONTH.keys())
         self.combo_month.config(
@@ -87,15 +173,15 @@ class InputDate:
         self.combo_month.set(
             month_key_arr[0])
 
-    def update_day(self):
+    def __update_day(self):
         month = self.combo_month.get()
-        day_list = self.get_day_list(
+        day_list = self.__get_day_list(
             month)
         self.combo_day.config(
             values=day_list)
         self.combo_day.set(day_list[0])
         
-    def get_day_list(self, MONTH_NAME):
+    def __get_day_list(self, MONTH_NAME):
         days_number = InputDate\
             .DAYS_BY_MONTH[MONTH_NAME]
         list_ = []

@@ -28,6 +28,7 @@ from .Card import Card
 from .create_binary_popup import create_binary_popup
 from .ChipInputCombo import ChipInputCombo
 from .InputDate import InputDate
+from .ChipInput import ChipInput
 
 class BtpyGui2(BtpyDict):
 
@@ -57,3 +58,4 @@ class BtpyGui2(BtpyDict):
     create_binary_popup = create_binary_popup
     ChipInputCombo = ChipInputCombo
     InputDate = InputDate
+    ChipInput = ChipInput

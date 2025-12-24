@@ -1,5 +1,6 @@
 
 
+
 import sys
 import os
 
@@ -16,17 +17,19 @@ from btpy.Btpy import Btpy
 def main():
 
     window = Btpy.Window("titulo")
-    date = Btpy.InputDate(window.widget,
-        "text")
-    date.set_range_year([1960, 2020])
-    date.pack()
-    btn = Btpy.Button(window.widget,
-        "get date")
-    btn.pack()
-    def fn():
-        dt = date.get_value()
-        print(dt.get_american_date())
-    btn.add_listener(fn)
+    box = Btpy.ButtonBox(
+        window.widget, "box"
+    )
+    box.set_components(
+        ["gato", "perro", "raton"]
+    )
+    box.grid(0, 0)
+    box.add_listener_to(
+        0, lambda :print("gato")
+    )
+    box.add_single_listener(
+        lambda e:print(e)
+    )
     window.start()
 
 main()

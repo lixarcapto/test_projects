@@ -1,5 +1,6 @@
 
 
+
 import sys
 import os
 
@@ -16,17 +17,18 @@ from btpy.Btpy import Btpy
 def main():
 
     window = Btpy.Window("titulo")
-    date = Btpy.InputDate(window.widget,
-        "text")
-    date.set_range_year([1960, 2020])
-    date.pack()
-    btn = Btpy.Button(window.widget,
-        "get date")
-    btn.pack()
+    chip = Btpy.ChipInput(window.widget)
+    chip.set_components(
+        ["a", "b", "c", "d"]
+    )
+    button = Btpy.Button(window.widget, 
+            "reset")
+    button.pack()
     def fn():
-        dt = date.get_value()
-        print(dt.get_american_date())
-    btn.add_listener(fn)
+        chip.set_value(
+            ["a"]
+        )
+    button.add_listener(fn)
     window.start()
 
 main()
