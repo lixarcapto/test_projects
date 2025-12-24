@@ -1,8 +1,8 @@
 
 import tkinter as tk
-from ..widget_standard.WidgetStandard import WidgetStandard
+import tkinter.font as tkFont
 
-class SwitchColor(WidgetStandard):
+class SwitchColor():
 
     """
     This component creates a binary 
@@ -12,11 +12,16 @@ class SwitchColor(WidgetStandard):
 
     def __init__(self, window, TEXT = "")\
             -> None:
-        super().__init__(window)
+        self.default_font = tkFont\
+            .Font(
+                family="Arial", 
+                size=12
+            )
         self.widget = tk.Button(
-            self.margin,
+            window,
             text = TEXT,
-            bg = "white"
+            bg = "white",
+            font = self.default_font
         )
         self.widget.pack(
             padx=1, 

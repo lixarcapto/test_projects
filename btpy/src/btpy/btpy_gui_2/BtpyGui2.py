@@ -29,6 +29,8 @@ from .create_binary_popup import create_binary_popup
 from .ChipInputCombo import ChipInputCombo
 from .InputDate import InputDate
 from .ChipInput import ChipInput
+from .SwitchColor import SwitchColor
+from .Table import Table
 
 class BtpyGui2(BtpyDict):
 
@@ -59,3 +61,5 @@ class BtpyGui2(BtpyDict):
     ChipInputCombo = ChipInputCombo
     InputDate = InputDate
     ChipInput = ChipInput
+    SwitchColor = SwitchColor
+    Table = Table
