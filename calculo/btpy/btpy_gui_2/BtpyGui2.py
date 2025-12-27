@@ -16,19 +16,21 @@ from .ButtonIcon import ButtonIcon
 from .LabelImage import LabelImage
 from .SwiperText import SwiperText
 from .SwiperRange import SwiperRange
-from .ChipInputCombo import ChipInputCombo
 from .LabelList import LabelList
 from .LabelLabel import LabelLabel
 from .InputFile import InputFile
 from .SwitchIcon import SwitchIcon
-from .SliderBox import SliderBox
-from .ButtonBox import ButtonBox
 from .BinarySlider import BinarySlider
 from .Canvas import Canvas
 from .SwiperImage import SwiperImage
 from .Link import Link
-from .SwitchImageBox import SwitchImageBox
 from .Card import Card
+from .create_binary_popup import create_binary_popup
+from .ChipInputCombo import ChipInputCombo
+from .InputDate import InputDate
+from .ChipInput import ChipInput
+from .SwitchColor import SwitchColor
+from .Table import Table
 
 class BtpyGui2(BtpyDict):
 
@@ -46,16 +48,18 @@ class BtpyGui2(BtpyDict):
     LabelImage = LabelImage
     SwiperText = SwiperText
     SwiperRange = SwiperRange
-    ChipInputCombo = ChipInputCombo
     LabelList = LabelList
     LabelLabel = LabelLabel
     InputFile = InputFile
     SwitchIcon = SwitchIcon
-    SliderBox = SliderBox
-    ButtonBox = ButtonBox
     BinarySlider = BinarySlider
     Canvas = Canvas
     SwiperImage = SwiperImage
     Link = Link
-    SwitchImageBox = SwitchImageBox
     Card = Card
+    create_binary_popup = create_binary_popup
+    ChipInputCombo = ChipInputCombo
+    InputDate = InputDate
+    ChipInput = ChipInput
+    SwitchColor = SwitchColor
+    Table = Table
