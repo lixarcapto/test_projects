@@ -11,9 +11,50 @@ class RecipeDict:
     def create_recipes(self):
         rp = Recipe()
         rp.product_dict = {
-            "food":2
+            "food":10
         }
         rp.raw_materials_dict = {
-            "farmer":1
+            "farmer":1,
+            "vehicles":1
+        }
+        self.recipe_list.append(rp)
+        # ----------------------------
+        rp = Recipe()
+        rp.product_dict = {
+            "metal":2,
+            "sand":2
+        }
+        rp.raw_materials_dict = {
+            "miner":1
+        }
+        self.recipe_list.append(rp)
+        # ----------------------------
+        rp = Recipe()
+        rp.product_dict = {
+            "vehicles":5
+        }
+        rp.raw_materials_dict = {
+            "metal":1,
+            "oil":1
+        }
+        self.recipe_list.append(rp)
+        # ----------------------------
+        rp = Recipe()
+        rp.product_dict = {
+            "concrete":2
+        }
+        rp.raw_materials_dict = {
+            "sand":1,
+            "chemical":1
+        }
+        self.recipe_list.append(rp)
+        # ----------------------------
+        rp = Recipe()
+        rp.product_dict = {
+            "oil":2
+        }
+        rp.raw_materials_dict = {
+            "driller":1,
+            "chemical":1
         }
         self.recipe_list.append(rp)

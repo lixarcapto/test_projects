@@ -15,6 +15,12 @@ class View:
         self.top_bar_frame.grid(
             row = 0, column=0
         )
+        self.right_bar_frame = tk.Frame(
+            self.window.widget
+        )
+        self.right_bar_frame.grid(
+            row = 1, column=3
+        )
         self.button_frame = tk.Frame(
             self.window.widget
         )
@@ -27,17 +33,27 @@ class View:
         )
         self.label_money.pack(
             True, "right")
+        self.label_happiness = Btpy.LabelLabel(
+            self.top_bar_frame,
+            "happiness"
+        )
+        self.label_happiness.pack(
+            True, "right")
         self.init_right_bar_frame()
         self.button_advance = Btpy\
-            .Button(self.button_frame,
+            .Button(self.right_bar_frame,
                 "advance one year"
             )
-        self.button_advance.pack()
+        self.button_advance.pack(
+            True, "top"
+        )
         self.button_advance_x5 = Btpy\
-            .Button(self.button_frame,
+            .Button(self.right_bar_frame,
                 "advance 5 years"
             )
-        self.button_advance_x5.pack()
+        self.button_advance_x5.pack(
+            True, "top"
+        )
         self.button_advance.add_listener(
             self.advance_one_year
         )
@@ -45,16 +61,32 @@ class View:
             self.advance_5_years
         )
         self.subsidized_key_box = Btpy.CheckBox(
-            self.window.widget, "subsidized"
+            self.right_bar_frame, 
+            "subsidized"
         )
-        self.subsidized_key_box.grid(
-            1, 2
+        self.subsidized_key_box.pack(
+            True, "top"
+        )
+        self.swiper_visas = Btpy.SwiperRange(
+            self.right_bar_frame,
+            "annual visas"
+        )
+        self.swiper_visas.pack(
+            True, "top"
+        )
+        self.swiper_visas.set_content(
+            [0, 100]
+        )
+        def fn():
+            v = self.swiper_visas\
+                .get_value()
+            self.model\
+                .annual_entry_permits = v
+        self.swiper_visas.add_change_listener(
+            fn
         )
         self.subsidized_key_box.set_components(
-            [
-                "farmer",
-                "miner"
-            ]
+            self.model.professions_list
         )
         def fn():
             list_ = self.subsidized_key_box\
@@ -73,65 +105,77 @@ class View:
         self.window.start()
 
     def init_right_bar_frame(self):
-        self.right_bar_frame = tk.Frame(
+        self.left_bar_frame = tk.Frame(
             self.window.widget
         )
-        self.right_bar_frame.grid(
+        self.left_bar_frame.grid(
             row = 1, column= 0
         )
         self.label_pop = Btpy.LabelLabel(
-            self.right_bar_frame,
+            self.left_bar_frame,
             "population"
         )
         self.label_pop.pack(
             True, "bottom")
         self.label_woman_pop = Btpy.LabelLabel(
-            self.right_bar_frame,
+            self.left_bar_frame,
             "females"
         )
         self.label_woman_pop.pack(
             True, "bottom")
         self.label_man_pop = Btpy.LabelLabel(
-            self.right_bar_frame,
+            self.left_bar_frame,
             "males"
         )
         self.label_man_pop.pack(
             True, "bottom")
         self.label_moms_pop = Btpy.LabelLabel(
-            self.right_bar_frame,
+            self.left_bar_frame,
             "moms"
         )
         self.label_moms_pop.pack(
             True, "bottom")
         self.label_childs_pop = Btpy.LabelLabel(
-            self.right_bar_frame,
+            self.left_bar_frame,
             "childs"
         )
         self.label_childs_pop.pack(
             True, "bottom")
+        self.label_emigrants = Btpy.LabelLabel(
+            self.left_bar_frame,
+            "number of emigrants"
+        )
+        self.label_emigrants.pack(
+            True, "bottom")
         self.label_total_deaths = Btpy.LabelLabel(
-            self.right_bar_frame,
+            self.left_bar_frame,
             "total deaths"
         )
         self.label_total_deaths.pack(
             True, "bottom")
         self.label_year_deaths = Btpy.LabelLabel(
-            self.right_bar_frame,
+            self.left_bar_frame,
             "year deaths"
         )
         self.label_year_deaths.pack(
             True, "bottom")
         self.label_starvation_deaths = Btpy.LabelLabel(
-            self.right_bar_frame,
+            self.left_bar_frame,
             "starvation deaths"
         )
         self.label_starvation_deaths.pack(
             True, "bottom")
         self.label_natural_deaths = Btpy.LabelLabel(
-            self.right_bar_frame,
+            self.left_bar_frame,
             "natural deaths"
         )
         self.label_natural_deaths.pack(
+            True, "bottom")
+        self.fatal_birth_deaths = Btpy.LabelLabel(
+            self.left_bar_frame,
+            "fatal birth"
+        )
+        self.fatal_birth_deaths.pack(
             True, "bottom")
         
     def update_values(self):
@@ -162,12 +206,20 @@ class View:
         self.label_starvation_deaths.set_value(
             self.model.starvation_deaths
         )
+        self.fatal_birth_deaths.set_value(
+            self.model.fatal_birth_deaths
+        )
         self.label_money.set_value(
             self.model.money
         )
-        dict_ = self.model.resources_dict
-        txt = Btpy.write_dict(dict_)
+        self.label_emigrants.set_value(
+            self.model.number_emigrants
+        )
+        txt = self.model.write_resources_table()
         self.text_area.set_value(txt)
+        self.label_happiness.set_value(
+            f"{self.model.total_happiness} / {self.model.max_happiness}"
+        )
 
     def advance_one_year(self):
         self.model.advance_one_year()

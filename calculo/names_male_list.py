@@ -13,5 +13,5 @@ names_male_list = [
     "Elías", "Isaac", "Aaron", "Emanuel", "Ismael", "Rubén", "Saúl", "Noé",
     "Abraham", "Caleb", "Josué", "Uriel", "Gael", "Thiago", "Dylan", "Ian",
     "Alan", "Hugo", "Mateo", "Oliver", "Alexander", "Eric", "Enrique",
-    "Ramón", "Salvador", "Vicente"
+    "Ramón"
 ]
