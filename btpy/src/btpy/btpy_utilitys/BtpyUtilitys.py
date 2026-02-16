@@ -5,6 +5,7 @@ from ..btpy_transformers.BtpyTransformers import BtpyTransformers
 import time
 from typing import Callable
 
+
 class BtpyUtilitys(BtpyTransformers):
 
     EmotionSim = EmotionSim
@@ -12,6 +13,7 @@ class BtpyUtilitys(BtpyTransformers):
     Time = Time
     Date = Date
     Iterator2D = Iterator2D
+    CharacterEngine = CharacterEngine
     
     def deep(array:list) -> int:
         """

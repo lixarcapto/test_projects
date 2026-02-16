@@ -341,3 +341,15 @@ class BtpyMaths(BtpyLoops):
             desviacion_max_grados,
             direccion_base_grados= 270.0 # Por defecto, apunta hacia abajo
         )
+    
+    def get_grid_index(POINT, SIZE_CELD,
+            ROWS, COLUMNS)->list[int]:
+        """
+        Identifica el índice de matriz 
+        (fila, columna) de una coordenada 
+        en una cuadrícula.
+        """
+        return get_grid_index(
+            POINT, SIZE_CELD,
+            ROWS, COLUMNS
+        )

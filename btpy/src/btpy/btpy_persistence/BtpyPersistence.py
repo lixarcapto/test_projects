@@ -438,32 +438,6 @@ class BtpyPersistence(BtpyMaths):
         return read_xlsx_nested_dict_row(
             PATH_XLSX
         )
-    
-    def write_xlsx_nested_dict_row(
-            PATH_XLSX:str):
-        """
-        TODO
-        """
-        pass
-    
-    def read_xlsx_nested_dict_column(
-            PATH_XLSX:str)\
-            ->dict[dict]:
-        """
-        función de persistencia que lee un 
-        archivo Excel como un diccionario 
-        anidado en horizontal
-        """
-        return read_xlsx_nested_dict_column(
-            PATH_XLSX
-        )
-    
-    def write_xlsx_nested_dict_column(
-            PATH_XLSX:str):
-        """
-        TODO
-        """
-        pass
 
     def write_json_object(
             PATH: str, 
@@ -512,6 +486,25 @@ class BtpyPersistence(BtpyMaths):
         return read_json_folder_as_dict(
             PATH
         )
-
+    
+    def write_xlsx_flat_list(PATH:str, 
+            LIST:list)-> None:
+        """
+        Function that creates an xlsx file 
+        with a list where each cell of 
+        the table is an element of the 
+        list
+        """
+        return write_xlsx_flat_list(
+            PATH, LIST
+        )
+    
+    def write_xlsx_nested_dict_row(
+            PATH:str, 
+            NESTED_DICT:dict):
+        return write_xlsx_nested_dict_row(
+            PATH, 
+            NESTED_DICT
+        )
 
     # -----------------------------------

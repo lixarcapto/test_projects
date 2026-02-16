@@ -13,11 +13,10 @@ def random_probability(porcentage: int)\
     valid_porcentage(porcentage)
     if porcentage == 100: return True
     if porcentage == 0: return False
-    numero = random.randint(0, 
-        100 - porcentage)
-    result = False
-    if numero == 1: result = True
-    return result
+    # Genera un número aleatorio entre 0.0 (inclusive) y 100.0 (exclusive)
+    numero_aleatorio = random.uniform(0, 100)
+    # Si el número aleatorio es menor que la probabilidad deseada, retorna True
+    return numero_aleatorio < porcentage
 
 def valid_porcentage(porcentage):
     if(not type(porcentage) == type(0)):

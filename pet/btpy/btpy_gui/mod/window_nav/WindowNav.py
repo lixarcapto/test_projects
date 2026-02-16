@@ -12,21 +12,19 @@ class WindowNav(Window):
         self.frame_dict = {}
         self.button_nav_bar = ButtonBox(
             self.widget,
-            True,
             "nav"
         )
         text_list = list(
             self.frame_dict.keys())
         self.button_nav_bar.set_components(
-            len(text_list),
-            len(text_list)
+            text_list
         )
         self.button_nav_bar.set_content(
             text_list
         )
         self.__on_change_callback\
             :callable = None
-        self.button_nav_bar.grid(0, 0)
+        self.button_nav_bar.draw_in_grid(0, 0)
 
     def __update_nav_bar(self):
         text_list = list(

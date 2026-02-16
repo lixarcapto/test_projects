@@ -498,6 +498,20 @@ class BtpyPersistence(BtpyMaths):
             DICT,
             PATH
         )
+    
+    def read_json_folder_as_dict(PATH:str)\
+        ->dict[str, dict]:
+        """
+        Funcion que carga una lista de 
+        archivos json en la misma carpeta 
+        como un diccionario
+        de objetos json donde las claves
+        de cada par son los nombres de
+        los archivos.
+        """
+        return read_json_folder_as_dict(
+            PATH
+        )
 
 
     # -----------------------------------

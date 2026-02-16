@@ -26,13 +26,15 @@ class WidgetComposite(WidgetStandard):
             self.set_in_horizontal()
         else:
             self.set_in_vertical()
-        super().set_background_color("#EEEEEE")
+        super().set_background_color(
+            "#F5F5F5"
+        )
         self.label_title.widget.config(
             font = self.default_font,
-            bg = "#EEEEEE"
+            bg = "#F5F5F5"
         )
         self.set_title_background(
-            "#BABABA")
+            "#F5F5F5")
         
     def set_font(self, FONT):
         super().set_font(FONT)
@@ -75,7 +77,7 @@ class WidgetComposite(WidgetStandard):
         self.label_title.widget\
             .config(bg = COLOR)
     
-    def set_foreground_color(self, COLOR):
+    def set_font_color(self, COLOR):
         self.label_title.widget\
             .config(fg = COLOR)
 
@@ -112,12 +114,14 @@ class WidgetComposite(WidgetStandard):
             self.hide_title()
         
     def get_title(self):
-        return self.get_title()
+        return self.label_title.get_title()
     
     def add_listener(self, EVENT_KEY, 
             CALLBACK):
-        self.label_title.bind(EVENT_KEY, 
-                CALLBACK)
+        self.label_title.widget.bind(
+            EVENT_KEY, 
+            CALLBACK
+        )
         self.margin.bind(EVENT_KEY, 
                 CALLBACK)
         self.widget.bind(EVENT_KEY, 

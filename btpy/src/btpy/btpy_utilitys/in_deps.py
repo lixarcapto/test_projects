@@ -40,3 +40,4 @@ from .mod.find_main_path.find_main_path import*
 from .mod.write_as_description.write_as_description import*
 from .mod.open_docx.open_docx import*
 from .mod.write_as_list.write_as_list import*
+from .mod.character_engine.CharacterEngine import*

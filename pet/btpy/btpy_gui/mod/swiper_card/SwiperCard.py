@@ -21,7 +21,7 @@ class SwiperCard(SwiperStandard):
             False
         )
         # dibujar -----------------------
-        self.card.pack()
+        self.card.draw_in_direction()
         self.icon_size_list = [200, 200]
         def fn():
             card_dict = self.get_value()

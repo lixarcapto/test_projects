@@ -24,8 +24,6 @@ from .mod.write_docx.write_docx import*
 from .mod.read_docx.read_docx import*
 # -----------------------------------------
 from .mod.read_photoimage.read_photoimage import*
-from .mod.read_xlsx_nested_dict_column\
-    .read_xlsx_nested_dict_column import*
 from .mod.load_word.load_word import*
 from .mod.seek_docx_file.seek_docx_file\
      import*
@@ -48,3 +46,5 @@ from .mod.write_json_object.write_json_object import*
 from .mod.create_folder.create_folder import*
 from .mod.write_xlsx_flat_dict.write_xlsx_flat_dict import*
 from .mod.read_json_folder_as_dict.read_json_folder_as_dict import*
+from .mod.write_xlsx_flat_list.write_xlsx_flat_list import*
+from .mod.write_xlsx_nested_dict_row.write_xlsx_nested_dict_row import*

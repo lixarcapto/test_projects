@@ -37,7 +37,7 @@ class StandardBox(WidgetComposite):
                 color
             )
 
-    def set_foreground_color(self, COLOR):
+    def set_font_color(self, COLOR):
         color = self\
             .convert_to_tk_color(COLOR)
         self.label_title.widget.config(

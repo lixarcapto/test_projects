@@ -76,3 +76,14 @@ class BtpyList(BtpyInternet):
         to the indicated size.
         """
         return fit(ORDERDER_ITERABLE, SIZE)
+    
+    def create_matriz_2d(
+        ROWS, COLUMNS, 
+        VALUE=None)->list[list]:
+        """
+        Genera una matriz 2D (lista de listas) 
+        con el tamaño especificado.
+        """
+        return create_matriz_2d(
+            ROWS, COLUMNS, VALUE
+        )

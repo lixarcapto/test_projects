@@ -17,7 +17,9 @@ from btpy.Btpy import Btpy
 def main():
 
     window = Btpy.Window("titulo")
-    
+    data_bar = Btpy.DataBar(
+        window.widget, "Text"
+    )
     window.start()
 
 main()
